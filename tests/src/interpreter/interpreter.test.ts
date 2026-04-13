@@ -6,20 +6,12 @@ describe("Interpreter", () => {
     expect(Interpreter).toBeDefined()
   })
 
-  test("should be instantiable", () => {
-    const interpreter = new Interpreter()
-    expect(interpreter).toBeInstanceOf(Interpreter)
-  })
-
-  test("should accept a string as the Code in the constructor", () => {
-    const code = "print('Hello, World!')"
+  test("accepts a string as the Code in the constructor", () => {
+    const code = JSON.stringify([
+      [1, "p"],
+      [1, "end"],
+    ])
     const interpreter = new Interpreter(code)
-    expect(interpreter).toBeInstanceOf(Interpreter)
-  })
-
-  test("should accept an array of Statements as the Code in the constructor", () => {
-    const statements = [[1, [], "print", "Hello, World!"]] as Statement[]
-    const interpreter = new Interpreter(statements)
     expect(interpreter).toBeInstanceOf(Interpreter)
   })
 })

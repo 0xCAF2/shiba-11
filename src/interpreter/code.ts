@@ -1,3 +1,3 @@
-import type { Statement } from "./statement"
+import type { Command } from "./command"
 
-export type Code = string | Statement[]
+export type Code = string | Command[]
