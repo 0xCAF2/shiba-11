@@ -1,8 +1,5 @@
 export enum Keyword {
-  P = "p",
-  Text = "text",
-
-  End = "end",
+  Variable = "var",
 }
 
 export type Keywords = (typeof Keyword)[keyof typeof Keyword]
