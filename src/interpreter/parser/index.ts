@@ -1,2 +1,2 @@
-export { StatementParser as Parser } from "./statement-parser"
-export { ExpressionParser as ExprParser } from "./expression-parser"
+export { StatementParser } from "./statement-parser"
+export { ExpressionParser } from "./expression-parser"

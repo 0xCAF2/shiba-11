@@ -1,10 +1,9 @@
 import type { Code } from "./code"
-import { ExprParser, Parser } from "./parser"
 import { Environment, Runtime } from "./runtime"
 import type { Statement } from "./statement"
 import { CommandList } from "./parser/command-list"
 import { ExpressionList } from "./parser/expression-list"
-import { StatementParser } from "./parser/statement-parser"
+import { StatementParser } from "./parser"
 
 export class Interpreter {
   private readonly runtime: Runtime
