@@ -1,8 +1,7 @@
 import type { Code } from "./code"
-import { Environment } from "./environment"
 import { ExprParser, Parser } from "./parser"
 import { CommandList } from "./parser/command-list"
-import { Runtime } from "./runtime"
+import { Environment, Runtime } from "./runtime"
 import type { Statement } from "./statement"
 
 export class Interpreter {

@@ -1,4 +1,6 @@
+import type { Environment } from "../runtime/environment"
+
 export interface Command {
   get keyword(): string
-  execute(): void
+  execute(env: Environment): void
 }
