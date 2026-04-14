@@ -1,7 +1,7 @@
 # shiba-11
 
 Shiba-11 (shiba one-one) is a simple Web description language and runtime.
-It composes of an interpreter and a block-based editor.
+It composes of a core interpreter and a block-based editor.
 
 To install dependencies:
 
