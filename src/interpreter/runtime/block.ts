@@ -11,9 +11,11 @@ export class Block {
 }
 
 export enum BlockType {
+  Call,
   Loop,
   Conditional,
   Tag,
+  Handler,
 }
 
 export enum BlockExitReason {
