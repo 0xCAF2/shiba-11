@@ -31,17 +31,17 @@ describe("Address", () => {
 
   test("Indent shift creates a new Address with shifted indent", () => {
     const addr = new Address(3, 4, 2)
-    const shiftedAddr = addr.indent.shift(addr, -2)
-    expect(shiftedAddr.line.y).toBe(3)
-    expect(shiftedAddr.indent.x).toBe(2)
+    const shiftedAddr = addr.indent.shift(-2)
+    expect(shiftedAddr.indent.x).toBe(1)
+    expect(shiftedAddr.line.y).toBe(4)
     expect(shiftedAddr.calls).toBe(2)
   })
 
   test("LineIndex step creates a new Address with incremented line", () => {
     const addr = new Address(2, 3, 1)
-    const steppedAddr = addr.line.step(addr)
-    expect(steppedAddr.line.y).toBe(3)
-    expect(steppedAddr.indent.x).toBe(3)
+    const steppedAddr = addr.line.step()
+    expect(steppedAddr.indent.x).toBe(2)
+    expect(steppedAddr.line.y).toBe(4)
     expect(steppedAddr.calls).toBe(1)
   })
 })

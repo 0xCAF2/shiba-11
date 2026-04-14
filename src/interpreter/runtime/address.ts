@@ -1,14 +1,18 @@
+/**
+ * represents the position of the current command being executed in the code.
+ * It is immutable.
+ */
 export class Address {
   public readonly line: LineIndex
   public readonly indent: Indent
 
   constructor(
-    lineY: number = 0,
     indentX: number = 1,
+    lineY: number = 0,
     public readonly calls: number = 0,
   ) {
-    this.line = new LineIndex(lineY)
-    this.indent = new Indent(indentX)
+    this.indent = new Indent(indentX, this)
+    this.line = new LineIndex(lineY, this)
   }
 
   callTo(addr: Address): Address {
@@ -20,18 +24,24 @@ export class Address {
   }
 }
 
-export class Indent {
-  constructor(public readonly x: number = 1) {}
+class Indent {
+  constructor(
+    public readonly x: number = 1,
+    private readonly addr: Address,
+  ) {}
 
-  shift(addr: Address, delta: number): Address {
-    return new Address(addr.line.y, this.x + delta, addr.calls)
+  shift(delta: number): Address {
+    return new Address(this.x + delta, this.addr.line.y, this.addr.calls)
   }
 }
 
-export class LineIndex {
-  constructor(public readonly y: number = 0) {}
+class LineIndex {
+  constructor(
+    public readonly y: number = 0,
+    private readonly addr: Address,
+  ) {}
 
-  step(addr: Address): Address {
-    return new Address(this.y + 1, addr.indent.x, addr.calls)
+  step(): Address {
+    return new Address(this.addr.indent.x, this.y + 1, this.addr.calls)
   }
 }
