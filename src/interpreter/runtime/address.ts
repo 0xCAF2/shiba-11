@@ -22,6 +22,10 @@ export class Address {
   returnFrom(addr: Address): Address {
     return new Address(addr.line.y, addr.indent.x, this.calls - 1)
   }
+
+  toString() {
+    return `(${this.indent.x}, ${this.line.y}, ${this.calls})`
+  }
 }
 
 class Indent {

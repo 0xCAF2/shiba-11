@@ -1,4 +1,6 @@
 export enum Keyword {
+  Comment = "#",
+
   P = "p",
   Text = "text",
 

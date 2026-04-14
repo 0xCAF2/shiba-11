@@ -1,10 +1,10 @@
-import type { Environment } from "../runtime/environment"
+import type { Runtime } from "../runtime"
 import type { Command } from "./command"
 
 export class P implements Command {
   public readonly keyword = "p"
 
-  execute(env: Environment) {
+  execute(r: Runtime) {
     console.log("p")
   }
 }

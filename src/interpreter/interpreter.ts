@@ -7,23 +7,27 @@ import { StatementParser } from "./parser"
 
 export class Interpreter {
   private readonly runtime: Runtime
-  private readonly environment: Environment
-  private readonly parser: StatementParser
 
   constructor(
     main: Code,
     cmdList = new CommandList(),
     exprList = new ExpressionList(),
   ) {
-    this.parser = new StatementParser(cmdList, exprList)
+    const parser = new StatementParser(cmdList, exprList)
 
     const stmts =
       typeof main === "string" ? (JSON.parse(main) as Statement[]) : main
-    this.environment = new Environment(stmts)
-    this.runtime = new Runtime(this.environment)
+    const env = new Environment(stmts)
+    this.runtime = new Runtime(env, parser)
   }
 
   run() {
-    this.runtime.run()
+    const r = this.runtime
+    while (r.hasNext()) {
+      const stmt = r.next()
+      const command = r.parse(stmt)
+      command?.execute(r)
+      r.env.address = r.env.address.line.step()
+    }
   }
 }

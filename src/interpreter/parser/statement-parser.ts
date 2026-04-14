@@ -13,18 +13,7 @@ export class StatementParser {
     this.exprParser = new ExpressionParser(exprList)
   }
 
-  parse(stmts: Statement[]): Command[] {
-    const commands: Command[] = []
-    for (const stmt of stmts) {
-      const command = this.parseCommand(stmt)
-      if (command) {
-        commands.push(command)
-      }
-    }
-    return commands
-  }
-
-  private parseCommand(stmt: Statement): Command | null {
+  parse(stmt: Statement): Command | null {
     const keyword = stmt[Index.Keyword]
     return this.table[keyword]?.(stmt, this.exprParser) ?? null
   }

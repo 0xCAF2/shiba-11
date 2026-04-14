@@ -1,6 +1,6 @@
-import type { Environment } from "../runtime/environment"
+import type { Runtime } from "../runtime"
 
 export interface Command {
   get keyword(): string
-  execute(env: Environment): void
+  execute(r: Runtime): void
 }

@@ -1,6 +1,6 @@
-import type { Expression } from "../expression"
-import type { Environment } from "../runtime"
 import type { Command } from "./command"
+import type { Expression } from "../expression"
+import type { Runtime } from "../runtime"
 import { Keyword } from "./keyword"
 
 export class Text implements Command {
@@ -8,7 +8,7 @@ export class Text implements Command {
 
   constructor(public readonly content: Expression) {}
 
-  execute(env: Environment) {
-    console.log(env.evaluate(this.content))
+  execute(r: Runtime) {
+    console.log(r.evaluate(this.content))
   }
 }
