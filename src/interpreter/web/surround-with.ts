@@ -15,11 +15,9 @@ export function surroundWith(tag: string, r: Runtime) {
     () => {
       const vnode = block.createVNode()
       if (parentTag) {
-        console.log("parentTag", parentTag.tag, "will receive child", vnode)
         parentTag.children.push(vnode)
         r.env.currentTag = parentTag!
       } else {
-        console.log("no parentTag, will render", vnode)
         const root = new TagBlock(
           "div",
           addr,
