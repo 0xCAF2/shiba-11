@@ -22,7 +22,7 @@ export class CommandList {
     this._table = {
       [Keyword.Comment]: (stmt, exprParser) =>
         new Comment(stmt[Index.FirstArg].toString()),
-      [Keyword.P]: (stmt, exprParser) => new P(),
+      [Keyword.P]: () => new P(),
       [Keyword.Text]: (stmt, exprParser) => {
         const content = exprParser.readExpr(stmt[Index.FirstArg])
         return new Text(content)

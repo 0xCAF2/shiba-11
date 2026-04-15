@@ -8,7 +8,7 @@ describe("Address", () => {
 
   test("initializes with default values", () => {
     const addr = new Address()
-    expect(addr.line.y).toBe(0)
+    expect(addr.line.y).toBe(-1)
     expect(addr.indent.x).toBe(1)
     expect(addr.calls).toBe(0)
   })

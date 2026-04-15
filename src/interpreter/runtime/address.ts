@@ -8,7 +8,7 @@ export class Address {
 
   constructor(
     indentX: number = 1,
-    lineY: number = 0,
+    lineY: number = -1,
     public readonly calls: number = 0,
   ) {
     this.indent = new Indent(indentX, this)
@@ -41,7 +41,7 @@ class Indent {
 
 class LineIndex {
   constructor(
-    public readonly y: number = 0,
+    public readonly y: number = -1,
     private readonly addr: Address,
   ) {}
 

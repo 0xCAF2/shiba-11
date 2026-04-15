@@ -5,10 +5,6 @@ export class Attributes {
     this.attributes.set(name, value)
   }
 
-  getAttribute(name: string): string | undefined {
-    return this.attributes.get(name)
-  }
-
   get all(): { [key: string]: string } {
     return Object.fromEntries(this.attributes)
   }

@@ -27,7 +27,10 @@ export class Interpreter {
       const stmt = r.next()
       const command = r.parse(stmt)
       command?.execute(r)
-      r.env.address = r.env.address.line.step()
     }
+  }
+
+  get result(): any | null {
+    return this.runtime.env.currentTag?.children ?? null
   }
 }

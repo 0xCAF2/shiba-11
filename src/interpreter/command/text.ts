@@ -9,6 +9,6 @@ export class Text implements Command {
   constructor(public readonly content: Expression) {}
 
   execute(r: Runtime) {
-    console.log(r.evaluate(this.content))
+    r.env.currentTag?.children.push(r.evaluate(this.content))
   }
 }
