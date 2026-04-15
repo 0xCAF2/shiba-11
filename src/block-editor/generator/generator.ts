@@ -25,3 +25,12 @@ export const generatorState: {
 } = {
   indent: 1,
 }
+
+export function generateCodeForTag(tag: string) {
+  generator.forBlock[tag] = function (block) {
+    generatorState.indent++
+    const stmt = generator.statementToCode(block, "CHILDREN") || ""
+    generatorState.indent--
+    return JSON.stringify([generatorState.indent, tag]) + "," + stmt
+  }
+}

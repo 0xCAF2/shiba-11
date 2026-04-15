@@ -7,7 +7,7 @@ Blockly.common.defineBlocksWithJsonArray([
     args0: [
       {
         type: "input_statement",
-        name: "CONTENTS",
+        name: "CHILDREN",
       },
     ],
     previousStatement: null,
