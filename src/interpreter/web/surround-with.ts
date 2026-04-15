@@ -22,12 +22,12 @@ export function surroundWith(tag: string, r: Runtime) {
           "div",
           addr,
           () => true,
-          () => BlockExitReason.Shifted,
+          () => BlockExitReason.Shift,
         )
         root.children.push(vnode)
         r.env.currentTag = root
       }
-      return BlockExitReason.Shifted
+      return BlockExitReason.Shift
     },
   )
   r.pushBlock(block)

@@ -4,7 +4,7 @@ import {
   type Expression,
   type Keywords,
 } from "../expression"
-import * as Elem from "./element"
+import * as Elem from "./json-element"
 
 export type ExpressionTable = Record<Keywords, (elem: Elem.Any) => Expression>
 

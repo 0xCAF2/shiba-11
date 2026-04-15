@@ -1,5 +1,5 @@
 import type { Expression } from "../expression"
-import type { Any } from "./element"
+import type { Any } from "./json-element"
 import { ExpressionList, type ExpressionTable } from "./expression-list"
 
 export class ExpressionParser {

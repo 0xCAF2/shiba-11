@@ -9,9 +9,9 @@ export enum BlockType {
 }
 
 export enum BlockExitReason {
-  Shifted,
-  Jumped,
-  Returned,
+  Shift,
+  Jump,
+  Return,
 }
 
 export class Block {

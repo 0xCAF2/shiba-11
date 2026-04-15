@@ -1,4 +1,4 @@
-import { Keyword, type Command } from "../command"
+import { type Command } from "../command"
 import type { Expression, Value } from "../expression"
 import type { StatementParser } from "../parser"
 import { Index, type Statement } from "../statement"
@@ -41,7 +41,7 @@ export class Runtime {
     let deltaX = this.env.address.indent.x - currentIndent
     while (deltaX > 0) {
       const reason = this.popBlock()
-      if (reason === BlockExitReason.Shifted) {
+      if (reason === BlockExitReason.Shift) {
         deltaX -= 1
         this.env.address = this.env.address.indent.shift(-1)
       } else {
