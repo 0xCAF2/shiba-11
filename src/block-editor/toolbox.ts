@@ -3,11 +3,25 @@ export const toolbox = {
   contents: [
     {
       kind: "category",
-      name: "Tag",
+      name: "Core",
+      contents: [
+        {
+          kind: "block",
+          type: "string",
+        },
+      ],
+    },
+    {
+      kind: "category",
+      name: "HTML",
       contents: [
         {
           kind: "block",
           type: "p",
+        },
+        {
+          kind: "block",
+          type: "text",
         },
       ],
     },

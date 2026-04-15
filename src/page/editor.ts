@@ -1,8 +1,7 @@
 import * as Blockly from "blockly"
 import DarkTheme from "@blockly/theme-dark"
-import { toolbox } from "../block-editor"
-import "../block-editor/block"
-import { shiba11Generator } from "../block-editor/generator"
+import { toolbox, shiba11Generator } from "../block-editor"
+import { codeSignal } from "./code"
 
 const workspace = Blockly.inject("blockly-div", {
   theme: DarkTheme,
@@ -17,4 +16,5 @@ const workspace = Blockly.inject("blockly-div", {
 workspace.addChangeListener(() => {
   const code = shiba11Generator.workspaceToCode(workspace)
   console.log(code)
+  codeSignal.value = code
 })

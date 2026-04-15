@@ -1,3 +1,6 @@
 import "./p"
+import "./text"
 
-export { generator as shiba11Generator } from "./generator"
+import "./string"
+
+export { generator } from "./generator"

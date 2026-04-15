@@ -14,6 +14,12 @@ generator.scrub_ = function (_block, code, _opt_thisOnly) {
   return code
 }
 
+generator.finish = function (code) {
+  const start = JSON.stringify([1, "#", "0.0.1"])
+  const end = JSON.stringify([1, "end"])
+  return `[${start},${code}${end}]`
+}
+
 export const generatorState: {
   indent: number
 } = {

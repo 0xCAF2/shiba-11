@@ -1,22 +1,11 @@
 import { render } from "preact"
-import { Interpreter } from "../interpreter"
+import { Shiba11 } from "./shiba11"
+import { codeSignal } from "./code"
 
-
-// prettier-ignore-start
-const code = JSON.stringify([
-  [1, "#", "0.0.1"],
-  [1, "p"],
-    [2, "text", "Hello, World."],
-  [1, "p"],
-    [2, "text", "Hello, World 2."],
-  [1, "end"],
-])
-// prettier-ignore-end
-
-function App({ code }: { code: string }) {
-  const ip = new Interpreter(code)
-  ip.run()
-  return <>{ip.result}</>
+function App() {
+  return <Shiba11 code={codeSignal.value} />
 }
 
-render(<App code={code} />, document.getElementById("root")!)
+
+
+render(<App />, document.getElementById("root")!)
