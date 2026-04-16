@@ -31,6 +31,6 @@ export class Interpreter {
   }
 
   get result(): any | null {
-    return this.runtime.env.currentTag?.children ?? null
+    return this.runtime.envr.currentTag?.children ?? null
   }
 }

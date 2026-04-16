@@ -15,7 +15,7 @@ generator.scrub_ = function (_block, code, _opt_thisOnly) {
 }
 
 generator.finish = function (code) {
-  const start = JSON.stringify([1, "#", "0.0.1"])
+  const start = JSON.stringify([1, "html"])
   const end = JSON.stringify([1, "end"])
   return `[${start},${code}${end}]`
 }
@@ -23,7 +23,7 @@ generator.finish = function (code) {
 export const generatorState: {
   indent: number
 } = {
-  indent: 1,
+  indent: 2, // all commands are wrapped in a html block
 }
 
 export function generateCodeForTag(tag: string) {

@@ -2,14 +2,13 @@ import { type Command } from "../command"
 import type { Expression, Value } from "../expression"
 import type { StatementParser } from "../parser"
 import { Index, type Statement } from "../statement"
-import type { TagBlock } from "../web"
 import type { Address } from "./address"
 import { Block, BlockExitReason } from "./block"
 import { Environment } from "./environment"
 
 export class Runtime {
   constructor(
-    public readonly env: Environment,
+    public readonly envr: Environment,
     public readonly parser: StatementParser,
   ) {}
 
@@ -32,41 +31,41 @@ export class Runtime {
   }
 
   hasNext(): boolean {
-    return this.env.hasNext()
+    return this.envr.hasNext()
   }
 
   next(): Statement {
-    this.env.address = this.env.address.line.step()
-    const currentIndent = this.env.currentStmt[Index.Indent]
-    let deltaX = this.env.address.indent.x - currentIndent
+    this.envr.address = this.envr.address.line.step()
+    const currentIndent = this.envr.currentStmt[Index.Indent]
+    let deltaX = this.envr.address.indent.x - currentIndent
     while (deltaX > 0) {
       const reason = this.popBlock()
       if (reason === BlockExitReason.Shift) {
         deltaX -= 1
-        this.env.address = this.env.address.indent.shift(-1)
+        this.envr.address = this.envr.address.indent.shift(-1)
       } else {
         break
       }
     }
-    return this.env.currentStmt
+    return this.envr.currentStmt
   }
 
   jumpTo(address: Address) {
-    this.env.address = address
+    this.envr.address = address
   }
 
   popBlock(): BlockExitReason {
-    const block = this.env.blocks.pop()
+    const block = this.envr.blocks.pop()
     if (block) {
       return block.didExit()
     }
-    throw new Error(`No block to pop in ${this.env.address.toString()}`)
+    throw new Error(`No block to pop in ${this.envr.address.toString()}`)
   }
 
   pushBlock(block: Block) {
     if (block.willEnter()) {
-      this.env.blocks.push(block)
-      this.env.address = block.address.indent.shift(1)
+      this.envr.blocks.push(block)
+      this.envr.address = block.address.indent.shift(1)
     }
   }
 }

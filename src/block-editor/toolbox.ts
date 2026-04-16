@@ -17,11 +17,19 @@ export const toolbox = {
       contents: [
         {
           kind: "block",
+          type: "div",
+        },
+        {
+          kind: "block",
           type: "p",
         },
         {
           kind: "block",
           type: "text",
+        },
+        {
+          kind: "block",
+          type: "style",
         },
       ],
     },

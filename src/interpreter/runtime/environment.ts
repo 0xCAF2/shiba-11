@@ -32,8 +32,8 @@ export class Environment {
     return this.stmts[this.addr.line.y]!
   }
 
-  get currentTag(): TagBlock | null {
-    return this.parentTag
+  get currentTag(): TagBlock {
+    return this.parentTag!
   }
 
   set currentTag(tag: TagBlock) {

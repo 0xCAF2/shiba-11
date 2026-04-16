@@ -26,16 +26,16 @@ describe("Runtime", () => {
       new Environment(stmts),
       new StatementParser(new CommandList(), new ExpressionList()),
     )
-    expect(r.env.address.toString()).toBe("(1, -1, 0)")
+    expect(r.envr.address.toString()).toBe("(1, -1, 0)")
     expect(r.next()).toEqual(stmts[0]!)
-    expect(r.env.address.toString()).toBe("(1, 0, 0)")
+    expect(r.envr.address.toString()).toBe("(1, 0, 0)")
     expect(r.next()).toEqual(stmts[1]!)
     // Address should advance to next statement.
     // The indent should remain the same since next() does not execute the command.
-    expect(r.env.address.toString()).toBe("(1, 1, 0)")
+    expect(r.envr.address.toString()).toBe("(1, 1, 0)")
     expect(r.next()).toEqual(stmts[2]!)
-    expect(r.env.address.toString()).toBe("(1, 2, 0)")
+    expect(r.envr.address.toString()).toBe("(1, 2, 0)")
     expect(() => r.next()).toThrow()
-    expect(r.env.address.toString()).toBe("(1, 3, 0)")
+    expect(r.envr.address.toString()).toBe("(1, 3, 0)")
   })
 })
