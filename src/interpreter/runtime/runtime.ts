@@ -1,5 +1,11 @@
 import { type Command } from "../command"
-import type { Expression, Value } from "../expression"
+import {
+  BinOp,
+  Subscript,
+  Variable,
+  type Expression,
+  type Value,
+} from "../expression"
 import type { StatementParser } from "../parser"
 import { Index, type Statement } from "../statement"
 import type { Address } from "./address"
@@ -14,6 +20,7 @@ export class Runtime {
 
   evaluate(expr: Expression): Value {
     if (
+      typeof expr === "number" ||
       typeof expr === "string" ||
       typeof expr === "boolean" ||
       expr === null
@@ -21,6 +28,12 @@ export class Runtime {
       return expr
     } else if (Array.isArray(expr)) {
       return expr.map((e) => this.evaluate(e))
+    } else if (
+      expr instanceof Variable ||
+      expr instanceof Subscript ||
+      expr instanceof BinOp
+    ) {
+      return expr.evaluate(this)
     } else {
       throw new Error(`Unsupported expression: ${expr}`)
     }
@@ -47,8 +60,8 @@ export class Runtime {
         } else if (reason === BlockExitReason.Shift2) {
           deltaX -= 2
           this.envr.address = this.envr.address.shift(-2)
-        } else {
-          continue outer
+        } else if (reason === BlockExitReason.Jump) {
+          break
         }
       }
       if (deltaX === 0) {

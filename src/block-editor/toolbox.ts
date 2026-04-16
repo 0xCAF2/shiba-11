@@ -7,6 +7,10 @@ export const toolbox = {
       contents: [
         {
           kind: "block",
+          type: "math_number",
+        },
+        {
+          kind: "block",
           type: "string",
         },
       ],
@@ -61,15 +65,15 @@ export const toolbox = {
         },
       ],
     },
-    // {
-    //   kind: "category",
-    //   name: "Loop",
-    //   contents: [
-    //     {
-    //       kind: "block",
-    //       type: "for_of",
-    //     },
-    //   ],
-    // },
+    {
+      kind: "category",
+      name: "Loop",
+      contents: [
+        {
+          kind: "block",
+          type: "controls_repeat_ext",
+        },
+      ],
+    },
   ],
 }

@@ -7,7 +7,8 @@ export enum Keyword {
   If = "if",
   ElseIf = "else if",
   Else = "else",
-  ForOf = "for of",
+
+  Repeat = "repeat",
 
   Html = "html",
   Div = "div",

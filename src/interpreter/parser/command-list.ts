@@ -9,6 +9,7 @@ import {
   Ifs,
   Keyword,
   P,
+  Repeat,
   Style,
   Text,
   type Command,
@@ -40,8 +41,9 @@ export class CommandList {
       [Keyword.ElseIf]: (stmt, exprParser) =>
         new Conditional(exprParser.readExpr(stmt[Index.FirstArg])),
       [Keyword.Else]: () => new Else(),
-      [Keyword.ForOf]: (stmt, exprParser) => {
-        throw new Error("for of is not implemented yet")
+      [Keyword.Repeat]: (stmt, exprParser) => {
+        const times = exprParser.readExpr(stmt[Index.FirstArg])
+        return new Repeat(times)
       },
       [Keyword.Html]: () => new Html(),
       [Keyword.Div]: () => new Div(),

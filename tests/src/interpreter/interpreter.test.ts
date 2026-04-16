@@ -49,4 +49,16 @@ describe("Interpreter", () => {
     interpreter2.run()
     expect(interpreter2.runtime.envr.context.lookup("x")).toBe("This is false!")
   })
+
+  test("runs loops", () => {
+    const code = JSON.stringify([
+      [1, "=", ["var", "x"], 0],
+      [1, "repeat", 3],
+      [2, "=", ["var", "x"], ["+", ["var", "x"], 1]],
+      [1, "end"],
+    ])
+    const interpreter = new Interpreter(code)
+    interpreter.run()
+    expect(interpreter.runtime.envr.context.lookup("x")).toBe(3)
+  })
 })

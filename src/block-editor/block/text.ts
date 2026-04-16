@@ -8,6 +8,7 @@ Blockly.common.defineBlocksWithJsonArray([
       {
         type: "input_value",
         name: "CONTENT",
+        check: "String",
       },
     ],
     previousStatement: null,

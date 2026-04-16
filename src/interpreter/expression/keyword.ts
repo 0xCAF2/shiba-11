@@ -3,4 +3,10 @@ export enum Keyword {
   Subscript = "sub",
 }
 
-export type Keywords = (typeof Keyword)[keyof typeof Keyword]
+export enum BinOpKeyword {
+  Add = "+",
+}
+
+export type Keywords =
+  | (typeof Keyword)[keyof typeof Keyword]
+  | (typeof BinOpKeyword)[keyof typeof BinOpKeyword]
