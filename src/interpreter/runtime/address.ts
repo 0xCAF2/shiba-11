@@ -3,24 +3,56 @@
  * It is immutable.
  */
 export class Address {
-  public readonly line: LineIndex
   public readonly indent: Indent
+  public readonly line: LineIndex
+  public readonly calls: number
 
   constructor(
-    indentX: number = 1,
-    lineY: number = -1,
-    public readonly calls: number = 0,
+    {
+      indent,
+      line,
+      calls,
+    }: { indent: number; line: number; calls?: number } = {
+      indent: 1,
+      line: -1,
+      calls: 0,
+    },
   ) {
-    this.indent = new Indent(indentX, this)
-    this.line = new LineIndex(lineY, this)
+    this.indent = new Indent(indent)
+    this.line = new LineIndex(line)
+    this.calls = calls ?? 0
   }
 
   callTo(addr: Address): Address {
-    return new Address(addr.line.y, addr.indent.x, this.calls + 1)
+    return new Address({
+      indent: addr.indent.x,
+      line: addr.line.y,
+      calls: this.calls + 1,
+    })
   }
 
   returnFrom(addr: Address): Address {
-    return new Address(addr.line.y, addr.indent.x, this.calls - 1)
+    return new Address({
+      indent: addr.indent.x,
+      line: addr.line.y,
+      calls: this.calls - 1,
+    })
+  }
+
+  shift(delta: number): Address {
+    return new Address({
+      indent: this.indent.x + delta,
+      line: this.line.y,
+      calls: this.calls,
+    })
+  }
+
+  step(): Address {
+    return new Address({
+      indent: this.indent.x,
+      line: this.line.y + 1,
+      calls: this.calls,
+    })
   }
 
   toString() {
@@ -28,24 +60,10 @@ export class Address {
   }
 }
 
-class Indent {
-  constructor(
-    public readonly x: number = 1,
-    private readonly addr: Address,
-  ) {}
-
-  shift(delta: number): Address {
-    return new Address(this.x + delta, this.addr.line.y, this.addr.calls)
-  }
+export class Indent {
+  constructor(public readonly x: number = 1) {}
 }
 
-class LineIndex {
-  constructor(
-    public readonly y: number = -1,
-    private readonly addr: Address,
-  ) {}
-
-  step(): Address {
-    return new Address(this.addr.indent.x, this.y + 1, this.addr.calls)
-  }
+export class LineIndex {
+  constructor(public readonly y: number = -1) {}
 }

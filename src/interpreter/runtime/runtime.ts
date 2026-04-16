@@ -35,14 +35,14 @@ export class Runtime {
   }
 
   next(): Statement {
-    this.envr.address = this.envr.address.line.step()
+    this.envr.address = this.envr.address.step()
     const currentIndent = this.envr.currentStmt[Index.Indent]
     let deltaX = this.envr.address.indent.x - currentIndent
     while (deltaX > 0) {
       const reason = this.popBlock()
       if (reason === BlockExitReason.Shift) {
         deltaX -= 1
-        this.envr.address = this.envr.address.indent.shift(-1)
+        this.envr.address = this.envr.address.shift(-1)
       } else {
         break
       }
@@ -65,7 +65,7 @@ export class Runtime {
   pushBlock(block: Block) {
     if (block.willEnter()) {
       this.envr.blocks.push(block)
-      this.envr.address = block.address.indent.shift(1)
+      this.envr.address = block.address.shift(1)
     }
   }
 }
