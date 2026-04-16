@@ -8,7 +8,7 @@ import type { Block } from "./block"
  */
 export class Environment {
   private addr = new Address()
-  public readonly blocks: (Block | TagBlock)[] = []
+  public readonly blocks: Block[] = []
   private parentTag: TagBlock | null = null
 
   constructor(public readonly stmts: Statement[]) {}

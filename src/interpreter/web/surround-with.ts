@@ -16,7 +16,7 @@ export function surroundWith(tag: string, r: Runtime) {
       const vnode = block.createVNode()
       if (parentTag) {
         parentTag.children.push(vnode)
-        r.env.currentTag = parentTag!
+        r.env.currentTag = parentTag
       } else {
         const root = new TagBlock(
           "div",

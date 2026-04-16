@@ -1,11 +1,11 @@
 import { h, type ComponentChildren } from "preact"
-import { Address } from "../runtime"
-import { BlockExitReason } from "../runtime"
+import { Address, BlockType } from "../runtime"
+import { Block, BlockExitReason } from "../runtime"
 import { Styles } from "./styles"
 import { Attributes } from "./attributes"
 import { EventHandlers } from "./event-handlers"
 
-export class TagBlock {
+export class TagBlock extends Block {
   public readonly attributes = new Attributes()
   public readonly children: ComponentChildren[] = []
   public readonly styles = new Styles()
@@ -13,10 +13,12 @@ export class TagBlock {
 
   constructor(
     public readonly tag: string,
-    public readonly address: Address,
-    public readonly willEnter: () => boolean,
-    public readonly didExit: () => BlockExitReason,
-  ) {}
+    address: Address,
+    willEnter: () => boolean,
+    didExit: () => BlockExitReason,
+  ) {
+    super(BlockType.Tag, address, willEnter, didExit)
+  }
 
   createVNode(): ComponentChildren {
     return h(

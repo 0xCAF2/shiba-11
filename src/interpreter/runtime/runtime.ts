@@ -63,7 +63,7 @@ export class Runtime {
     throw new Error(`No block to pop in ${this.env.address.toString()}`)
   }
 
-  pushBlock(block: Block | TagBlock) {
+  pushBlock(block: Block) {
     if (block.willEnter()) {
       this.env.blocks.push(block)
       this.env.address = block.address.indent.shift(1)

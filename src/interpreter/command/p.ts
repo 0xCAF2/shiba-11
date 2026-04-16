@@ -1,11 +1,8 @@
-import { type Runtime } from "../runtime"
-import { surroundWith } from "../web"
-import type { Command } from "./command"
+import { Keyword } from "./keyword"
+import { Tag } from "./tag"
 
-export class P implements Command {
-  public readonly keyword = "p"
-
-  execute(r: Runtime) {
-    surroundWith(this.keyword, r)
+export class P extends Tag {
+  constructor() {
+    super(Keyword.P)
   }
 }
