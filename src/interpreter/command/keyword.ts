@@ -1,6 +1,14 @@
 export enum Keyword {
   Comment = "#",
 
+  Assign = "=",
+
+  Ifs = "ifs",
+  If = "if",
+  ElseIf = "else if",
+  Else = "else",
+  ForOf = "for of",
+
   Html = "html",
   Div = "div",
   P = "p",

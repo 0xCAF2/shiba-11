@@ -1,8 +1,12 @@
 import {
+  Assign,
   Comment,
+  Conditional,
   Div,
+  Else,
   End,
   Html,
+  Ifs,
   Keyword,
   P,
   Style,
@@ -25,6 +29,20 @@ export class CommandList {
     this._table = {
       [Keyword.Comment]: (stmt, exprParser) =>
         new Comment(stmt[Index.FirstArg].toString()),
+      [Keyword.Assign]: (stmt, exprParser) => {
+        const ref = exprParser.readRef(stmt[Index.FirstArg])
+        const expr = exprParser.readExpr(stmt[Index.FirstArg + 1])
+        return new Assign(ref, expr)
+      },
+      [Keyword.Ifs]: () => new Ifs(),
+      [Keyword.If]: (stmt, exprParser) =>
+        new Conditional(exprParser.readExpr(stmt[Index.FirstArg])),
+      [Keyword.ElseIf]: (stmt, exprParser) =>
+        new Conditional(exprParser.readExpr(stmt[Index.FirstArg])),
+      [Keyword.Else]: () => new Else(),
+      [Keyword.ForOf]: (stmt, exprParser) => {
+        throw new Error("for of is not implemented yet")
+      },
       [Keyword.Html]: () => new Html(),
       [Keyword.Div]: () => new Div(),
       [Keyword.P]: () => new P(),

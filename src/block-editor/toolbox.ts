@@ -27,19 +27,15 @@ export const toolbox = {
           kind: "block",
           type: "text",
         },
-        {
-          kind: "block",
-          type: "style",
-        },
       ],
     },
     {
       kind: "category",
-      name: "Control",
+      name: "CSS",
       contents: [
         {
           kind: "block",
-          type: "controls_if",
+          type: "style",
         },
       ],
     },
@@ -49,16 +45,30 @@ export const toolbox = {
       contents: [
         {
           kind: "block",
-          type: "logic_compare",
+          type: "controls_if",
         },
-        {
-          kind: "block",
-          type: "logic_operation",
-        },
+        // {
+        //   kind: "block",
+        //   type: "logic_compare",
+        // },
+        // {
+        //   kind: "block",
+        //   type: "logic_operation",
+        // },
         {
           kind: "block",
           type: "logic_boolean",
         },
+      ],
+    },
+    {
+      kind: "category",
+      name: "Loop",
+      contents: [
+        // {
+        //   kind: "block",
+        //   type: "for_of",
+        // },
       ],
     },
   ],

@@ -6,7 +6,7 @@ import { ExpressionList } from "./parser/expression-list"
 import { StatementParser } from "./parser"
 
 export class Interpreter {
-  private readonly runtime: Runtime
+  public readonly runtime: Runtime
 
   constructor(
     main: Code,

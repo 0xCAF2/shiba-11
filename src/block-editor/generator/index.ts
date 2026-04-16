@@ -1,3 +1,6 @@
+import "./controls-if"
+import "./logic"
+
 import "./tags"
 import "./text"
 import "./style"

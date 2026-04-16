@@ -1,6 +1,8 @@
 export type { Command } from "./command"
 export { Keyword, type Keywords } from "./keyword"
 export { Comment } from "./comment"
+export { Assign } from "./assign"
+export { Conditional, Ifs, Else } from "./conditional"
 export { Html } from "./html"
 export { Div } from "./div"
 export { P } from "./p"

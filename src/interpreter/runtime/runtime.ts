@@ -35,16 +35,24 @@ export class Runtime {
   }
 
   next(): Statement {
-    this.envr.address = this.envr.address.step()
-    const currentIndent = this.envr.currentStmt[Index.Indent]
-    let deltaX = this.envr.address.indent.x - currentIndent
-    while (deltaX > 0) {
-      const reason = this.popBlock()
-      if (reason === BlockExitReason.Shift) {
-        deltaX -= 1
-        this.envr.address = this.envr.address.shift(-1)
-      } else {
-        break
+    outer: while (true) {
+      this.envr.address = this.envr.address.step()
+      const currentIndent = this.envr.currentStmt[Index.Indent]
+      let deltaX = this.envr.address.indent.x - currentIndent
+      while (deltaX > 0) {
+        const reason = this.popBlock()
+        if (reason === BlockExitReason.Shift) {
+          deltaX -= 1
+          this.envr.address = this.envr.address.shift(-1)
+        } else if (reason === BlockExitReason.Shift2) {
+          deltaX -= 2
+          this.envr.address = this.envr.address.shift(-2)
+        } else {
+          continue outer
+        }
+      }
+      if (deltaX === 0) {
+        break outer
       }
     }
     return this.envr.currentStmt
