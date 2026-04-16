@@ -24852,20 +24852,16 @@ var toolbox = {
         {
           kind: "block",
           type: "text"
-        },
-        {
-          kind: "block",
-          type: "style"
         }
       ]
     },
     {
       kind: "category",
-      name: "Control",
+      name: "CSS",
       contents: [
         {
           kind: "block",
-          type: "controls_if"
+          type: "style"
         }
       ]
     },
@@ -24875,11 +24871,7 @@ var toolbox = {
       contents: [
         {
           kind: "block",
-          type: "logic_compare"
-        },
-        {
-          kind: "block",
-          type: "logic_operation"
+          type: "controls_if"
         },
         {
           kind: "block",
@@ -24892,11 +24884,23 @@ var toolbox = {
 // src/interpreter/command/comment.ts
 class Comment {
   content;
-  keyword = "#" /* Comment */;
   constructor(content) {
     this.content = content;
   }
   execute(r) {}
+}
+// src/interpreter/command/assign.ts
+class Assign {
+  ref;
+  expr;
+  constructor(ref, expr) {
+    this.ref = ref;
+    this.expr = expr;
+  }
+  execute(r) {
+    const value = r.evaluate(this.expr);
+    this.ref.assign(r, value);
+  }
 }
 // src/interpreter/runtime/address.ts
 class Address {
@@ -24975,11 +24979,33 @@ class Block3 {
     this.didExit = didExit;
   }
 }
+// src/interpreter/runtime/scope.ts
+class Scope {
+  parent;
+  dict = new Map;
+  constructor(parent = null) {
+    this.parent = parent;
+  }
+  lookup(name) {
+    if (this.dict.has(name)) {
+      return this.dict.get(name);
+    } else if (this.parent) {
+      return this.parent.lookup(name);
+    } else {
+      return null;
+    }
+  }
+  assign(name, value) {
+    this.dict.set(name, value);
+  }
+}
+
 // src/interpreter/runtime/environment.ts
 class Environment {
   stmts;
   addr = new Address;
   blocks = [];
+  context = new Scope;
   parentTag = null;
   constructor(stmts) {
     this.stmts = stmts;
@@ -25030,18 +25056,27 @@ class Runtime {
     return this.envr.hasNext();
   }
   next() {
-    this.envr.address = this.envr.address.step();
-    const currentIndent = this.envr.currentStmt[0 /* Indent */];
-    let deltaX = this.envr.address.indent.x - currentIndent;
-    while (deltaX > 0) {
-      const reason = this.popBlock();
-      if (reason === 0 /* Shift */) {
-        deltaX -= 1;
-        this.envr.address = this.envr.address.shift(-1);
-      } else {
-        break;
+    outer:
+      while (true) {
+        this.envr.address = this.envr.address.step();
+        const currentIndent = this.envr.currentStmt[0 /* Indent */];
+        let deltaX = this.envr.address.indent.x - currentIndent;
+        while (deltaX > 0) {
+          const reason = this.popBlock();
+          if (reason === 0 /* Shift */) {
+            deltaX -= 1;
+            this.envr.address = this.envr.address.shift(-1);
+          } else if (reason === 1 /* Shift2 */) {
+            deltaX -= 2;
+            this.envr.address = this.envr.address.shift(-2);
+          } else {
+            continue outer;
+          }
+        }
+        if (deltaX === 0) {
+          break outer;
+        }
       }
-    }
     return this.envr.currentStmt;
   }
   jumpTo(address) {
@@ -25059,6 +25094,34 @@ class Runtime {
       this.envr.blocks.push(block);
       this.envr.address = block.address.shift(1);
     }
+  }
+}
+// src/interpreter/command/conditional.ts
+class Conditional {
+  condition;
+  constructor(condition) {
+    this.condition = condition;
+  }
+  execute(r) {
+    const block = new Block3(2 /* Conditional */, r.envr.address, () => {
+      const conditionValue = r.evaluate(this.condition);
+      return conditionValue ? true : false;
+    }, () => 1 /* Shift2 */);
+    r.pushBlock(block);
+  }
+}
+
+class Ifs {
+  execute(r) {
+    const block = new Block3(2 /* Conditional */, r.envr.address, () => true, () => 0 /* Shift */);
+    r.pushBlock(block);
+  }
+}
+
+class Else {
+  execute(r) {
+    const block = new Block3(2 /* Conditional */, r.envr.address, () => true, () => 0 /* Shift */);
+    r.pushBlock(block);
   }
 }
 // node_modules/preact/dist/preact.module.js
@@ -25444,7 +25507,6 @@ function surroundWith(tag, r2) {
 }
 // src/interpreter/command/html.ts
 class Html {
-  keyword = "html" /* Html */;
   execute(r2) {
     const block = new TagBlock("div", r2.envr.address, () => {
       r2.envr.currentTag = block;
@@ -25481,7 +25543,6 @@ class P2 extends Tag {
 // src/interpreter/command/text.ts
 class Text {
   content;
-  keyword = "text" /* Text */;
   constructor(content) {
     this.content = content;
   }
@@ -25493,7 +25554,6 @@ class Text {
 class Style {
   name;
   value;
-  keyword = "style" /* Style */;
   constructor(name, value) {
     this.name = name;
     this.value = value;
@@ -25505,7 +25565,6 @@ class Style {
 }
 // src/interpreter/command/end.ts
 class End {
-  keyword = "end" /* End */;
   execute(r2) {}
 }
 // src/block-editor/generator/generator.ts
@@ -25537,6 +25596,74 @@ function generateCodeForTag(tag) {
     return JSON.stringify([generatorState.indent, tag]) + "," + stmt;
   };
 }
+
+// src/block-editor/generator/controls-if.ts
+generator.forBlock["controls_if"] = (block) => {
+  const elseifCount = block.elseifCount_ || 0;
+  let n2 = 0;
+  let code = JSON.stringify([generatorState.indent, "ifs" /* Ifs */]) + ",";
+  generatorState.indent++;
+  let conditionCode = JSON.parse(generator.valueToCode(block, "IF" + n2, 0) || "false");
+  const ifCode = JSON.stringify([generatorState.indent, "if" /* If */, conditionCode]);
+  generatorState.indent++;
+  const stmts = generator.statementToCode(block, "DO" + n2);
+  generatorState.indent--;
+  code += `${ifCode},${stmts}`;
+  for (n2 = 1;n2 <= elseifCount; n2++) {
+    conditionCode = JSON.parse(generator.valueToCode(block, "IF" + n2, 0) || "false");
+    const elseifCode = JSON.stringify([
+      generatorState.indent,
+      "else if" /* ElseIf */,
+      conditionCode
+    ]);
+    generatorState.indent++;
+    const stmts2 = generator.statementToCode(block, "DO" + n2);
+    generatorState.indent--;
+    code += `${elseifCode},${stmts2}`;
+  }
+  const elseCount = block.elseCount_ || 0;
+  if (elseCount) {
+    const elseCode = JSON.stringify([generatorState.indent, "else" /* Else */]);
+    generatorState.indent++;
+    const stmts2 = generator.statementToCode(block, "ELSE");
+    generatorState.indent--;
+    code += `${elseCode},${stmts2}`;
+  }
+  generatorState.indent--;
+  return code;
+};
+
+// src/block-editor/generator/logic.ts
+generator.forBlock["logic_boolean"] = (block) => {
+  const value = block.getFieldValue("BOOL") === "TRUE";
+  return [JSON.stringify(value), 0];
+};
+generator.forBlock["logic_compare"] = (block) => {
+  const OPERATORS = {
+    EQ: "===",
+    NEQ: "!==",
+    LT: "<",
+    LTE: "<=",
+    GT: ">",
+    GTE: ">="
+  };
+  const operator = OPERATORS[block.getFieldValue("OP")];
+  const [left, leftPrecedence] = generator.valueToCode(block, "A", 0);
+  const [right, rightPrecedence] = generator.valueToCode(block, "B", 0);
+  const code = `${left} ${operator} ${right}`;
+  return [code, 0];
+};
+generator.forBlock["logic_operation"] = (block) => {
+  const OPERATORS = {
+    AND: "&&",
+    OR: "||"
+  };
+  const operator = OPERATORS[block.getFieldValue("OP")];
+  const [left, leftPrecedence] = generator.valueToCode(block, "A", 0);
+  const [right, rightPrecedence] = generator.valueToCode(block, "B", 0);
+  const code = `${left} ${operator} ${right}`;
+  return [code, 0];
+};
 
 // src/block-editor/generator/tags.ts
 generateCodeForTag("div" /* Div */);
@@ -26453,6 +26580,18 @@ class CommandList {
   constructor() {
     this._table = {
       ["#" /* Comment */]: (stmt, exprParser) => new Comment(stmt[2 /* FirstArg */].toString()),
+      ["=" /* Assign */]: (stmt, exprParser) => {
+        const ref = exprParser.readRef(stmt[2 /* FirstArg */]);
+        const expr = exprParser.readExpr(stmt[2 /* FirstArg */ + 1]);
+        return new Assign(ref, expr);
+      },
+      ["ifs" /* Ifs */]: () => new Ifs,
+      ["if" /* If */]: (stmt, exprParser) => new Conditional(exprParser.readExpr(stmt[2 /* FirstArg */])),
+      ["else if" /* ElseIf */]: (stmt, exprParser) => new Conditional(exprParser.readExpr(stmt[2 /* FirstArg */])),
+      ["else" /* Else */]: () => new Else,
+      ["for of" /* ForOf */]: (stmt, exprParser) => {
+        throw new Error("for of is not implemented yet");
+      },
       ["html" /* Html */]: () => new Html,
       ["div" /* Div */]: () => new Div,
       ["p" /* P */]: () => new P2,
@@ -26476,6 +26615,52 @@ class Variable {
   constructor(name) {
     this.name = name;
   }
+  assign(r4, value) {
+    r4.envr.context.assign(this.name, value);
+  }
+  evaluate(r4) {
+    return r4.envr.context.lookup(this.name);
+  }
+}
+// src/interpreter/expression/subscript.ts
+class Subscript {
+  target;
+  index;
+  constructor(target, index) {
+    this.target = target;
+    this.index = index;
+  }
+  assign(r4, value) {
+    const target = r4.evaluate(this.target);
+    if (typeof target === "string" || Array.isArray(target)) {
+      const idx = r4.evaluate(this.index);
+      if (typeof idx === "number") {
+        if (Array.isArray(target)) {
+          target[idx] = value;
+        }
+      }
+    } else if (target && typeof target === "object") {
+      const key = r4.evaluate(this.index);
+      if (typeof key === "string") {
+        target[key] = value;
+      }
+    }
+  }
+  evaluate(r4) {
+    const value = r4.evaluate(this.target);
+    if (typeof value === "string" || Array.isArray(value)) {
+      const idx = r4.evaluate(this.index);
+      if (typeof idx === "number") {
+        return value[idx] ?? null;
+      }
+    } else if (value && typeof value === "object") {
+      const key = r4.evaluate(this.index);
+      if (typeof key === "string") {
+        return value[key] ?? null;
+      }
+    }
+    return null;
+  }
 }
 // src/interpreter/parser/expression-list.ts
 class ExpressionList {
@@ -26485,6 +26670,13 @@ class ExpressionList {
       ["var" /* Variable */]: (elem) => {
         const name = elem[1 /* VariableName */];
         return new Variable(name);
+      },
+      ["sub" /* Subscript */]: (elem, parser) => {
+        const targetElem = elem[1 /* SubscriptTarget */];
+        const target = parser.readExpr(targetElem);
+        const indexElem = elem[2 /* SubscriptIndex */];
+        const index = parser.readExpr(indexElem);
+        return new Subscript(target, index);
       }
     };
   }
@@ -26502,9 +26694,17 @@ class ExpressionParser {
   readExpr(elem) {
     if (elem instanceof Array) {
       const keyword = elem[0];
-      return this.table[keyword]?.(elem) ?? null;
+      return this.table[keyword]?.(elem, this) ?? null;
     }
     return elem;
+  }
+  readRef(elem) {
+    if (elem instanceof Array) {
+      const keyword = elem[0];
+      const ref = this.table[keyword]?.(elem, this) ?? null;
+      return ref;
+    }
+    throw new Error(`Expected reference, got ${elem}`);
   }
 }
 

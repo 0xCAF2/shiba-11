@@ -61,15 +61,15 @@ export const toolbox = {
         },
       ],
     },
-    {
-      kind: "category",
-      name: "Loop",
-      contents: [
-        // {
-        //   kind: "block",
-        //   type: "for_of",
-        // },
-      ],
-    },
+    // {
+    //   kind: "category",
+    //   name: "Loop",
+    //   contents: [
+    //     {
+    //       kind: "block",
+    //       type: "for_of",
+    //     },
+    //   ],
+    // },
   ],
 }
