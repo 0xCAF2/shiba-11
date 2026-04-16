@@ -24833,6 +24833,10 @@ var toolbox = {
       contents: [
         {
           kind: "block",
+          type: "math_number"
+        },
+        {
+          kind: "block",
           type: "string"
         }
       ]
@@ -24876,6 +24880,16 @@ var toolbox = {
         {
           kind: "block",
           type: "logic_boolean"
+        }
+      ]
+    },
+    {
+      kind: "category",
+      name: "Loop",
+      contents: [
+        {
+          kind: "block",
+          type: "controls_repeat_ext"
         }
       ]
     }
@@ -25032,6 +25046,86 @@ class Environment {
     this.parentTag = tag;
   }
 }
+// src/interpreter/expression/variable.ts
+class Variable {
+  name;
+  constructor(name) {
+    this.name = name;
+  }
+  assign(r, value) {
+    r.envr.context.assign(this.name, value);
+  }
+  evaluate(r) {
+    return r.envr.context.lookup(this.name);
+  }
+}
+// src/interpreter/expression/subscript.ts
+class Subscript {
+  target;
+  index;
+  constructor(target, index) {
+    this.target = target;
+    this.index = index;
+  }
+  assign(r, value) {
+    const target = r.evaluate(this.target);
+    if (typeof target === "string" || Array.isArray(target)) {
+      const idx = r.evaluate(this.index);
+      if (typeof idx === "number") {
+        if (Array.isArray(target)) {
+          target[idx] = value;
+        }
+      }
+    } else if (target && typeof target === "object") {
+      const key = r.evaluate(this.index);
+      if (typeof key === "string") {
+        target[key] = value;
+      }
+    }
+  }
+  evaluate(r) {
+    const value = r.evaluate(this.target);
+    if (typeof value === "string" || Array.isArray(value)) {
+      const idx = r.evaluate(this.index);
+      if (typeof idx === "number") {
+        return value[idx] ?? null;
+      }
+    } else if (value && typeof value === "object") {
+      const key = r.evaluate(this.index);
+      if (typeof key === "string") {
+        return value[key] ?? null;
+      }
+    }
+    return null;
+  }
+}
+// src/interpreter/expression/bin-op.ts
+class BinOp {
+  op;
+  left;
+  right;
+  constructor(op, left, right) {
+    this.op = op;
+    this.left = left;
+    this.right = right;
+  }
+  evaluate(r) {
+    const leftValue = r.evaluate(this.left);
+    const rightValue = r.evaluate(this.right);
+    switch (this.op) {
+      case "+" /* Add */:
+        if (typeof leftValue === "number" && typeof rightValue === "number") {
+          return leftValue + rightValue;
+        } else if (typeof leftValue === "string" || typeof rightValue === "string") {
+          return String(leftValue) + String(rightValue);
+        } else {
+          throw new Error(`Invalid operands for addition: ${leftValue} and ${rightValue}`);
+        }
+      default:
+        throw new Error(`Unsupported binary operator: ${this.op}`);
+    }
+  }
+}
 // src/interpreter/runtime/runtime.ts
 class Runtime {
   envr;
@@ -25041,10 +25135,12 @@ class Runtime {
     this.parser = parser;
   }
   evaluate(expr) {
-    if (typeof expr === "string" || typeof expr === "boolean" || expr === null) {
+    if (typeof expr === "number" || typeof expr === "string" || typeof expr === "boolean" || expr === null) {
       return expr;
     } else if (Array.isArray(expr)) {
       return expr.map((e) => this.evaluate(e));
+    } else if (expr instanceof Variable || expr instanceof Subscript || expr instanceof BinOp) {
+      return expr.evaluate(this);
     } else {
       throw new Error(`Unsupported expression: ${expr}`);
     }
@@ -25069,8 +25165,8 @@ class Runtime {
           } else if (reason === 1 /* Shift2 */) {
             deltaX -= 2;
             this.envr.address = this.envr.address.shift(-2);
-          } else {
-            continue outer;
+          } else if (reason === 2 /* Jump */) {
+            break;
           }
         }
         if (deltaX === 0) {
@@ -25121,6 +25217,36 @@ class Ifs {
 class Else {
   execute(r) {
     const block = new Block3(2 /* Conditional */, r.envr.address, () => true, () => 0 /* Shift */);
+    r.pushBlock(block);
+  }
+}
+// src/interpreter/command/repeat.ts
+class Repeat {
+  times;
+  constructor(times) {
+    this.times = times;
+  }
+  execute(r) {
+    let counter = 0;
+    const timesValue = r.evaluate(this.times);
+    if (typeof timesValue === "number") {
+      counter = timesValue;
+    } else if (typeof timesValue === "string") {
+      counter = parseInt(timesValue, 10);
+    } else {
+      throw new Error(`Invalid repeat times: ${timesValue}`);
+    }
+    const block = new Block3(1 /* Loop */, r.envr.address, () => {
+      if (counter > 0) {
+        return true;
+      }
+      return false;
+    }, () => {
+      counter--;
+      r.jumpTo(block.address);
+      r.pushBlock(block);
+      return 2 /* Jump */;
+    });
     r.pushBlock(block);
   }
 }
@@ -25572,7 +25698,7 @@ var generator = new CodeGenerator("Shiba11");
 generator.scrub_ = function(_block, code, _opt_thisOnly) {
   const nextBlock = _block.nextConnection && _block.nextConnection.targetBlock();
   const nextCode = _opt_thisOnly ? "" : this.blockToCode(nextBlock);
-  if (!code.endsWith(",") && _block.getParent() === null) {
+  if (!code.toString().endsWith(",") && _block.getParent() === null) {
     code = code + ",";
   }
   if (nextBlock) {
@@ -25633,6 +25759,16 @@ generator.forBlock["controls_if"] = (block) => {
   return code;
 };
 
+// src/block-editor/generator/controls-repeat-ext.ts
+generator.forBlock["controls_repeat_ext"] = (block) => {
+  const times = generator.valueToCode(block, "TIMES", 0) || 0;
+  let code = JSON.stringify([generatorState.indent, "repeat", times]) + ",";
+  generatorState.indent++;
+  code += generator.statementToCode(block, "DO");
+  generatorState.indent--;
+  return code;
+};
+
 // src/block-editor/generator/logic.ts
 generator.forBlock["logic_boolean"] = (block) => {
   const value = block.getFieldValue("BOOL") === "TRUE";
@@ -25663,6 +25799,12 @@ generator.forBlock["logic_operation"] = (block) => {
   const [right, rightPrecedence] = generator.valueToCode(block, "B", 0);
   const code = `${left} ${operator} ${right}`;
   return [code, 0];
+};
+
+// src/block-editor/generator/math-number.ts
+generator.forBlock["math_number"] = (block) => {
+  const value = block.getFieldValue("NUM");
+  return [value, 0];
 };
 
 // src/block-editor/generator/tags.ts
@@ -25729,7 +25871,8 @@ common.defineBlocksWithJsonArray([
     args0: [
       {
         type: "input_value",
-        name: "CONTENT"
+        name: "CONTENT",
+        check: "String"
       }
     ],
     previousStatement: null,
@@ -26589,8 +26732,9 @@ class CommandList {
       ["if" /* If */]: (stmt, exprParser) => new Conditional(exprParser.readExpr(stmt[2 /* FirstArg */])),
       ["else if" /* ElseIf */]: (stmt, exprParser) => new Conditional(exprParser.readExpr(stmt[2 /* FirstArg */])),
       ["else" /* Else */]: () => new Else,
-      ["for of" /* ForOf */]: (stmt, exprParser) => {
-        throw new Error("for of is not implemented yet");
+      ["repeat" /* Repeat */]: (stmt, exprParser) => {
+        const times = exprParser.readExpr(stmt[2 /* FirstArg */]);
+        return new Repeat(times);
       },
       ["html" /* Html */]: () => new Html,
       ["div" /* Div */]: () => new Div,
@@ -26609,59 +26753,7 @@ class CommandList {
     return this._table;
   }
 }
-// src/interpreter/expression/variable.ts
-class Variable {
-  name;
-  constructor(name) {
-    this.name = name;
-  }
-  assign(r4, value) {
-    r4.envr.context.assign(this.name, value);
-  }
-  evaluate(r4) {
-    return r4.envr.context.lookup(this.name);
-  }
-}
-// src/interpreter/expression/subscript.ts
-class Subscript {
-  target;
-  index;
-  constructor(target, index) {
-    this.target = target;
-    this.index = index;
-  }
-  assign(r4, value) {
-    const target = r4.evaluate(this.target);
-    if (typeof target === "string" || Array.isArray(target)) {
-      const idx = r4.evaluate(this.index);
-      if (typeof idx === "number") {
-        if (Array.isArray(target)) {
-          target[idx] = value;
-        }
-      }
-    } else if (target && typeof target === "object") {
-      const key = r4.evaluate(this.index);
-      if (typeof key === "string") {
-        target[key] = value;
-      }
-    }
-  }
-  evaluate(r4) {
-    const value = r4.evaluate(this.target);
-    if (typeof value === "string" || Array.isArray(value)) {
-      const idx = r4.evaluate(this.index);
-      if (typeof idx === "number") {
-        return value[idx] ?? null;
-      }
-    } else if (value && typeof value === "object") {
-      const key = r4.evaluate(this.index);
-      if (typeof key === "string") {
-        return value[key] ?? null;
-      }
-    }
-    return null;
-  }
-}
+
 // src/interpreter/parser/expression-list.ts
 class ExpressionList {
   _table;
@@ -26677,6 +26769,12 @@ class ExpressionList {
         const indexElem = elem[2 /* SubscriptIndex */];
         const index = parser.readExpr(indexElem);
         return new Subscript(target, index);
+      },
+      ["+" /* Add */]: (elem, parser) => {
+        const op = elem[0 /* Keyword */];
+        const left = parser.readExpr(elem[1 /* BinOpLeft */]);
+        const right = parser.readExpr(elem[2 /* BinOpRight */]);
+        return new BinOp(op, left, right);
       }
     };
   }
