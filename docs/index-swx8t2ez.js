@@ -24843,6 +24843,30 @@ var toolbox = {
     },
     {
       kind: "category",
+      name: "Logic",
+      contents: [
+        {
+          kind: "block",
+          type: "controls_if"
+        },
+        {
+          kind: "block",
+          type: "logic_boolean"
+        }
+      ]
+    },
+    {
+      kind: "category",
+      name: "Loop",
+      contents: [
+        {
+          kind: "block",
+          type: "controls_repeat_ext"
+        }
+      ]
+    },
+    {
+      kind: "category",
       name: "HTML",
       contents: [
         {
@@ -24866,30 +24890,6 @@ var toolbox = {
         {
           kind: "block",
           type: "style"
-        }
-      ]
-    },
-    {
-      kind: "category",
-      name: "Logic",
-      contents: [
-        {
-          kind: "block",
-          type: "controls_if"
-        },
-        {
-          kind: "block",
-          type: "logic_boolean"
-        }
-      ]
-    },
-    {
-      kind: "category",
-      name: "Loop",
-      contents: [
-        {
-          kind: "block",
-          type: "controls_repeat_ext"
         }
       ]
     }
@@ -25165,6 +25165,7 @@ class Runtime {
           } else if (reason === 1 /* Shift2 */) {
             deltaX -= 2;
             this.envr.address = this.envr.address.shift(-2);
+            const _ = this.popBlock();
           } else if (reason === 2 /* Jump */) {
             break;
           }
@@ -25216,7 +25217,7 @@ class Ifs {
 
 class Else {
   execute(r) {
-    const block = new Block3(2 /* Conditional */, r.envr.address, () => true, () => 0 /* Shift */);
+    const block = new Block3(2 /* Conditional */, r.envr.address, () => true, () => 1 /* Shift2 */);
     r.pushBlock(block);
   }
 }
@@ -25234,6 +25235,9 @@ class Repeat {
     } else if (typeof timesValue === "string") {
       counter = parseInt(timesValue, 10);
     } else {
+      throw new Error(`Invalid repeat times: ${timesValue}`);
+    }
+    if (!Number.isFinite(counter) || !Number.isInteger(counter) || counter < 0) {
       throw new Error(`Invalid repeat times: ${timesValue}`);
     }
     const block = new Block3(1 /* Loop */, r.envr.address, () => {
@@ -25774,34 +25778,8 @@ generator.forBlock["logic_boolean"] = (block) => {
   const value = block.getFieldValue("BOOL") === "TRUE";
   return [JSON.stringify(value), 0];
 };
-generator.forBlock["logic_compare"] = (block) => {
-  const OPERATORS = {
-    EQ: "===",
-    NEQ: "!==",
-    LT: "<",
-    LTE: "<=",
-    GT: ">",
-    GTE: ">="
-  };
-  const operator = OPERATORS[block.getFieldValue("OP")];
-  const [left, leftPrecedence] = generator.valueToCode(block, "A", 0);
-  const [right, rightPrecedence] = generator.valueToCode(block, "B", 0);
-  const code = `${left} ${operator} ${right}`;
-  return [code, 0];
-};
-generator.forBlock["logic_operation"] = (block) => {
-  const OPERATORS = {
-    AND: "&&",
-    OR: "||"
-  };
-  const operator = OPERATORS[block.getFieldValue("OP")];
-  const [left, leftPrecedence] = generator.valueToCode(block, "A", 0);
-  const [right, rightPrecedence] = generator.valueToCode(block, "B", 0);
-  const code = `${left} ${operator} ${right}`;
-  return [code, 0];
-};
 
-// src/block-editor/generator/math-number.ts
+// src/block-editor/generator/math.ts
 generator.forBlock["math_number"] = (block) => {
   const value = block.getFieldValue("NUM");
   return [value, 0];
@@ -26797,12 +26775,12 @@ class ExpressionParser {
     return elem;
   }
   readRef(elem) {
-    if (elem instanceof Array) {
-      const keyword = elem[0];
-      const ref = this.table[keyword]?.(elem, this) ?? null;
+    const keyword = elem[0];
+    const ref = this.table[keyword]?.(elem, this) ?? null;
+    if (ref !== null && typeof ref !== "number" && typeof ref !== "string" && typeof ref !== "boolean" && !(ref instanceof BinOp)) {
       return ref;
     }
-    throw new Error(`Expected reference, got ${elem}`);
+    throw new Error(`Invalid reference: ${elem}`);
   }
 }
 
