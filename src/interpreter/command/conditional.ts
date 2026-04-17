@@ -38,7 +38,7 @@ export class Else implements Command {
       BlockType.Conditional,
       r.envr.address,
       () => true,
-      () => BlockExitReason.Shift,
+      () => BlockExitReason.Shift2,
     )
     r.pushBlock(block)
   }

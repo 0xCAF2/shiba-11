@@ -60,6 +60,7 @@ export class Runtime {
         } else if (reason === BlockExitReason.Shift2) {
           deltaX -= 2
           this.envr.address = this.envr.address.shift(-2)
+          const _ = this.popBlock() // should pop ifs block
         } else if (reason === BlockExitReason.Jump) {
           break
         }

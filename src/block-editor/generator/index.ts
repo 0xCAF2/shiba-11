@@ -1,7 +1,7 @@
 import "./controls-if"
 import "./controls-repeat-ext"
 import "./logic"
-import "./math-number"
+import "./math"
 
 import "./tags"
 import "./text"

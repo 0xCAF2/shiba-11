@@ -1,10 +1,10 @@
-import type { Keyword } from "../expression/keyword"
+import type { BinOpKeyword, Keyword } from "../expression/keyword"
 
 export type Variable = [Keyword.Variable, string]
 export type Subscript = [Keyword.Subscript, Ref, Any]
 export type Any = Variable | Subscript | BinOp | string | boolean | null
 export type Ref = Variable | Subscript
-export type BinOp = [Keyword, Any, Any]
+export type BinOp = [BinOpKeyword, Any, Any]
 
 export enum Index {
   Keyword = 0,

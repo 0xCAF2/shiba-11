@@ -16,6 +16,14 @@ export class Repeat implements Command {
       throw new Error(`Invalid repeat times: ${timesValue}`)
     }
 
+    if (
+      !Number.isFinite(counter) ||
+      !Number.isInteger(counter) ||
+      counter < 0
+    ) {
+      throw new Error(`Invalid repeat times: ${timesValue}`)
+    }
+
     const block = new Block(
       BlockType.Loop,
       r.envr.address,
