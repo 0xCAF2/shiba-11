@@ -10,6 +10,7 @@ export enum BlockType {
 
 export enum BlockExitReason {
   Shift,
+  Shift2,
   Jump,
   Return,
 }

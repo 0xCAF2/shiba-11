@@ -24833,6 +24833,10 @@ var toolbox = {
       contents: [
         {
           kind: "block",
+          type: "math_number"
+        },
+        {
+          kind: "block",
           type: "string"
         }
       ]
@@ -24852,20 +24856,16 @@ var toolbox = {
         {
           kind: "block",
           type: "text"
-        },
-        {
-          kind: "block",
-          type: "style"
         }
       ]
     },
     {
       kind: "category",
-      name: "Control",
+      name: "CSS",
       contents: [
         {
           kind: "block",
-          type: "controls_if"
+          type: "style"
         }
       ]
     },
@@ -24875,15 +24875,21 @@ var toolbox = {
       contents: [
         {
           kind: "block",
-          type: "logic_compare"
-        },
-        {
-          kind: "block",
-          type: "logic_operation"
+          type: "controls_if"
         },
         {
           kind: "block",
           type: "logic_boolean"
+        }
+      ]
+    },
+    {
+      kind: "category",
+      name: "Loop",
+      contents: [
+        {
+          kind: "block",
+          type: "controls_repeat_ext"
         }
       ]
     }
@@ -24892,11 +24898,23 @@ var toolbox = {
 // src/interpreter/command/comment.ts
 class Comment {
   content;
-  keyword = "#" /* Comment */;
   constructor(content) {
     this.content = content;
   }
   execute(r) {}
+}
+// src/interpreter/command/assign.ts
+class Assign {
+  ref;
+  expr;
+  constructor(ref, expr) {
+    this.ref = ref;
+    this.expr = expr;
+  }
+  execute(r) {
+    const value = r.evaluate(this.expr);
+    this.ref.assign(r, value);
+  }
 }
 // src/interpreter/runtime/address.ts
 class Address {
@@ -24975,11 +24993,33 @@ class Block3 {
     this.didExit = didExit;
   }
 }
+// src/interpreter/runtime/scope.ts
+class Scope {
+  parent;
+  dict = new Map;
+  constructor(parent = null) {
+    this.parent = parent;
+  }
+  lookup(name) {
+    if (this.dict.has(name)) {
+      return this.dict.get(name);
+    } else if (this.parent) {
+      return this.parent.lookup(name);
+    } else {
+      return null;
+    }
+  }
+  assign(name, value) {
+    this.dict.set(name, value);
+  }
+}
+
 // src/interpreter/runtime/environment.ts
 class Environment {
   stmts;
   addr = new Address;
   blocks = [];
+  context = new Scope;
   parentTag = null;
   constructor(stmts) {
     this.stmts = stmts;
@@ -25006,6 +25046,86 @@ class Environment {
     this.parentTag = tag;
   }
 }
+// src/interpreter/expression/variable.ts
+class Variable {
+  name;
+  constructor(name) {
+    this.name = name;
+  }
+  assign(r, value) {
+    r.envr.context.assign(this.name, value);
+  }
+  evaluate(r) {
+    return r.envr.context.lookup(this.name);
+  }
+}
+// src/interpreter/expression/subscript.ts
+class Subscript {
+  target;
+  index;
+  constructor(target, index) {
+    this.target = target;
+    this.index = index;
+  }
+  assign(r, value) {
+    const target = r.evaluate(this.target);
+    if (typeof target === "string" || Array.isArray(target)) {
+      const idx = r.evaluate(this.index);
+      if (typeof idx === "number") {
+        if (Array.isArray(target)) {
+          target[idx] = value;
+        }
+      }
+    } else if (target && typeof target === "object") {
+      const key = r.evaluate(this.index);
+      if (typeof key === "string") {
+        target[key] = value;
+      }
+    }
+  }
+  evaluate(r) {
+    const value = r.evaluate(this.target);
+    if (typeof value === "string" || Array.isArray(value)) {
+      const idx = r.evaluate(this.index);
+      if (typeof idx === "number") {
+        return value[idx] ?? null;
+      }
+    } else if (value && typeof value === "object") {
+      const key = r.evaluate(this.index);
+      if (typeof key === "string") {
+        return value[key] ?? null;
+      }
+    }
+    return null;
+  }
+}
+// src/interpreter/expression/bin-op.ts
+class BinOp {
+  op;
+  left;
+  right;
+  constructor(op, left, right) {
+    this.op = op;
+    this.left = left;
+    this.right = right;
+  }
+  evaluate(r) {
+    const leftValue = r.evaluate(this.left);
+    const rightValue = r.evaluate(this.right);
+    switch (this.op) {
+      case "+" /* Add */:
+        if (typeof leftValue === "number" && typeof rightValue === "number") {
+          return leftValue + rightValue;
+        } else if (typeof leftValue === "string" || typeof rightValue === "string") {
+          return String(leftValue) + String(rightValue);
+        } else {
+          throw new Error(`Invalid operands for addition: ${leftValue} and ${rightValue}`);
+        }
+      default:
+        throw new Error(`Unsupported binary operator: ${this.op}`);
+    }
+  }
+}
 // src/interpreter/runtime/runtime.ts
 class Runtime {
   envr;
@@ -25015,10 +25135,12 @@ class Runtime {
     this.parser = parser;
   }
   evaluate(expr) {
-    if (typeof expr === "string" || typeof expr === "boolean" || expr === null) {
+    if (typeof expr === "number" || typeof expr === "string" || typeof expr === "boolean" || expr === null) {
       return expr;
     } else if (Array.isArray(expr)) {
       return expr.map((e) => this.evaluate(e));
+    } else if (expr instanceof Variable || expr instanceof Subscript || expr instanceof BinOp) {
+      return expr.evaluate(this);
     } else {
       throw new Error(`Unsupported expression: ${expr}`);
     }
@@ -25030,18 +25152,27 @@ class Runtime {
     return this.envr.hasNext();
   }
   next() {
-    this.envr.address = this.envr.address.step();
-    const currentIndent = this.envr.currentStmt[0 /* Indent */];
-    let deltaX = this.envr.address.indent.x - currentIndent;
-    while (deltaX > 0) {
-      const reason = this.popBlock();
-      if (reason === 0 /* Shift */) {
-        deltaX -= 1;
-        this.envr.address = this.envr.address.shift(-1);
-      } else {
-        break;
+    outer:
+      while (true) {
+        this.envr.address = this.envr.address.step();
+        const currentIndent = this.envr.currentStmt[0 /* Indent */];
+        let deltaX = this.envr.address.indent.x - currentIndent;
+        while (deltaX > 0) {
+          const reason = this.popBlock();
+          if (reason === 0 /* Shift */) {
+            deltaX -= 1;
+            this.envr.address = this.envr.address.shift(-1);
+          } else if (reason === 1 /* Shift2 */) {
+            deltaX -= 2;
+            this.envr.address = this.envr.address.shift(-2);
+          } else if (reason === 2 /* Jump */) {
+            break;
+          }
+        }
+        if (deltaX === 0) {
+          break outer;
+        }
       }
-    }
     return this.envr.currentStmt;
   }
   jumpTo(address) {
@@ -25059,6 +25190,64 @@ class Runtime {
       this.envr.blocks.push(block);
       this.envr.address = block.address.shift(1);
     }
+  }
+}
+// src/interpreter/command/conditional.ts
+class Conditional {
+  condition;
+  constructor(condition) {
+    this.condition = condition;
+  }
+  execute(r) {
+    const block = new Block3(2 /* Conditional */, r.envr.address, () => {
+      const conditionValue = r.evaluate(this.condition);
+      return conditionValue ? true : false;
+    }, () => 1 /* Shift2 */);
+    r.pushBlock(block);
+  }
+}
+
+class Ifs {
+  execute(r) {
+    const block = new Block3(2 /* Conditional */, r.envr.address, () => true, () => 0 /* Shift */);
+    r.pushBlock(block);
+  }
+}
+
+class Else {
+  execute(r) {
+    const block = new Block3(2 /* Conditional */, r.envr.address, () => true, () => 0 /* Shift */);
+    r.pushBlock(block);
+  }
+}
+// src/interpreter/command/repeat.ts
+class Repeat {
+  times;
+  constructor(times) {
+    this.times = times;
+  }
+  execute(r) {
+    let counter = 0;
+    const timesValue = r.evaluate(this.times);
+    if (typeof timesValue === "number") {
+      counter = timesValue;
+    } else if (typeof timesValue === "string") {
+      counter = parseInt(timesValue, 10);
+    } else {
+      throw new Error(`Invalid repeat times: ${timesValue}`);
+    }
+    const block = new Block3(1 /* Loop */, r.envr.address, () => {
+      if (counter > 0) {
+        return true;
+      }
+      return false;
+    }, () => {
+      counter--;
+      r.jumpTo(block.address);
+      r.pushBlock(block);
+      return 2 /* Jump */;
+    });
+    r.pushBlock(block);
   }
 }
 // node_modules/preact/dist/preact.module.js
@@ -25444,7 +25633,6 @@ function surroundWith(tag, r2) {
 }
 // src/interpreter/command/html.ts
 class Html {
-  keyword = "html" /* Html */;
   execute(r2) {
     const block = new TagBlock("div", r2.envr.address, () => {
       r2.envr.currentTag = block;
@@ -25481,7 +25669,6 @@ class P2 extends Tag {
 // src/interpreter/command/text.ts
 class Text {
   content;
-  keyword = "text" /* Text */;
   constructor(content) {
     this.content = content;
   }
@@ -25493,7 +25680,6 @@ class Text {
 class Style {
   name;
   value;
-  keyword = "style" /* Style */;
   constructor(name, value) {
     this.name = name;
     this.value = value;
@@ -25505,7 +25691,6 @@ class Style {
 }
 // src/interpreter/command/end.ts
 class End {
-  keyword = "end" /* End */;
   execute(r2) {}
 }
 // src/block-editor/generator/generator.ts
@@ -25513,7 +25698,7 @@ var generator = new CodeGenerator("Shiba11");
 generator.scrub_ = function(_block, code, _opt_thisOnly) {
   const nextBlock = _block.nextConnection && _block.nextConnection.targetBlock();
   const nextCode = _opt_thisOnly ? "" : this.blockToCode(nextBlock);
-  if (!code.endsWith(",") && _block.getParent() === null) {
+  if (!code.toString().endsWith(",") && _block.getParent() === null) {
     code = code + ",";
   }
   if (nextBlock) {
@@ -25537,6 +25722,90 @@ function generateCodeForTag(tag) {
     return JSON.stringify([generatorState.indent, tag]) + "," + stmt;
   };
 }
+
+// src/block-editor/generator/controls-if.ts
+generator.forBlock["controls_if"] = (block) => {
+  const elseifCount = block.elseifCount_ || 0;
+  let n2 = 0;
+  let code = JSON.stringify([generatorState.indent, "ifs" /* Ifs */]) + ",";
+  generatorState.indent++;
+  let conditionCode = JSON.parse(generator.valueToCode(block, "IF" + n2, 0) || "false");
+  const ifCode = JSON.stringify([generatorState.indent, "if" /* If */, conditionCode]);
+  generatorState.indent++;
+  const stmts = generator.statementToCode(block, "DO" + n2);
+  generatorState.indent--;
+  code += `${ifCode},${stmts}`;
+  for (n2 = 1;n2 <= elseifCount; n2++) {
+    conditionCode = JSON.parse(generator.valueToCode(block, "IF" + n2, 0) || "false");
+    const elseifCode = JSON.stringify([
+      generatorState.indent,
+      "else if" /* ElseIf */,
+      conditionCode
+    ]);
+    generatorState.indent++;
+    const stmts2 = generator.statementToCode(block, "DO" + n2);
+    generatorState.indent--;
+    code += `${elseifCode},${stmts2}`;
+  }
+  const elseCount = block.elseCount_ || 0;
+  if (elseCount) {
+    const elseCode = JSON.stringify([generatorState.indent, "else" /* Else */]);
+    generatorState.indent++;
+    const stmts2 = generator.statementToCode(block, "ELSE");
+    generatorState.indent--;
+    code += `${elseCode},${stmts2}`;
+  }
+  generatorState.indent--;
+  return code;
+};
+
+// src/block-editor/generator/controls-repeat-ext.ts
+generator.forBlock["controls_repeat_ext"] = (block) => {
+  const times = generator.valueToCode(block, "TIMES", 0) || 0;
+  let code = JSON.stringify([generatorState.indent, "repeat", times]) + ",";
+  generatorState.indent++;
+  code += generator.statementToCode(block, "DO");
+  generatorState.indent--;
+  return code;
+};
+
+// src/block-editor/generator/logic.ts
+generator.forBlock["logic_boolean"] = (block) => {
+  const value = block.getFieldValue("BOOL") === "TRUE";
+  return [JSON.stringify(value), 0];
+};
+generator.forBlock["logic_compare"] = (block) => {
+  const OPERATORS = {
+    EQ: "===",
+    NEQ: "!==",
+    LT: "<",
+    LTE: "<=",
+    GT: ">",
+    GTE: ">="
+  };
+  const operator = OPERATORS[block.getFieldValue("OP")];
+  const [left, leftPrecedence] = generator.valueToCode(block, "A", 0);
+  const [right, rightPrecedence] = generator.valueToCode(block, "B", 0);
+  const code = `${left} ${operator} ${right}`;
+  return [code, 0];
+};
+generator.forBlock["logic_operation"] = (block) => {
+  const OPERATORS = {
+    AND: "&&",
+    OR: "||"
+  };
+  const operator = OPERATORS[block.getFieldValue("OP")];
+  const [left, leftPrecedence] = generator.valueToCode(block, "A", 0);
+  const [right, rightPrecedence] = generator.valueToCode(block, "B", 0);
+  const code = `${left} ${operator} ${right}`;
+  return [code, 0];
+};
+
+// src/block-editor/generator/math-number.ts
+generator.forBlock["math_number"] = (block) => {
+  const value = block.getFieldValue("NUM");
+  return [value, 0];
+};
 
 // src/block-editor/generator/tags.ts
 generateCodeForTag("div" /* Div */);
@@ -25602,7 +25871,8 @@ common.defineBlocksWithJsonArray([
     args0: [
       {
         type: "input_value",
-        name: "CONTENT"
+        name: "CONTENT",
+        check: "String"
       }
     ],
     previousStatement: null,
@@ -26453,6 +26723,19 @@ class CommandList {
   constructor() {
     this._table = {
       ["#" /* Comment */]: (stmt, exprParser) => new Comment(stmt[2 /* FirstArg */].toString()),
+      ["=" /* Assign */]: (stmt, exprParser) => {
+        const ref = exprParser.readRef(stmt[2 /* FirstArg */]);
+        const expr = exprParser.readExpr(stmt[2 /* FirstArg */ + 1]);
+        return new Assign(ref, expr);
+      },
+      ["ifs" /* Ifs */]: () => new Ifs,
+      ["if" /* If */]: (stmt, exprParser) => new Conditional(exprParser.readExpr(stmt[2 /* FirstArg */])),
+      ["else if" /* ElseIf */]: (stmt, exprParser) => new Conditional(exprParser.readExpr(stmt[2 /* FirstArg */])),
+      ["else" /* Else */]: () => new Else,
+      ["repeat" /* Repeat */]: (stmt, exprParser) => {
+        const times = exprParser.readExpr(stmt[2 /* FirstArg */]);
+        return new Repeat(times);
+      },
       ["html" /* Html */]: () => new Html,
       ["div" /* Div */]: () => new Div,
       ["p" /* P */]: () => new P2,
@@ -26470,13 +26753,7 @@ class CommandList {
     return this._table;
   }
 }
-// src/interpreter/expression/variable.ts
-class Variable {
-  name;
-  constructor(name) {
-    this.name = name;
-  }
-}
+
 // src/interpreter/parser/expression-list.ts
 class ExpressionList {
   _table;
@@ -26485,6 +26762,19 @@ class ExpressionList {
       ["var" /* Variable */]: (elem) => {
         const name = elem[1 /* VariableName */];
         return new Variable(name);
+      },
+      ["sub" /* Subscript */]: (elem, parser) => {
+        const targetElem = elem[1 /* SubscriptTarget */];
+        const target = parser.readExpr(targetElem);
+        const indexElem = elem[2 /* SubscriptIndex */];
+        const index = parser.readExpr(indexElem);
+        return new Subscript(target, index);
+      },
+      ["+" /* Add */]: (elem, parser) => {
+        const op = elem[0 /* Keyword */];
+        const left = parser.readExpr(elem[1 /* BinOpLeft */]);
+        const right = parser.readExpr(elem[2 /* BinOpRight */]);
+        return new BinOp(op, left, right);
       }
     };
   }
@@ -26502,9 +26792,17 @@ class ExpressionParser {
   readExpr(elem) {
     if (elem instanceof Array) {
       const keyword = elem[0];
-      return this.table[keyword]?.(elem) ?? null;
+      return this.table[keyword]?.(elem, this) ?? null;
     }
     return elem;
+  }
+  readRef(elem) {
+    if (elem instanceof Array) {
+      const keyword = elem[0];
+      const ref = this.table[keyword]?.(elem, this) ?? null;
+      return ref;
+    }
+    throw new Error(`Expected reference, got ${elem}`);
   }
 }
 

@@ -23,4 +23,62 @@ describe("Interpreter", () => {
     const interpreter = new Interpreter(code)
     expect(() => interpreter.run()).not.toThrow()
   })
+
+  test("runs conditional statements", () => {
+    const code = JSON.stringify([
+      [1, "ifs"],
+      [2, "if", true],
+      [3, "=", ["var", "x"], "This is true!"],
+      [2, "else"],
+      [3, "=", ["var", "x"], "This is false!"],
+      [1, "end"],
+    ])
+    const interpreter = new Interpreter(code)
+    interpreter.run()
+    expect(interpreter.runtime.envr.context.lookup("x")).toBe("This is true!")
+
+    const code2 = JSON.stringify([
+      [1, "ifs"],
+      [2, "if", false],
+      [3, "=", ["var", "x"], "This is true!"],
+      [2, "else"],
+      [3, "=", ["var", "x"], "This is false!"],
+      [1, "end"],
+    ])
+    const interpreter2 = new Interpreter(code2)
+    interpreter2.run()
+    expect(interpreter2.runtime.envr.context.lookup("x")).toBe("This is false!")
+
+    const code3 = JSON.stringify([
+      [1, "ifs"],
+      [2, "if", false],
+      [3, "=", ["var", "x"], "This is true!"],
+      [2, "else if", true],
+      [3, "ifs"],
+      [4, "if", false],
+      [5, "=", ["var", "x"], "This is else if true!"],
+      [4, "else"],
+      [5, "=", ["var", "x"], "This is else if false!"],
+      [2, "else"],
+      [3, "=", ["var", "x"], "This is else false!"],
+      [1, "end"],
+    ])
+    const interpreter3 = new Interpreter(code3)
+    interpreter3.run()
+    expect(interpreter3.runtime.envr.context.lookup("x")).toBe(
+      "This is else if false!",
+    )
+  })
+
+  test("runs loops", () => {
+    const code = JSON.stringify([
+      [1, "=", ["var", "x"], 0],
+      [1, "repeat", 3],
+      [2, "=", ["var", "x"], ["+", ["var", "x"], 1]],
+      [1, "end"],
+    ])
+    const interpreter = new Interpreter(code)
+    interpreter.run()
+    expect(interpreter.runtime.envr.context.lookup("x")).toBe(3)
+  })
 })

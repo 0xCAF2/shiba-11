@@ -2,6 +2,7 @@ import { type Statement } from "../statement"
 import type { TagBlock } from "../web"
 import { Address } from "./address"
 import type { Block } from "./block"
+import { Scope } from "./scope"
 
 /**
  * stores the current execution state.
@@ -9,6 +10,7 @@ import type { Block } from "./block"
 export class Environment {
   private addr = new Address()
   public readonly blocks: Block[] = []
+  public readonly context = new Scope()
   private parentTag: TagBlock | null = null
 
   constructor(public readonly stmts: Statement[]) {}
