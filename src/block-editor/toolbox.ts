@@ -13,6 +13,14 @@ export const toolbox = {
           kind: "block",
           type: "string",
         },
+        {
+          kind: "block",
+          type: "variables_set",
+        },
+        {
+          kind: "block",
+          type: "variables_get",
+        },
       ],
     },
     {

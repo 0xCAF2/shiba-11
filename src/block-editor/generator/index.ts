@@ -1,3 +1,5 @@
+import "./variables"
+
 import "./controls-if"
 import "./controls-repeat-ext"
 import "./logic"
