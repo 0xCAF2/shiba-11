@@ -17,34 +17,6 @@ export const toolbox = {
     },
     {
       kind: "category",
-      name: "HTML",
-      contents: [
-        {
-          kind: "block",
-          type: "div",
-        },
-        {
-          kind: "block",
-          type: "p",
-        },
-        {
-          kind: "block",
-          type: "text",
-        },
-      ],
-    },
-    {
-      kind: "category",
-      name: "CSS",
-      contents: [
-        {
-          kind: "block",
-          type: "style",
-        },
-      ],
-    },
-    {
-      kind: "category",
       name: "Logic",
       contents: [
         {
@@ -72,6 +44,34 @@ export const toolbox = {
         {
           kind: "block",
           type: "controls_repeat_ext",
+        },
+      ],
+    },
+    {
+      kind: "category",
+      name: "HTML",
+      contents: [
+        {
+          kind: "block",
+          type: "div",
+        },
+        {
+          kind: "block",
+          type: "p",
+        },
+        {
+          kind: "block",
+          type: "text",
+        },
+      ],
+    },
+    {
+      kind: "category",
+      name: "CSS",
+      contents: [
+        {
+          kind: "block",
+          type: "style",
         },
       ],
     },
