@@ -2,6 +2,12 @@ import * as Blockly from "blockly"
 
 export const generator = new Blockly.CodeGenerator("Shiba11")
 
+generator.init = function (workspace) {
+  this.nameDB_ = new Blockly.Names(this.RESERVED_WORDS_)
+  this.nameDB_.reset()
+  this.nameDB_.setVariableMap(workspace.getVariableMap())
+}
+
 generator.scrub_ = function (_block, code, _opt_thisOnly) {
   const nextBlock = _block.nextConnection && _block.nextConnection.targetBlock()
   const nextCode = _opt_thisOnly ? "" : this.blockToCode(nextBlock)

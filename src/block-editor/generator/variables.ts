@@ -3,7 +3,8 @@ import { Keyword as ExprKeyword } from "../../interpreter/expression"
 import { generator as g, generatorState as state } from "./generator"
 
 g.forBlock["variables_set"] = (block) => {
-  const varName = block.getFieldValue("VAR")
+  const varId = block.getFieldValue("VAR")
+  const varName = g.getVariableName(varId)
   const value = JSON.parse(g.valueToCode(block, "VALUE", 0) || "null")
   return (
     JSON.stringify([
@@ -16,6 +17,7 @@ g.forBlock["variables_set"] = (block) => {
 }
 
 g.forBlock["variables_get"] = (block) => {
-  const varName = block.getFieldValue("VAR")
+  const varId = block.getFieldValue("VAR")
+  const varName = g.getVariableName(varId)
   return [JSON.stringify([ExprKeyword.Variable, varName]), 0]
 }
