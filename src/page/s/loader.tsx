@@ -1,5 +1,16 @@
+import { signal } from "@preact/signals"
 import { render } from "preact"
 import QrScanner from "qr-scanner"
+import { Shiba11 } from "../shiba11"
+
+const code = signal(
+  JSON.stringify([
+    [1, "html"],
+    [2, "p"],
+    [3, "text", "Hello, World."],
+    [1, "end"],
+  ]),
+)
 
 const onclick = async () => {
   const constraints = {
@@ -25,6 +36,7 @@ const onclick = async () => {
     document.getElementById("qr-video") as HTMLVideoElement,
     (result) => {
       document.getElementById("result")!.textContent = result.data
+      code.value = result.data
       qrScanner.stop()
     },
     {
@@ -47,7 +59,9 @@ document.getElementById("scan-button")!.addEventListener("click", onclick)
 function Loader() {
   return (
     <>
-      <div>Loading...</div>
+      <div>
+        <Shiba11 code={code.value} />
+      </div>
     </>
   )
 }

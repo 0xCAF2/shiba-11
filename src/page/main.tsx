@@ -1093,7 +1093,11 @@ document
   })
 
 function App() {
-  return <Shiba11 code={codeSignal.value} />
+  return (
+    <>
+      <Shiba11 code={codeSignal.value} />{" "}
+    </>
+  )
 }
 
 render(<App />, document.getElementById("root")!)
