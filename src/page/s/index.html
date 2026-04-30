@@ -23,59 +23,11 @@
     <div id="video-container">
       <video id="qr-video"></video>
     </div>
-    <script type="module">
-      import QrScanner from "./scanner.js"
-
-      const onclick = async () => {
-        const constraints = {
-          video: {
-            facingMode: "environment",
-          },
-          audio: false,
-        }
-        const stream = await navigator.mediaDevices.getUserMedia(constraints)
-
-        if (stream) {
-          const video = document.getElementById("qr-video")
-          video.srcObject = stream
-          document.getElementById("result").textContent =
-            "カメラにアクセスしました"
-          video.play()
-          document.getElementById("result").textContent =
-            "QRコードをスキャンします"
-        } else {
-          alert("カメラにアクセスできませんでした")
-          return
-        }
-
-        const qrScanner = new QrScanner(
-          document.getElementById("qr-video"),
-          (result) => {
-            document.getElementById("result").textContent = result.data
-            qrScanner.stop()
-          },
-          {
-            onDecodeError: (error) => {
-              document.getElementById("result").textContent = `Error: ${error}`
-            },
-            preferredCamera: "environment",
-            highlightScanRegion: true,
-            highlightCodeOutline: true,
-          },
-        )
-        await qrScanner.setCamera("environment")
-        document.getElementById("result").textContent =
-          "QRコードをスキャンしています..."
-        qrScanner.start()
-        document.getElementById("result").textContent =
-          "QRコードをスキャン中..."
-      }
-      document.getElementById("scan-button").addEventListener("click", onclick)
-    </script>
+    <script type="module"></script>
     <button id="scan-button">Scan QR Code</button>
     <div id="root"></div>
     <script type="module" src="./loader.tsx"></script>
 
-    <div id="result">.........</div>
+    <div id="result">......</div>
   </body>
 </html>
