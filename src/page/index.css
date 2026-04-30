@@ -1,3 +1,8 @@
 #blockly-div {
   height: 480px;
 }
+
+#qr-code-div {
+  max-width: 30%;
+  max-height: 30%;
+}

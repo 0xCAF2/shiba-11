@@ -12,5 +12,8 @@
     "@preact/signals": "^2.9.0",
     "blockly": "^12.5.1",
     "@blockly/theme-dark": "^8.0.4"
+  },
+  "dependencies": {
+    "qr-scanner": "^1.4.2"
   }
 }
