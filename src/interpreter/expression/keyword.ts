@@ -9,6 +9,18 @@ export enum BinOpKeyword {
   Multiply = "*",
   Divide = "/",
   Power = "**",
+
+  Modulo = "%",
+
+  Equal = "===",
+  NotEqual = "!==",
+  LessThan = "<",
+  LessThanOrEqual = "<=",
+  GreaterThan = ">",
+  GreaterThanOrEqual = ">=",
+
+  And = "&&",
+  Or = "||",
 }
 
 export type Keywords =

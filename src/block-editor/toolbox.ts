@@ -31,14 +31,14 @@ export const toolbox = {
           kind: "block",
           type: "controls_if",
         },
-        // {
-        //   kind: "block",
-        //   type: "logic_compare",
-        // },
-        // {
-        //   kind: "block",
-        //   type: "logic_operation",
-        // },
+        {
+          kind: "block",
+          type: "logic_compare",
+        },
+        {
+          kind: "block",
+          type: "logic_operation",
+        },
         {
           kind: "block",
           type: "logic_boolean",
@@ -66,6 +66,10 @@ export const toolbox = {
         {
           kind: "block",
           type: "math_arithmetic",
+        },
+        {
+          kind: "block",
+          type: "math_modulo",
         },
       ],
     },

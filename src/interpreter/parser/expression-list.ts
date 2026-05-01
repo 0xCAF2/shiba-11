@@ -43,6 +43,15 @@ export class ExpressionList {
       [BinOpKeyword.Multiply]: binOpParser,
       [BinOpKeyword.Divide]: binOpParser,
       [BinOpKeyword.Power]: binOpParser,
+      [BinOpKeyword.Modulo]: binOpParser,
+      [BinOpKeyword.Equal]: binOpParser,
+      [BinOpKeyword.NotEqual]: binOpParser,
+      [BinOpKeyword.LessThan]: binOpParser,
+      [BinOpKeyword.LessThanOrEqual]: binOpParser,
+      [BinOpKeyword.GreaterThan]: binOpParser,
+      [BinOpKeyword.GreaterThanOrEqual]: binOpParser,
+      [BinOpKeyword.And]: binOpParser,
+      [BinOpKeyword.Or]: binOpParser,
     }
   }
 

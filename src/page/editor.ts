@@ -20,6 +20,28 @@ Blockly.serialization.workspaces.load(
       languageVersion: 0,
       blocks: [
         {
+          type: "variables_set",
+          id: "RSiYB2%Lw`$8g-SuMF4C",
+          x: 175,
+          y: 16,
+          fields: {
+            VAR: {
+              id: "`}Hs=hgOobnX2f7?V|}#",
+            },
+          },
+          inputs: {
+            VALUE: {
+              block: {
+                type: "math_number",
+                id: "EmbP.Fge*gV?7StzAfX[",
+                fields: {
+                  NUM: 1,
+                },
+              },
+            },
+          },
+        },
+        {
           type: "controls_repeat_ext",
           id: "KINj*(kqDoLl`qZ#q*mT",
           x: 177,
@@ -61,18 +83,74 @@ Blockly.serialization.workspaces.load(
                 inputs: {
                   CHILDREN: {
                     block: {
-                      type: "style",
-                      id: "3.dl()jN9=RtL-dTKHil",
-                      fields: {
-                        NAME: "color",
-                      },
+                      type: "controls_if",
+                      id: "0{~]sCK}.Nmvc/{5hYoG",
                       inputs: {
-                        VALUE: {
+                        IF0: {
                           block: {
-                            type: "string",
-                            id: "=Zn/H6](kh,^:puDIe6f",
+                            type: "logic_compare",
+                            id: "}Qs,y_{Sq1YU-)Y!I+a[",
                             fields: {
-                              VALUE: "dodgerblue",
+                              OP: "EQ",
+                            },
+                            inputs: {
+                              A: {
+                                block: {
+                                  type: "math_modulo",
+                                  id: "K^^6vjRmW?}0I};`:Hw^",
+                                  inputs: {
+                                    DIVIDEND: {
+                                      block: {
+                                        type: "variables_get",
+                                        id: "3og{dITNnZ~oVF-iD!L[",
+                                        fields: {
+                                          VAR: {
+                                            id: "`}Hs=hgOobnX2f7?V|}#",
+                                          },
+                                        },
+                                      },
+                                    },
+                                    DIVISOR: {
+                                      block: {
+                                        type: "math_number",
+                                        id: ";+]S~gl)nE^PzkY#-}x~",
+                                        fields: {
+                                          NUM: 2,
+                                        },
+                                      },
+                                    },
+                                  },
+                                },
+                              },
+                              B: {
+                                block: {
+                                  type: "math_number",
+                                  id: "1;lUKl]MmKUntY=IW2Vj",
+                                  fields: {
+                                    NUM: 0,
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                        DO0: {
+                          block: {
+                            type: "style",
+                            id: "3.dl()jN9=RtL-dTKHil",
+                            fields: {
+                              NAME: "color",
+                            },
+                            inputs: {
+                              VALUE: {
+                                block: {
+                                  type: "string",
+                                  id: "=Zn/H6](kh,^:puDIe6f",
+                                  fields: {
+                                    VALUE: "dodgerblue",
+                                  },
+                                },
+                              },
                             },
                           },
                         },
@@ -164,33 +242,11 @@ Blockly.serialization.workspaces.load(
             },
           },
         },
-        {
-          type: "variables_set",
-          id: "RSiYB2%Lw`$8g-SuMF4C",
-          x: 175,
-          y: 16,
-          fields: {
-            VAR: {
-              id: "`}Hs=hgOobnX2f7?V|}#",
-            },
-          },
-          inputs: {
-            VALUE: {
-              block: {
-                type: "math_number",
-                id: "EmbP.Fge*gV?7StzAfX[",
-                fields: {
-                  NUM: 1,
-                },
-              },
-            },
-          },
-        },
       ],
     },
     variables: [
       {
-        name: "item",
+        name: "i",
         id: "`}Hs=hgOobnX2f7?V|}#",
       },
     ],
