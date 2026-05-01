@@ -12,8 +12,7 @@ export function surroundWith(tag: string, r: Runtime) {
       return true
     },
     () => {
-      const vnode = block.createVNode()
-      parentTag.children.push(vnode)
+      parentTag.children.push(block)
       r.envr.currentTag = parentTag
       return BlockExitReason.Shift
     },

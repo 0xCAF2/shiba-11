@@ -187,6 +187,37 @@ Blockly.serialization.workspaces.load(
                                   },
                                 },
                               },
+                              next: {
+                                block: {
+                                  type: "on",
+                                  id: "P7@4!v*.y=vES8IrSFYQ",
+                                  fields: {
+                                    EVENT: "click",
+                                  },
+                                  inputs: {
+                                    HANDLER: {
+                                      block: {
+                                        type: "style",
+                                        id: "SczyfA`DW(!q#H4sf.a:",
+                                        fields: {
+                                          NAME: "color",
+                                        },
+                                        inputs: {
+                                          VALUE: {
+                                            block: {
+                                              type: "string",
+                                              id: ",h=wKhx~2Ik1JDsncGjH",
+                                              fields: {
+                                                VALUE: "red",
+                                              },
+                                            },
+                                          },
+                                        },
+                                      },
+                                    },
+                                  },
+                                },
+                              },
                             },
                           },
                         },

@@ -8,7 +8,7 @@ import {
 } from "../expression"
 import type { StatementParser } from "../parser"
 import { Index, type Statement } from "../statement"
-import type { Address } from "./address"
+import { Address } from "./address"
 import { Block, BlockExitReason } from "./block"
 import { Environment } from "./environment"
 
@@ -52,17 +52,27 @@ export class Runtime {
       this.envr.address = this.envr.address.step()
       const currentIndent = this.envr.currentStmt[Index.Indent]
       let deltaX = this.envr.address.indent.x - currentIndent
-      while (deltaX > 0) {
+      inner: while (deltaX > 0) {
         const reason = this.popBlock()
-        if (reason === BlockExitReason.Shift) {
-          deltaX -= 1
-          this.envr.address = this.envr.address.shift(-1)
-        } else if (reason === BlockExitReason.Shift2) {
-          deltaX -= 2
-          this.envr.address = this.envr.address.shift(-2)
-          const _ = this.popBlock() // should pop ifs block
-        } else if (reason === BlockExitReason.Jump) {
-          break
+        switch (reason) {
+          case BlockExitReason.Shift:
+            deltaX -= 1
+            this.envr.address = this.envr.address.shift(-1)
+            break
+          case BlockExitReason.Shift2:
+            deltaX -= 2
+            this.envr.address = this.envr.address.shift(-2)
+            const _ = this.popBlock() // should pop ifs block
+            break
+          case BlockExitReason.Jump:
+            break inner
+          case BlockExitReason.Return:
+            break inner
+          case BlockExitReason.EndHandler:
+            this.jumpTo(
+              new Address({ indent: 1, line: this.envr.stmts.length - 1 }),
+            ) // jump to the end of program
+            break outer
         }
       }
       if (deltaX === 0) {

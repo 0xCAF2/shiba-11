@@ -12,6 +12,7 @@ import {
   Repeat,
   Style,
   Text,
+  On,
   type Command,
   type Keywords,
 } from "../command"
@@ -57,6 +58,10 @@ export class CommandList {
           stmt[Index.FirstArg].toString(),
           exprParser.readExpr(stmt[Index.FirstArg + 1]),
         )
+      },
+      [Keyword.On]: (stmt, exprParser) => {
+        const eventName = stmt[Index.FirstArg].toString()
+        return new On(eventName)
       },
       [Keyword.End]: (stmt, exprParser) => new End(),
     }

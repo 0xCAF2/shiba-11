@@ -101,5 +101,15 @@ export const toolbox = {
         },
       ],
     },
+    {
+      kind: "category",
+      name: "Events",
+      contents: [
+        {
+          kind: "block",
+          type: "on",
+        },
+      ],
+    },
   ],
 }

@@ -13,6 +13,7 @@ export enum BlockExitReason {
   Shift2,
   Jump,
   Return,
+  EndHandler,
 }
 
 export class Block {

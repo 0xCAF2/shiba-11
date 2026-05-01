@@ -6,6 +6,6 @@ export class Text implements Command {
   constructor(public readonly content: Expression) {}
 
   execute(r: Runtime) {
-    r.envr.currentTag?.children.push(r.evaluate(this.content))
+    r.envr.currentTag?.children.push(r.evaluate(this.content)?.toString() ?? "")
   }
 }

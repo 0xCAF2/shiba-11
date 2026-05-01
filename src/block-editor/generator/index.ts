@@ -8,6 +8,7 @@ import "./math"
 import "./tags"
 import "./text"
 import "./style"
+import "./on"
 
 import "./string"
 

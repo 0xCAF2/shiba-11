@@ -15,6 +15,7 @@ export enum Keyword {
   P = "p",
   Text = "text",
   Style = "style",
+  On = "on",
 
   End = "end",
 }
