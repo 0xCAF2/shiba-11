@@ -13,7 +13,9 @@ export enum Keyword {
   Html = "html",
   Div = "div",
   P = "p",
-  Text = "text",
+  StaticText = "s",
+  DynamicText = "d",
+  Clear = "c",
   Style = "style",
   On = "on",
 

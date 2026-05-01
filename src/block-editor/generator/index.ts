@@ -7,6 +7,7 @@ import "./math"
 
 import "./tags"
 import "./text"
+import "./clear"
 import "./style"
 import "./on"
 

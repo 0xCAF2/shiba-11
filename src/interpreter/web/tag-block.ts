@@ -7,7 +7,7 @@ import { EventHandlers } from "./event-handlers"
 
 export class TagBlock extends Block {
   public readonly attributes = new Attributes()
-  public readonly children: (TagBlock | string)[] = []
+  public readonly children: (TagBlock | string | (() => string))[] = []
   public readonly styles = new Styles()
   public readonly eventHandlers = new EventHandlers()
 
@@ -29,7 +29,11 @@ export class TagBlock extends Block {
         ...this.eventHandlers.all,
       },
       ...this.children.map((child) =>
-        typeof child === "string" ? child : child.createVNode(),
+        typeof child === "string"
+          ? child
+          : typeof child === "function"
+            ? child()
+            : child.createVNode(),
       ),
     )
   }

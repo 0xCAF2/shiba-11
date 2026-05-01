@@ -4,6 +4,7 @@ import {
   Conditional,
   Div,
   Else,
+  Clear,
   End,
   Html,
   Ifs,
@@ -11,7 +12,8 @@ import {
   P,
   Repeat,
   Style,
-  Text,
+  StaticText,
+  DynamicText,
   On,
   type Command,
   type Keywords,
@@ -49,9 +51,16 @@ export class CommandList {
       [Keyword.Html]: () => new Html(),
       [Keyword.Div]: () => new Div(),
       [Keyword.P]: () => new P(),
-      [Keyword.Text]: (stmt, exprParser) => {
+      [Keyword.StaticText]: (stmt, exprParser) => {
         const content = exprParser.readExpr(stmt[Index.FirstArg])
-        return new Text(content)
+        return new StaticText(content)
+      },
+      [Keyword.DynamicText]: (stmt, exprParser) => {
+        const content = exprParser.readExpr(stmt[Index.FirstArg])
+        return new DynamicText(content)
+      },
+      [Keyword.Clear]: () => {
+        return new Clear()
       },
       [Keyword.Style]: (stmt, exprParser) => {
         return new Style(

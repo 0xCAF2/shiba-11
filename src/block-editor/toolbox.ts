@@ -85,9 +85,23 @@ export const toolbox = {
           kind: "block",
           type: "p",
         },
+      ],
+    },
+    {
+      kind: "category",
+      name: "Content",
+      contents: [
         {
           kind: "block",
-          type: "text",
+          type: "static_text",
+        },
+        {
+          kind: "block",
+          type: "dynamic_text",
+        },
+        {
+          kind: "block",
+          type: "clear",
         },
       ],
     },

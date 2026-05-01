@@ -33,7 +33,11 @@ export class Interpreter {
   get result(): any | null {
     return (
       this.runtime.envr.currentTag?.children.map((child) =>
-        typeof child === "string" ? child : child.createVNode(),
+        typeof child === "string"
+          ? child
+          : typeof child === "function"
+            ? child()
+            : child.createVNode(),
       ) ?? null
     )
   }
