@@ -87,7 +87,70 @@ Blockly.serialization.workspaces.load(
                                 type: "string",
                                 id: "RA6CjM2|v0qT2,x9q.DN",
                                 fields: {
-                                  VALUE: "Hello, World.",
+                                  VALUE: "Hello, World ",
+                                },
+                              },
+                            },
+                          },
+                          next: {
+                            block: {
+                              type: "text",
+                              id: "Vv3.aRx}gmq|GXc|}~g?",
+                              inputs: {
+                                CONTENT: {
+                                  block: {
+                                    type: "variables_get",
+                                    id: "MCaCLv#54_KVnoSC-sd7",
+                                    fields: {
+                                      VAR: {
+                                        id: "`}Hs=hgOobnX2f7?V|}#",
+                                      },
+                                    },
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+                next: {
+                  block: {
+                    type: "variables_set",
+                    id: "rulJbuQ5qESzL`RAoS1,",
+                    fields: {
+                      VAR: {
+                        id: "`}Hs=hgOobnX2f7?V|}#",
+                      },
+                    },
+                    inputs: {
+                      VALUE: {
+                        block: {
+                          type: "math_arithmetic",
+                          id: "v}3P(d:_}CI8xUz4xqmo",
+                          fields: {
+                            OP: "ADD",
+                          },
+                          inputs: {
+                            A: {
+                              block: {
+                                type: "variables_get",
+                                id: "/lioW65j7Rk2|qe4j0_m",
+                                fields: {
+                                  VAR: {
+                                    id: "`}Hs=hgOobnX2f7?V|}#",
+                                  },
+                                },
+                              },
+                            },
+                            B: {
+                              block: {
+                                type: "math_number",
+                                id: "l@(zSB#N3nVEq+*?+l?Q",
+                                fields: {
+                                  NUM: 1,
                                 },
                               },
                             },
@@ -101,8 +164,36 @@ Blockly.serialization.workspaces.load(
             },
           },
         },
+        {
+          type: "variables_set",
+          id: "RSiYB2%Lw`$8g-SuMF4C",
+          x: 175,
+          y: 16,
+          fields: {
+            VAR: {
+              id: "`}Hs=hgOobnX2f7?V|}#",
+            },
+          },
+          inputs: {
+            VALUE: {
+              block: {
+                type: "math_number",
+                id: "EmbP.Fge*gV?7StzAfX[",
+                fields: {
+                  NUM: 1,
+                },
+              },
+            },
+          },
+        },
       ],
     },
+    variables: [
+      {
+        name: "item",
+        id: "`}Hs=hgOobnX2f7?V|}#",
+      },
+    ],
   },
   workspace,
 )

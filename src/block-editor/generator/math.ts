@@ -1,16 +1,16 @@
 import { generator as g } from "./generator"
 
 g.forBlock["math_number"] = (block) => {
-  const value = block.getFieldValue("NUM") || 0
+  const value = block.getFieldValue("NUM") || "0"
   return [value, 0]
 }
 
 const operatorMap: Record<string, string> = {
-  ADD: '"+"',
-  MINUS: '"-"',
-  MULTIPLY: '"*"',
-  DIVIDE: '"/"',
-  POWER: '"**"',
+  ADD: "+",
+  MINUS: "-",
+  MULTIPLY: "*",
+  DIVIDE: "/",
+  POWER: "**",
 }
 
 g.forBlock["math_arithmetic"] = (block) => {
@@ -19,5 +19,5 @@ g.forBlock["math_arithmetic"] = (block) => {
 
   const argument0 = JSON.parse(g.valueToCode(block, "A", 0) || "0")
   const argument1 = JSON.parse(g.valueToCode(block, "B", 0) || "0")
-  return [`[${mappedOperator},${argument0},${argument1}]`, 0]
+  return [JSON.stringify([mappedOperator, argument0, argument1]), 0]
 }
