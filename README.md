@@ -3,6 +3,12 @@
 Shiba-11 (shiba one-one) is a simple Web description language and runtime.
 It composes of a core interpreter and a block-based editor.
 
+**This project is in early development stage.**
+
+## NOTICE:
+
+The QR code generator is based on [Nayuki's project](https://github.com/nayuki/QR-Code-generator).
+
 To install dependencies:
 
 ```bash
