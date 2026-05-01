@@ -27,10 +27,30 @@ Blockly.serialization.workspaces.load(
           inputs: {
             TIMES: {
               block: {
-                type: "math_number",
-                id: "L,~VY:=|8Smtf$Sjm[TY",
+                type: "math_arithmetic",
+                id: "[e3^yL-sgcn46V.#pJJe",
                 fields: {
-                  NUM: 3,
+                  OP: "ADD",
+                },
+                inputs: {
+                  A: {
+                    block: {
+                      type: "math_number",
+                      id: "@!s@k,x1*0[(Hk8pK^vt",
+                      fields: {
+                        NUM: 4,
+                      },
+                    },
+                  },
+                  B: {
+                    block: {
+                      type: "math_number",
+                      id: "L,~VY:=|8Smtf$Sjm[TY",
+                      fields: {
+                        NUM: 2,
+                      },
+                    },
+                  },
                 },
               },
             },

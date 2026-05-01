@@ -5,6 +5,10 @@ export enum Keyword {
 
 export enum BinOpKeyword {
   Add = "+",
+  Subtract = "-",
+  Multiply = "*",
+  Divide = "/",
+  Power = "**",
 }
 
 export type Keywords =

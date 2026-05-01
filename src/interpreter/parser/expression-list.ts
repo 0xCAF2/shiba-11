@@ -15,6 +15,13 @@ export type ExpressionTable = Record<
   (elem: Elem.Any, parser: ExpressionParser) => Expression
 >
 
+const binOpParser = (elem: Elem.Any, parser: ExpressionParser): BinOp => {
+  const op = (elem as Elem.BinOp)[Elem.Index.Keyword]
+  const left = parser.readExpr((elem as Elem.BinOp)[Elem.Index.BinOpLeft])
+  const right = parser.readExpr((elem as Elem.BinOp)[Elem.Index.BinOpRight])
+  return new BinOp(op, left, right)
+}
+
 export class ExpressionList {
   private readonly _table: ExpressionTable
 
@@ -31,14 +38,11 @@ export class ExpressionList {
         const index = parser.readExpr(indexElem)
         return new Subscript(target, index)
       },
-      [BinOpKeyword.Add]: (elem, parser) => {
-        const op = (elem as Elem.BinOp)[Elem.Index.Keyword]
-        const left = parser.readExpr((elem as Elem.BinOp)[Elem.Index.BinOpLeft])
-        const right = parser.readExpr(
-          (elem as Elem.BinOp)[Elem.Index.BinOpRight],
-        )
-        return new BinOp(op, left, right)
-      },
+      [BinOpKeyword.Add]: binOpParser,
+      [BinOpKeyword.Subtract]: binOpParser,
+      [BinOpKeyword.Multiply]: binOpParser,
+      [BinOpKeyword.Divide]: binOpParser,
+      [BinOpKeyword.Power]: binOpParser,
     }
   }
 

@@ -21,7 +21,7 @@ export class Repeat implements Command {
       !Number.isInteger(counter) ||
       counter < 0
     ) {
-      throw new Error(`Invalid repeat times: ${timesValue}`)
+      return
     }
 
     const block = new Block(

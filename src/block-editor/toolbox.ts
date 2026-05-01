@@ -47,11 +47,25 @@ export const toolbox = {
     },
     {
       kind: "category",
-      name: "Loop",
+      name: "Loops",
       contents: [
         {
           kind: "block",
           type: "controls_repeat_ext",
+        },
+      ],
+    },
+    {
+      kind: "category",
+      name: "Math",
+      contents: [
+        {
+          kind: "block",
+          type: "math_number",
+        },
+        {
+          kind: "block",
+          type: "math_arithmetic",
         },
       ],
     },

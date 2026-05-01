@@ -27,6 +27,41 @@ export class BinOp {
             `Invalid operands for addition: ${leftValue} and ${rightValue}`,
           )
         }
+      case BinOpKeyword.Subtract:
+        if (typeof leftValue === "number" && typeof rightValue === "number") {
+          return leftValue - rightValue
+        } else {
+          throw new Error(
+            `Invalid operands for subtraction: ${leftValue} and ${rightValue}`,
+          )
+        }
+      case BinOpKeyword.Multiply:
+        if (typeof leftValue === "number" && typeof rightValue === "number") {
+          return leftValue * rightValue
+        } else {
+          throw new Error(
+            `Invalid operands for multiplication: ${leftValue} and ${rightValue}`,
+          )
+        }
+      case BinOpKeyword.Divide:
+        if (typeof leftValue === "number" && typeof rightValue === "number") {
+          if (rightValue === 0) {
+            throw new Error("Division by zero")
+          }
+          return leftValue / rightValue
+        } else {
+          throw new Error(
+            `Invalid operands for division: ${leftValue} and ${rightValue}`,
+          )
+        }
+      case BinOpKeyword.Power:
+        if (typeof leftValue === "number" && typeof rightValue === "number") {
+          return leftValue ** rightValue
+        } else {
+          throw new Error(
+            `Invalid operands for exponentiation: ${leftValue} and ${rightValue}`,
+          )
+        }
       default:
         throw new Error(`Unsupported binary operator: ${this.op}`)
     }
