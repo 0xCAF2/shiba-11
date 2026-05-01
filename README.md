@@ -8,6 +8,9 @@ It composes of a core interpreter and a block-based editor.
 ## NOTICE:
 
 The QR code generator is based on [Nayuki's project](https://github.com/nayuki/QR-Code-generator).
+Thank you for providing the code under MIT License.
+
+## Usage
 
 To install dependencies:
 
