@@ -6,3 +6,8 @@ g.forBlock[Keyword.Style] = (block) => {
   const value = g.valueToCode(block, "VALUE", 0) || '"black"'
   return `[${state.indent},"${Keyword.Style}","${name}",${value}],`
 }
+
+g.forBlock["style_value"] = (block) => {
+  const value = block.getFieldValue("VALUE") || "blue"
+  return [`"${value}"`, 0]
+}

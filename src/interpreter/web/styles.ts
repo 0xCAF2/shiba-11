@@ -1,11 +1,15 @@
 export class Styles {
-  private readonly styles: Map<string, string> = new Map()
+  private readonly _styles: Map<string, () => string> = new Map()
 
-  setStyle(name: string, value: string) {
-    this.styles.set(name, value)
+  setStyle(name: string, expr: () => string) {
+    this._styles.set(name, expr)
   }
 
   get all(): { [key: string]: string } {
-    return Object.fromEntries(this.styles)
+    const result: { [key: string]: string } = {}
+    for (const [key, value] of this._styles) {
+      result[key] = value()
+    }
+    return result
   }
 }

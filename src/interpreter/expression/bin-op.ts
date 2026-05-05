@@ -11,8 +11,8 @@ export class BinOp {
   ) {}
 
   evaluate(r: Runtime): Value {
-    const leftValue = r.evaluate(this.left)
-    const rightValue = r.evaluate(this.right)
+    const leftValue = r.evaluate(this.left) ?? "null"
+    const rightValue = r.evaluate(this.right) ?? "null"
 
     switch (this.op) {
       case BinOpKeyword.Add:
@@ -22,7 +22,7 @@ export class BinOp {
           typeof leftValue === "string" ||
           typeof rightValue === "string"
         ) {
-          return String(leftValue) + String(rightValue)
+          return leftValue.toString() + rightValue.toString()
         } else {
           throw new Error(
             `Invalid operands for addition: ${leftValue} and ${rightValue}`,

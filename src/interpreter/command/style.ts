@@ -9,7 +9,9 @@ export class Style implements Command {
   ) {}
 
   execute(r: Runtime): void {
-    const styleValue = r.evaluate(this.value) as string
-    r.envr.currentTag.styles.setStyle(this.name, styleValue)
+    r.envr.currentTag.styles.setStyle(
+      this.name,
+      () => r.evaluate(this.value) as string,
+    )
   }
 }

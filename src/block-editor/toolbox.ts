@@ -66,11 +66,47 @@ export const toolbox = {
         {
           kind: "block",
           type: "math_arithmetic",
+          inputs: {
+            A: {
+              shadow: {
+                kind: "block",
+                type: "variables_get",
+              },
+            },
+            B: {
+              shadow: {
+                kind: "block",
+                type: "math_number",
+              },
+            },
+          },
         },
         {
           kind: "block",
           type: "math_modulo",
         },
+      ],
+    },
+    {
+      kind: "category",
+      name: "Lists",
+      contents: [
+        {
+          kind: "block",
+          type: "lists_create_empty",
+        },
+        {
+          kind: "block",
+          type: "lists_create_with",
+        },
+        // {
+        //   kind: "block",
+        //   type: "lists_length",
+        // },
+        // {
+        //   kind: "block",
+        //   type: "lists_isEmpty",
+        // },
       ],
     },
     {
@@ -112,6 +148,16 @@ export const toolbox = {
         {
           kind: "block",
           type: "style",
+          inputs: {
+            VALUE: {
+              shadow: {
+                type: "style_value",
+                fields: {
+                  VALUE: "blue",
+                },
+              },
+            },
+          },
         },
       ],
     },

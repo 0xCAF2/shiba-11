@@ -1,3 +1,4 @@
+import { Keyword } from "../command"
 import { type Statement } from "../statement"
 import type { TagBlock } from "../web"
 import { Address } from "./address"
@@ -31,7 +32,11 @@ export class Environment {
   }
 
   get currentStmt(): Statement {
-    return this.stmts[this.addr.line.y]!
+    const line = this.stmts[this.addr.line.y]
+    if (Array.isArray(line) && line.length > 0 && typeof line[0] === "number") {
+      return line
+    }
+    return [Number.MAX_SAFE_INTEGER, Keyword.Comment]
   }
 
   get currentTag(): TagBlock {

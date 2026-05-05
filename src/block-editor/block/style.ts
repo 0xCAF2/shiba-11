@@ -20,4 +20,16 @@ Blockly.common.defineBlocksWithJsonArray([
     colour: 230,
     tooltip: "Set a style property for the current HTML element",
   },
+  {
+    type: "style_value",
+    message0: "%1",
+    args0: [
+      {
+        type: "field_input",
+        name: "VALUE",
+        text: "blue",
+      },
+    ],
+    output: "string",
+  },
 ])
