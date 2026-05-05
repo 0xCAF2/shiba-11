@@ -1,5 +1,5 @@
 /**
- * represents the position of the current command being executed in the code.
+ * represents the position of the current action being executed in the code.
  * It is immutable.
  */
 export class Address {

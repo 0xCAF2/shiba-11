@@ -25,8 +25,8 @@ export class Interpreter {
     const r = this.runtime
     while (r.hasNext()) {
       const stmt = r.next()
-      const command = r.parse(stmt)
-      command?.execute(r)
+      const action = r.parse(stmt)
+      action?.execute(r)
     }
   }
 

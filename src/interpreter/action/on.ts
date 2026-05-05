@@ -8,7 +8,7 @@ export class On implements Action {
   execute(runtime: Runtime) {
     const tagBlock = runtime.envr.currentTag
     if (tagBlock === null) {
-      throw new Error("The 'on' command must be used inside a tag block.")
+      throw new Error("The 'on' action must be used inside a tag block.")
     }
 
     const addr = runtime.envr.address
@@ -27,9 +27,9 @@ export class On implements Action {
       runtime.envr.currentTag = tagBlock
       while (runtime.hasNext()) {
         const stmt = runtime.next()
-        const cmd = runtime.parse(stmt)
-        if (cmd) {
-          cmd.execute(runtime)
+        const action = runtime.parse(stmt)
+        if (action) {
+          action.execute(runtime)
         }
       }
       runtime.envr.currentTag = previousTag

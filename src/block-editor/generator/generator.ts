@@ -29,7 +29,7 @@ generator.finish = function (code) {
 export const generatorState: {
   indent: number
 } = {
-  indent: 2, // all commands are wrapped in a html block
+  indent: 2, // all actions are wrapped in a html block
 }
 
 export function generateCodeForTag(tag: string) {
