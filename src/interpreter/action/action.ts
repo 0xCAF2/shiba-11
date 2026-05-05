@@ -1,5 +1,5 @@
 import type { Runtime } from "../runtime"
 
-export interface Command {
+export interface Action {
   execute(r: Runtime): void
 }

@@ -1,4 +1,4 @@
-import { type Command } from "../command"
+import { type Action } from "../action"
 import {
   BinOp,
   Subscript,
@@ -39,7 +39,7 @@ export class Runtime {
     }
   }
 
-  parse(stmt: Statement): Command | null {
+  parse(stmt: Statement): Action | null {
     return this.parser.parse(stmt)
   }
 

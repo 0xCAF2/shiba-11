@@ -1,9 +1,9 @@
 import { Variable, type Expression } from "../expression"
 import type { Reference } from "../expression/reference"
 import type { Runtime } from "../runtime"
-import type { Command } from "./command"
+import type { Action } from "./action"
 
-export class Assign implements Command {
+export class Assign implements Action {
   constructor(
     public readonly ref: Reference,
     public readonly expr: Expression,

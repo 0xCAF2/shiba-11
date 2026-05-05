@@ -1,8 +1,8 @@
 import type { Runtime } from "../runtime"
 import { surroundWith } from "../web"
-import type { Command } from "./command"
+import type { Action } from "./action"
 
-export abstract class Tag implements Command {
+export abstract class Tag implements Action {
   public readonly keyword: string
 
   constructor(keyword: string) {

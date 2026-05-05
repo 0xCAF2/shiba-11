@@ -1,8 +1,8 @@
 import type { Expression } from "../expression"
 import { Block, BlockExitReason, BlockType, Runtime } from "../runtime"
-import type { Command } from "./command"
+import type { Action } from "./action"
 
-export class Repeat implements Command {
+export class Repeat implements Action {
   constructor(public readonly times: Expression) {}
 
   execute(r: Runtime): void {

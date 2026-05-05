@@ -1,8 +1,8 @@
 import { BlockExitReason, type Runtime } from "../runtime"
 import { TagBlock } from "../web"
-import type { Command } from "./command"
+import type { Action } from "./action"
 
-export class Html implements Command {
+export class Html implements Action {
   execute(r: Runtime): void {
     const block = new TagBlock(
       "div",

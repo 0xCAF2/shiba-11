@@ -1,4 +1,4 @@
-import type { Keywords } from "./command"
+import type { Keywords } from "./action"
 
 export type Statement = [number, Keywords, ...any[]]
 

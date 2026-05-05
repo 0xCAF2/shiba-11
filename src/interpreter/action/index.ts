@@ -1,4 +1,4 @@
-export type { Command } from "./command"
+export type { Action } from "./action"
 export { Keyword, type Keywords } from "./keyword"
 export { Comment } from "./comment"
 export { Assign } from "./assign"

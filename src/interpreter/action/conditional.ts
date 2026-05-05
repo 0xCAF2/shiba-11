@@ -1,8 +1,8 @@
 import type { Expression } from "../expression"
 import { Block, BlockExitReason, BlockType, type Runtime } from "../runtime"
-import type { Command } from "./command"
+import type { Action } from "./action"
 
-export class Conditional implements Command {
+export class Conditional implements Action {
   constructor(public readonly condition: Expression) {}
 
   execute(r: Runtime): void {
@@ -20,7 +20,7 @@ export class Conditional implements Command {
   }
 }
 
-export class Ifs implements Command {
+export class Ifs implements Action {
   execute(r: Runtime): void {
     const block = new Block(
       BlockType.Conditional,
@@ -32,7 +32,7 @@ export class Ifs implements Command {
   }
 }
 
-export class Else implements Command {
+export class Else implements Action {
   execute(r: Runtime): void {
     const block = new Block(
       BlockType.Conditional,

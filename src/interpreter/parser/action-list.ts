@@ -15,24 +15,23 @@ import {
   StaticText,
   DynamicText,
   On,
-  type Command,
+  type Action,
   type Keywords,
-} from "../command"
+} from "../action"
 import type { ExpressionParser } from "./expression-parser"
 import { Index, type Statement } from "../statement"
 
-export type CommandTable = Record<
+export type ActionTable = Record<
   Keywords,
-  (stmt: Statement, exprParser: ExpressionParser) => Command
+  (stmt: Statement, exprParser: ExpressionParser) => Action
 >
 
-export class CommandList {
-  private readonly _table: CommandTable
+export class ActionList {
+  private readonly _table: ActionTable
 
   constructor() {
     this._table = {
-      [Keyword.Comment]: (stmt, exprParser) =>
-        new Comment(stmt[Index.FirstArg].toString()),
+      [Keyword.Comment]: (stmt) => new Comment(stmt[Index.FirstArg].toString()),
       [Keyword.Assign]: (stmt, exprParser) => {
         const ref = exprParser.readRef(stmt[Index.FirstArg])
         const expr = exprParser.readExpr(stmt[Index.FirstArg + 1])
@@ -68,15 +67,15 @@ export class CommandList {
           exprParser.readExpr(stmt[Index.FirstArg + 1]),
         )
       },
-      [Keyword.On]: (stmt, exprParser) => {
+      [Keyword.On]: (stmt) => {
         const eventName = stmt[Index.FirstArg].toString()
         return new On(eventName)
       },
-      [Keyword.End]: (stmt, exprParser) => new End(),
+      [Keyword.End]: () => new End(),
     }
   }
 
-  get table(): CommandTable {
+  get table(): ActionTable {
     return this._table
   }
 }

@@ -1,8 +1,8 @@
-import type { Command } from "./command"
+import type { Action } from "./action"
 import type { Expression } from "../expression"
 import type { Runtime } from "../runtime"
 
-export class StaticText implements Command {
+export class StaticText implements Action {
   constructor(public readonly content: Expression) {}
 
   execute(r: Runtime) {
@@ -10,7 +10,7 @@ export class StaticText implements Command {
   }
 }
 
-export class DynamicText implements Command {
+export class DynamicText implements Action {
   constructor(public readonly content: Expression) {}
 
   execute(r: Runtime) {

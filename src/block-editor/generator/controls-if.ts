@@ -1,4 +1,4 @@
-import { Keyword } from "../../interpreter/command"
+import { Keyword } from "../../interpreter/action"
 import { generator as g, generatorState as state } from "./generator"
 
 g.forBlock["controls_if"] = (block) => {

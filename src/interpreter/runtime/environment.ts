@@ -1,5 +1,5 @@
-import { Keyword } from "../command"
-import { type Statement } from "../statement"
+import { Keyword } from "../action"
+import type { Statement } from "../statement"
 import type { TagBlock } from "../web"
 import { Address } from "./address"
 import type { Block } from "./block"

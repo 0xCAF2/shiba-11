@@ -1,4 +1,4 @@
-import { Keyword } from "../../interpreter/command"
+import { Keyword } from "../../interpreter/action"
 import { Keyword as ExprKeyword } from "../../interpreter/expression"
 import { generator as g, generatorState as state } from "./generator"
 

@@ -1,8 +1,8 @@
 import type { Expression } from "../expression"
 import type { Runtime } from "../runtime"
-import type { Command } from "./command"
+import type { Action } from "./action"
 
-export class Style implements Command {
+export class Style implements Action {
   constructor(
     public readonly name: string,
     public readonly value: Expression,

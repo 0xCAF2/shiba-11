@@ -1,19 +1,19 @@
-import type { Command } from "../command"
+import type { Action } from "../action"
 import { Index, type Statement } from "../statement"
-import type { CommandList, CommandTable } from "./command-list"
+import type { ActionList, ActionTable } from "./action-list"
 import { ExpressionParser } from "./expression-parser"
-import type { ExpressionList, ExpressionTable } from "./expression-list"
+import type { ExpressionList } from "./expression-list"
 
 export class StatementParser {
   private readonly exprParser: ExpressionParser
-  private readonly table: CommandTable
+  private readonly table: ActionTable
 
-  constructor(cmdList: CommandList, exprList: ExpressionList) {
+  constructor(cmdList: ActionList, exprList: ExpressionList) {
     this.table = cmdList.table
     this.exprParser = new ExpressionParser(exprList)
   }
 
-  parse(stmt: Statement): Command | null {
+  parse(stmt: Statement): Action | null {
     const keyword = stmt[Index.Keyword]
     return this.table[keyword]?.(stmt, this.exprParser) ?? null
   }

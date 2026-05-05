@@ -1,8 +1,8 @@
 import { Block, BlockExitReason, BlockType, type Runtime } from "../runtime"
 import { requestUpdate } from "../web/request-update"
-import type { Command } from "./command"
+import type { Action } from "./action"
 
-export class On implements Command {
+export class On implements Action {
   constructor(public readonly eventName: string) {}
 
   execute(runtime: Runtime) {

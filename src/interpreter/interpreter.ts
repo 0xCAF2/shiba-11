@@ -1,7 +1,7 @@
 import type { Code } from "./code"
 import { Environment, Runtime } from "./runtime"
 import type { Statement } from "./statement"
-import { CommandList } from "./parser/command-list"
+import { ActionList } from "./parser/action-list"
 import { ExpressionList } from "./parser/expression-list"
 import { StatementParser } from "./parser"
 
@@ -10,7 +10,7 @@ export class Interpreter {
 
   constructor(
     main: Code,
-    cmdList = new CommandList(),
+    cmdList = new ActionList(),
     exprList = new ExpressionList(),
   ) {
     const parser = new StatementParser(cmdList, exprList)
