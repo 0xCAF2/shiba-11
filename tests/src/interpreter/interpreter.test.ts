@@ -28,9 +28,9 @@ describe("Interpreter", () => {
     const code = JSON.stringify([
       [1, "ifs"],
       [2, "if", true],
-      [3, "=", ["var", "x"], "This is true!"],
+      [3, "=", ["v", "x"], "This is true!"],
       [2, "else"],
-      [3, "=", ["var", "x"], "This is false!"],
+      [3, "=", ["v", "x"], "This is false!"],
       [1, "end"],
     ])
     const interpreter = new Interpreter(code)
@@ -40,9 +40,9 @@ describe("Interpreter", () => {
     const code2 = JSON.stringify([
       [1, "ifs"],
       [2, "if", false],
-      [3, "=", ["var", "x"], "This is true!"],
+      [3, "=", ["v", "x"], "This is true!"],
       [2, "else"],
-      [3, "=", ["var", "x"], "This is false!"],
+      [3, "=", ["v", "x"], "This is false!"],
       [1, "end"],
     ])
     const interpreter2 = new Interpreter(code2)
@@ -52,15 +52,15 @@ describe("Interpreter", () => {
     const code3 = JSON.stringify([
       [1, "ifs"],
       [2, "if", false],
-      [3, "=", ["var", "x"], "This is true!"],
-      [2, "else if", true],
+      [3, "=", ["v", "x"], "This is true!"],
+      [2, "elif", true],
       [3, "ifs"],
       [4, "if", false],
-      [5, "=", ["var", "x"], "This is else if true!"],
+      [5, "=", ["v", "x"], "This is else if true!"],
       [4, "else"],
-      [5, "=", ["var", "x"], "This is else if false!"],
+      [5, "=", ["v", "x"], "This is else if false!"],
       [2, "else"],
-      [3, "=", ["var", "x"], "This is else false!"],
+      [3, "=", ["v", "x"], "This is else false!"],
       [1, "end"],
     ])
     const interpreter3 = new Interpreter(code3)
@@ -72,9 +72,9 @@ describe("Interpreter", () => {
 
   test("runs loops", () => {
     const code = JSON.stringify([
-      [1, "=", ["var", "x"], 0],
-      [1, "repeat", 3],
-      [2, "=", ["var", "x"], ["+", ["var", "x"], 1]],
+      [1, "=", ["v", "x"], 0],
+      [1, "re", 3],
+      [2, "=", ["v", "x"], ["+", ["v", "x"], 1]],
       [1, "end"],
     ])
     const interpreter = new Interpreter(code)
@@ -84,7 +84,7 @@ describe("Interpreter", () => {
 
   test("runs external functions and calls", () => {
     const code = JSON.stringify([
-      [1, "=", ["var", "result"], ["call", "add", [2, 3]]],
+      [1, "=", ["v", "result"], ["(", "add", [2, 3]]],
       [1, "end"],
     ])
     const interpreter = new Interpreter(code)

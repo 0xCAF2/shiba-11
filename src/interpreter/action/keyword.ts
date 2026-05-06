@@ -5,18 +5,18 @@ export enum Keyword {
 
   Ifs = "ifs",
   If = "if",
-  ElseIf = "else if",
+  ElseIf = "elif",
   Else = "else",
 
-  Repeat = "repeat",
+  Repeat = "re",
 
-  Html = "html",
+  Html = "h",
   Div = "div",
   P = "p",
   StaticText = "s",
   DynamicText = "d",
   Clear = "c",
-  Style = "style",
+  Style = ":",
   On = "on",
 
   End = "end",

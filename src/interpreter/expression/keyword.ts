@@ -1,7 +1,7 @@
 export enum Keyword {
-  Variable = "var",
-  Subscript = "sub",
-  Call = "call",
+  Variable = "v",
+  Subscript = "[",
+  Call = "(",
 }
 
 export enum BinOpKeyword {
