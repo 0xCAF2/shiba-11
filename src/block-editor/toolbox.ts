@@ -29,6 +29,11 @@ export const toolbox = {
           kind: "block",
           type: "variables_get",
         },
+        {
+          kind: "button",
+          text: "Create variable",
+          callbackKey: "createVariableButtonPressed",
+        },
       ],
     },
     {

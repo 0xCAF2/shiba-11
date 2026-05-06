@@ -158,6 +158,52 @@ Blockly.serialization.workspaces.load(
                                     },
                                   },
                                 },
+                                next: {
+                                  block: {
+                                    type: "p",
+                                    id: "X^((;aS.sj8ysv0Tg#I*",
+                                    inputs: {
+                                      CHILDREN: {
+                                        block: {
+                                          type: "static_text",
+                                          id: "2+c%e~[UR*p,(yEzLRzk",
+                                          inputs: {
+                                            CONTENT: {
+                                              shadow: {
+                                                type: "text_content",
+                                                id: "EsgyrI2I(WpG(0[A^7@h",
+                                                fields: {
+                                                  TEXT: "Last clicked: ",
+                                                },
+                                              },
+                                            },
+                                          },
+                                          next: {
+                                            block: {
+                                              type: "dynamic_text",
+                                              id: "v$sA?=Jk+qeS=P.vsuAu",
+                                              inputs: {
+                                                CONTENT: {
+                                                  shadow: {
+                                                    type: "variables_get",
+                                                    id: "P9t9j6?XZ8lE=[?7Pm[A",
+                                                    fields: {
+                                                      VAR: {
+                                                        id: "XmOtqtHOprk=S5s$9F,~",
+                                                        name: "item",
+                                                        type: "",
+                                                      },
+                                                    },
+                                                  },
+                                                },
+                                              },
+                                            },
+                                          },
+                                        },
+                                      },
+                                    },
+                                  },
+                                },
                               },
                             },
                           },
@@ -201,7 +247,7 @@ Blockly.serialization.workspaces.load(
                     type: "math_arithmetic",
                     id: "v!/=?/(d-_aS1][f68u]",
                     fields: {
-                      OP: "ADD",
+                      OP: "MULTIPLY",
                     },
                     inputs: {
                       A: {
@@ -378,6 +424,17 @@ Blockly.serialization.workspaces.load(
                                                   EVENT: "click",
                                                 },
                                                 inputs: {
+                                                  VALUE: {
+                                                    block: {
+                                                      type: "variables_get",
+                                                      id: "sW_JjTI?jP9#q5uPaB{2",
+                                                      fields: {
+                                                        VAR: {
+                                                          id: "`}Hs=hgOobnX2f7?V|}#",
+                                                        },
+                                                      },
+                                                    },
+                                                  },
                                                   HANDLER: {
                                                     block: {
                                                       type: "variables_set",
@@ -422,6 +479,37 @@ Blockly.serialization.workspaces.load(
                                                                   id: "Tmptdm_bA^6x^$uC[n~8",
                                                                   fields: {
                                                                     NUM: 1,
+                                                                  },
+                                                                },
+                                                              },
+                                                            },
+                                                          },
+                                                        },
+                                                      },
+                                                      next: {
+                                                        block: {
+                                                          type: "variables_set",
+                                                          id: "1vJ^t%-x*W5v!{EH6F}[",
+                                                          fields: {
+                                                            VAR: {
+                                                              id: "XmOtqtHOprk=S5s$9F,~",
+                                                            },
+                                                          },
+                                                          inputs: {
+                                                            VALUE: {
+                                                              shadow: {
+                                                                type: "math_number",
+                                                                id: "Ky^XiDu%?)C2$WcLE;/i",
+                                                                fields: {
+                                                                  NUM: 0,
+                                                                },
+                                                              },
+                                                              block: {
+                                                                type: "variables_get",
+                                                                id: "J[~v1*|~~+s,bMZ/eI4k",
+                                                                fields: {
+                                                                  VAR: {
+                                                                    id: "LPg*+PWuPfg~~!okiy$!",
                                                                   },
                                                                 },
                                                               },
@@ -592,13 +680,21 @@ Blockly.serialization.workspaces.load(
         id: "ZfPm7+`S82-|UN}y*I*X",
       },
       {
-        name: "item",
+        name: "eValue",
         id: "LPg*+PWuPfg~~!okiy$!",
+      },
+      {
+        name: "item",
+        id: "XmOtqtHOprk=S5s$9F,~",
       },
     ],
   },
   workspace,
 )
+
+workspace.registerButtonCallback("createVariableButtonPressed", () => {
+  Blockly.Variables.createVariableButtonHandler(workspace)
+})
 
 workspace.addChangeListener(() => {
   const code = shiba11Generator.workspaceToCode(workspace)

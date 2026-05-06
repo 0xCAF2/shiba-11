@@ -67,9 +67,10 @@ export class ActionList {
           exprParser.readExpr(stmt[Index.FirstArg + 1]),
         )
       },
-      [Keyword.On]: (stmt) => {
+      [Keyword.On]: (stmt, exprParser) => {
         const eventName = stmt[Index.FirstArg].toString()
-        return new On(eventName)
+        const eventValue = exprParser.readExpr(stmt[Index.FirstArg + 1])
+        return new On(eventName, eventValue)
       },
       [Keyword.End]: () => new End(),
     }
