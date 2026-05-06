@@ -81,4 +81,18 @@ describe("Interpreter", () => {
     interpreter.run()
     expect(interpreter.runtime.envr.context.lookup("x")).toBe(3)
   })
+
+  test("runs external functions and calls", () => {
+    const code = JSON.stringify([
+      [1, "=", ["var", "result"], ["call", "add", [2, 3]]],
+      [1, "end"],
+    ])
+    const interpreter = new Interpreter(code)
+    interpreter.defineExternalFunction(
+      "add",
+      (...args: any) => args[0] + args[1],
+    )
+    interpreter.run()
+    expect(interpreter.runtime.envr.context.lookup("result")).toBe(5)
+  })
 })

@@ -1,6 +1,7 @@
 import { type Action } from "../action"
 import {
   BinOp,
+  Call,
   Subscript,
   Variable,
   type Expression,
@@ -31,7 +32,8 @@ export class Runtime {
     } else if (
       expr instanceof Variable ||
       expr instanceof Subscript ||
-      expr instanceof BinOp
+      expr instanceof BinOp ||
+      expr instanceof Call
     ) {
       return expr.evaluate(this)
     } else {

@@ -5,3 +5,4 @@ export type Value =
   | null
   | Value[]
   | { [key: string]: Value }
+  | ((...args: Value[]) => Value)

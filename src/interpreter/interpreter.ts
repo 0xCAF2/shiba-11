@@ -4,6 +4,8 @@ import type { Statement } from "./statement"
 import { ActionList } from "./parser/action-list"
 import { ExpressionList } from "./parser/expression-list"
 import { StatementParser } from "./parser"
+import type { Value } from "./expression"
+import type { ComponentChildren } from "preact"
 
 export class Interpreter {
   public readonly runtime: Runtime
@@ -21,6 +23,10 @@ export class Interpreter {
     this.runtime = new Runtime(env, parser)
   }
 
+  defineExternalFunction(name: string, func: (...args: Value[]) => Value) {
+    this.runtime.envr.context.assign(name, func)
+  }
+
   run() {
     const r = this.runtime
     while (r.hasNext()) {
@@ -30,7 +36,7 @@ export class Interpreter {
     }
   }
 
-  get result(): any | null {
+  get resultDom(): ComponentChildren[] | null {
     return (
       this.runtime.envr.currentTag?.children.map((child) =>
         typeof child === "string"

@@ -2,11 +2,12 @@ import {
   Keyword,
   Subscript,
   Variable,
+  BinOp,
+  Call,
+  BinOpKeyword,
   type Expression,
   type Keywords,
 } from "../expression"
-import { BinOp } from "../expression/bin-op"
-import { BinOpKeyword } from "../expression/keyword"
 import type { ExpressionParser } from "./expression-parser"
 import * as Elem from "./json-element"
 
@@ -37,6 +38,12 @@ export class ExpressionList {
         const indexElem = (elem as Elem.Subscript)[Elem.Index.SubscriptIndex]
         const index = parser.readExpr(indexElem)
         return new Subscript(target, index)
+      },
+      [Keyword.Call]: (elem, parser) => {
+        const callee = (elem as Elem.Call)[Elem.Index.Callee]
+        const argsElem = (elem as Elem.Call)[Elem.Index.CallArgs]
+        const args = argsElem.map((arg) => parser.readExpr(arg))
+        return new Call(callee, args)
       },
       [BinOpKeyword.Add]: binOpParser,
       [BinOpKeyword.Subtract]: binOpParser,
