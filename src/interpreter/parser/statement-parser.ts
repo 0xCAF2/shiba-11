@@ -8,8 +8,8 @@ export class StatementParser {
   private readonly exprParser: ExpressionParser
   private readonly table: ActionTable
 
-  constructor(cmdList: ActionList, exprList: ExpressionList) {
-    this.table = cmdList.table
+  constructor(actionList: ActionList, exprList: ExpressionList) {
+    this.table = actionList.table
     this.exprParser = new ExpressionParser(exprList)
   }
 

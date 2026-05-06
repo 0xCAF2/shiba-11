@@ -10,10 +10,10 @@ export class Interpreter {
 
   constructor(
     main: Code,
-    cmdList = new ActionList(),
+    actionList = new ActionList(),
     exprList = new ExpressionList(),
   ) {
-    const parser = new StatementParser(cmdList, exprList)
+    const parser = new StatementParser(actionList, exprList)
 
     const stmts =
       typeof main === "string" ? (JSON.parse(main) as Statement[]) : main
