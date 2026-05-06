@@ -27,4 +27,17 @@ Blockly.common.defineBlocksWithJsonArray([
     nextStatement: null,
     colour: 0,
   },
+  {
+    type: "text_content",
+    message0: "%1",
+    args0: [
+      {
+        type: "field_input",
+        name: "TEXT",
+        text: "Hello, World.",
+      },
+    ],
+    output: "String",
+    colour: 160,
+  },
 ])

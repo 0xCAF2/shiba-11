@@ -7,6 +7,7 @@ import { effect } from "@preact/signals"
 const workspace = Blockly.inject("blockly-div", {
   theme: DarkTheme,
   toolbox,
+  oneBasedIndex: false,
   renderer: "zelos",
   zoom: {
     startScale: 0.7,
@@ -21,9 +22,159 @@ Blockly.serialization.workspaces.load(
       blocks: [
         {
           type: "variables_set",
-          id: "RSiYB2%Lw`$8g-SuMF4C",
-          x: 606,
-          y: 66,
+          id: "@=b:I[6)W;Wu!lwgctd.",
+          x: -24,
+          y: -55,
+          fields: {
+            VAR: {
+              id: "ZfPm7+`S82-|UN}y*I*X",
+            },
+          },
+          inputs: {
+            VALUE: {
+              block: {
+                type: "string",
+                id: "8_.%iifJBNc4$r_%}+cx",
+                fields: {
+                  VALUE: "px",
+                },
+              },
+            },
+          },
+          next: {
+            block: {
+              type: "variables_set",
+              id: "3L~M}uYPpe@Uv[b^DM,i",
+              fields: {
+                VAR: {
+                  id: "03d61nXw|G^ye/;Vh4xG",
+                },
+              },
+              inputs: {
+                VALUE: {
+                  shadow: {
+                    type: "math_number",
+                    id: "9;~-)I-0,yyE(dOVOR=c",
+                    fields: {
+                      NUM: 0,
+                    },
+                  },
+                },
+              },
+              next: {
+                block: {
+                  type: "div",
+                  id: "Q{NgLn1fcO?kgS=lp}T3",
+                  inputs: {
+                    CHILDREN: {
+                      block: {
+                        type: "style",
+                        id: "cc:axdyRV}HvTau[rF0m",
+                        fields: {
+                          NAME: "padding",
+                        },
+                        inputs: {
+                          VALUE: {
+                            shadow: {
+                              type: "style_value",
+                              id: "3F+pM}onL}axlGG`e:(9",
+                              fields: {
+                                VALUE: "blue",
+                              },
+                            },
+                            block: {
+                              type: "math_arithmetic",
+                              id: "A__Y[=RHWl7Z?h6}E{Z^",
+                              fields: {
+                                OP: "ADD",
+                              },
+                              inputs: {
+                                A: {
+                                  shadow: {
+                                    type: "variables_get",
+                                    id: "HT*(rXcf~T;#XcYA~FXW",
+                                    fields: {
+                                      VAR: {
+                                        id: "03d61nXw|G^ye/;Vh4xG",
+                                        name: "counter",
+                                        type: "",
+                                      },
+                                    },
+                                  },
+                                },
+                                B: {
+                                  shadow: {
+                                    type: "math_number",
+                                    id: "?iFEfexOxt,*/7P):eL.",
+                                    fields: {
+                                      NUM: 0,
+                                    },
+                                  },
+                                  block: {
+                                    type: "variables_get",
+                                    id: ".P@aL+i`i+ON4=z6k[-[",
+                                    fields: {
+                                      VAR: {
+                                        id: "ZfPm7+`S82-|UN}y*I*X",
+                                      },
+                                    },
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                        next: {
+                          block: {
+                            type: "dynamic_text",
+                            id: "H0e~4?~H.#HH+gY*hJ+Y",
+                            inputs: {
+                              CONTENT: {
+                                shadow: {
+                                  type: "variables_get",
+                                  id: "rlX:BJgFy.~[fYb77}E6",
+                                  fields: {
+                                    VAR: {
+                                      id: "03d61nXw|G^ye/;Vh4xG",
+                                      name: "counter",
+                                      type: "",
+                                    },
+                                  },
+                                },
+                              },
+                            },
+                            next: {
+                              block: {
+                                type: "static_text",
+                                id: "QQ!-K4VFi^][iP!VG_hM",
+                                inputs: {
+                                  CONTENT: {
+                                    shadow: {
+                                      type: "text_content",
+                                      id: "}uRA,0%@a.zk#@pNO(0P",
+                                      fields: {
+                                        TEXT: " times clicked.",
+                                      },
+                                    },
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        {
+          type: "variables_set",
+          id: "x(Z]%duSEDm^HY[%tNEr",
+          x: 456,
+          y: 21,
           fields: {
             VAR: {
               id: "`}Hs=hgOobnX2f7?V|}#",
@@ -31,9 +182,9 @@ Blockly.serialization.workspaces.load(
           },
           inputs: {
             VALUE: {
-              block: {
+              shadow: {
                 type: "math_number",
-                id: "EmbP.Fge*gV?7StzAfX[",
+                id: "DOu/y:_,Pb5wpQdEJB=l",
                 fields: {
                   NUM: 1,
                 },
@@ -48,24 +199,35 @@ Blockly.serialization.workspaces.load(
                 TIMES: {
                   block: {
                     type: "math_arithmetic",
-                    id: "[e3^yL-sgcn46V.#pJJe",
+                    id: "v!/=?/(d-_aS1][f68u]",
                     fields: {
                       OP: "ADD",
                     },
                     inputs: {
                       A: {
+                        shadow: {
+                          type: "variables_get",
+                          id: "2Pgv(GS-w;2kn!.Q!%Xh",
+                          fields: {
+                            VAR: {
+                              id: "LPg*+PWuPfg~~!okiy$!",
+                              name: "item",
+                              type: "",
+                            },
+                          },
+                        },
                         block: {
                           type: "math_number",
-                          id: "@!s@k,x1*0[(Hk8pK^vt",
+                          id: "^C]aHQ}s_NBAv}A=FW7L",
                           fields: {
                             NUM: 3,
                           },
                         },
                       },
                       B: {
-                        block: {
+                        shadow: {
                           type: "math_number",
-                          id: "L,~VY:=|8Smtf$Sjm[TY",
+                          id: "H|74Pa5;KPW}V[%2e/B:",
                           fields: {
                             NUM: 2,
                           },
@@ -219,7 +381,7 @@ Blockly.serialization.workspaces.load(
                                                   HANDLER: {
                                                     block: {
                                                       type: "variables_set",
-                                                      id: "AbiQMne@wu}!,JBn=hoY",
+                                                      id: "oLDs[o)qhPXl*hRFjR[J",
                                                       fields: {
                                                         VAR: {
                                                           id: "03d61nXw|G^ye/;Vh4xG",
@@ -227,28 +389,37 @@ Blockly.serialization.workspaces.load(
                                                       },
                                                       inputs: {
                                                         VALUE: {
+                                                          shadow: {
+                                                            type: "math_number",
+                                                            id: "Gm.ba2e^J@L577hR,(1g",
+                                                            fields: {
+                                                              NUM: 0,
+                                                            },
+                                                          },
                                                           block: {
                                                             type: "math_arithmetic",
-                                                            id: "rCro{_[acdUd~K|jFQN7",
+                                                            id: "Nt!-~eSgg0mThSR|15*l",
                                                             fields: {
                                                               OP: "ADD",
                                                             },
                                                             inputs: {
                                                               A: {
-                                                                block: {
+                                                                shadow: {
                                                                   type: "variables_get",
-                                                                  id: "#0e7=w+0y{5DFk7gwABS",
+                                                                  id: "WcQ1o|%IK*VPV)]e#b:f",
                                                                   fields: {
                                                                     VAR: {
                                                                       id: "03d61nXw|G^ye/;Vh4xG",
+                                                                      name: "counter",
+                                                                      type: "",
                                                                     },
                                                                   },
                                                                 },
                                                               },
                                                               B: {
-                                                                block: {
+                                                                shadow: {
                                                                   type: "math_number",
-                                                                  id: "lH{?0Q2IAo|w6O=)o?|J",
+                                                                  id: "Tmptdm_bA^6x^$uC[n~8",
                                                                   fields: {
                                                                     NUM: 1,
                                                                   },
@@ -294,14 +465,14 @@ Blockly.serialization.workspaces.load(
                                             CHILDREN: {
                                               block: {
                                                 type: "static_text",
-                                                id: "!TTNHc9xsJ+B2IoMq+Dq",
+                                                id: "4z_:([@USOnkuQTT^4Nl",
                                                 inputs: {
                                                   CONTENT: {
-                                                    block: {
-                                                      type: "string",
-                                                      id: "RA6CjM2|v0qT2,x9q.DN",
+                                                    shadow: {
+                                                      type: "text_content",
+                                                      id: "@id!:!.GZZ/0OGnu/pcc",
                                                       fields: {
-                                                        VALUE: "Hello, World ",
+                                                        TEXT: "Hello, World ",
                                                       },
                                                     },
                                                   },
@@ -309,12 +480,19 @@ Blockly.serialization.workspaces.load(
                                                 next: {
                                                   block: {
                                                     type: "static_text",
-                                                    id: "_3Ia0K?X`G]-*pw#dS7T",
+                                                    id: "URqb^k+e?gVV^3S.e`j9",
                                                     inputs: {
                                                       CONTENT: {
+                                                        shadow: {
+                                                          type: "text_content",
+                                                          id: "BbWY%F$1s2]M?c4=mBuS",
+                                                          fields: {
+                                                            TEXT: "Hello, World.",
+                                                          },
+                                                        },
                                                         block: {
                                                           type: "variables_get",
-                                                          id: "MCaCLv#54_KVnoSC-sd7",
+                                                          id: "nspJ96yT|LY0]|.FFj_[",
                                                           fields: {
                                                             VAR: {
                                                               id: "`}Hs=hgOobnX2f7?V|}#",
@@ -331,7 +509,7 @@ Blockly.serialization.workspaces.load(
                                           next: {
                                             block: {
                                               type: "variables_set",
-                                              id: "rulJbuQ5qESzL`RAoS1,",
+                                              id: "~h;e?qMTvG2=DDR^K=RN",
                                               fields: {
                                                 VAR: {
                                                   id: "`}Hs=hgOobnX2f7?V|}#",
@@ -339,28 +517,37 @@ Blockly.serialization.workspaces.load(
                                               },
                                               inputs: {
                                                 VALUE: {
+                                                  shadow: {
+                                                    type: "math_number",
+                                                    id: "/,ft=$We:x`Y$[ep/uhH",
+                                                    fields: {
+                                                      NUM: 0,
+                                                    },
+                                                  },
                                                   block: {
                                                     type: "math_arithmetic",
-                                                    id: "v}3P(d:_}CI8xUz4xqmo",
+                                                    id: "O]#mxM*nGa^td,]U_!}y",
                                                     fields: {
                                                       OP: "ADD",
                                                     },
                                                     inputs: {
                                                       A: {
-                                                        block: {
+                                                        shadow: {
                                                           type: "variables_get",
-                                                          id: "/lioW65j7Rk2|qe4j0_m",
+                                                          id: "cgLbBc!=xx:/;oM@]rPO",
                                                           fields: {
                                                             VAR: {
                                                               id: "`}Hs=hgOobnX2f7?V|}#",
+                                                              name: "i",
+                                                              type: "",
                                                             },
                                                           },
                                                         },
                                                       },
                                                       B: {
-                                                        block: {
+                                                        shadow: {
                                                           type: "math_number",
-                                                          id: "l@(zSB#N3nVEq+*?+l?Q",
+                                                          id: "lL%C)0~~W@(?wpboBYDh",
                                                           fields: {
                                                             NUM: 1,
                                                           },
@@ -373,154 +560,6 @@ Blockly.serialization.workspaces.load(
                                             },
                                           },
                                         },
-                                      },
-                                    },
-                                  },
-                                },
-                              },
-                            },
-                          },
-                        },
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-        {
-          type: "variables_set",
-          id: "@=b:I[6)W;Wu!lwgctd.",
-          x: -24,
-          y: -55,
-          fields: {
-            VAR: {
-              id: "ZfPm7+`S82-|UN}y*I*X",
-            },
-          },
-          inputs: {
-            VALUE: {
-              block: {
-                type: "string",
-                id: "8_.%iifJBNc4$r_%}+cx",
-                fields: {
-                  VALUE: "px",
-                },
-              },
-            },
-          },
-          next: {
-            block: {
-              type: "variables_set",
-              id: "nN[l;}N)#L8(G?y.*=$*",
-              fields: {
-                VAR: {
-                  id: "03d61nXw|G^ye/;Vh4xG",
-                },
-              },
-              inputs: {
-                VALUE: {
-                  block: {
-                    type: "math_number",
-                    id: "=7Qp2pa6q=;VNq?VPGQ|",
-                    fields: {
-                      NUM: 0,
-                    },
-                  },
-                },
-              },
-              next: {
-                block: {
-                  type: "div",
-                  id: "Q{NgLn1fcO?kgS=lp}T3",
-                  inputs: {
-                    CHILDREN: {
-                      block: {
-                        type: "style",
-                        id: "cc:axdyRV}HvTau[rF0m",
-                        fields: {
-                          NAME: "padding",
-                        },
-                        inputs: {
-                          VALUE: {
-                            shadow: {
-                              type: "style_value",
-                              id: "3F+pM}onL}axlGG`e:(9",
-                              fields: {
-                                VALUE: "blue",
-                              },
-                            },
-                            block: {
-                              type: "math_arithmetic",
-                              id: "A__Y[=RHWl7Z?h6}E{Z^",
-                              fields: {
-                                OP: "ADD",
-                              },
-                              inputs: {
-                                A: {
-                                  shadow: {
-                                    type: "variables_get",
-                                    id: "HT*(rXcf~T;#XcYA~FXW",
-                                    fields: {
-                                      VAR: {
-                                        id: "03d61nXw|G^ye/;Vh4xG",
-                                        name: "counter",
-                                        type: "",
-                                      },
-                                    },
-                                  },
-                                },
-                                B: {
-                                  shadow: {
-                                    type: "math_number",
-                                    id: "?iFEfexOxt,*/7P):eL.",
-                                    fields: {
-                                      NUM: 0,
-                                    },
-                                  },
-                                  block: {
-                                    type: "variables_get",
-                                    id: ".P@aL+i`i+ON4=z6k[-[",
-                                    fields: {
-                                      VAR: {
-                                        id: "ZfPm7+`S82-|UN}y*I*X",
-                                      },
-                                    },
-                                  },
-                                },
-                              },
-                            },
-                          },
-                        },
-                        next: {
-                          block: {
-                            type: "dynamic_text",
-                            id: "p#zp17xYG]aiN1DNyFNG",
-                            inputs: {
-                              CONTENT: {
-                                block: {
-                                  type: "variables_get",
-                                  id: "#jCl)AHR5ZSW9-NwRg9T",
-                                  fields: {
-                                    VAR: {
-                                      id: "03d61nXw|G^ye/;Vh4xG",
-                                    },
-                                  },
-                                },
-                              },
-                            },
-                            next: {
-                              block: {
-                                type: "static_text",
-                                id: "M@^}a*~RfMyS+Gkvm(EG",
-                                inputs: {
-                                  CONTENT: {
-                                    block: {
-                                      type: "string",
-                                      id: "=u}E)_H|?CmeO;KqoZit",
-                                      fields: {
-                                        VALUE: " times clicked.",
                                       },
                                     },
                                   },

@@ -21,7 +21,7 @@ generator.scrub_ = function (_block, code, _opt_thisOnly) {
 }
 
 generator.finish = function (code) {
-  const start = JSON.stringify([1, "html"])
+  const start = JSON.stringify([1, "h"])
   const end = JSON.stringify([1, "end"])
   return `[${start},${code}${end}]`
 }

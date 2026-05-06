@@ -11,12 +11,10 @@ export class Subscript implements Reference {
 
   assign(r: Runtime, value: Value): void {
     const target = r.evaluate(this.target)
-    if (typeof target === "string" || Array.isArray(target)) {
+    if (Array.isArray(target)) {
       const idx = r.evaluate(this.index)
       if (typeof idx === "number") {
-        if (Array.isArray(target)) {
-          target[idx] = value
-        }
+        target[idx] = value
       }
     } else if (target && typeof target === "object") {
       const key = r.evaluate(this.index)
