@@ -10,6 +10,9 @@ export enum Keyword {
 
   Repeat = "re",
 
+  Break = "brk",
+  Continue = "cont",
+
   Html = "h",
   Div = "div",
   P = "p",

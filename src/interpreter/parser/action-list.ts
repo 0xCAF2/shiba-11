@@ -1,5 +1,7 @@
 import {
   Assign,
+  Break,
+  Continue,
   Comment,
   Conditional,
   Div,
@@ -47,6 +49,8 @@ export class ActionList {
         const times = exprParser.readExpr(stmt[Index.FirstArg])
         return new Repeat(times)
       },
+      [Keyword.Break]: () => new Break(),
+      [Keyword.Continue]: () => new Continue(),
       [Keyword.Html]: () => new Html(),
       [Keyword.Div]: () => new Div(),
       [Keyword.P]: () => new P(),

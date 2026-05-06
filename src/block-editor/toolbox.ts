@@ -74,6 +74,10 @@ export const toolbox = {
             },
           },
         },
+        {
+          kind: "block",
+          type: "controls_flow_statements",
+        },
       ],
     },
     {
