@@ -1,6 +1,7 @@
 import { render } from "preact"
 import { Shiba11 } from "./shiba11"
 import { codeSignal } from "./code"
+import LZString from "lz-string"
 
 /*
  * QR Code generator library (TypeScript)
@@ -1082,7 +1083,9 @@ document
   .getElementById("generate-qr-code-button")
   ?.addEventListener("click", () => {
     const qrc = qrcodegen.QrCode.encodeText(
-      JSON.stringify(JSON.parse(codeSignal.value)),
+      LZString.compressToEncodedURIComponent(
+        JSON.stringify(JSON.parse(codeSignal.value)),
+      ),
       qrcodegen.QrCode.Ecc.MEDIUM,
     )
     const svg = toSvgString(qrc, 4, "#FFFFFF", "#000000")

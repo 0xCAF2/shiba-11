@@ -1,5 +1,5 @@
 import { Interpreter } from "../interpreter"
-import { defineFunctions } from "./functions"
+import { defineFunctions } from "./function"
 import { Inner } from "./inner"
 
 export function Shiba11({ code }: { code: string }) {

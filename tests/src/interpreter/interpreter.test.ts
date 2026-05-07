@@ -73,7 +73,7 @@ describe("Interpreter", () => {
   test("runs loops", () => {
     const code = JSON.stringify([
       [1, "=", ["v", "x"], 0],
-      [1, "re", 3],
+      [1, "rep", 3],
       [2, "=", ["v", "x"], ["+", ["v", "x"], 1]],
       [1, "end"],
     ])

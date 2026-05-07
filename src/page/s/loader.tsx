@@ -2,12 +2,13 @@ import { signal } from "@preact/signals"
 import { render } from "preact"
 import QrScanner from "qr-scanner"
 import { Shiba11 } from "../shiba11"
+import LZString from "lz-string"
 
 const code = signal(
   JSON.stringify([
-    [1, "html"],
+    [1, "h"],
     [2, "p"],
-    [3, "text", "Hello, World."],
+    [3, "s", "Hello, World."],
     [1, "end"],
   ]),
 )
@@ -24,19 +25,19 @@ const onclick = async () => {
   if (stream) {
     const video = document.getElementById("qr-video") as HTMLVideoElement
     video.srcObject = stream
-    document.getElementById("result")!.textContent = "カメラにアクセスしました"
+    document.getElementById("result")!.textContent = "Accessing camera..."
     video.play()
-    document.getElementById("result")!.textContent = "QRコードをスキャンします"
+    document.getElementById("result")!.textContent = "Scanning QR code..."
   } else {
-    alert("カメラにアクセスできませんでした")
+    alert("Unable to access camera.")
     return
   }
 
   const qrScanner = new QrScanner(
     document.getElementById("qr-video") as HTMLVideoElement,
     (result) => {
-      document.getElementById("result")!.textContent = result.data
-      code.value = result.data
+      code.value = document.getElementById("result")!.textContent =
+        LZString.decompressFromEncodedURIComponent(result.data)
       qrScanner.stop()
     },
     {
@@ -49,10 +50,9 @@ const onclick = async () => {
     },
   )
   await qrScanner.setCamera("environment")
-  document.getElementById("result")!.textContent =
-    "QRコードをスキャンしています..."
+  document.getElementById("result")!.textContent = "Scanning QR code..."
   qrScanner.start()
-  document.getElementById("result")!.textContent = "QRコードをスキャン中..."
+  document.getElementById("result")!.textContent = "QR code scanned."
 }
 document.getElementById("scan-button")!.addEventListener("click", onclick)
 
