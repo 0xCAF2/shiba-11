@@ -8,7 +8,7 @@ export enum Keyword {
   ElseIf = "elif",
   Else = "else",
 
-  Repeat = "re",
+  Repeat = "rep",
 
   Break = "brk",
   Continue = "cont",

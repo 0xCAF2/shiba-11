@@ -14,6 +14,7 @@ export enum BlockExitReason {
   Jump,
   Return,
   EndHandler,
+  Error,
 }
 
 export class Block {

@@ -75,6 +75,12 @@ export class Runtime {
               new Address({ indent: 1, line: this.envr.stmts.length - 1 }),
             ) // jump to the end of program
             break outer
+          case BlockExitReason.Error:
+            this.envr.address = new Address({
+              indent: 0,
+              line: this.envr.address.line.y,
+            })
+            break outer
         }
       }
       if (deltaX === 0) {
@@ -93,7 +99,9 @@ export class Runtime {
     if (block) {
       return block.didExit()
     }
-    throw new Error(`No block to pop in ${this.envr.address.toString()}`)
+    // Throwing an error here would interrupt the editor.
+    // throw new Error(`No block to pop in ${this.envr.address.toString()}`)
+    return BlockExitReason.Error
   }
 
   pushBlock(block: Block) {

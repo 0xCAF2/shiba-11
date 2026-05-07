@@ -6,22 +6,19 @@ export class Continue implements Action {
     while (true) {
       const block = r.envr.blocks.at(-1)
       if (!block) {
-        break
+        return
       }
 
       if (block.type === BlockType.Loop) {
-        r.envr.blocks.pop()
-        // Re-enter the block for the next iteration
-        block.didExit()
+        r.popBlock()
         return
       }
       if (block.type === BlockType.Conditional) {
         r.envr.blocks.pop()
         continue
       }
-      // Throwing an error here would interrupt the editor.
-      // throw new Error("Invalid block type for continue: " + block.type)
-      return
+      r.popBlock()
+      continue
     }
   }
 }
