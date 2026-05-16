@@ -6,9 +6,9 @@ import LZString from "lz-string"
 
 const code = signal(
   JSON.stringify([
-    [1, "h"],
+    [1, "html"],
     [2, "p"],
-    [3, "s", "Hello, World."],
+    [3, "static_text", "Hello, World."],
     [1, "end"],
   ]),
 )

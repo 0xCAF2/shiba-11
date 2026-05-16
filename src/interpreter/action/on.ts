@@ -9,16 +9,16 @@ export class On implements Action {
     public readonly eventValue: Expression,
   ) {}
 
-  execute(runtime: Runtime) {
-    const tagBlock = runtime.envr.currentTag
+  execute(r: Runtime) {
+    const tagBlock = r.envr.currentTag
     if (tagBlock === null) {
       throw new Error("The 'on' action must be used inside a tag block.")
     }
     // eventValue is evaluated here to capture the value at
     // the time of handler definition, not at the time of event firing.
-    const evaluatedEventValue = runtime.evaluate(this.eventValue)
+    const evaluatedEventValue = r.evaluate(this.eventValue)
 
-    const addr = runtime.envr.address
+    const addr = r.envr.address
     tagBlock.eventHandlers.addHandler(this.eventName, () => {
       const block = new Block(
         BlockType.Handler,
@@ -29,18 +29,18 @@ export class On implements Action {
           return BlockExitReason.EndHandler
         },
       )
-      runtime.pushBlock(block)
-      const previousTag = runtime.envr.currentTag
-      runtime.envr.currentTag = tagBlock
-      runtime.envr.context.assign("eValue", evaluatedEventValue)
-      while (runtime.hasNext()) {
-        const stmt = runtime.next()
-        const action = runtime.parse(stmt)
+      r.pushBlock(block)
+      const previousTag = r.envr.currentTag
+      r.envr.currentTag = tagBlock
+      r.envr.context.assign("eValue", evaluatedEventValue)
+      while (r.hasNext()) {
+        const stmt = r.next()
+        const action = r.parse(stmt)
         if (action) {
-          action.execute(runtime)
+          action.execute(r)
         }
       }
-      runtime.envr.currentTag = previousTag
+      r.envr.currentTag = previousTag
     })
   }
 }
