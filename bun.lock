@@ -4,10 +4,6 @@
   "workspaces": {
     "": {
       "name": "shiba-11",
-      "dependencies": {
-        "lz-string": "^1.5.0",
-        "qr-scanner": "^1.4.2",
-      },
       "devDependencies": {
         "@types/bun": "latest",
       },
@@ -15,7 +11,9 @@
         "@blockly/theme-dark": "^8.0.4",
         "@preact/signals": "^2.9.0",
         "blockly": "^12.5.1",
+        "lz-string": "^1.5.0",
         "preact": "^10.29.1",
+        "qr-scanner": "^1.4.2",
         "typescript": "^6",
       },
     },
