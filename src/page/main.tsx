@@ -1,6 +1,5 @@
 import { render } from "preact"
 import { Shiba11 } from "./shiba11"
-import { codeSignal } from "./code"
 import LZString from "lz-string"
 
 /*
@@ -25,6 +24,9 @@ import LZString from "lz-string"
  *   out of or in connection with the Software or the use or other dealings in the
  *   Software.
  */
+import { PreactRenderer } from "./renderer/preact"
+import { signal } from "@preact/signals"
+import { codeSignal } from "./code"
 ;("use strict")
 
 namespace qrcodegen {
@@ -1095,10 +1097,12 @@ document
     }
   })
 
+const preact = new PreactRenderer()
+
 function App() {
   return (
     <>
-      <Shiba11 code={codeSignal.value} />{" "}
+      <Shiba11 code={codeSignal.value} renderer={preact} />
     </>
   )
 }

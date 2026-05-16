@@ -1,5 +1,4 @@
 export { Interpreter } from "./interpreter"
 export type { Code } from "./code"
 export type { Statement } from "./statement"
-export type { Renderer } from "./web/renderer"
-export type { TagBlock } from "./web/tag-block"
+export type { TagBlock, Renderer, Getter } from "./web"

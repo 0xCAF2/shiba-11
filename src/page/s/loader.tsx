@@ -3,6 +3,7 @@ import { render } from "preact"
 import QrScanner from "qr-scanner"
 import { Shiba11 } from "../shiba11"
 import LZString from "lz-string"
+import { PreactRenderer } from "../renderer/preact"
 
 const code = signal(
   JSON.stringify([
@@ -56,11 +57,13 @@ const onclick = async () => {
 }
 document.getElementById("scan-button")!.addEventListener("click", onclick)
 
+const preact = new PreactRenderer()
+
 function Loader() {
   return (
     <>
       <div>
-        <Shiba11 code={code.value} />
+        <Shiba11 code={code.value} renderer={preact} />
       </div>
     </>
   )

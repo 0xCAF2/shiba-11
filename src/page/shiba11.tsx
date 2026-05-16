@@ -1,11 +1,16 @@
-import { Interpreter } from "../interpreter"
+import { Interpreter, type Renderer } from "../interpreter"
 import { defineFunctions } from "./function"
-import { Inner } from "./inner"
-import { PreactRenderer } from "./renderer/preact"
+import { Subscriber } from "./subscriber"
 
-export function Shiba11({ code }: { code: string }) {
-  const ip = new Interpreter(code, new PreactRenderer())
+export function Shiba11<T, U>({
+  code,
+  renderer,
+}: {
+  code: string
+  renderer: Renderer<T, U>
+}) {
+  const ip = new Interpreter(code, renderer)
   defineFunctions(ip)
   ip.run()
-  return <Inner interpreter={ip} />
+  return <Subscriber interpreter={ip} />
 }

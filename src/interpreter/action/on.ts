@@ -1,6 +1,5 @@
 import type { Expression } from "../expression"
 import { Block, BlockExitReason, BlockType, type Runtime } from "../runtime"
-import { requestUpdate } from "../web/request-update"
 import type { Action } from "./action"
 
 export class On implements Action {
@@ -25,7 +24,7 @@ export class On implements Action {
         addr,
         () => true,
         () => {
-          requestUpdate()
+          r.dispatcher?.requestUpdate()
           return BlockExitReason.EndHandler
         },
       )
