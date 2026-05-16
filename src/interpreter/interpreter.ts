@@ -5,13 +5,14 @@ import { ActionList } from "./parser/action-list"
 import { ExpressionList } from "./parser/expression-list"
 import { StatementParser } from "./parser"
 import type { Value } from "./expression"
-import type { ComponentChildren } from "preact"
+import type { Renderer } from "./web/renderer"
 
-export class Interpreter {
+export class Interpreter<T> {
   public readonly runtime: Runtime
 
   constructor(
     main: Code,
+    public readonly renderer: Renderer<T>,
     actionList = new ActionList(),
     exprList = new ExpressionList(),
   ) {
@@ -36,15 +37,7 @@ export class Interpreter {
     }
   }
 
-  get resultDom(): ComponentChildren[] | null {
-    return (
-      this.runtime.envr.currentTag?.children.map((child) =>
-        typeof child === "string"
-          ? child
-          : typeof child === "function"
-            ? child()
-            : child.createVNode(),
-      ) ?? null
-    )
+  get resultDom(): T {
+    return this.renderer.createVNode(this.runtime.envr.currentTag)
   }
 }
