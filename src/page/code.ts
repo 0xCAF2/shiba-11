@@ -2,11 +2,11 @@ import { signal } from "@preact/signals"
 
 // prettier-ignore
 const code = JSON.stringify([
-  [1, "h"],
+  [1, "html"],
     [2, "p"],
-      [3, "s", "Hello, World."],
+      [3, "static_text", "Hello, World."],
     [2, "p"],
-      [3, "s", "Hello, World 2."],
+      [3, "static_text", "Hello, World 2."],
   [1, "end"],
 ])
 
