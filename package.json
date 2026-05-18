@@ -1,8 +1,12 @@
 {
   "name": "shiba-11",
+  "private": true,
+  "type": "module",
   "module": "index.ts",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "oxfmt": "^0.50.0",
+    "oxlint": "^1.65.0"
   },
   "peerDependencies": {
     "@blockly/theme-dark": "^8.0.4",
@@ -12,7 +16,5 @@
     "preact": "^10.29.1",
     "qr-scanner": "^1.4.2",
     "typescript": "^6"
-  },
-  "private": true,
-  "type": "module"
+  }
 }
