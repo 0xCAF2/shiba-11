@@ -6,5 +6,10 @@ export function Subscriber<T, U>({
   interpreter: Interpreter<T, U>
 }) {
   const _ = interpreter.subscribeToUiChanges().value
-  return <>{interpreter.resultDom}</>
+
+  if (interpreter.renderer.isCompleted) {
+    return <>{interpreter.resultDom}</>
+  } else {
+    return <div>Running...</div>
+  }
 }

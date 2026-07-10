@@ -3,6 +3,7 @@ import { h, type ComponentChildren } from "preact"
 import { signal } from "@preact/signals"
 
 const counter = signal(0)
+const isCompleted = signal(false)
 
 export class PreactRenderer implements Renderer<ComponentChildren, number> {
   createVNode(root: string | (() => string) | TagBlock): ComponentChildren {
@@ -15,6 +16,18 @@ export class PreactRenderer implements Renderer<ComponentChildren, number> {
 
   subscribeToUiChanges(): Getter<number> {
     return counter
+  }
+
+  completeRun() {
+    isCompleted.value = true
+  }
+
+  get isCompleted() {
+    return isCompleted.value
+  }
+
+  requestRerun() {
+    isCompleted.value = false
   }
 
   requestUpdate() {
