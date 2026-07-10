@@ -127,5 +127,15 @@ describe("Interpreter", () => {
     const interpreter = new Interpreter(code, dummyRenderer)
     interpreter.run()
     expect(interpreter.runtime.envr.context.lookup("x")).toBe(5)
+
+    const code2 = JSON.stringify([
+      [1, "=", ["var", "x"], 0],
+      [1, "while", false],
+      [2, "=", ["var", "x"], ["+", ["var", "x"], 1]],
+      [1, "end"],
+    ])
+    const interpreter2 = new Interpreter(code2, dummyRenderer)
+    interpreter2.run()
+    expect(interpreter2.runtime.envr.context.lookup("x")).toBe(0)
   })
 })
