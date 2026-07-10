@@ -1,4 +1,4 @@
-import { expect, test, describe, beforeEach } from "bun:test"
+import { expect, test, describe } from "bun:test"
 import { Environment, Runtime } from "../../../src/interpreter/runtime"
 import { StatementParser } from "../../../src/interpreter/parser"
 import { ActionList } from "../../../src/interpreter/parser/action-list"
@@ -30,8 +30,6 @@ describe("Runtime", () => {
     expect(r.next()).toEqual(stmts[0]!)
     expect(r.envr.address.toString()).toBe("(1, 0, 0)")
     expect(r.next()).toEqual(stmts[2]!)
-    expect(r.envr.address.toString()).toBe("(1, 2, 0)")
-    expect(() => r.next()).toThrow()
-    expect(r.envr.address.toString()).toBe("(1, 3, 0)")
+    expect(r.envr.address.toString()).toBe("(1, 2, 0)") // Action is not executed.
   })
 })

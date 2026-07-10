@@ -76,6 +76,10 @@ export const toolbox: Blockly.utils.toolbox.ToolboxDefinition = {
         },
         {
           kind: "block",
+          type: "controls_whileUntil",
+        },
+        {
+          kind: "block",
           type: "controls_flow_statements",
         },
       ],

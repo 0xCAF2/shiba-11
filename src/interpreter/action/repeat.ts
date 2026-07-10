@@ -28,10 +28,7 @@ export class Repeat implements Action {
       BlockType.Loop,
       r.envr.address,
       () => {
-        if (counter > 0) {
-          return true
-        }
-        return false
+        return counter > 0
       },
       () => {
         counter--

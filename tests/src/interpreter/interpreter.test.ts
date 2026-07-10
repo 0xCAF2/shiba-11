@@ -1,5 +1,26 @@
 import { describe, expect, test } from "bun:test"
-import { Interpreter } from "../../../src/interpreter"
+import {
+  Interpreter,
+  type Getter,
+  type Renderer,
+} from "../../../src/interpreter"
+
+class DummyRenderer implements Renderer<null, null> {
+  createVNode(): null {
+    return null
+  }
+  subscribeToUiChanges(): Getter<null> {
+    return { value: null }
+  }
+  requestUpdate(): void {}
+  completeRun(): void {}
+  get isCompleted(): boolean {
+    return true
+  }
+  requestRerun(): void {}
+}
+
+const dummyRenderer = new DummyRenderer()
 
 describe("Interpreter", () => {
   test("should be defined", () => {
@@ -11,7 +32,7 @@ describe("Interpreter", () => {
       [1, "#", "Hello, World!"],
       [1, "end"],
     ])
-    const interpreter = new Interpreter(code)
+    const interpreter = new Interpreter(code, dummyRenderer)
     expect(interpreter).toBeInstanceOf(Interpreter)
   })
 
@@ -20,7 +41,7 @@ describe("Interpreter", () => {
       [1, "#", "Hello, World!"],
       [1, "end"],
     ])
-    const interpreter = new Interpreter(code)
+    const interpreter = new Interpreter(code, dummyRenderer)
     expect(() => interpreter.run()).not.toThrow()
   })
 
@@ -33,7 +54,7 @@ describe("Interpreter", () => {
       [3, "=", ["var", "x"], "This is false!"],
       [1, "end"],
     ])
-    const interpreter = new Interpreter(code)
+    const interpreter = new Interpreter(code, dummyRenderer)
     interpreter.run()
     expect(interpreter.runtime.envr.context.lookup("x")).toBe("This is true!")
 
@@ -45,7 +66,7 @@ describe("Interpreter", () => {
       [3, "=", ["var", "x"], "This is false!"],
       [1, "end"],
     ])
-    const interpreter2 = new Interpreter(code2)
+    const interpreter2 = new Interpreter(code2, dummyRenderer)
     interpreter2.run()
     expect(interpreter2.runtime.envr.context.lookup("x")).toBe("This is false!")
 
@@ -63,7 +84,7 @@ describe("Interpreter", () => {
       [3, "=", ["var", "x"], "This is else false!"],
       [1, "end"],
     ])
-    const interpreter3 = new Interpreter(code3)
+    const interpreter3 = new Interpreter(code3, dummyRenderer)
     interpreter3.run()
     expect(interpreter3.runtime.envr.context.lookup("x")).toBe(
       "This is else if false!",
@@ -77,7 +98,7 @@ describe("Interpreter", () => {
       [2, "=", ["var", "x"], ["+", ["var", "x"], 1]],
       [1, "end"],
     ])
-    const interpreter = new Interpreter(code)
+    const interpreter = new Interpreter(code, dummyRenderer)
     interpreter.run()
     expect(interpreter.runtime.envr.context.lookup("x")).toBe(3)
   })
@@ -87,12 +108,24 @@ describe("Interpreter", () => {
       [1, "=", ["var", "result"], ["call", "add", [2, 3]]],
       [1, "end"],
     ])
-    const interpreter = new Interpreter(code)
+    const interpreter = new Interpreter(code, dummyRenderer)
     interpreter.defineExternalFunction(
       "add",
       (...args: any) => args[0] + args[1],
     )
     interpreter.run()
     expect(interpreter.runtime.envr.context.lookup("result")).toBe(5)
+  })
+
+  test("runs while loops", () => {
+    const code = JSON.stringify([
+      [1, "=", ["var", "x"], 0],
+      [1, "while", ["<", ["var", "x"], 5]],
+      [2, "=", ["var", "x"], ["+", ["var", "x"], 1]],
+      [1, "end"],
+    ])
+    const interpreter = new Interpreter(code, dummyRenderer)
+    interpreter.run()
+    expect(interpreter.runtime.envr.context.lookup("x")).toBe(5)
   })
 })

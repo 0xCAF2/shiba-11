@@ -9,6 +9,7 @@ export enum Keyword {
   Else = "else",
 
   Repeat = "repeat",
+  While = "while",
 
   Break = "break",
   Continue = "continue",

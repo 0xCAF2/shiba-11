@@ -57,10 +57,13 @@ export class Runtime {
   next(): Statement {
     outer: while (true) {
       this.envr.address = this.envr.address.step()
+      console.log(this.envr.address.toString())
       const currentIndent = this.envr.currentStmt[Index.Indent]
       let deltaX = this.envr.address.indent.x - currentIndent
+      console.log(deltaX)
       inner: while (deltaX > 0) {
         const reason = this.popBlock()
+        console.log(reason)
         switch (reason) {
           case BlockExitReason.Shift:
             deltaX -= 1
