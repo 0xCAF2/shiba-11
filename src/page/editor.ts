@@ -79,7 +79,7 @@ Blockly.serialization.workspaces.load(
                               type: "style_value",
                               id: "3F+pM}onL}axlGG`e:(9",
                               fields: {
-                                VALUE: "blue",
+                                VALUE: "gray",
                               },
                             },
                             block: {
@@ -537,7 +537,7 @@ Blockly.serialization.workspaces.load(
                                                   type: "style_value",
                                                   id: "FE!s0O67{^A-tnpH=^BC",
                                                   fields: {
-                                                    VALUE: "blue",
+                                                    VALUE: "gray",
                                                   },
                                                 },
                                               },
