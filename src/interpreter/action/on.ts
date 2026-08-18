@@ -2,6 +2,8 @@ import type { Expression } from "../expression"
 import { Block, BlockExitReason, BlockType, type Runtime } from "../runtime"
 import type { Action } from "./action"
 
+const eventValueName = "eValue"
+
 export class On implements Action {
   constructor(
     public readonly eventName: string,
@@ -31,7 +33,7 @@ export class On implements Action {
       r.pushBlock(block)
       const previousTag = r.envr.currentTag
       r.envr.currentTag = tagBlock
-      r.envr.context.assign("eValue", evaluatedEventValue)
+      r.envr.context.assign(eventValueName, evaluatedEventValue)
       while (r.hasNext()) {
         const stmt = r.next()
         const action = r.parse(stmt)
