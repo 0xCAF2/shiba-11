@@ -35,6 +35,7 @@ export class PreactRenderer implements Renderer<ComponentChildren, number> {
   }
 
   h(t: TagBlock): ComponentChildren {
+    // use preact's h function to create a virtual DOM node
     return h(
       t.tag,
       {
