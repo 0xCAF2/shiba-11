@@ -1,4 +1,10 @@
-import { BinOp, Keyword, type Expression, type Reference } from "../expression"
+import {
+  BinOp,
+  Call,
+  Keyword,
+  type Expression,
+  type Reference,
+} from "../expression"
 import type { Any, Ref } from "./json-element"
 import { ExpressionList, type ExpressionTable } from "./expression-list"
 
@@ -32,6 +38,7 @@ export class ExpressionParser {
       typeof ref !== "string" &&
       typeof ref !== "boolean" &&
       !(ref instanceof BinOp) &&
+      !(ref instanceof Call) &&
       !Array.isArray(ref)
     ) {
       return ref
