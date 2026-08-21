@@ -11,7 +11,7 @@ export type Any =
   | string
   | boolean
   | null
-  | [...Any[]]
+  | Any[]
 export type Ref = Variable | Subscript
 export type BinOp = [BinOpKeyword, Any, Any]
 
