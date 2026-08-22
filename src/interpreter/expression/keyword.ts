@@ -1,11 +1,12 @@
 export enum Keyword {
-  Variable = "var",
+  /*  Variable = "var",
   Subscript = "sub",
   Call = "call",
+*/
 }
 
 export enum BinOpKeyword {
-  Add = "+",
+  /*  Add = "+",
   Subtract = "-",
   Multiply = "*",
   Divide = "/",
@@ -22,6 +23,7 @@ export enum BinOpKeyword {
 
   And = "&&",
   Or = "||",
+*/
 }
 
 export type Keywords =

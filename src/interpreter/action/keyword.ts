@@ -1,5 +1,6 @@
 export enum Keyword {
-  Comment = "#",
+  Print = "print",
+  /*  Comment = "#",
 
   Assign = "=",
 
@@ -8,21 +9,13 @@ export enum Keyword {
   ElseIf = "else_if",
   Else = "else",
 
-  Repeat = "repeat",
+  RepeatIncrement = "repeat_increment",
+  RepeatDecrement = "repeat_decrement",
   While = "while",
 
   Break = "break",
   Continue = "continue",
-
-  Html = "html",
-  Div = "div",
-  P = "p",
-  StaticText = "static_text",
-  DynamicText = "dynamic_text",
-  Clear = "clear",
-  Style = "style",
-  On = "on",
-
+*/
   End = "end",
 }
 
