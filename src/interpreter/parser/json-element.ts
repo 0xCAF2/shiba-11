@@ -15,7 +15,7 @@ export type Any =
 export type Ref = Variable | Subscript
 export type BinOp = [BinOpKeyword, Any, Any]
 
-export const index = {
+export const exprIndex = {
   keyword: 0,
 
   variableName: 1,

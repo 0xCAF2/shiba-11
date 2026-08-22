@@ -17,9 +17,11 @@ export type ExpressionTable = Record<
 >
 
 const binOpParser = (elem: Elem.Any, parser: ExpressionParser): BinOp => {
-  const op = (elem as Elem.BinOp)[Elem.index.keyword] as BinOpKeyword
-  const left = parser.readExpr((elem as Elem.BinOp)[Elem.index.binOpLeft]!)
-  const right = parser.readExpr((elem as Elem.BinOp)[Elem.index.binOpRight]!)
+  const op = (elem as Elem.BinOp)[Elem.exprIndex.keyword] as BinOpKeyword
+  const left = parser.readExpr((elem as Elem.BinOp)[Elem.exprIndex.binOpLeft]!)
+  const right = parser.readExpr(
+    (elem as Elem.BinOp)[Elem.exprIndex.binOpRight]!,
+  )
   return new BinOp(op, left, right)
 }
 
@@ -29,19 +31,25 @@ export class ExpressionList {
   constructor() {
     this._table = {
       [Keyword.Variable]: (elem) => {
-        const name = (elem as Elem.Variable)[Elem.index.variableName]!
+        const name = (elem as Elem.Variable)[Elem.exprIndex.variableName]!
         return new Variable(name)
       },
       [Keyword.Subscript]: (elem, parser) => {
-        const targetElem = (elem as Elem.Subscript)[Elem.index.subscriptTarget]!
+        const targetElem = (elem as Elem.Subscript)[
+          Elem.exprIndex.subscriptTarget
+        ]!
         const target = parser.readExpr(targetElem)
-        const indexElem = (elem as Elem.Subscript)[Elem.index.subscriptIndex]!
+        const indexElem = (elem as Elem.Subscript)[
+          Elem.exprIndex.subscriptIndex
+        ]!
         const index = parser.readExpr(indexElem)
         return new Subscript(target, index)
       },
       [Keyword.Call]: (elem, parser) => {
-        const callee = (elem as Elem.Call)[Elem.index.callee] as string
-        const argsElem = (elem as Elem.Call)[Elem.index.callArgs] as Elem.Any[]
+        const callee = (elem as Elem.Call)[Elem.exprIndex.callee] as string
+        const argsElem = (elem as Elem.Call)[
+          Elem.exprIndex.callArgs
+        ] as Elem.Any[]
         const args = argsElem.map((arg) => parser.readExpr(arg))
         return new Call(callee, args)
       },

@@ -14,8 +14,8 @@ export abstract class Interpreter<T> {
 
     const stmts =
       typeof main === "string" ? (JSON.parse(main) as Statement[]) : main
-    const env = new Environment(stmts)
-    this.runtime = new Runtime(env, parser)
+    const envr = new Environment(stmts)
+    this.runtime = new Runtime(envr, parser)
   }
 
   defineExternalFunction(name: string, func: (...args: Value[]) => Value) {

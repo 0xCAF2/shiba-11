@@ -1,19 +1,22 @@
-import { Interpreter } from "../interpreter"
+import { Interpreter, type Statement } from "../interpreter"
 import { End } from "../interpreter/action"
 import { Keyword } from "../interpreter/action/keyword"
+import { Index } from "../interpreter/statement"
 import { Print } from "./action/print"
 
-export class History extends Interpreter<string> {
-  get result(): string {
-    return ""
+export class History extends Interpreter<Statement[]> {
+  private readonly stmts: Statement[] = []
+
+  get result(): Statement[] {
+    return this.stmts
   }
 
   constructor(stmts: string) {
     super(
       stmts,
       {
-        [Keyword.Print]: (stmt, exprParser) => {
-          return new Print(stmt.slice(1).map((arg) => exprParser.readExpr(arg)))
+        [Keyword.Print]: (stmt) => {
+          return new Print(stmt[Index.FirstArg])
         },
         [Keyword.End]: () => {
           return new End()
@@ -21,5 +24,7 @@ export class History extends Interpreter<string> {
       },
       {},
     )
+
+    this.runtime.envr.context.assign("history", this.stmts)
   }
 }
