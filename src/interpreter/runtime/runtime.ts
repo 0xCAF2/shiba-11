@@ -21,7 +21,6 @@ export class Runtime {
   constructor(
     public readonly envr: Environment,
     public readonly parser: StatementParser,
-    public readonly dispatcher?: UIEventDispatcher,
   ) {}
 
   evaluate(expr: Expression): Value {

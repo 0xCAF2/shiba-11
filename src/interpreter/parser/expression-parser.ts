@@ -6,13 +6,13 @@ import {
   type Reference,
 } from "../expression"
 import type { Any, Ref } from "./json-element"
-import { ExpressionList, type ExpressionTable } from "./expression-list"
+import { type ExpressionTable } from "./expression-list"
 
 export class ExpressionParser {
   private readonly table: ExpressionTable
 
-  constructor(expressionList: ExpressionList) {
-    this.table = expressionList.table
+  constructor(expressionTable: ExpressionTable) {
+    this.table = expressionTable
   }
 
   readExpr(elem: Any): Expression {
