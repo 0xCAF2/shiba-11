@@ -1,4 +1,5 @@
 import { Keyword } from "../action"
+import type { Value } from "../expression"
 import type { Statement } from "../statement"
 import type { TagBlock } from "../web"
 import { Address } from "./address"
@@ -13,6 +14,10 @@ export class Environment {
   public readonly blocks: Block[] = []
   public readonly context = new Scope()
   private parentTag: TagBlock | null = null
+  public readonly externalFunctions = new Map<
+    string,
+    (...args: Value[]) => Value
+  >()
 
   constructor(public readonly stmts: Statement[]) {}
 

@@ -19,7 +19,7 @@ export abstract class Interpreter<T> {
   }
 
   defineExternalFunction(name: string, func: (...args: Value[]) => Value) {
-    this.runtime.envr.context.assign(name, func)
+    this.runtime.envr.externalFunctions.set(name, func)
   }
 
   async run() {
