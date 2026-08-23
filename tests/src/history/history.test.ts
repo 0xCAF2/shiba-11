@@ -1,7 +1,6 @@
 import { describe, expect, test } from "bun:test"
-import { History } from "../../../src/history/history"
-import { Keyword } from "../../../src/interpreter/action"
-import type { Statement } from "../../../src/interpreter"
+import { History, Keyword } from "../../../src/history"
+import type { Statement } from "../../../src/history/statement"
 
 describe("History", () => {
   test("should create a History instance", () => {

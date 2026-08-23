@@ -8,8 +8,6 @@ export class Print implements Action {
   constructor(public readonly values: Any[]) {}
 
   execute(runtime: Runtime): void {
-    const output = this.values.join(" ")
-    console.log(output)
     const history = runtime.envr.context.lookup("history") as Statement[]
     history.push([1, Keyword.Print, this.values])
   }

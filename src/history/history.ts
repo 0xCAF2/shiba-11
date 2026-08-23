@@ -7,7 +7,7 @@ import { Print } from "./action/print"
 export class History extends Interpreter<Statement[]> {
   private readonly stmts: Statement[] = []
 
-  get result(): Statement[] {
+  override get result(): Statement[] {
     return this.stmts
   }
 
