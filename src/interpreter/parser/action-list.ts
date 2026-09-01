@@ -24,13 +24,13 @@ import {
 import type { ExpressionParser } from "./expression-parser"
 import { Index, type Statement } from "../statement"
 
-export type ActionTable = Record<
-  Keywords,
+export type ActionTable<T extends string> = Record<
+  T,
   (stmt: Statement, exprParser: ExpressionParser) => Action
 >
 
 export class ActionList {
-  private readonly _table: ActionTable
+  private readonly _table: ActionTable<Keywords>
 
   constructor() {
     this._table = {

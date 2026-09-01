@@ -6,10 +6,14 @@ import { type ExpressionTable } from "./parser/expression-list"
 import { StatementParser } from "./parser"
 import type { Value } from "./expression"
 
-export abstract class Interpreter<T> {
+export abstract class Interpreter<T, U extends string> {
   public readonly runtime: Runtime
 
-  constructor(main: Code, actions: ActionTable, expressions: ExpressionTable) {
+  constructor(
+    main: Code,
+    actions: ActionTable<U>,
+    expressions: ExpressionTable,
+  ) {
     const parser = new StatementParser(actions, expressions)
 
     const stmts =

@@ -4,7 +4,7 @@ import type { Any } from "../interpreter/parser/json-element"
 import { Index } from "../interpreter/statement"
 import { Print } from "./action/print"
 
-export class Runner extends Interpreter<string> {
+export class Runner extends Interpreter<string, Keyword> {
   private output: string = ""
 
   get result(): string {

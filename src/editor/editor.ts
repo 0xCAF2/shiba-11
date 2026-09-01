@@ -1,22 +1,33 @@
 import type { Statement } from "../history/statement"
 import { Index } from "../history/statement"
-import { Keyword } from "../history/keyword"
+import { Keyword } from "./keyword"
 import { Interpreter } from "../interpreter"
 import { End } from "../interpreter/action"
 import type { Any } from "../interpreter/parser/json-element"
-import { Print } from "./action/print"
+import { Append } from "./action/print"
+import type { Value } from "../interpreter/expression"
 
-export class Editor extends Interpreter<Statement[]> {
+export class Editor extends Interpreter<Statement[], Keyword> {
+  private _result: Statement[] = []
+
   override get result(): Statement[] {
-    return []
+    return this._result
   }
 
-  constructor(code: string) {
+  getState(name: string): Value {
+    return this.runtime.envr.context.lookup(name)
+  }
+
+  setState(name: string, value: Value): void {
+    this.runtime.envr.context.assign(name, value)
+  }
+
+  constructor() {
     super(
-      code,
+      [],
       {
-        [Keyword.Print]: (stmt, exprParser) => {
-          return new Print(
+        [Keyword.Append]: (stmt, exprParser) => {
+          return new Append(
             stmt[Index.FirstArg].map((arg: Any) => exprParser.readExpr(arg)),
           )
         },

@@ -4,7 +4,7 @@ import { Keyword } from "../interpreter/action/keyword"
 import { Index } from "../interpreter/statement"
 import { Print } from "./action/print"
 
-export class History extends Interpreter<Statement[]> {
+export class History extends Interpreter<Statement[], Keyword> {
   private readonly stmts: Statement[] = []
 
   override get result(): Statement[] {
