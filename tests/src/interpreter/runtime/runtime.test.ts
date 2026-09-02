@@ -1,9 +1,9 @@
 import { expect, test, describe } from "bun:test"
-import { Environment, Runtime } from "../../../src/interpreter/runtime"
-import { StatementParser } from "../../../src/interpreter/parser"
-import { ActionList } from "../../../src/interpreter/parser/action-list"
-import { ExpressionList } from "../../../src/interpreter/parser/expression-list"
-import type { Statement } from "../../../src/interpreter"
+import { Environment, Runtime } from "../../../../src/interpreter/runtime"
+import { StatementParser } from "../../../../src/interpreter/parser"
+import { ActionList } from "../../../../src/interpreter/parser/action-list"
+import { ExpressionList } from "../../../../src/interpreter/parser/expression-list"
+import type { Statement } from "../../../../src/interpreter"
 
 describe("Runtime", () => {
   test("evaluate simple expressions", () => {

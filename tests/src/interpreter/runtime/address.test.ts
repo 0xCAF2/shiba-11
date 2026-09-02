@@ -1,5 +1,5 @@
 import { expect, test, describe } from "bun:test"
-import { Address } from "../../../src/interpreter/runtime/address"
+import { Address } from "../../../../src/interpreter/runtime/address"
 
 describe("Address", () => {
   test("should be defined", () => {
