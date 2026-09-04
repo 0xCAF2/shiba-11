@@ -3,9 +3,17 @@ import { End } from "../interpreter/action"
 import { Keyword } from "../interpreter/action/keyword"
 import { Index } from "../interpreter/statement"
 import { Print } from "./action/print"
+import type { Store } from "./store"
 
-export class History extends Interpreter<Statement[], Keyword> {
+export class History
+  extends Interpreter<Statement[], Keyword>
+  implements Store
+{
   private readonly stmts: Statement[] = []
+
+  append(stmt: Statement): void {
+    this.stmts.push(stmt)
+  }
 
   override get result(): Statement[] {
     return this.stmts
@@ -16,7 +24,7 @@ export class History extends Interpreter<Statement[], Keyword> {
       stmts,
       {
         [Keyword.Print]: (stmt) => {
-          return new Print(stmt[Index.FirstArg])
+          return new Print(this, stmt[Index.FirstArg])
         },
         [Keyword.End]: () => {
           return new End()
@@ -24,7 +32,5 @@ export class History extends Interpreter<Statement[], Keyword> {
       },
       {},
     )
-
-    this.runtime.envr.context.assign("history", this.stmts)
   }
 }

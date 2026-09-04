@@ -1,14 +1,16 @@
 import type { Action } from "../../interpreter/action"
 import type { Runtime } from "../../interpreter/runtime"
-import type { Statement } from "../../interpreter"
 import { Keyword } from "../../interpreter/action"
 import type { Any } from "../../interpreter/parser/json-element"
+import type { Store } from "../store"
 
 export class Print implements Action {
-  constructor(public readonly values: Any[]) {}
+  constructor(
+    private store: Store,
+    public readonly values: Any[],
+  ) {}
 
   execute(runtime: Runtime): void {
-    const history = runtime.envr.context.lookup("history") as Statement[]
-    history.push([1, Keyword.Print, this.values])
+    this.store.append([1, Keyword.Print, this.values])
   }
 }
