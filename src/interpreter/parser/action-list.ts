@@ -19,7 +19,6 @@ import {
   DynamicText,
   On,
   type Action,
-  type Keywords,
 } from "../action"
 import type { ExpressionParser } from "./expression-parser"
 import { Index, type Statement } from "../statement"
@@ -30,7 +29,7 @@ export type ActionTable<T extends string> = Record<
 >
 
 export class ActionList {
-  private readonly _table: ActionTable<Keywords>
+  private readonly _table: ActionTable<Keyword>
 
   constructor() {
     this._table = {
@@ -85,7 +84,7 @@ export class ActionList {
     }
   }
 
-  get table(): ActionTable {
+  get table(): ActionTable<Keyword> {
     return this._table
   }
 }

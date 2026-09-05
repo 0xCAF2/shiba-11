@@ -18,5 +18,3 @@ export enum Keyword {
 */
   End = "end",
 }
-
-export type Keywords = (typeof Keyword)[keyof typeof Keyword]
