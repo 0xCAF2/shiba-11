@@ -1,9 +1,11 @@
-import type { Keyword } from "./keyword"
+import type { Keyword } from "../interpreter/action"
+import type { Keyword as HistoryKeyword } from "./keyword"
 
-export type Statement = [number, Keyword, ...any]
+export type Statement = [number, HistoryKeyword, Keyword, ...any]
 
 export enum Index {
   Indent = 0,
-  Keyword = 1,
-  FirstArg = 2,
+  KeywordForHistory = 1,
+  Keyword = 2,
+  FirstArg = 3,
 }

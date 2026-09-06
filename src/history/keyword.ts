@@ -1,4 +1,4 @@
 export enum Keyword {
-  Print = "print",
+  Append = "append",
   End = "end",
 }

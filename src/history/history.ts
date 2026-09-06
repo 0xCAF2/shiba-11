@@ -1,13 +1,13 @@
 import { Interpreter, type Statement } from "../interpreter"
-import { End } from "../interpreter/action"
-import { Keyword } from "../interpreter/action/keyword"
-import { Index } from "../interpreter/statement"
-import { Print } from "./action/print"
-import type { Store } from "./store"
+import { Keyword } from "./keyword"
+import { Index } from "./statement"
+import type { Result } from "./result"
+import { Append } from "./action/append"
+import { End } from "./action/end"
 
 export class History
   extends Interpreter<Statement[], Keyword>
-  implements Store
+  implements Result
 {
   private readonly stmts: Statement[] = []
 
@@ -23,8 +23,8 @@ export class History
     super(
       stmts,
       {
-        [Keyword.Print]: (stmt) => {
-          return new Print(this, stmt[Index.FirstArg])
+        [Keyword.Append]: (stmt) => {
+          return new Append(this, stmt[Index.Keyword], stmt[Index.FirstArg])
         },
         [Keyword.End]: () => {
           return new End()

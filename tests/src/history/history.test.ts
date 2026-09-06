@@ -1,6 +1,9 @@
 import { describe, expect, test } from "bun:test"
-import { History, Keyword } from "../../../src/history"
+import { History, Keyword as KeywordForHistory } from "../../../src/history"
+import { Keyword } from "../../../src/interpreter/action"
 import type { Statement } from "../../../src/history/statement"
+
+const end = [1, KeywordForHistory.End]
 
 describe("History", () => {
   test("should create a History instance", () => {
@@ -8,18 +11,15 @@ describe("History", () => {
     expect(history).toBeInstanceOf(History)
   })
 
-  test("should return result with arguments", () => {
-    const code = [[1, Keyword.Print, ["Hello, World!"]]] as Statement[]
-    const history = new History(JSON.stringify(code))
+  test("should append a statement to the history", () => {
+    const stmt: Statement = [
+      1,
+      KeywordForHistory.Append,
+      Keyword.Print,
+      ["Hello, World."],
+    ]
+    const history = new History(JSON.stringify([stmt, end]))
     history.run()
-    expect(history.result).toEqual(code)
-
-    const code2 = [
-      [1, Keyword.Print, ["Hello, World!"]],
-      [1, Keyword.Print, ["Another statement", 73]],
-    ] as Statement[]
-    const history2 = new History(JSON.stringify(code2))
-    history2.run()
-    expect(history2.result).toEqual(code2)
+    expect(history.result).toEqual([[1, Keyword.Print, ["Hello, World."]]])
   })
 })

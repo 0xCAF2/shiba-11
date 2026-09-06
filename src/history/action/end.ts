@@ -1,5 +1,7 @@
 import type { Action } from "../../interpreter/action"
 
 export class End implements Action {
-  execute(): void {}
+  execute(): void {
+    // Implementation for ending the action
+  }
 }

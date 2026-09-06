@@ -1,6 +1,6 @@
-import type { Keywords } from "./action"
+import type { Keyword } from "./action"
 
-export type Statement = [number, Keywords, ...any[]]
+export type Statement = [number, Keyword, ...any[]]
 
 export enum Index {
   Indent = 0,
