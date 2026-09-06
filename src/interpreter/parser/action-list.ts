@@ -25,7 +25,7 @@ import { Index, type Statement } from "../statement"
 
 export type ActionTable<T extends string> = Record<
   T,
-  (stmt: Statement, exprParser: ExpressionParser) => Action
+  (stmt: Statement<T>, exprParser: ExpressionParser) => Action
 >
 
 export class ActionList {

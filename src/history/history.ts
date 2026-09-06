@@ -1,9 +1,10 @@
-import { Interpreter, type Statement } from "../interpreter"
+import { Interpreter } from "../interpreter"
 import { Keyword } from "./keyword"
 import { Index } from "./statement"
 import type { Result } from "./result"
 import { Append } from "./action/append"
 import { End } from "./action/end"
+import type { Statement } from "../runner"
 
 export class History
   extends Interpreter<Statement[], Keyword>
@@ -11,7 +12,7 @@ export class History
 {
   private readonly stmts: Statement[] = []
 
-  append(stmt: Statement): void {
+  write(stmt: Statement): void {
     this.stmts.push(stmt)
   }
 

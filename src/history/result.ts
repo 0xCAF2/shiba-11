@@ -1,5 +1,5 @@
-import type { Statement } from "../interpreter"
+import type { Statement } from "../runner"
 
 export interface Result {
-  append(stmt: Statement): void
+  write(stmt: Statement): void
 }

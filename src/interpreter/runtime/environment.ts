@@ -9,7 +9,7 @@ import { Scope } from "./scope"
 /**
  * stores the current execution state.
  */
-export class Environment {
+export class Environment<T extends string> {
   private addr = new Address()
   public readonly blocks: Block[] = []
   public readonly context = new Scope()
@@ -19,7 +19,7 @@ export class Environment {
     (...args: Value[]) => Value
   >()
 
-  constructor(public readonly stmts: Statement[]) {}
+  constructor(public readonly stmts: Statement<T>[]) {}
 
   hasNext(): boolean {
     if (this.addr.line.y + 1 >= this.stmts.length) {
@@ -36,7 +36,7 @@ export class Environment {
     this.addr = addr
   }
 
-  get currentStmt(): Statement {
+  get currentStmt(): Statement<T> {
     const line = this.stmts[this.addr.line.y]
     if (Array.isArray(line) && line.length > 0 && typeof line[0] === "number") {
       return line

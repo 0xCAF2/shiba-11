@@ -3,13 +3,13 @@ import { Environment, Runtime } from "../../../../src/interpreter/runtime"
 import { StatementParser } from "../../../../src/interpreter/parser"
 import { ActionList } from "../../../../src/interpreter/parser/action-list"
 import { ExpressionList } from "../../../../src/interpreter/parser/expression-list"
-import type { Statement } from "../../../../src/interpreter"
+import type { Keyword, Statement } from "../../../../src/runner"
 
 describe("Runtime", () => {
   test("evaluate simple expressions", () => {
-    const r = new Runtime(
+    const r = new Runtime<Keyword>(
       new Environment([]),
-      new StatementParser(new ActionList(), new ExpressionList()),
+      new StatementParser<Keyword>(new ActionList(), new ExpressionList()),
     )
     expect(r.evaluate("hello")).toBe("hello")
     expect(r.evaluate(true)).toBe(true)
@@ -22,9 +22,9 @@ describe("Runtime", () => {
       [2, "text", "Hello"],
       [1, "end"],
     ] as Statement[]
-    const r = new Runtime(
+    const r = new Runtime<Keyword>(
       new Environment(stmts),
-      new StatementParser(new ActionList(), new ExpressionList()),
+      new StatementParser<Keyword>(new ActionList(), new ExpressionList()),
     )
     expect(r.envr.address.toString()).toBe("(1, -1, 0)")
     expect(r.next()).toEqual(stmts[0]!)

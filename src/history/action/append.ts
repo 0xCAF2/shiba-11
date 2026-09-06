@@ -8,6 +8,6 @@ export class Append implements Action {
     public readonly args: any[],
   ) {}
   execute(): void {
-    this.result.append([1, this.keyword, this.args])
+    this.result.write([1, this.keyword, this.args])
   }
 }

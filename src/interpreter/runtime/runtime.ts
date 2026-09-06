@@ -17,10 +17,10 @@ export interface UIEventDispatcher {
   requestUpdate(): void
 }
 
-export class Runtime {
+export class Runtime<T extends string> {
   constructor(
-    public readonly envr: Environment,
-    public readonly parser: StatementParser,
+    public readonly envr: Environment<T>,
+    public readonly parser: StatementParser<T>,
   ) {}
 
   evaluate(expr: Expression): Value {
@@ -45,7 +45,7 @@ export class Runtime {
     }
   }
 
-  parse(stmt: Statement): Action | null {
+  parse(stmt: Statement<T>): Action | null {
     return this.parser.parse(stmt)
   }
 
@@ -53,7 +53,7 @@ export class Runtime {
     return this.envr.hasNext()
   }
 
-  next(): Statement {
+  next(): Statement<T> {
     outer: while (true) {
       this.envr.address = this.envr.address.step()
       const currentIndent = this.envr.currentStmt[Index.Indent]
