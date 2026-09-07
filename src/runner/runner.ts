@@ -3,10 +3,15 @@ import { End, Keyword } from "../interpreter/action"
 import type { Any } from "../interpreter/parser/json-element"
 import { Index } from "../interpreter/statement"
 import { Print } from "./action/print"
+import type { Output } from "./output"
 import type { Statement } from "./statement"
 
-export class Runner extends Interpreter<string, Keyword> {
+export class Runner extends Interpreter<string, Keyword> implements Output {
   private output: string = ""
+
+  write(output: string): void {
+    this.output += output
+  }
 
   get result(): string {
     return this.output
@@ -17,8 +22,8 @@ export class Runner extends Interpreter<string, Keyword> {
       main,
       {
         [Keyword.Print]: (stmt, exprParser) => {
-          console.log()
           return new Print(
+            this,
             stmt[Index.FirstArg].map((arg: Any) => exprParser.readExpr(arg)),
           )
         },
@@ -28,10 +33,5 @@ export class Runner extends Interpreter<string, Keyword> {
       },
       {},
     )
-
-    this.defineExternalFunction("print", (args) => {
-      this.output += args + "\n"
-      return null
-    })
   }
 }
