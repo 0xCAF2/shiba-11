@@ -20,8 +20,12 @@ export class StoreImpl implements Store {
 
   move(stmt: Statement, toIndex?: number): void {
     const currentIndex = this._list.indexOf(stmt)
-    if (currentIndex === -1) return
+    if (currentIndex === -1) throw new Error("Statement not found in the list")
     this._list.splice(currentIndex, 1)
-    this._code.push(stmt)
+    if (toIndex === undefined) {
+      this._code.push(stmt)
+    } else {
+      this._code.splice(toIndex, 0, stmt)
+    }
   }
 }

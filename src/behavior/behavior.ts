@@ -27,6 +27,6 @@ export class Behavior {
   }
 
   move(stmt: Statement, toIndex?: number): void {
-    this.history.move(stmt)
+    this.history.move(stmt, toIndex)
   }
 }

@@ -22,8 +22,8 @@ export class History
     return this.store.list.reverse()
   }
 
-  move(stmt: Statement): void {
-    this.store.move(stmt)
+  move(stmt: Statement, toIndex?: number): void {
+    this.store.move(stmt, toIndex)
   }
 
   override get result(): Statement[] {
