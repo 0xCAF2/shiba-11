@@ -1,10 +1,13 @@
 import { signal } from "@preact/signals"
 import type { Store } from "../store"
 import type { Statement } from "../runner"
+import { History } from "../history"
 
 export class Editor implements Store {
   private readonly _list = signal<Statement[]>([])
   private readonly _code = signal<Statement[]>([])
+
+  private history: History
 
   get list(): Statement[] {
     return this._list.value
@@ -29,5 +32,9 @@ export class Editor implements Store {
       newList.push(stmt)
     }
     this._list.value = newList
+  }
+
+  constructor(historyStmt: string) {
+    this.history = new History(this, historyStmt)
   }
 }
