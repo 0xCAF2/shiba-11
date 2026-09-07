@@ -14,8 +14,8 @@ export class Print implements Action {
     const evaluatedValues = this.values.map((v) =>
       (runtime.evaluate(v) ?? "null").toString(),
     )
-    const output = evaluatedValues.join(" ")
+    const result = evaluatedValues.join(" ")
 
-    this.output.write(output + "\n")
+    this.output.write(result + "\n")
   }
 }
