@@ -1,9 +1,9 @@
 import type { Action, Keyword } from "../../interpreter/action"
-import type { List } from "../list"
+import type { HistoryList } from "../history-list"
 
 export class Append implements Action {
   constructor(
-    public readonly list: List,
+    public readonly list: HistoryList,
     public readonly keyword: Keyword,
     public readonly args: any[],
   ) {}
