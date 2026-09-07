@@ -1,4 +1,4 @@
-import { signal } from "@preact/signals"
+import { batch, signal } from "@preact/signals"
 import type { Store } from "../store"
 import type { Statement } from "../runner"
 import { History } from "../history"
@@ -23,15 +23,19 @@ export class Editor implements Store {
 
   move(stmt: Statement, toIndex?: number): void {
     const currentIndex = this._list.value.indexOf(stmt)
-    if (currentIndex === -1) return
+    if (currentIndex === -1) throw new Error("Statement not found in the list")
     const newList = [...this._list.value]
     newList.splice(currentIndex, 1)
-    if (toIndex !== undefined) {
-      newList.splice(toIndex, 0, stmt)
+    const newCode = [...this._code.value]
+    if (toIndex === undefined) {
+      newCode.push(stmt)
     } else {
-      newList.push(stmt)
+      newCode.splice(toIndex, 0, stmt)
     }
-    this._list.value = newList
+    batch(() => {
+      this._code.value = newCode
+      this._list.value = newList
+    })
   }
 
   constructor(historyStmt: string) {

@@ -7,7 +7,7 @@ import { Keyword } from "../interpreter/action"
 import type { Statement } from "../runner"
 
 export class Behavior {
-  constructor(public readonly history: History) {}
+  constructor(private readonly history: History) {}
 
   appendPrint(...args: any[]): Statement {
     const historyStmt: HistoryStatement = [
