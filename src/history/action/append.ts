@@ -1,13 +1,13 @@
 import type { Action, Keyword } from "../../interpreter/action"
-import type { Result } from "../result"
+import type { List } from "../list"
 
 export class Append implements Action {
   constructor(
-    public readonly result: Result,
+    public readonly list: List,
     public readonly keyword: Keyword,
     public readonly args: any[],
   ) {}
   execute(): void {
-    this.result.write([1, this.keyword, this.args])
+    this.list.add([1, this.keyword, this.args])
   }
 }
