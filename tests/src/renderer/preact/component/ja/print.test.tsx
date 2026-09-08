@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import { render, screen, waitFor } from "@testing-library/preact"
-import { Print } from "../../../../../../src/renderer/preact/component/ja/print"
+import { Print } from "../../../../../../src/drawer/preact/component/ja/print"
 
 function PrintComponent() {
   const printAction = new Print(["Hello, World."])
@@ -29,7 +29,7 @@ describe("A component of Print action", () => {
     const { debug } = render(<PrintComponent2 />)
     await waitFor(() => {
       debug()
-      const printElement = screen.getByText("A B C")
+      const printElement = screen.getByText("A, B, C")
       expect(printElement).toBeDefined()
       expect(() => {
         const _ = screen.getByText("This is a dummy text.Hello, World.")

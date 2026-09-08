@@ -38,6 +38,8 @@ export class Editor implements Store {
     })
   }
 
+  show(editorDiv: HTMLElement) {}
+
   constructor(historyStmt: string) {
     this.history = new History(this, historyStmt)
   }
