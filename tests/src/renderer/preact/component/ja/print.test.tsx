@@ -40,7 +40,7 @@ describe("A component of Print action", () => {
       const printElement = screen.getByText("A, B, C")
       expect(printElement).toBeDefined()
       expect(() => {
-        const _ = screen.getByText("This is a dummy text.Hello, World.")
+        const _ = screen.getByText("Hello, World.")
       }).toThrow()
     })
   })

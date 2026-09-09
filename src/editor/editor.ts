@@ -1,14 +1,19 @@
 import { batch, signal } from "@preact/signals"
 import type { Store } from "../store"
+import { Behavior } from "../behavior"
 import type { Statement } from "../runner"
 import { History } from "../history"
-import type { Drawer } from "../renderer"
+import { PreactRenderer } from "../renderer/preact/preact-renderer"
+import type { Renderer } from "../renderer"
+import type { ComponentChildren } from "preact"
 
 export class Editor<T> implements Store {
   private readonly _list = signal<Statement[]>([])
   private readonly _code = signal<Statement[]>([])
 
-  private history: History
+  private readonly history: History
+  private readonly behavior: Behavior
+  private readonly renderer: Renderer<ComponentChildren>
 
   get list(): Statement[] {
     return this._list.value
@@ -40,13 +45,12 @@ export class Editor<T> implements Store {
   }
 
   show(editorDiv: HTMLElement) {
-    this.drawer.draw(editorDiv)
+    this.renderer.render(editorDiv)
   }
 
-  constructor(
-    private readonly drawer: Drawer<T>,
-    historyStmt: string,
-  ) {
-    this.history = new History(this, historyStmt)
+  constructor() {
+    this.history = new History(this, "[]")
+    this.behavior = new Behavior(this.history)
+    this.renderer = new PreactRenderer(this.behavior, "[]")
   }
 }
