@@ -2,8 +2,9 @@ import { batch, signal } from "@preact/signals"
 import type { Store } from "../store"
 import type { Statement } from "../runner"
 import { History } from "../history"
+import type { Drawer } from "../renderer"
 
-export class Editor implements Store {
+export class Editor<T> implements Store {
   private readonly _list = signal<Statement[]>([])
   private readonly _code = signal<Statement[]>([])
 
@@ -38,9 +39,14 @@ export class Editor implements Store {
     })
   }
 
-  show(editorDiv: HTMLElement) {}
+  show(editorDiv: HTMLElement) {
+    this.drawer.draw(editorDiv)
+  }
 
-  constructor(historyStmt: string) {
+  constructor(
+    private readonly drawer: Drawer<T>,
+    historyStmt: string,
+  ) {
     this.history = new History(this, historyStmt)
   }
 }

@@ -1,14 +1,22 @@
 import { describe, expect, test } from "bun:test"
 import { render, screen, waitFor } from "@testing-library/preact"
-import { Print } from "../../../../../../src/drawer/preact/component/ja/print"
+import { Print } from "../../../../../../src/renderer/preact/component/ja/print"
+import { RendererImpl } from "../../../../../../src/renderer/renderer-impl"
+import { Behavior } from "../../../../../../src/behavior"
+import { History } from "../../../../../../src/history"
+import { StoreImpl } from "../../../../../../src/store/store-impl"
+
+const renderer = new RendererImpl(
+  new Behavior(new History(new StoreImpl(), "[]")),
+)
 
 function PrintComponent() {
-  const printAction = new Print(["Hello, World."])
+  const printAction = new Print(renderer, ["Hello, World."])
   return printAction.render()
 }
 
 function PrintComponent2() {
-  const printAction = new Print(["A", "B", "C"])
+  const printAction = new Print(renderer, ["A", "B", "C"])
   return printAction.render()
 }
 

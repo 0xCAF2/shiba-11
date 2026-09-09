@@ -1,11 +1,15 @@
-import { type ComponentChildren, h } from "preact"
-import { Drawer } from "../drawer"
+import { type ComponentChildren, h, render } from "preact"
+import type { Renderer } from "../renderer"
 import type { Behavior } from "../../behavior"
 import { Print } from "./component/ja/print"
 import { Keyword } from "../../interpreter/action"
 import { End } from "./component/ja/end"
+import { Interpreter } from "../../interpreter"
 
-export class PreactDrawer extends Drawer<ComponentChildren> {
+export class PreactRenderer
+  extends Interpreter<ComponentChildren, Keyword>
+  implements Renderer<ComponentChildren>
+{
   private readonly _lines: ComponentChildren[] = []
 
   constructor(
@@ -30,11 +34,11 @@ export class PreactDrawer extends Drawer<ComponentChildren> {
     return h("<>", null, ...this._lines)
   }
 
-  override appendLine(line: ComponentChildren): void {
+  appendLine(line: ComponentChildren): void {
     this._lines.push(line)
   }
 
-  override draw(): ComponentChildren {
-    return this.result
+  draw(parent: HTMLElement): void {
+    render(this.result, parent)
   }
 }
