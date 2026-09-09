@@ -38,7 +38,7 @@ export class PreactRenderer
     this._lines.push(line)
   }
 
-  draw(parent: HTMLElement): void {
+  render(parent: HTMLElement): void {
     render(this.result, parent)
   }
 }

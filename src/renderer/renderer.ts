@@ -4,5 +4,5 @@ import type { Behavior } from "../behavior"
 export interface Renderer<T> {
   get behavior(): Behavior
   appendLine(line: T): void
-  draw(parent: HTMLElement): void
+  render(parent: HTMLElement): void
 }

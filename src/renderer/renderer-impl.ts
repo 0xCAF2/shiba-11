@@ -11,7 +11,7 @@ export class RendererImpl implements Renderer<string> {
     this._lines.push(line)
   }
 
-  draw(parent: HTMLElement): void {
+  render(parent: HTMLElement): void {
     parent.innerHTML = this._lines.join("<br>")
   }
 }

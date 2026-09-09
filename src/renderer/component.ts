@@ -1,3 +1,3 @@
 export interface Component<T> {
-  render(): T
+  draw(): T
 }

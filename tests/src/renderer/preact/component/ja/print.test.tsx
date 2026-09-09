@@ -12,12 +12,12 @@ const renderer = new RendererImpl(
 
 function PrintComponent() {
   const printAction = new Print(renderer, ["Hello, World."])
-  return printAction.render()
+  return printAction.draw()
 }
 
 function PrintComponent2() {
   const printAction = new Print(renderer, ["A", "B", "C"])
-  return printAction.render()
+  return printAction.draw()
 }
 
 describe("A component of Print action", () => {

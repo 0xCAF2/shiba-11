@@ -12,7 +12,7 @@ export class Print implements Component<ComponentChildren>, Action {
     public readonly values: Expression[],
   ) {}
 
-  render(): ComponentChildren {
+  draw(): ComponentChildren {
     return <span>{this.values.map((v) => v?.toString()).join(", ")}</span>
   }
 
