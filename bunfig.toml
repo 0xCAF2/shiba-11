@@ -1,2 +1,4 @@
 [test]
 preload = ["./happydom.ts"]
+[serve.static]
+plugins = ["@stylexjs/unplugin/bun"]
