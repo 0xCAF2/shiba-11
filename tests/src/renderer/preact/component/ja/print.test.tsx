@@ -7,17 +7,17 @@ import { History } from "../../../../../../src/history"
 import { StoreImpl } from "../../../../../../src/store/store-impl"
 
 const renderer = new RendererImpl(
-  new Behavior(new History(new StoreImpl(), "[]")),
+  new Behavior(new History(new StoreImpl(), [])),
 )
 
 function PrintComponent() {
   const printAction = new Print(renderer, ["Hello, World."])
-  return printAction.draw()
+  return <>{printAction.draw()}</>
 }
 
 function PrintComponent2() {
   const printAction = new Print(renderer, ["A", "B", "C"])
-  return printAction.draw()
+  return <>{printAction.draw()}</>
 }
 
 describe("A component of Print action", () => {
@@ -25,10 +25,10 @@ describe("A component of Print action", () => {
     const { debug } = render(<PrintComponent />)
     await waitFor(() => {
       debug()
-      const printElement = screen.getByText("Hello, World.")
+      const printElement = screen.getByText('"Hello, World."')
       expect(printElement).toBeDefined()
       expect(() => {
-        const _ = screen.getByText("A B C")
+        const _ = screen.getByText('"A", "B", "C"')
       }).toThrow()
     })
   })
@@ -37,10 +37,10 @@ describe("A component of Print action", () => {
     const { debug } = render(<PrintComponent2 />)
     await waitFor(() => {
       debug()
-      const printElement = screen.getByText("A, B, C")
+      const printElement = screen.getByText('"A", "B", "C"')
       expect(printElement).toBeDefined()
       expect(() => {
-        const _ = screen.getByText("Hello, World.")
+        const _ = screen.getByText('"Hello, World."')
       }).toThrow()
     })
   })

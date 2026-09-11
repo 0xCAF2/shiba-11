@@ -1,14 +1,17 @@
 import { batch, signal } from "@preact/signals"
 import type { Store } from "../store"
 import { Behavior } from "../behavior"
-import type { Statement } from "../runner"
+import { Keyword, type Statement } from "../runner"
 import { History } from "../history"
 import { PreactRenderer } from "../renderer/preact/preact-renderer"
 import type { Renderer } from "../renderer"
 import type { ComponentChildren } from "preact"
 
-export class Editor<T> implements Store {
-  private readonly _list = signal<Statement[]>([])
+export class Editor implements Store {
+  private readonly _list = signal<Statement[]>([
+    [1, Keyword.Print, ["Hello, World.", "test"]],
+    [1, Keyword.End],
+  ])
   private readonly _code = signal<Statement[]>([])
 
   private readonly history: History
@@ -49,11 +52,8 @@ export class Editor<T> implements Store {
   }
 
   constructor() {
-    this.history = new History(this, "[]")
+    this.history = new History(this, [])
     this.behavior = new Behavior(this.history)
-    this.renderer = new PreactRenderer(
-      this.behavior,
-      '[[1, "print", ["Hello, World.", "test"]], [1, "end"]]',
-    )
+    this.renderer = new PreactRenderer(this.behavior, this._list.value)
   }
 }

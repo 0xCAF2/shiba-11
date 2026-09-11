@@ -2,7 +2,7 @@ import { type ComponentChildren, h, render } from "preact"
 import type { Renderer } from "../renderer"
 import type { Behavior } from "../../behavior"
 import { Print } from "./component/ja/print"
-import { Keyword } from "../../interpreter/action"
+import { Keyword, type Statement } from "../../runner"
 import { End } from "./component/ja/end"
 import { Interpreter } from "../../interpreter"
 import { Index } from "../../interpreter/statement"
@@ -17,7 +17,7 @@ export class PreactRenderer
 
   constructor(
     public readonly behavior: Behavior,
-    code: string,
+    code: Statement[],
   ) {
     super(
       code,
