@@ -51,6 +51,9 @@ export class Editor<T> implements Store {
   constructor() {
     this.history = new History(this, "[]")
     this.behavior = new Behavior(this.history)
-    this.renderer = new PreactRenderer(this.behavior, "[]")
+    this.renderer = new PreactRenderer(
+      this.behavior,
+      '[[1, "print", ["Hello, World.", "test"]], [1, "end"]]',
+    )
   }
 }

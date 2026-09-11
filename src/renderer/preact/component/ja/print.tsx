@@ -13,8 +13,23 @@ export class Print implements Component<ComponentChildren>, Action {
   ) {}
 
   draw(): ComponentChildren {
-    return <span>{this.values.map((v) => v?.toString()).join(", ")}</span>
+    return (
+      <p>
+        表示する(
+        <span>
+          {this.values
+            .map((v) => {
+              if (typeof v === "string") return `"${v}"`
+              return v?.toString()
+            })
+            .join(", ")}
+        </span>
+        )
+      </p>
+    )
   }
 
-  execute(r: Runtime<Keyword>): void {}
+  execute(r: Runtime<Keyword>): void {
+    this.renderer.appendLine(this.draw())
+  }
 }
