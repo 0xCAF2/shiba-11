@@ -29,7 +29,7 @@ export class PreactRenderer
           )
         },
         [Keyword.End]: () => {
-          return new End()
+          return new End(this)
         },
       },
       new ExpressionList().table,
