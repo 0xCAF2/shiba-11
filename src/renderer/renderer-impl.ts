@@ -1,8 +1,8 @@
 import type { Behavior } from "../behavior"
-import type { Renderer } from "./renderer"
+import type { RenderTarget } from "./renderer"
 
 // For testing purposes
-export class RendererImpl implements Renderer<string> {
+export class RendererImpl implements RenderTarget<string> {
   constructor(public readonly behavior: Behavior) {}
 
   private _lines: string[] = []

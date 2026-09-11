@@ -1,5 +1,5 @@
 import { type ComponentChildren, h, render } from "preact"
-import type { Renderer } from "../renderer"
+import type { RenderTarget as Renderer } from "../renderer"
 import type { Behavior } from "../../behavior"
 import { Print } from "./component/ja/print"
 import { Keyword, type Statement } from "../../runner"
@@ -8,10 +8,11 @@ import { Interpreter } from "../../interpreter"
 import { Index } from "../../interpreter/statement"
 import { ExpressionList } from "../../interpreter/parser/expression-list"
 import type { Any } from "../../interpreter/parser/json-element"
+import type { View } from "../view"
 
 export class PreactRenderer
   extends Interpreter<ComponentChildren, Keyword>
-  implements Renderer<ComponentChildren>
+  implements Renderer<ComponentChildren>, View
 {
   private readonly _lines: ComponentChildren[] = []
 

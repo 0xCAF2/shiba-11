@@ -4,8 +4,7 @@ import { Behavior } from "../behavior"
 import { Keyword, type Statement } from "../runner"
 import { History } from "../history"
 import { PreactRenderer } from "../renderer/preact/preact-renderer"
-import type { Renderer } from "../renderer"
-import type { ComponentChildren } from "preact"
+import type { View } from "../renderer"
 
 export class Editor implements Store {
   private readonly _list = signal<Statement[]>([
@@ -16,7 +15,8 @@ export class Editor implements Store {
 
   private readonly history: History
   private readonly behavior: Behavior
-  private readonly renderer: Renderer<ComponentChildren>
+  private readonly historyView: View
+  private readonly codeView: View
 
   get list(): Statement[] {
     return this._list.value
@@ -48,12 +48,18 @@ export class Editor implements Store {
   }
 
   show(editorDiv: HTMLElement) {
-    this.renderer.render(editorDiv)
+    const historyDiv = document.createElement("div")
+    const codeDiv = document.createElement("div")
+    this.historyView.render(historyDiv)
+    this.codeView.render(codeDiv)
+    editorDiv.appendChild(codeDiv)
+    editorDiv.appendChild(historyDiv)
   }
 
   constructor() {
     this.history = new History(this, [])
     this.behavior = new Behavior(this.history)
-    this.renderer = new PreactRenderer(this.behavior, this._list.value)
+    this.historyView = new PreactRenderer(this.behavior, this._list.value)
+    this.codeView = new PreactRenderer(this.behavior, this._code.value)
   }
 }
