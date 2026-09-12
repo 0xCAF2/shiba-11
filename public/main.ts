@@ -1,4 +1,4 @@
-import { buildEditor } from "./build-editor"
+import { buildEditor } from "../src/editor"
 
 ;(() => {
   const editorDiv = document.getElementById("editor")

@@ -1,8 +1,8 @@
-import { Editor } from "../src"
-import type { Behavior } from "../src/behavior"
-import { PreactRenderer } from "../src/renderer/preact/preact-renderer"
-import { Keyword, type Statement } from "../src/runner"
-import { Keyword as HistoryKeyword } from "../src/history"
+import { Editor } from ".."
+import type { Behavior } from "../behavior"
+import { PreactRenderer } from "../renderer/preact/preact-renderer"
+import { Keyword, type Statement } from "../runner"
+import { Keyword as HistoryKeyword } from "../history"
 
 export function buildEditor(editorDiv: HTMLElement) {
   if (!editorDiv) return
