@@ -8,7 +8,7 @@ const end: Statement = [1, Keyword.End]
 
 describe("Behavior Tests", () => {
   test("should append and move a Print action", () => {
-    const history = new History(new StoreImpl(), "[]")
+    const history = new History(new StoreImpl(), [])
     const behavior = new Behavior(history)
     const stmt = behavior.appendPrint("Hello, World!")
     expect(history.all).toEqual([stmt])
