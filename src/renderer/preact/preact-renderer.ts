@@ -26,7 +26,7 @@ export class PreactRenderer
         [Keyword.Print]: (stmt, exprParser) => {
           return new Print(
             this,
-            (stmt[Index.FirstArg] as Array<Any>).map(exprParser.readExpr),
+            (stmt[Index.FirstArg] as Any[]).map(exprParser.readExpr),
           )
         },
         [Keyword.End]: () => {
