@@ -1,12 +1,12 @@
 import { describe, expect, test } from "bun:test"
 import { render, screen, waitFor } from "@testing-library/preact"
 import { Print } from "../../../../../../src/renderer/preact/component/ja/print"
-import { RendererImpl } from "../../../../../../src/renderer/renderer-impl"
+import { RenderControllerImpl } from "../../../../../../src/renderer/render-controller-impl"
 import { Behavior } from "../../../../../../src/behavior"
 import { History } from "../../../../../../src/history"
 import { StoreImpl } from "../../../../../../src/store/store-impl"
 
-const renderer = new RendererImpl(
+const renderer = new RenderControllerImpl(
   new Behavior(new History(new StoreImpl(), [])),
 )
 

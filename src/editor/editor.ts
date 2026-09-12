@@ -1,17 +1,12 @@
-import { batch, signal } from "@preact/signals"
 import type { Store } from "../store"
 import { Behavior } from "../behavior"
 import { Keyword, type Statement } from "../runner"
-import { History } from "../history"
-import { PreactRenderer } from "../renderer/preact/preact-renderer"
-import type { View } from "../renderer"
+import { History, type Statement as HistoryStatement } from "../history"
+import type { View, ViewFactory } from "../renderer"
 
 export class Editor implements Store {
-  private readonly _list = signal<Statement[]>([
-    [1, Keyword.Print, ["Hello, World.", "test"]],
-    [1, Keyword.End],
-  ])
-  private readonly _code = signal<Statement[]>([])
+  private _list: Statement[]
+  private _code: Statement[] = []
 
   private readonly history: History
   private readonly behavior: Behavior
@@ -19,32 +14,30 @@ export class Editor implements Store {
   private readonly codeView: View
 
   get list(): Statement[] {
-    return this._list.value
+    return this._list
   }
 
   get code(): Statement[] {
-    return this._code.value
+    return this._code
   }
 
   addToList(stmt: Statement): void {
-    this._list.value = [...this._list.value, stmt]
+    this._list = [...this._list, stmt]
   }
 
   move(stmt: Statement, toIndex?: number): void {
-    const currentIndex = this._list.value.indexOf(stmt)
+    const currentIndex = this._list.indexOf(stmt)
     if (currentIndex === -1) throw new Error("Statement not found in the list")
-    const newList = [...this._list.value]
+    const newList = [...this._list]
     newList.splice(currentIndex, 1)
-    const newCode = [...this._code.value]
+    const newCode = [...this._code]
     if (toIndex === undefined) {
       newCode.push(stmt)
     } else {
       newCode.splice(toIndex, 0, stmt)
     }
-    batch(() => {
-      this._code.value = newCode
-      this._list.value = newList
-    })
+    this._code = newCode
+    this._list = newList
   }
 
   show(editorDiv: HTMLElement) {
@@ -56,10 +49,19 @@ export class Editor implements Store {
     editorDiv.appendChild(historyDiv)
   }
 
-  constructor() {
-    this.history = new History(this, [])
+  constructor(
+    historyList: string | HistoryStatement[],
+    factory: ViewFactory<Keyword>,
+  ) {
+    const list =
+      typeof historyList === "string" ? JSON.parse(historyList) : historyList
+    this._list = list
+    this.history = new History(this, list)
     this.behavior = new Behavior(this.history)
-    this.historyView = new PreactRenderer(this.behavior, this._list.value)
-    this.codeView = new PreactRenderer(this.behavior, this._code.value)
+    this.history.run()
+    this._code = this.history.result
+
+    this.historyView = factory.create(this.behavior, this._list)
+    this.codeView = factory.create(this.behavior, this._code)
   }
 }

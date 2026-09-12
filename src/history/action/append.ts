@@ -1,4 +1,5 @@
-import type { Action, Keyword } from "../../interpreter/action"
+import type { Action } from "../../interpreter/action"
+import type { Keyword } from "../../runner"
 import type { HistoryList } from "../history-list"
 
 export class Append implements Action {

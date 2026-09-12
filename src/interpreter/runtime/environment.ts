@@ -1,4 +1,3 @@
-import { Keyword } from "../action"
 import type { Value } from "../expression"
 import type { Statement } from "../statement"
 import type { TagBlock } from "../web"
@@ -41,7 +40,7 @@ export class Environment<T extends string> {
     if (Array.isArray(line) && line.length > 0 && typeof line[0] === "number") {
       return line
     }
-    return [Number.MAX_SAFE_INTEGER, Keyword.Comment]
+    return [Number.MAX_SAFE_INTEGER, ""]
   }
 
   get currentTag(): TagBlock {
