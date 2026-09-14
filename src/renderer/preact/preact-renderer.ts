@@ -18,6 +18,7 @@ export class PreactRenderer
 
   constructor(
     public readonly behavior: Behavior,
+    private readonly isCodeRenderer: boolean,
     code: Statement[],
   ) {
     super(
@@ -26,6 +27,7 @@ export class PreactRenderer
         [Keyword.Print]: (stmt, exprParser) => {
           return new Print(
             this,
+            stmt,
             (stmt[Index.FirstArg] as Any[]).map(exprParser.readExpr),
           )
         },
@@ -39,6 +41,10 @@ export class PreactRenderer
 
   override get result(): ComponentChildren {
     return h("div", null, ...this._lines)
+  }
+
+  get shouldRenderAsCode(): boolean {
+    return this.isCodeRenderer
   }
 
   appendLine(line: ComponentChildren): void {

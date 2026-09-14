@@ -3,10 +3,12 @@ import type { Action } from "../../../../interpreter/action"
 import type { Component } from "../../../component"
 import type { Expression } from "../../../../interpreter/expression"
 import type { RenderController } from "../../../render-controller"
+import type { Statement } from "../../../../runner"
 
 export class Print implements Component<ComponentChildren>, Action {
   constructor(
     public readonly controller: RenderController<ComponentChildren>,
+    public readonly statement: Statement,
     public readonly values: Expression[],
   ) {}
 
@@ -26,6 +28,16 @@ export class Print implements Component<ComponentChildren>, Action {
           .join(", "),
       ),
       ")",
+      !this.controller.shouldRenderAsCode &&
+        h(
+          "button",
+          {
+            onClick: () => {
+              this.controller.behavior.move(this.statement)
+            },
+          },
+          "+",
+        ),
     )
   }
 

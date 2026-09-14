@@ -7,8 +7,12 @@ import { Keyword as HistoryKeyword } from "../history"
 export function buildEditor(editorDiv: HTMLElement) {
   if (!editorDiv) return
 
-  function preactFactory(behavior: Behavior, stmts: Statement[]) {
-    return new PreactRenderer(behavior, stmts)
+  function preactFactory(
+    behavior: Behavior,
+    isCodeRenderer: boolean,
+    stmts: Statement[],
+  ) {
+    return new PreactRenderer(behavior, isCodeRenderer, stmts)
   }
   const editor = new Editor(
     [[1, HistoryKeyword.Append, Keyword.Print, ["Hello, World.", "test"]]],

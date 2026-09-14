@@ -8,10 +8,13 @@ export class Editor implements Store {
   private _list: Statement[]
   private _code: Statement[] = []
 
+  private historyDiv: HTMLDivElement = document.createElement("div")
+  private codeDiv: HTMLDivElement = document.createElement("div")
+
   private readonly history: History
   private readonly behavior: Behavior
-  private readonly historyView: View
-  private readonly codeView: View
+  private historyView: View
+  private codeView: View
 
   get list(): Statement[] {
     return this._list
@@ -32,26 +35,30 @@ export class Editor implements Store {
     newList.splice(currentIndex, 1)
     const newCode = [...this._code]
     if (toIndex === undefined) {
-      newCode.push(stmt)
+      newCode.splice(0, 0, stmt)
     } else {
       newCode.splice(toIndex, 0, stmt)
     }
     this._code = newCode
     this._list = newList
+
+    this.historyView = this.factory.create(this.behavior, false, this._list)
+    this.codeView = this.factory.create(this.behavior, true, this._code)
+
+    this.historyView.render(this.historyDiv)
+    this.codeView.render(this.codeDiv)
   }
 
   show(editorDiv: HTMLElement) {
-    const historyDiv = document.createElement("div")
-    const codeDiv = document.createElement("div")
-    this.historyView.render(historyDiv)
-    this.codeView.render(codeDiv)
-    editorDiv.appendChild(codeDiv)
-    editorDiv.appendChild(historyDiv)
+    this.historyView.render(this.historyDiv)
+    this.codeView.render(this.codeDiv)
+    editorDiv.appendChild(this.codeDiv)
+    editorDiv.appendChild(this.historyDiv)
   }
 
   constructor(
     historyList: string | HistoryStatement[],
-    factory: ViewFactory<Keyword>,
+    public readonly factory: ViewFactory<Keyword>,
   ) {
     const list =
       typeof historyList === "string" ? JSON.parse(historyList) : historyList
@@ -61,7 +68,7 @@ export class Editor implements Store {
     this.history.run()
     this._code = this.history.result
 
-    this.historyView = factory.create(this.behavior, this._list)
-    this.codeView = factory.create(this.behavior, this._code)
+    this.historyView = factory.create(this.behavior, false, this._list)
+    this.codeView = factory.create(this.behavior, true, this._code)
   }
 }
