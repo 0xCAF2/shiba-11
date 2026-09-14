@@ -1,10 +1,11 @@
 import { Interpreter } from "../interpreter"
-import { End, Keyword } from "../interpreter/action"
 import type { Any } from "../interpreter/parser/json-element"
 import { Index } from "../interpreter/statement"
 import { Print } from "./action/print"
+import { End } from "./action/end"
 import type { Output } from "./output"
 import type { Statement } from "./statement"
+import { Keyword } from "./keyword"
 
 export class Runner extends Interpreter<string, Keyword> implements Output {
   private output: string = ""
