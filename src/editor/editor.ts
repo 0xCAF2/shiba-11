@@ -11,7 +11,6 @@ export class Editor implements Store {
   private historyDiv: HTMLDivElement = document.createElement("div")
   private codeDiv: HTMLDivElement = document.createElement("div")
 
-  private readonly history: History
   private readonly behavior: Behavior
   private historyView: View
   private codeView: View
@@ -63,10 +62,10 @@ export class Editor implements Store {
     const list =
       typeof historyList === "string" ? JSON.parse(historyList) : historyList
     this._list = list
-    this.history = new History(this, list)
-    this.behavior = new Behavior(this.history)
-    this.history.run()
-    this._code = this.history.result
+    const history = new History(this, list)
+    this.behavior = new Behavior(history)
+    history.run()
+    this._code = history.result
 
     this.historyView = factory.create(this.behavior, false, this._list)
     this.codeView = factory.create(this.behavior, true, this._code)
