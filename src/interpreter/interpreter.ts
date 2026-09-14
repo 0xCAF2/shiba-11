@@ -26,7 +26,7 @@ export abstract class Interpreter<T, U extends string> {
     this.runtime.envr.externalFunctions.set(name, func)
   }
 
-  async run(stmt?: Statement<U>): Promise<void> {
+  run(stmt?: Statement<U>) {
     if (stmt) {
       this.runtime.envr.stmts.splice(
         this.runtime.envr.stmts.length - 1,

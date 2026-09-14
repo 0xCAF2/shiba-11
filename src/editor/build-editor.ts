@@ -15,7 +15,10 @@ export function buildEditor(editorDiv: HTMLElement) {
     return new PreactRenderer(behavior, isCodeRenderer, stmts)
   }
   const editor = new Editor(
-    [[1, HistoryKeyword.Append, Keyword.Print, ["Hello, World.", "test"]]],
+    [
+      [1, HistoryKeyword.Append, Keyword.Print, ["Hello, World.", 0]],
+      [1, HistoryKeyword.Append, Keyword.Print, ["Hello, World.", "test2"]],
+    ],
     { create: preactFactory },
   )
   editor.show(editorDiv)

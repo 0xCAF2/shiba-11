@@ -5,7 +5,7 @@ import { History, type Statement as HistoryStatement } from "../history"
 import type { View, ViewFactory } from "../renderer"
 
 export class Editor implements Store {
-  private _list: Statement[]
+  private _list: Statement[] = []
   private _code: Statement[] = []
 
   private historyDiv: HTMLDivElement = document.createElement("div")
@@ -34,7 +34,7 @@ export class Editor implements Store {
     newList.splice(currentIndex, 1)
     const newCode = [...this._code]
     if (toIndex === undefined) {
-      newCode.splice(0, 0, stmt)
+      newCode.splice(newCode.length - 1, 0, stmt)
     } else {
       newCode.splice(toIndex, 0, stmt)
     }
@@ -59,12 +59,12 @@ export class Editor implements Store {
     historyList: string | HistoryStatement[],
     public readonly factory: ViewFactory<Keyword>,
   ) {
-    const list =
+    const initialList =
       typeof historyList === "string" ? JSON.parse(historyList) : historyList
-    this._list = list
-    const history = new History(this, list)
+    const history = new History(this, initialList)
     this.behavior = new Behavior(history)
     history.run()
+    this._list = history.all
     this._code = history.result
 
     this.historyView = factory.create(this.behavior, false, this._list)
