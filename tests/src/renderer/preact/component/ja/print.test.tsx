@@ -5,18 +5,22 @@ import { RenderControllerImpl } from "../../../../../../src/renderer/render-cont
 import { Behavior } from "../../../../../../src/behavior"
 import { History } from "../../../../../../src/history"
 import { StoreImpl } from "../../../../../../src/store/store-impl"
+import { Keyword, type Statement } from "../../../../../../src/runner"
+import { Index } from "../../../../../../src/interpreter/statement"
 
 const renderer = new RenderControllerImpl(
   new Behavior(new History(new StoreImpl(), [])),
 )
 
 function PrintComponent() {
-  const printAction = new Print(renderer, ["Hello, World."])
+  const stmt: Statement = [1, Keyword.Print, ["Hello, World."]]
+  const printAction = new Print(renderer, stmt, stmt[Index.FirstArg])
   return <>{printAction.draw()}</>
 }
 
 function PrintComponent2() {
-  const printAction = new Print(renderer, ["A", "B", "C"])
+  const stmt: Statement = [1, Keyword.Print, ["A", "B", "C"]]
+  const printAction = new Print(renderer, stmt, stmt[Index.FirstArg])
   return <>{printAction.draw()}</>
 }
 

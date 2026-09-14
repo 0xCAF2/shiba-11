@@ -3,15 +3,12 @@ import type { RenderController } from "./render-controller"
 
 // For testing purposes
 export class RenderControllerImpl implements RenderController<string> {
-  constructor(
-    public readonly behavior: Behavior,
-    private readonly isCodeRenderer: boolean,
-  ) {}
+  constructor(public readonly behavior: Behavior) {}
 
   private _lines: string[] = []
 
   get shouldRenderAsCode(): boolean {
-    return this.isCodeRenderer
+    return false
   }
 
   appendLine(line: string): void {
