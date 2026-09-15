@@ -28,11 +28,7 @@ export abstract class Interpreter<T, U extends string> {
 
   run(stmt?: Statement<U>) {
     if (stmt) {
-      this.runtime.envr.stmts.splice(
-        this.runtime.envr.stmts.length - 1,
-        0,
-        stmt,
-      )
+      this.runtime.envr.stmts.splice(this.runtime.envr.stmts.length, 0, stmt)
     }
 
     const r = this.runtime

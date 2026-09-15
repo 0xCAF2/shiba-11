@@ -3,6 +3,7 @@ import { Keyword } from "./keyword"
 import { Index, type Statement } from "./statement"
 import { Append } from "./action/append"
 import type { Statement as RunnerStatement } from "../runner"
+import { Move } from "./action/move"
 import type { HistoryList } from "./history-list"
 import { Keyword as RunnerKeyword } from "../runner"
 import type { Store } from "../store/store"
@@ -21,10 +22,6 @@ export class History
     return this.store.list.reverse()
   }
 
-  move(stmt: RunnerStatement, toIndex?: number): void {
-    this.store.move(stmt, toIndex)
-  }
-
   override get result(): RunnerStatement[] {
     return [...this.store.code, this.end]
   }
@@ -37,7 +34,14 @@ export class History
       stmts,
       {
         [Keyword.Append]: (stmt) => {
-          return new Append(this, stmt[Index.Keyword], stmt[Index.FirstArg])
+          return new Append(this, stmt[Index.FirstArg], stmt[Index.SecondArg])
+        },
+        [Keyword.Move]: (stmt) => {
+          return new Move(
+            this.store,
+            stmt[Index.FirstArg],
+            stmt[Index.SecondArg],
+          )
         },
       },
       {},

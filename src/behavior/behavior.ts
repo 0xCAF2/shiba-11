@@ -27,6 +27,12 @@ export class Behavior {
   }
 
   move(stmt: Statement, toIndex?: number): void {
-    this.history.move(stmt, toIndex)
+    const historyStmt: HistoryStatement = [
+      1,
+      HistoryKeyword.Move,
+      stmt,
+      toIndex,
+    ]
+    this.history.run(historyStmt)
   }
 }

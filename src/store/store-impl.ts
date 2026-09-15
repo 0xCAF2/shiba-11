@@ -23,7 +23,7 @@ export class StoreImpl implements Store {
     if (currentIndex === -1) throw new Error("Statement not found in the list")
     this._list.splice(currentIndex, 1)
     if (toIndex === undefined) {
-      this._code.push(stmt)
+      this._code.splice(this._code.length - 1, 0, stmt)
     } else {
       this._code.splice(toIndex, 0, stmt)
     }
