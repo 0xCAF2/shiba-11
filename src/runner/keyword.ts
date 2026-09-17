@@ -1,9 +1,9 @@
 export enum Keyword {
   Print = "print",
-  /*  Comment = "#",
+  Comment = "#",
 
   Assign = "=",
-
+  /*
   Ifs = "ifs",
   If = "if",
   ElseIf = "else_if",

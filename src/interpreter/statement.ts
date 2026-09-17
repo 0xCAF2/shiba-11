@@ -4,4 +4,5 @@ export enum Index {
   Indent = 0,
   Keyword = 1,
   FirstArg = 2,
+  SecondArg = 3,
 }

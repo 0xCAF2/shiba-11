@@ -1,6 +1,6 @@
 export enum Keyword {
-  /*  Variable = "var",
-  Subscript = "sub",
+  Variable = "var",
+  /*  Subscript = "sub",
   Call = "call",
 */
 }
