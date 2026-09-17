@@ -1,6 +1,9 @@
 import { describe, expect, test } from "bun:test"
 import { Runner, Keyword } from "../../../src/runner"
-import { Keyword as ExprKeyword } from "../../../src/interpreter/expression/keyword"
+import {
+  BinOpKeyword,
+  Keyword as ExprKeyword,
+} from "../../../src/interpreter/expression/keyword"
 import type { Statement } from "../../../src/runner"
 
 describe("Runner", () => {
@@ -19,5 +22,31 @@ describe("Runner", () => {
     const runner = new Runner(code)
     runner.run()
     expect(runner.result).toBe("42\n")
+  })
+
+  test("Soume expression should correctly compute the result", () => {
+    const code = [
+      [1, Keyword.Assign, [ExprKeyword.Variable, "x"], 10],
+      [1, Keyword.Assign, [ExprKeyword.Variable, "y"], 32],
+      [
+        1,
+        Keyword.Print,
+        [
+          [
+            BinOpKeyword.Add,
+            [ExprKeyword.Variable, "x"],
+            [ExprKeyword.Variable, "y"],
+          ],
+          [
+            BinOpKeyword.Subtract,
+            [ExprKeyword.Variable, "y"],
+            [ExprKeyword.Variable, "x"],
+          ],
+        ],
+      ],
+    ] as Statement[]
+    const runner = new Runner(code)
+    runner.run()
+    expect(runner.result).toBe("42 22\n")
   })
 })

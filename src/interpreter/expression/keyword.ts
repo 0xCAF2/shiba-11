@@ -6,7 +6,7 @@ export enum Keyword {
 }
 
 export enum BinOpKeyword {
-  /*  Add = "+",
+  Add = "+",
   Subtract = "-",
   Multiply = "*",
   Divide = "/",
@@ -23,7 +23,6 @@ export enum BinOpKeyword {
 
   And = "&&",
   Or = "||",
-*/
 }
 
 export type Keywords =

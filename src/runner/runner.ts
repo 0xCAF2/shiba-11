@@ -8,9 +8,22 @@ import { Assign } from "./action/assign"
 import type { Output } from "./output"
 import type { Statement } from "./statement"
 import { Keyword } from "./keyword"
-import { Keyword as ExprKeyword } from "../interpreter/expression/keyword"
-import { Variable } from "../interpreter/expression"
+import {
+  BinOpKeyword,
+  Keyword as ExprKeyword,
+} from "../interpreter/expression/keyword"
+import { BinOp, Variable } from "../interpreter/expression"
 import * as Elem from "../interpreter/parser/json-element"
+import type { ExpressionParser } from "../interpreter/parser"
+
+const binOpParser = (elem: Elem.Any, parser: ExpressionParser): BinOp => {
+  const op = (elem as Elem.BinOp)[Elem.exprIndex.keyword] as BinOpKeyword
+  const left = parser.readExpr((elem as Elem.BinOp)[Elem.exprIndex.binOpLeft]!)
+  const right = parser.readExpr(
+    (elem as Elem.BinOp)[Elem.exprIndex.binOpRight]!,
+  )
+  return new BinOp(op, left, right)
+}
 
 export class Runner extends Interpreter<string, Keyword> implements Output {
   private output: string = ""
@@ -51,6 +64,20 @@ export class Runner extends Interpreter<string, Keyword> implements Output {
           const name = (elem as Elem.Variable)[Elem.exprIndex.variableName]!
           return new Variable(name)
         },
+        [BinOpKeyword.Add]: binOpParser,
+        [BinOpKeyword.Subtract]: binOpParser,
+        [BinOpKeyword.Multiply]: binOpParser,
+        [BinOpKeyword.Divide]: binOpParser,
+        [BinOpKeyword.Power]: binOpParser,
+        [BinOpKeyword.Modulo]: binOpParser,
+        [BinOpKeyword.Equal]: binOpParser,
+        [BinOpKeyword.NotEqual]: binOpParser,
+        [BinOpKeyword.LessThan]: binOpParser,
+        [BinOpKeyword.LessThanOrEqual]: binOpParser,
+        [BinOpKeyword.GreaterThan]: binOpParser,
+        [BinOpKeyword.GreaterThanOrEqual]: binOpParser,
+        [BinOpKeyword.And]: binOpParser,
+        [BinOpKeyword.Or]: binOpParser,
       },
     )
   }

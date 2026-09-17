@@ -7,6 +7,7 @@ import {
 } from "../expression"
 import type { Any, Ref } from "./json-element"
 import { type ExpressionTable } from "./expression-list"
+import type { Keywords } from "../expression/keyword"
 
 export class ExpressionParser {
   private readonly table: ExpressionTable
@@ -28,7 +29,7 @@ export class ExpressionParser {
         return elem[0].map((e) => this.readExpr(e))
       }
       if (typeof elem[0] === "string") {
-        const keyword = elem[0]
+        const keyword = elem[0] as Keywords
         return this.table[keyword]?.(elem, this) ?? null
       }
     }
