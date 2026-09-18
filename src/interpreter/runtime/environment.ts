@@ -8,7 +8,7 @@ import { Scope } from "./scope"
 /**
  * stores the current execution state.
  */
-export class Environment<T extends string> {
+export class Environment {
   private addr = new Address()
   public readonly blocks: Block[] = []
   public readonly context = new Scope()
@@ -18,7 +18,7 @@ export class Environment<T extends string> {
     (...args: Value[]) => Value
   >()
 
-  constructor(public readonly stmts: Statement<T>[]) {}
+  constructor(public readonly stmts: Statement[]) {}
 
   hasNext(): boolean {
     if (this.addr.line.y + 1 >= this.stmts.length) {
@@ -35,12 +35,12 @@ export class Environment<T extends string> {
     this.addr = addr
   }
 
-  get currentStmt(): Statement<T> {
+  get currentStmt(): Statement {
     const line = this.stmts[this.addr.line.y]
-    if (Array.isArray(line) && line.length > 0 && typeof line[0] === "number") {
+    if (line) {
       return line
     }
-    return [Number.MAX_SAFE_INTEGER, ""]
+    return { indent: Number.MAX_SAFE_INTEGER, keyword: "" }
   }
 
   get currentTag(): TagBlock {

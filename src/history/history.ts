@@ -1,6 +1,6 @@
 import { Interpreter } from "../interpreter"
 import { Keyword } from "./keyword"
-import { Index, type Statement } from "./statement"
+import { Index, isAppendStmt, type Statement } from "./statement"
 import { Append } from "./action/append"
 import type { Statement as RunnerStatement } from "../runner"
 import { Move } from "./action/move"
@@ -9,10 +9,13 @@ import { Keyword as RunnerKeyword } from "../runner"
 import type { Store } from "../store/store"
 
 export class History
-  extends Interpreter<RunnerStatement[], Keyword>
+  extends Interpreter<RunnerStatement[]>
   implements HistoryList
 {
-  private readonly end: RunnerStatement = [1, RunnerKeyword.End]
+  private readonly end: RunnerStatement = {
+    indent: 1,
+    keyword: RunnerKeyword.End,
+  }
 
   add(stmt: RunnerStatement): void {
     this.store.addToList(stmt)
@@ -34,7 +37,10 @@ export class History
       stmts,
       {
         [Keyword.Append]: (stmt) => {
-          return new Append(this, stmt[Index.FirstArg], stmt[Index.SecondArg])
+          if (isAppendStmt(stmt)) {
+            return new Append(this, stmt.actionKeyword, stmt.args)
+          }
+          throw new Error("Invalid append statement")
         },
         [Keyword.Move]: (stmt) => {
           return new Move(

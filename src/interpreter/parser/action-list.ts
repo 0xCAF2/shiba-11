@@ -21,15 +21,15 @@ import {
   type Action,
 } from "../action"
 import type { ExpressionParser } from "./expression-parser"
-import { Index, type Statement } from "../statement"
+import { type Statement } from "../statement"
 
-export type ActionTable<T extends string> = Record<
-  T,
-  (stmt: Statement<T>, exprParser: ExpressionParser) => Action
+export type ActionTable = Record<
+  string,
+  (stmt: Statement, exprParser: ExpressionParser) => Action
 >
 
 export class ActionList {
-  private readonly _table: ActionTable<Keyword>
+  private readonly _table: ActionTable
 
   constructor() {
     this._table = {
@@ -84,7 +84,7 @@ export class ActionList {
     }
   }
 
-  get table(): ActionTable<Keyword> {
+  get table(): ActionTable {
     return this._table
   }
 }

@@ -1,10 +1,15 @@
-import type { Keyword } from "./keyword"
+import type { Statement as InterpreterStatement } from "../interpreter/statement"
+import type { Keyword } from "../../runner"
 
-export type Statement = [number, Keyword, ...any]
-
-export enum Index {
-  Indent = 0,
-  HistoryKeyword = 1,
-  FirstArg = 2,
-  SecondArg = 3,
+export type AppendStmt = {
+  indent: 1
+  keyword: "append"
+  actionKeyword: Keyword
+  args: any[]
 }
+
+export function isAppendStmt(stmt: InterpreterStatement): stmt is AppendStmt {
+  return stmt.keyword === "append"
+}
+
+export type Statement = AppendStmt

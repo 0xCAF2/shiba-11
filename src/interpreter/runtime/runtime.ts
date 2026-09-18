@@ -8,7 +8,7 @@ import {
   type Value,
 } from "../expression"
 import type { StatementParser } from "../parser"
-import { Index, type Statement } from "../statement"
+import { type Statement } from "../statement"
 import { Address } from "./address"
 import { Block, BlockExitReason } from "./block"
 import { Environment } from "./environment"
@@ -17,10 +17,10 @@ export interface UIEventDispatcher {
   requestUpdate(): void
 }
 
-export class Runtime<T extends string> {
+export class Runtime {
   constructor(
-    public readonly envr: Environment<T>,
-    public readonly parser: StatementParser<T>,
+    public readonly envr: Environment,
+    public readonly parser: StatementParser,
   ) {}
 
   evaluate(expr: Expression): Value {
@@ -45,7 +45,7 @@ export class Runtime<T extends string> {
     }
   }
 
-  parse(stmt: Statement<T>): Action | null {
+  parse(stmt: Statement): Action | null {
     return this.parser.parse(stmt)
   }
 
@@ -53,10 +53,10 @@ export class Runtime<T extends string> {
     return this.envr.hasNext()
   }
 
-  next(): Statement<T> {
+  next(): Statement {
     outer: while (true) {
       this.envr.address = this.envr.address.step()
-      const currentIndent = this.envr.currentStmt[Index.Indent]
+      const currentIndent = this.envr.currentStmt.indent
       let deltaX = this.envr.address.indent.x - currentIndent
       inner: while (deltaX > 0) {
         const reason = this.popBlock()

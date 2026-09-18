@@ -6,18 +6,14 @@ import { type ExpressionTable } from "./parser/expression-list"
 import { StatementParser } from "./parser"
 import type { Value } from "./expression"
 
-export abstract class Interpreter<T, U extends string> {
-  public readonly runtime: Runtime<U>
+export abstract class Interpreter<T> {
+  public readonly runtime: Runtime
 
-  constructor(
-    main: Code<U>,
-    actions: ActionTable<U>,
-    expressions: ExpressionTable,
-  ) {
+  constructor(main: Code, actions: ActionTable, expressions: ExpressionTable) {
     const parser = new StatementParser(actions, expressions)
 
     const stmts =
-      typeof main === "string" ? (JSON.parse(main) as Statement<U>[]) : main
+      typeof main === "string" ? (JSON.parse(main) as Statement[]) : main
     const envr = new Environment(stmts)
     this.runtime = new Runtime(envr, parser)
   }
@@ -26,7 +22,7 @@ export abstract class Interpreter<T, U extends string> {
     this.runtime.envr.externalFunctions.set(name, func)
   }
 
-  run(stmt?: Statement<U>) {
+  run(stmt?: Statement) {
     if (stmt) {
       this.runtime.envr.stmts.splice(this.runtime.envr.stmts.length, 0, stmt)
     }

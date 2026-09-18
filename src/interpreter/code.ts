@@ -1,3 +1,3 @@
 import type { Statement } from "./statement"
 
-export type Code<Keyword extends string> = string | Statement<Keyword>[]
+export type Code = string | Statement[]

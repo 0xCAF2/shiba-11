@@ -1,12 +1,11 @@
 import { Interpreter } from "../interpreter"
 import type { Any } from "../interpreter/parser/json-element"
-import { Index } from "../interpreter/statement"
 import { Print } from "./action/print"
 import { End } from "./action/end"
 import { Comment } from "./action/comment"
 import { Assign } from "./action/assign"
 import type { Output } from "./output"
-import type { Statement } from "./statement"
+import { isPrintStmt, type Statement } from "./statement"
 import { Keyword } from "./keyword"
 import {
   BinOpKeyword,
@@ -25,7 +24,7 @@ const binOpParser = (elem: Elem.Any, parser: ExpressionParser): BinOp => {
   return new BinOp(op, left, right)
 }
 
-export class Runner extends Interpreter<string, Keyword> implements Output {
+export class Runner extends Interpreter<string> implements Output {
   private output: string = ""
 
   write(output: string): void {
@@ -41,10 +40,13 @@ export class Runner extends Interpreter<string, Keyword> implements Output {
       main,
       {
         [Keyword.Print]: (stmt, exprParser) => {
-          return new Print(
-            this,
-            stmt[Index.FirstArg].map((arg: Any) => exprParser.readExpr(arg)),
-          )
+          if (isPrintStmt(stmt)) {
+            return new Print(
+              this,
+              stmt.args.map((arg: Any) => exprParser.readExpr(arg)),
+            )
+          }
+          throw new Error("Invalid print statement")
         },
         [Keyword.Comment]: () => {
           return new Comment()

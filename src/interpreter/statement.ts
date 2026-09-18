@@ -1,8 +1,4 @@
-export type Statement<Keyword extends string> = [number, Keyword, ...any[]]
-
-export enum Index {
-  Indent = 0,
-  Keyword = 1,
-  FirstArg = 2,
-  SecondArg = 3,
+export interface Statement {
+  indent: number
+  keyword: string
 }
