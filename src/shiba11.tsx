@@ -1,4 +1,4 @@
-import { Interpreter, type Renderer } from "../interpreter"
+import { Interpreter, type Renderer } from "./interpreter"
 import { defineFunctions } from "./function"
 import { Subscriber } from "./subscriber"
 
