@@ -1,0 +1,16 @@
+/* page/index.css */
+body {
+  color: #fff;
+  background-color: #333;
+  font-family: Arial, sans-serif;
+}
+
+footer {
+  text-align: center;
+  color: #ccc;
+  margin-top: 20px;
+}
+
+a {
+  color: #00caf2;
+}

@@ -1,6 +1,12 @@
 {
   "name": "shiba-11",
+  "private": true,
+  "type": "module",
   "module": "index.ts",
+  "scripts": {
+    "clean": "rm -rf docs",
+    "build": "bun clean && bun run build.ts"
+  },
   "dependencies": {
     "@blockly/theme-dark": "^13.3.0",
     "@preact/signals": "^2.11.2",
@@ -12,7 +18,5 @@
     "oxfmt": "^0.63.0",
     "oxlint": "^1.85.0",
     "typescript": "^7.0.2"
-  },
-  "private": true,
-  "type": "module"
+  }
 }
