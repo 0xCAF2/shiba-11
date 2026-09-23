@@ -1,7 +1,7 @@
 import * as Blockly from "blockly"
 import DarkTheme from "@blockly/theme-dark"
-import { toolbox, shiba11Generator } from "../block-editor"
-import { codeSignal } from "./code"
+import { toolbox, shiba11Generator } from "../../../src/block-editor"
+import { codeSignal } from "../../../src/code"
 import { effect } from "@preact/signals"
 
 const workspace = Blockly.inject("blockly-div", {
@@ -79,7 +79,7 @@ Blockly.serialization.workspaces.load(
                               type: "style_value",
                               id: "3F+pM}onL}axlGG`e:(9",
                               fields: {
-                                VALUE: "blue",
+                                VALUE: "gray",
                               },
                             },
                             block: {
@@ -537,7 +537,7 @@ Blockly.serialization.workspaces.load(
                                                   type: "style_value",
                                                   id: "FE!s0O67{^A-tnpH=^BC",
                                                   fields: {
-                                                    VALUE: "blue",
+                                                    VALUE: "gray",
                                                   },
                                                 },
                                               },
@@ -699,7 +699,6 @@ workspace.registerButtonCallback("createVariableButtonPressed", () => {
 workspace.addChangeListener(() => {
   const code = shiba11Generator.workspaceToCode(workspace)
   codeSignal.value = code
-  document.getElementById("qr-code-div")!.innerHTML = ""
 })
 
 effect(() => {

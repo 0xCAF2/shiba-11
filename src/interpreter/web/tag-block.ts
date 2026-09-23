@@ -18,22 +18,4 @@ export class TagBlock {
     public readonly willEnter: () => boolean,
     public readonly didExit: () => BlockExitReason,
   ) {}
-
-  createVNode(): ComponentChildren {
-    return h(
-      this.tag,
-      {
-        ...this.attributes.all,
-        style: this.styles.all,
-        ...this.eventHandlers.all,
-      },
-      ...this.children.map((child) =>
-        typeof child === "string"
-          ? child
-          : typeof child === "function"
-            ? child()
-            : child.createVNode(),
-      ),
-    )
-  }
 }

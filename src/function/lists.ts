@@ -1,6 +1,6 @@
 import type { Interpreter } from "../../interpreter"
 
-export function defineFunctionsForLists(ip: Interpreter) {
+export function defineFunctionsForLists<T, U>(ip: Interpreter<T, U>) {
   ip.defineExternalFunction("listsRepeat", (...args) => {
     const [value, times] = args
     if (typeof times !== "number" || times < 0) {

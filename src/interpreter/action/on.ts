@@ -1,7 +1,8 @@
 import type { Expression } from "../expression"
 import { Block, BlockExitReason, BlockType, type Runtime } from "../runtime"
-import { requestUpdate } from "../web/request-update"
 import type { Action } from "./action"
+
+const eventValueName = "eValue"
 
 export class On implements Action {
   constructor(
@@ -25,14 +26,14 @@ export class On implements Action {
         addr,
         () => true,
         () => {
-          requestUpdate()
+          r.dispatcher?.requestUpdate()
           return BlockExitReason.EndHandler
         },
       )
       r.pushBlock(block)
       const previousTag = r.envr.currentTag
       r.envr.currentTag = tagBlock
-      r.envr.context.assign("eValue", evaluatedEventValue)
+      r.envr.context.assign(eventValueName, evaluatedEventValue)
       while (r.hasNext()) {
         const stmt = r.next()
         const action = r.parse(stmt)

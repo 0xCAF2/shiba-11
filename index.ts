@@ -1,9 +1,10 @@
 import { serve } from "bun"
-import index from "./src/page/index.html"
+import editor from "./page/en/editor/index.html"
 
 const server = serve({
   routes: {
-    "/": index,
+    "/en/editor/": editor,
+    "/*": { dir: "./page" },
   },
   development: {
     hmr: true,

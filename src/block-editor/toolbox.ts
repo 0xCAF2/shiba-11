@@ -1,4 +1,6 @@
-export const toolbox = {
+import * as Blockly from "blockly"
+
+export const toolbox: Blockly.utils.toolbox.ToolboxDefinition = {
   kind: "categoryToolbox",
   contents: [
     {
@@ -19,7 +21,6 @@ export const toolbox = {
           inputs: {
             VALUE: {
               shadow: {
-                kind: "block",
                 type: "math_number",
               },
             },
@@ -32,7 +33,7 @@ export const toolbox = {
         {
           kind: "button",
           text: "Create variable",
-          callbackKey: "createVariableButtonPressed",
+          callbackkey: "createVariableButtonPressed",
         },
       ],
     },
@@ -68,7 +69,6 @@ export const toolbox = {
           inputs: {
             TIMES: {
               shadow: {
-                kind: "block",
                 type: "math_number",
               },
             },
@@ -94,13 +94,11 @@ export const toolbox = {
           inputs: {
             A: {
               shadow: {
-                kind: "block",
                 type: "variables_get",
               },
             },
             B: {
               shadow: {
-                kind: "block",
                 type: "math_number",
                 fields: {
                   NUM: "1",
@@ -220,7 +218,6 @@ export const toolbox = {
           inputs: {
             CONTENT: {
               shadow: {
-                kind: "block",
                 type: "text_content",
                 fields: {
                   TEXT: "Hello, World.",
@@ -235,7 +232,6 @@ export const toolbox = {
           inputs: {
             CONTENT: {
               shadow: {
-                kind: "block",
                 type: "variables_get",
               },
             },

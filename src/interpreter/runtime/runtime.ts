@@ -13,10 +13,15 @@ import { Address } from "./address"
 import { Block, BlockExitReason } from "./block"
 import { Environment } from "./environment"
 
+export interface UIEventDispatcher {
+  requestUpdate(): void
+}
+
 export class Runtime {
   constructor(
     public readonly envr: Environment,
     public readonly parser: StatementParser,
+    public readonly dispatcher?: UIEventDispatcher,
   ) {}
 
   evaluate(expr: Expression): Value {

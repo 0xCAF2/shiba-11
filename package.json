@@ -1,17 +1,17 @@
 {
   "name": "shiba-11",
   "module": "index.ts",
-  "devDependencies": {
-    "@types/bun": "latest"
+  "dependencies": {
+    "@blockly/theme-dark": "^13.3.0",
+    "@preact/signals": "^2.11.2",
+    "blockly": "^13.3.0",
+    "preact": "^10.29.8"
   },
-  "peerDependencies": {
-    "@blockly/theme-dark": "^8.0.4",
-    "@preact/signals": "^2.9.0",
-    "blockly": "^12.5.1",
-    "lz-string": "^1.5.0",
-    "preact": "^10.29.1",
-    "qr-scanner": "^1.4.2",
-    "typescript": "^6"
+  "devDependencies": {
+    "@types/bun": "^1.4.2",
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.85.0",
+    "typescript": "^7.0.2"
   },
   "private": true,
   "type": "module"
