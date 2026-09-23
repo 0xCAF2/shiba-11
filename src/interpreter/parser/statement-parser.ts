@@ -1,20 +1,20 @@
 import type { Action } from "../action"
-import { Index, type Statement } from "../statement"
-import type { ActionList, ActionTable } from "./action-list"
+import { type Statement } from "../statement"
+import type { ActionTable } from "./action-list"
 import { ExpressionParser } from "./expression-parser"
-import type { ExpressionList } from "./expression-list"
+import type { ExpressionTable } from "./expression-list"
 
 export class StatementParser {
   private readonly exprParser: ExpressionParser
   private readonly table: ActionTable
 
-  constructor(actionList: ActionList, exprList: ExpressionList) {
-    this.table = actionList.table
-    this.exprParser = new ExpressionParser(exprList)
+  constructor(actionTable: ActionTable, exprTable: ExpressionTable) {
+    this.table = actionTable
+    this.exprParser = new ExpressionParser(exprTable)
   }
 
   parse(stmt: Statement): Action | null {
-    const keyword = stmt[Index.Keyword]
+    const keyword = stmt.keyword
     return this.table[keyword]?.(stmt, this.exprParser) ?? null
   }
 }

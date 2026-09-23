@@ -19,13 +19,12 @@ import {
   DynamicText,
   On,
   type Action,
-  type Keywords,
 } from "../action"
 import type { ExpressionParser } from "./expression-parser"
-import { Index, type Statement } from "../statement"
+import { type Statement } from "../statement"
 
 export type ActionTable = Record<
-  Keywords,
+  string,
   (stmt: Statement, exprParser: ExpressionParser) => Action
 >
 

@@ -1,26 +1,39 @@
-import { BinOp, Keyword, type Expression, type Reference } from "../expression"
+import {
+  BinOp,
+  Call,
+  Keyword,
+  type Expression,
+  type Reference,
+} from "../expression"
 import type { Any, Ref } from "./json-element"
-import { ExpressionList, type ExpressionTable } from "./expression-list"
+import { type ExpressionTable } from "./expression-list"
+import type { Keywords } from "../expression/keyword"
 
 export class ExpressionParser {
   private readonly table: ExpressionTable
 
-  constructor(expressionList: ExpressionList) {
-    this.table = expressionList.table
+  constructor(expressionTable: ExpressionTable) {
+    this.table = expressionTable
   }
 
   readExpr(elem: Any): Expression {
+    if (Array.isArray(elem)) {
+      return this.readElem(elem)
+    }
+    return elem
+  }
+
+  readElem(elem: Any): Expression {
     if (Array.isArray(elem) && elem.length > 0) {
       if (Array.isArray(elem[0])) {
         return elem[0].map((e) => this.readExpr(e))
       }
       if (typeof elem[0] === "string") {
-        const keyword = elem[0] as Keyword
+        const keyword = elem[0] as Keywords
         return this.table[keyword]?.(elem, this) ?? null
       }
-      throw new Error(`Invalid expression: ${elem}`)
     }
-    return elem
+    throw new Error(`Invalid expression: ${elem}`)
   }
 
   readRef(elem: Ref): Reference {
@@ -32,6 +45,7 @@ export class ExpressionParser {
       typeof ref !== "string" &&
       typeof ref !== "boolean" &&
       !(ref instanceof BinOp) &&
+      !(ref instanceof Call) &&
       !Array.isArray(ref)
     ) {
       return ref

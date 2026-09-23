@@ -1,5 +1,5 @@
 export type { Action } from "./action"
-export { Keyword, type Keywords } from "./keyword"
+export { Keyword, type Keywords } from "../../runner/keyword"
 export { Comment } from "./comment"
 export { Assign } from "./assign"
 export { Conditional, Ifs, Else } from "./conditional"
