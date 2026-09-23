@@ -699,7 +699,6 @@ workspace.registerButtonCallback("createVariableButtonPressed", () => {
 workspace.addChangeListener(() => {
   const code = shiba11Generator.workspaceToCode(workspace)
   codeSignal.value = code
-  document.getElementById("qr-code-div")!.innerHTML = ""
 })
 
 effect(() => {

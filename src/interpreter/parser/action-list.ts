@@ -13,7 +13,6 @@ import {
   Keyword,
   P,
   Repeat,
-  While,
   Style,
   StaticText,
   DynamicText,
@@ -49,10 +48,6 @@ export class ActionList {
       [Keyword.Repeat]: (stmt, exprParser) => {
         const times = exprParser.readExpr(stmt[Index.FirstArg])
         return new Repeat(times)
-      },
-      [Keyword.While]: (stmt, exprParser) => {
-        const condition = exprParser.readExpr(stmt[Index.FirstArg])
-        return new While(condition)
       },
       [Keyword.Break]: () => new Break(),
       [Keyword.Continue]: () => new Continue(),
