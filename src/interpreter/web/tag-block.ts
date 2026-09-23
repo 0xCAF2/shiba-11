@@ -1,3 +1,4 @@
+import { h, type ComponentChildren } from "preact"
 import { Address, BlockExitReason, BlockType } from "../runtime"
 import { Styles } from "./styles"
 import { Attributes } from "./attributes"

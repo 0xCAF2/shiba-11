@@ -11,21 +11,21 @@ export type Any =
   | string
   | boolean
   | null
-  | Any[]
+  | [...Any[]]
 export type Ref = Variable | Subscript
 export type BinOp = [BinOpKeyword, Any, Any]
 
-export const exprIndex = {
-  keyword: 0,
+export enum Index {
+  Keyword = 0,
 
-  variableName: 1,
+  VariableName = 1,
 
-  subscriptTarget: 1,
-  subscriptIndex: 2,
+  SubscriptTarget = 1,
+  SubscriptIndex = 2,
 
-  callee: 1,
-  callArgs: 2,
+  Callee = 1,
+  CallArgs = 2,
 
-  binOpLeft: 1,
-  binOpRight: 2,
+  BinOpLeft = 1,
+  BinOpRight = 2,
 }

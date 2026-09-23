@@ -1,4 +1,4 @@
-import type { Value } from "../expression"
+import { Keyword } from "../action"
 import type { Statement } from "../statement"
 import type { TagBlock } from "../web"
 import { Address } from "./address"
@@ -13,10 +13,6 @@ export class Environment {
   public readonly blocks: Block[] = []
   public readonly context = new Scope()
   private parentTag: TagBlock | null = null
-  public readonly externalFunctions = new Map<
-    string,
-    (...args: Value[]) => Value
-  >()
 
   constructor(public readonly stmts: Statement[]) {}
 
@@ -37,10 +33,10 @@ export class Environment {
 
   get currentStmt(): Statement {
     const line = this.stmts[this.addr.line.y]
-    if (line) {
+    if (Array.isArray(line) && line.length > 0 && typeof line[0] === "number") {
       return line
     }
-    return { indent: Number.MAX_SAFE_INTEGER, keyword: "" }
+    return [Number.MAX_SAFE_INTEGER, Keyword.Comment]
   }
 
   get currentTag(): TagBlock {
