@@ -1,7 +1,7 @@
 import * as Blockly from "blockly"
 import DarkTheme from "@blockly/theme-dark"
-import { toolbox, shiba11Generator } from "../src/block-editor"
-import { codeSignal } from "../src/code"
+import { toolbox, shiba11Generator } from "../../../src/block-editor"
+import { codeSignal } from "../../../src/code"
 import { effect } from "@preact/signals"
 
 const workspace = Blockly.inject("blockly-div", {
