@@ -17,11 +17,9 @@ export type ExpressionTable = Record<
 >
 
 const binOpParser = (elem: Elem.Any, parser: ExpressionParser): BinOp => {
-  const op = (elem as Elem.BinOp)[Elem.exprIndex.keyword] as BinOpKeyword
-  const left = parser.readExpr((elem as Elem.BinOp)[Elem.exprIndex.binOpLeft]!)
-  const right = parser.readExpr(
-    (elem as Elem.BinOp)[Elem.exprIndex.binOpRight]!,
-  )
+  const op = (elem as Elem.BinOp)[Elem.Index.Keyword]
+  const left = parser.readExpr((elem as Elem.BinOp)[Elem.Index.BinOpLeft])
+  const right = parser.readExpr((elem as Elem.BinOp)[Elem.Index.BinOpRight])
   return new BinOp(op, left, right)
 }
 
@@ -31,25 +29,19 @@ export class ExpressionList {
   constructor() {
     this._table = {
       [Keyword.Variable]: (elem) => {
-        const name = (elem as Elem.Variable)[Elem.exprIndex.variableName]!
+        const name = (elem as Elem.Variable)[Elem.Index.VariableName]
         return new Variable(name)
       },
       [Keyword.Subscript]: (elem, parser) => {
-        const targetElem = (elem as Elem.Subscript)[
-          Elem.exprIndex.subscriptTarget
-        ]!
+        const targetElem = (elem as Elem.Subscript)[Elem.Index.SubscriptTarget]
         const target = parser.readExpr(targetElem)
-        const indexElem = (elem as Elem.Subscript)[
-          Elem.exprIndex.subscriptIndex
-        ]!
+        const indexElem = (elem as Elem.Subscript)[Elem.Index.SubscriptIndex]
         const index = parser.readExpr(indexElem)
         return new Subscript(target, index)
       },
       [Keyword.Call]: (elem, parser) => {
-        const callee = (elem as Elem.Call)[Elem.exprIndex.callee] as string
-        const argsElem = (elem as Elem.Call)[
-          Elem.exprIndex.callArgs
-        ] as Elem.Any[]
+        const callee = (elem as Elem.Call)[Elem.Index.Callee]
+        const argsElem = (elem as Elem.Call)[Elem.Index.CallArgs]
         const args = argsElem.map((arg) => parser.readExpr(arg))
         return new Call(callee, args)
       },

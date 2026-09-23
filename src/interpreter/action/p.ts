@@ -1,4 +1,4 @@
-import { Keyword } from "../../runner/keyword"
+import { Keyword } from "./keyword"
 import { Tag } from "./tag"
 
 export class P extends Tag {

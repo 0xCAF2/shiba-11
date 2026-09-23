@@ -1,4 +1,4 @@
-import { type Expression } from "../expression"
+import { Variable, type Expression } from "../expression"
 import type { Reference } from "../expression/reference"
 import type { Runtime } from "../runtime"
 import type { Action } from "./action"
