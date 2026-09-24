@@ -1,4 +1,4 @@
-import type { Getter, Renderer, TagBlock } from "../../interpreter"
+import type { Getter, Renderer, TagBlock } from "../interpreter"
 import { h, type ComponentChildren } from "preact"
 import { signal } from "@preact/signals"
 
