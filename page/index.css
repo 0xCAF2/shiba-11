@@ -13,3 +13,13 @@ footer {
 a {
   color: #00caf2;
 }
+
+code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: large;
+  font-weight: bold;
+}
+
+li {
+  margin-bottom: 24px;
+}
