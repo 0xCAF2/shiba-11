@@ -4,6 +4,10 @@ body {
   color: #fff;
 }
 
+h2 {
+  margin-top: 64px;
+}
+
 footer {
   text-align: center;
   margin-top: 20px;
@@ -28,4 +32,8 @@ code {
 
 li {
   margin-bottom: 24px;
+}
+
+strong {
+  font-size: larger;
 }
