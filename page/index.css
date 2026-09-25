@@ -4,6 +4,10 @@ body {
   color: #fff;
 }
 
+h2 {
+  margin-top: 64px;
+}
+
 footer {
   text-align: center;
   margin-top: 20px;
@@ -14,12 +18,22 @@ a {
   color: #00caf2;
 }
 
+a:visited {
+  color: lightblue;
+}
+
 code {
   font-family: "Courier New", Courier, monospace;
   font-size: large;
   font-weight: bold;
+  background-color: black;
+  color: orange;
 }
 
 li {
   margin-bottom: 24px;
+}
+
+strong {
+  font-size: larger;
 }
