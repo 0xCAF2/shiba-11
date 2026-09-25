@@ -3,6 +3,8 @@ import { build } from "bun"
 await build({
   entrypoints: [
     "page/index.html",
+    "page/en/memory.html",
+    "page/ja/memory.html",
     "page/en/memorize.html",
     "page/ja/memorize.html",
     "page/en/four-elements.html",
@@ -11,4 +13,5 @@ await build({
     "page/ja/editor/index.html",
   ],
   outdir: "docs",
+  root: "page",
 })
