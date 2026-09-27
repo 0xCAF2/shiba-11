@@ -3,6 +3,8 @@ import { build } from "bun"
 await build({
   entrypoints: [
     "page/index.html",
+    "page/en/conditional.html",
+    "page/ja/conditional.html",
     "page/ja/memory.html",
     "page/en/memorize.html",
     "page/ja/memorize.html",
