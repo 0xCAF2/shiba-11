@@ -1,6 +1,7 @@
 import { serve } from "bun"
 import enEditor from "./page/en/editor/index.html"
 import jaEditor from "./page/ja/editor/index.html"
+import conditional from "./page/ja/conditional.html"
 import memory from "./page/ja/memory.html"
 import fourElements from "./page/ja/four-elements.html"
 import memorize from "./page/ja/memorize.html"
@@ -10,6 +11,7 @@ const server = serve({
   routes: {
     "/en/editor/": enEditor,
     "/ja/editor/": jaEditor,
+    "/ja/conditional.html": conditional,
     "/ja/memory.html": memory,
     "/ja/memorize.html": memorize,
     "/ja/four-elements.html": fourElements,
