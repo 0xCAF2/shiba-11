@@ -1,6 +1,20 @@
 import { defineConfig } from "vite-plus"
 
 export default defineConfig({
+  root: "page",
+  cleanDir: true,
+  input: [
+    "index.html",
+    "ja/conditional.html",
+    "en/conditional.html",
+    "ja/memory.html",
+    "ja/memorize.html",
+    "en/memorize.html",
+    "ja/four-elements.html",
+    "en/four-elements.html",
+    "ja/editor/index.html",
+    "en/editor/index.html",
+  ],
   staged: {
     "*": "vp check --fix",
   },
