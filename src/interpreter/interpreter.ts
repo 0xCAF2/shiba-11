@@ -32,7 +32,7 @@ export class Interpreter<T, U> {
     return this.renderer.subscribeToUiChanges()
   }
 
-  async run() {
+  run() {
     const r = this.runtime
     while (r.hasNext()) {
       const stmt = r.next()
