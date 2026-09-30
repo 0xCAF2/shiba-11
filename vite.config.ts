@@ -5,6 +5,8 @@ export default defineConfig({
   cleanDir: true,
   input: [
     "index.html",
+    "ja/loop.html",
+    "en/loop.html",
     "ja/conditional.html",
     "en/conditional.html",
     "ja/memory.html",
