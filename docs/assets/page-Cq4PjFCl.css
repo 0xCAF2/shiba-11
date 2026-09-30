@@ -1,40 +1,35 @@
-/* page/index.css */
 body {
   color: #fff;
   background-color: #333;
   font-family: Arial, sans-serif;
 }
-
 h2 {
   margin-top: 64px;
 }
-
 footer {
   text-align: center;
   color: #ccc;
   margin-top: 20px;
 }
-
 a {
   color: #00caf2;
 }
-
 a:visited {
   color: #add8e6;
 }
-
 code {
   color: orange;
   background-color: #000;
-  font-family: Courier New, Courier, monospace;
+  font-family:
+    Courier New,
+    Courier,
+    monospace;
   font-size: large;
-  font-weight: bold;
+  font-weight: 700;
 }
-
 li {
   margin-bottom: 24px;
 }
-
 strong {
   font-size: larger;
 }

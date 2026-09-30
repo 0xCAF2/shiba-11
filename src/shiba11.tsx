@@ -11,9 +11,8 @@ export function Shiba11<T, U>({
 }) {
   const ip = new Interpreter(code, renderer)
   defineFunctions(ip)
-  ip.run().then(() => {
-    renderer.completeRun()
-  })
+  ip.run()
+  renderer.completeRun()
 
   return <Subscriber interpreter={ip} />
 }

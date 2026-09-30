@@ -4,9 +4,8 @@
   "type": "module",
   "module": "index.ts",
   "scripts": {
-    "dev": "bun run --hot serve.ts",
-    "clean": "rm -rf docs",
-    "build": "bun clean && bun run build.ts &&git checkout ./docs/CNAME",
+    "test": "vp test -r tests",
+    "build": "vp build && rm -rf docs && mv page/dist docs && git checkout ./docs/CNAME",
     "prepare": "vp config"
   },
   "dependencies": {
