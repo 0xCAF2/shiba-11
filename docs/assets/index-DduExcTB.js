@@ -17,7 +17,7 @@ import {
   t as d,
   u as f,
   v as p,
-} from "./preact-BZ5Uw8Sy.js"
+} from "./preact-DLNNbSfe.js"
 var {
     blocks: ie,
     lists: ae,

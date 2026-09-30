@@ -39446,7 +39446,7 @@ var Pc = dc(
     subscribeToUiChanges() {
       return this.renderer.subscribeToUiChanges()
     }
-    async run() {
+    run() {
       let e = this.runtime
       for (; e.hasNext();) {
         let t = e.next()
@@ -39534,13 +39534,7 @@ function Kc({ interpreter: e }) {
 }
 function qc({ code: e, renderer: t }) {
   let n = new Vc(e, t)
-  return (
-    Uc(n),
-    n.run().then(() => {
-      t.completeRun()
-    }),
-    Gc(Kc, { interpreter: n })
-  )
+  return (Uc(n), n.run(), t.completeRun(), Gc(Kc, { interpreter: n }))
 }
 var Jc = dc(0),
   Yc = dc(!1),
