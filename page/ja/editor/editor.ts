@@ -1,7 +1,8 @@
 import * as Blockly from "blockly"
 import "blockly/blocks"
 import DarkTheme from "@blockly/theme-dark"
-import { toolbox, shiba11Generator } from "../../../src/block-editor"
+import { shiba11Generator } from "../../../src/block-editor"
+import { toolbox } from "../../../src/block-editor/toolbox-ja"
 import { codeSignal } from "../../../src/code"
 import { effect } from "@preact/signals"
 import * as Ja from "blockly/msg/ja"
@@ -140,7 +141,7 @@ Blockly.serialization.workspaces.load(
                                   fields: {
                                     VAR: {
                                       id: "03d61nXw|G^ye/;Vh4xG",
-                                      name: "counter",
+                                      name: "カウント",
                                       type: "",
                                     },
                                   },
@@ -194,7 +195,7 @@ Blockly.serialization.workspaces.load(
                                                     fields: {
                                                       VAR: {
                                                         id: "XmOtqtHOprk=S5s$9F,~",
-                                                        name: "item",
+                                                        name: "数字",
                                                         type: "",
                                                       },
                                                     },
@@ -261,7 +262,7 @@ Blockly.serialization.workspaces.load(
                           fields: {
                             VAR: {
                               id: "LPg*+PWuPfg~~!okiy$!",
-                              name: "item",
+                              name: "eValue",
                               type: "",
                             },
                           },
@@ -688,7 +689,7 @@ Blockly.serialization.workspaces.load(
         id: "LPg*+PWuPfg~~!okiy$!",
       },
       {
-        name: "item",
+        name: "数字",
         id: "XmOtqtHOprk=S5s$9F,~",
       },
     ],
