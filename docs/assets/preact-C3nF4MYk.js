@@ -76,12 +76,12 @@ var u = o((e, t) => {
       var e = {},
         t = function (e, t) {
           ;(n(),
-            (ko = setTimeout(function () {
+            (Oo = setTimeout(function () {
               t && t.handleRightClick(e)
             }, 750)))
         },
         n = function () {
-          ko &&= (clearTimeout(ko), 0)
+          Oo &&= (clearTimeout(Oo), 0)
         },
         r = function (e) {
           return (
@@ -93,16 +93,16 @@ var u = o((e, t) => {
         },
         a = function (e) {
           var t = i(e)
-          return Do ? Do === t : e.type === `pointerdown` && ((Do = t), !0)
+          return Eo ? Eo === t : e.type === `pointerdown` && ((Eo = t), !0)
         },
         o = function (e, t, n, i, a, o) {
           function s(e) {
             ;(a || r(e)) && (n ? i.call(n, e) : i(e))
           }
           var c = []
-          if (t in Oo)
-            for (let n = 0; n < Oo[t].length; n++) {
-              let r = Oo[t][n]
+          if (t in Do)
+            for (let n = 0; n < Do[t].length; n++) {
+              let r = Do[t][n]
               ;(e.addEventListener(r, s, Object.assign({}, { capture: !1 }, o)),
                 c.push([e, r, s]))
             }
@@ -116,9 +116,9 @@ var u = o((e, t) => {
             n ? r.call(n, e) : r(e)
           }
           var o = []
-          if (t in Oo)
-            for (let n = 0; n < Oo[t].length; n++) {
-              let r = Oo[t][n]
+          if (t in Do)
+            for (let n = 0; n < Do[t].length; n++) {
+              let r = Do[t][n]
               ;(e.addEventListener(r, a, Object.assign({}, { capture: !1 }, i)),
                 o.push([e, r, a]))
             }
@@ -157,7 +157,7 @@ var u = o((e, t) => {
           return !1
         },
         u = function (e) {
-          return e.ctrlKey && Go ? !0 : e.button === 2
+          return e.ctrlKey && Wo ? !0 : e.button === 2
         },
         d = function (e, t, n) {
           var r = t.createSVGPoint()
@@ -182,16 +182,16 @@ var u = o((e, t) => {
           return ((t = e.indexOf(t)), t !== -1 && (e.splice(t, 1), !0))
         },
         m = function (e) {
-          ns.push(e)
+          ts.push(e)
         },
         ee = function (e, t, n) {
           t &&
             typeof window < `u` &&
             ((e = e.getRootNode()),
-            ts.has(e) ||
-              (ts.add(e),
+            es.has(e) ||
+              (es.add(e),
               (n = n.replace(/[\\/]$/, ``)),
-              (n = [rs, ...ns]
+              (n = [ns, ...ts]
                 .join(`
 `)
                 .replace(/<<<PATH>>>/g, n)),
@@ -220,49 +220,49 @@ var u = o((e, t) => {
           return (e = e.getAttribute(`aria-` + t)) ? e : null
         },
         ie = function (e) {
-          if (!_s || !document.contains(_s)) {
+          if (!gs || !document.contains(gs)) {
             var t = document.createElement(`div`)
             ;((t.textContent = ``),
               (t.id = `blocklyAriaAnnounce`),
               v(t, `hiddenForAria`),
-              g(t, A.LIVE, cs.POLITE),
-              h(t, ps),
-              g(t, A.ATOMIC, !0),
+              g(t, j.LIVE, ss.POLITE),
+              h(t, fs),
+              g(t, j.ATOMIC, !0),
               e.appendChild(t),
-              (_s = t))
+              (gs = t))
           }
         },
         ae = function (e, t) {
-          if (!_s) throw Error(`ARIA live region not initialized.`)
-          var n = _s,
-            { assertiveness: r = cs.POLITE, role: i = ps } = t || {}
-          ;(ds.push(e),
-            (us =
-              r === cs.ASSERTIVE || us === cs.ASSERTIVE
-                ? cs.ASSERTIVE
-                : r === cs.POLITE || us === cs.POLITE
-                  ? cs.POLITE
-                  : cs.OFF),
-            clearTimeout(vs),
-            (vs = setTimeout(() => {
-              ;(n.replaceChildren(), g(n, A.LIVE, us), h(n, i))
+          if (!gs) throw Error(`ARIA live region not initialized.`)
+          var n = gs,
+            { assertiveness: r = ss.POLITE, role: i = fs } = t || {}
+          ;(us.push(e),
+            (ls =
+              r === ss.ASSERTIVE || ls === ss.ASSERTIVE
+                ? ss.ASSERTIVE
+                : r === ss.POLITE || ls === ss.POLITE
+                  ? ss.POLITE
+                  : ss.OFF),
+            clearTimeout(_s),
+            (_s = setTimeout(() => {
+              ;(n.replaceChildren(), g(n, j.LIVE, ls), h(n, i))
               var e = document.createElement(`span`)
               ;((e.textContent =
-                ds.join(`
-`) + (ys ? `\xA0` : ``)),
-                (ys = !ys),
+                us.join(`
+`) + (vs ? `\xA0` : ``)),
+                (vs = !vs),
                 n.appendChild(e),
-                (ds.length = 0),
-                (us = cs.OFF))
+                (us.length = 0),
+                (ls = ss.OFF))
             }, 10)))
         },
         _ = function (e, t, n) {
           var r = document.createElementNS(`http://www.w3.org/2000/svg`, `${e}`)
-          ;(e !== j.SVG.toString() &&
-            e !== j.G.toString() &&
-            r.tagName !== j.SVG.toString() &&
-            r.tagName !== j.G.toString()) ||
-            h(r, k.NONE)
+          ;(e !== M.SVG.toString() &&
+            e !== M.G.toString() &&
+            r.tagName !== M.SVG.toString() &&
+            r.tagName !== M.G.toString()) ||
+            h(r, A.NONE)
           for (let e in t) r.setAttribute(e, `${t[e]}`)
           return (n && n.appendChild(r), r)
         },
@@ -299,10 +299,10 @@ var u = o((e, t) => {
           ;((e.style.transform = t), (e.style[`-webkit-transform`] = t))
         },
         de = function () {
-          ;(ws++, (Cs ||= Object.create(null)))
+          ;(Cs++, (Ss ||= Object.create(null)))
         },
         fe = function () {
-          ;(ws--, ws || (Cs = null))
+          ;(Cs--, Cs || (Ss = null))
         },
         pe = function (e) {
           var t =
@@ -311,11 +311,11 @@ var u = o((e, t) => {
 ` +
               e.className.baseVal,
             n
-          return Cs && (n = Cs[t])
+          return Ss && (n = Ss[t])
             ? n
             : ((n = window.getComputedStyle(e)),
               (n = me(e, n.fontSize, n.fontWeight, n.fontFamily)),
-              Cs && (Cs[t] = n),
+              Ss && (Ss[t] = n),
               n)
         },
         me = function (e, t, n, r) {
@@ -326,18 +326,18 @@ var u = o((e, t) => {
 ` +
             e.className.baseVal
           var a
-          return Cs && (a = Cs[e])
+          return Ss && (a = Ss[e])
             ? a
-            : ((Ts ||=
+            : ((ws ||=
                 ((a = document.createElement(`canvas`)),
                 (a.className = `blocklyComputeCanvas`),
                 document.body.appendChild(a),
                 a.getContext(`2d`))),
-              i && Ts
-                ? ((Ts.font = n + ` ` + t + ` ` + r),
-                  (a = Math.ceil(Ts.measureText(i).width)))
+              i && ws
+                ? ((ws.font = n + ` ` + t + ` ` + r),
+                  (a = Math.ceil(ws.measureText(i).width)))
                 : (a = 0),
-              Cs && (Cs[e] = a),
+              Ss && (Ss[e] = a),
               a)
         },
         he = function (e, t, n, r) {
@@ -686,6 +686,7 @@ var u = o((e, t) => {
         T,
         ao,
         oo,
+        E,
         so,
         co,
         lo,
@@ -702,10 +703,9 @@ var u = o((e, t) => {
         xo,
         So,
         Co,
-        wo,
-        E
+        D
       ;((e.t = function () {
-        return ks.getFocusManager()
+        return Os.getFocusManager()
       }),
         (ge = function (e) {
           return (
@@ -750,27 +750,27 @@ var u = o((e, t) => {
 Use ` +
                 r +
                 ` instead.`),
-            js.has(e) || (js.add(e), console.warn(e)))
+            As.has(e) || (As.add(e), console.warn(e)))
         }),
         (be = function (e) {
-          return Ns[e] || null
+          return Ms[e] || null
         }),
         (xe = function () {
           var e = []
-          for (let t in Ns) e.push(Ns[t])
+          for (let t in Ms) e.push(Ms[t])
           return e
         }),
         (Se = function (e) {
-          Ns[e.id] = e
+          Ms[e.id] = e
         }),
         (Ce = function (e) {
-          delete Ns[e.id]
+          delete Ms[e.id]
         }),
         (we = function () {
-          return Ps
+          return Ns
         }),
         (Te = function (t) {
-          ;((Ps = t),
+          ;((Ns = t),
             t.rendered && e.t().setPopoverFocusRoot(t.getInjectionDiv()))
         }),
         (Ee = function () {
@@ -779,18 +779,18 @@ Use ` +
         }),
         (De = function (e) {
           var t = Ee(),
-            n = new (S(O.SELECTED))(
+            n = new (S(k.SELECTED))(
               t?.id ?? null,
               e?.id ?? null,
               e?.workspace.id ?? t?.workspace.id ?? ``,
             )
           x(n)
         }),
-        (Oe = function (e = Ps) {
-          return Fs || (e && e.rendered ? e.getInjectionDiv() : null)
+        (Oe = function (e = Ns) {
+          return Ps || (e && e.rendered ? e.getInjectionDiv() : null)
         }),
         (ke = function (e) {
-          Fs = e
+          Ps = e
         }),
         (Ae = function (e) {
           for (; e.options.parentWorkspace;) e = e.options.parentWorkspace
@@ -825,7 +825,7 @@ Use ` +
           }
         }),
         (Ne = function (e) {
-          Ls.defineBlocksWithJsonArrayInternal(e)
+          Is.defineBlocksWithJsonArrayInternal(e)
         }),
         (e.yb = function (e) {
           var t = {}
@@ -849,15 +849,15 @@ Use ` +
         (e.Ab = function (e) {
           for (let t of Object.keys(e)) {
             let n = e[t]
-            ;(t in ss &&
+            ;(t in os &&
               console.warn(
                 `Block definition "${t}" overwrites previous definition.`,
               ),
-              (ss[t] = n))
+              (os[t] = n))
           }
         }),
         (Pe = function (t) {
-          var n = Ps,
+          var n = Ns,
             r = e.t().getFocusedTree()
           for (let e of xe())
             if (r === e) {
@@ -867,11 +867,11 @@ Use ` +
           !l(t) &&
             n &&
             (!n.rendered || n.isFlyout || n.isVisible()) &&
-            M.registry.onKeyDown(n, t)
+            N.registry.onKeyDown(n, t)
         }),
         (b = function (e, t, n, r) {
           if (
-            (!(e instanceof F) && typeof e != `string`) ||
+            (!(e instanceof I) && typeof e != `string`) ||
             `${e}`.trim() === ``
           )
             throw Error(
@@ -888,15 +888,15 @@ Use ` +
             )
           var i = t.toLowerCase()
           if (!n) throw Error(`Can not register a null value`)
-          var a = zs[e],
-            o = Vs[e]
+          var a = Rs[e],
+            o = Bs[e]
           switch (
             (a ||
-              ((a = zs[e] = Object.create(null)),
-              (o = Vs[e] = Object.create(null))),
+              ((a = Rs[e] = Object.create(null)),
+              (o = Bs[e] = Object.create(null))),
             e)
           ) {
-            case String(F.FIELD):
+            case String(I.FIELD):
               if (typeof n.fromJson != `function`)
                 throw Error(`Type "` + e + `" must have a fromJson function`)
           }
@@ -908,9 +908,9 @@ Use ` +
         }),
         (Fe = function (e, t) {
           ;((e = `${e}`.toLowerCase()), (t = t.toLowerCase()))
-          var n = zs[e]
+          var n = Rs[e]
           n && n[t]
-            ? (delete zs[e][t], delete Vs[e][t])
+            ? (delete Rs[e][t], delete Bs[e][t])
             : console.warn(
                 `Unable to unregister [` +
                   t +
@@ -921,7 +921,7 @@ Use ` +
         }),
         (Ie = function (e, t, n) {
           ;((e = `${e}`.toLowerCase()), (t = t.toLowerCase()))
-          var r = zs[e]
+          var r = Rs[e]
           if (!r || !r[t]) {
             if (
               ((t = `Unable to find [` + t + `][` + e + `] in the registry.`),
@@ -938,7 +938,7 @@ Use ` +
           return (
             (e = `${e}`.toLowerCase()),
             (t = t.toLowerCase()),
-            (e = zs[e]) ? !!e[t] : !1
+            (e = Rs[e]) ? !!e[t] : !1
           )
         }),
         (Re = function (e, t, n) {
@@ -946,14 +946,14 @@ Use ` +
         }),
         (ze = function (e, t, n) {
           e = `${e}`.toLowerCase()
-          var r = zs[e]
+          var r = Rs[e]
           if (!r) {
             if (((r = `Unable to find [${e}] in the registry.`), n))
               throw Error(`${r} You must require or register a ${e} plugin.`)
             return (console.warn(r), null)
           }
           if (!t) return r
-          ;((e = Vs[e]), (n = Object.create(null)))
+          ;((e = Bs[e]), (n = Object.create(null)))
           for (let t of Object.keys(r)) n[e[t]] = r[t]
           return n
         }),
@@ -964,17 +964,17 @@ Use ` +
           )
         }),
         (Ve = function () {
-          return `blockly-` + (Ws++).toString(36)
+          return `blockly-` + (Us++).toString(36)
         }),
         (He = function () {
-          return Us.genUid()
+          return Hs.genUid()
         }),
         (x = function (e) {
-          qs.fireInternal(e)
+          Ks.fireInternal(e)
         }),
         (Ue = function () {
-          var e = Ge(Ks)
-          Ks.length = 0
+          var e = Ge(Gs)
+          Gs.length = 0
           for (let t of e) {
             if (!t.workspaceId) continue
             let e
@@ -982,20 +982,20 @@ Use ` +
           }
         }),
         (We = function (e) {
-          if (e.type === O.BLOCK_CHANGE && e.element === `mutation`) {
+          if (e.type === k.BLOCK_CHANGE && e.element === `mutation`) {
             let t
-            for (t = Ks.length; t > 0; t--) {
-              let n = Ks[t - 1]
+            for (t = Gs.length; t > 0; t--) {
+              let n = Gs[t - 1]
               if (
                 n.group !== e.group ||
                 n.workspaceId !== e.workspaceId ||
-                n.type !== O.BLOCK_MOVE ||
+                n.type !== k.BLOCK_MOVE ||
                 n.newParentId !== e.blockId
               )
                 break
             }
-            Ks.splice(t, 0, e)
-          } else Ks.push(e)
+            Gs.splice(t, 0, e)
+          } else Gs.push(e)
         }),
         (Ge = function (e) {
           var t = []
@@ -1004,8 +1004,8 @@ Use ` +
               !n.isNull() &&
                 (!e || e.workspaceId !== n.workspaceId || e.group !== n.group
                   ? t.push(n)
-                  : n.type === O.BLOCK_MOVE &&
-                      e.type === O.BLOCK_MOVE &&
+                  : n.type === k.BLOCK_MOVE &&
+                      e.type === k.BLOCK_MOVE &&
                       n.blockId === e.blockId
                     ? ((e.newParentId = n.newParentId),
                       (e.newInputName = n.newInputName),
@@ -1014,21 +1014,21 @@ Use ` +
                         (e.reason = Array.from(
                           new Set((e.reason ?? []).concat(n.reason ?? [])),
                         )))
-                    : n.type === O.BLOCK_CHANGE &&
-                        e.type === O.BLOCK_CHANGE &&
+                    : n.type === k.BLOCK_CHANGE &&
+                        e.type === k.BLOCK_CHANGE &&
                         n.blockId === e.blockId &&
                         n.element === e.element &&
                         n.name === e.name
                       ? (e.newValue = n.newValue)
-                      : n.type === O.VIEWPORT_CHANGE &&
-                          e.type === O.VIEWPORT_CHANGE
+                      : n.type === k.VIEWPORT_CHANGE &&
+                          e.type === k.VIEWPORT_CHANGE
                         ? ((e.viewTop = n.viewTop),
                           (e.viewLeft = n.viewLeft),
                           (e.scale = n.scale),
                           (e.oldScale = n.oldScale))
-                        : (n.type !== O.CLICK || e.type !== O.BUBBLE_OPEN) &&
-                          (n.type === O.SELECTED &&
-                          e.type === O.SELECTED &&
+                        : (n.type !== k.CLICK || e.type !== k.BUBBLE_OPEN) &&
+                          (n.type === k.SELECTED &&
+                          e.type === k.SELECTED &&
                           e.newElementId === void 0
                             ? ((e.newElementId = n.newElementId),
                               e.oldElementId === e.newElementId && t.pop())
@@ -1036,13 +1036,13 @@ Use ` +
           return (e = t.filter((e) => !e.isNull()))
         }),
         (Ke = function () {
-          for (let e = 0, t; (t = Ks[e]); e++) t.recordUndo = !1
+          for (let e = 0, t; (t = Gs[e]); e++) t.recordUndo = !1
         }),
         (qe = function () {
           return e.Ub === 0
         }),
         (e.B = function (e) {
-          qs.setGroupInternal(e)
+          Ks.setGroupInternal(e)
         }),
         (Je = function (e) {
           var t = []
@@ -1051,7 +1051,7 @@ Use ` +
           return t
         }),
         (S = function (e) {
-          var t = Ie(F.EVENT, e, void 0)
+          var t = Ie(I.EVENT, e, void 0)
           if (!t) throw Error(`Event type ${e} not found in registry.`)
           return t
         }),
@@ -1061,7 +1061,7 @@ Use ` +
           })
         }),
         (Xe = function (e) {
-          return Ys.getSizeInternal(e)
+          return Js.getSizeInternal(e)
         }),
         (Ze = function (e, t) {
           return (
@@ -1069,11 +1069,11 @@ Use ` +
           )
         }),
         (Qe = function (e) {
-          var t = new I(0, 0)
+          var t = new L(0, 0)
           e = e.getBoundingClientRect()
           var n = document.documentElement
           return (
-            (n = new I(
+            (n = new L(
               window.pageXOffset || n.scrollLeft,
               window.pageYOffset || n.scrollTop,
             )),
@@ -1085,14 +1085,14 @@ Use ` +
         ($e = function () {
           var e = document.body,
             t = document.documentElement
-          return new I(e.scrollLeft || t.scrollLeft, e.scrollTop || t.scrollTop)
+          return new L(e.scrollLeft || t.scrollLeft, e.scrollTop || t.scrollTop)
         }),
         (et = function (e) {
           var t = parseFloat(Ze(e, `borderLeftWidth`)),
             n = parseFloat(Ze(e, `borderRightWidth`)),
             r = parseFloat(Ze(e, `borderTopWidth`))
           return (
-            (e = parseFloat(Ze(e, `borderBottomWidth`))), new L(r, e, t, n)
+            (e = parseFloat(Ze(e, `borderBottomWidth`))), new R(r, e, t, n)
           )
         }),
         (tt = function (e, t, n) {
@@ -1105,7 +1105,7 @@ Use ` +
             o = r.x - i.x - a.left
           return (
             (r = r.y - i.y - a.top),
-            (i = new R(e.offsetWidth, e.offsetHeight)),
+            (i = new z(e.offsetWidth, e.offsetHeight)),
             (e = t.clientWidth - i.width),
             (i = t.clientHeight - i.height),
             (a = t.scrollLeft),
@@ -1114,21 +1114,21 @@ Use ` +
               ? ((a += o - e / 2), (t += r - i / 2))
               : ((a += Math.min(o, Math.max(o - e, 0))),
                 (t += Math.min(r, Math.max(r - i, 0)))),
-            new I(a, t)
+            new L(a, t)
           )
         }),
         (rt = function (e) {
-          var t = new I(0, 0),
+          var t = new L(0, 0),
             n = e.x && e.getAttribute(`x`),
             r = e.y && e.getAttribute(`y`)
           return (
             n && (t.x = parseInt(n)),
             r && (t.y = parseInt(r)),
-            (n = (n = e.getAttribute(`transform`)) && n.match(Zs)) &&
+            (n = (n = e.getAttribute(`transform`)) && n.match(Xs)) &&
               ((t.x += Number(n[1])), n[3] && (t.y += Number(n[3]))),
             (e = e.getAttribute(`style`)) &&
               e.includes(`translate`) &&
-              (e = e.match(Qs)) &&
+              (e = e.match(Zs)) &&
               ((t.x += Number(e[1])), e[3] && (t.y += Number(e[3]))),
             t
           )
@@ -1146,11 +1146,11 @@ Use ` +
               break
             e = e.parentNode
           }
-          return new I(t, n)
+          return new L(t, n)
         }),
         (at = function () {
           var e = $e()
-          return new L(
+          return new R(
             e.y,
             document.documentElement.clientHeight + e.y,
             e.x,
@@ -1160,7 +1160,7 @@ Use ` +
         (ot = function () {
           var e = document.documentElement,
             t = window
-          return new I(
+          return new L(
             t.pageXOffset || e.scrollLeft,
             t.pageYOffset || e.scrollTop,
           )
@@ -1170,9 +1170,9 @@ Use ` +
           t = t.y
           var r = e.getInjectionDiv().getBoundingClientRect()
           return (
-            (n = new I(n - r.left, t - r.top)),
+            (n = new L(n - r.left, t - r.top)),
             (t = e.getOriginOffsetInPixels()),
-            I.difference(n, t).scale(1 / e.scale)
+            L.difference(n, t).scale(1 / e.scale)
           )
         }),
         (ct = function (e, t) {
@@ -1181,20 +1181,20 @@ Use ` +
           var r = e.getInjectionDiv().getBoundingClientRect()
           return (
             (e = e.getOriginOffsetInPixels()),
-            new I(t + r.left + e.x, n + r.top + e.y)
+            new L(t + r.left + e.x, n + r.top + e.y)
           )
         }),
         (e.rc = function (e) {
-          return rc.createElementNS(
+          return nc.createElementNS(
             `https://developers.google.com/blockly/xml`,
             e,
           )
         }),
         (e.sc = function (e) {
-          return rc.createTextNode(e)
+          return nc.createTextNode(e)
         }),
         (e.uc = function (e) {
-          var t = tc.parseFromString(e, `text/xml`)
+          var t = ec.parseFromString(e, `text/xml`)
           if (
             t &&
             t.documentElement &&
@@ -1202,7 +1202,7 @@ Use ` +
           )
             return t.documentElement
           if (
-            (t = tc.parseFromString(e, `text/html`)) &&
+            (t = ec.parseFromString(e, `text/html`)) &&
             t.body.firstChild &&
             t.body.firstChild.nodeName.toLowerCase() === `xml`
           )
@@ -1210,10 +1210,10 @@ Use ` +
           throw Error(`DOMParser was unable to parse: ${e}`)
         }),
         (lt = function (e) {
-          return ut(nc.serializeToString(e))
+          return ut(tc.serializeToString(e))
         }),
         (ut = function (e) {
-          return e.replace(oc, (e) => `&#${e.charCodeAt(0)};`)
+          return e.replace(ac, (e) => `&#${e.charCodeAt(0)};`)
         }),
         (dt = function (e) {
           if (!e) return null
@@ -1243,7 +1243,7 @@ Use ` +
             : []
         }),
         (pt = function (e) {
-          return lc.hasCategoriesInternal(e)
+          return cc.hasCategoriesInternal(e)
         }),
         (mt = function (e) {
           return e && e.contents
@@ -1293,31 +1293,31 @@ Use ` +
         (vt = function (e, t, n, r, i, a) {
           var o = a.scrollbar && a.scrollbar.canScrollVertically()
           return (
-            e.horizontal === pc.LEFT
+            e.horizontal === fc.LEFT
               ? ((n = i.absoluteMetrics.left + n),
-                o && a.RTL && (n += ec.scrollbarThickness))
+                o && a.RTL && (n += $s.scrollbarThickness))
               : ((n =
                   i.absoluteMetrics.left + i.viewMetrics.width - t.width - n),
-                o && !a.RTL && (n -= ec.scrollbarThickness)),
-            e.vertical === dc.TOP
+                o && !a.RTL && (n -= $s.scrollbarThickness)),
+            e.vertical === uc.TOP
               ? (e = i.absoluteMetrics.top + r)
               : ((e =
                   i.absoluteMetrics.top + i.viewMetrics.height - t.height - r),
                 a.scrollbar &&
                   a.scrollbar.canScrollHorizontally() &&
-                  (e -= ec.scrollbarThickness)),
-            new L(e, e + t.height, n, n + t.width)
+                  (e -= $s.scrollbarThickness)),
+            new R(e, e + t.height, n, n + t.width)
           )
         }),
         (yt = function (e, t) {
           return {
             horizontal:
-              t.toolboxMetrics.position === z.LEFT ||
+              t.toolboxMetrics.position === B.LEFT ||
               (e.horizontalLayout && !e.RTL)
-                ? pc.RIGHT
-                : pc.LEFT,
+                ? fc.RIGHT
+                : fc.LEFT,
             vertical:
-              t.toolboxMetrics.position === z.BOTTOM ? dc.TOP : dc.BOTTOM,
+              t.toolboxMetrics.position === B.BOTTOM ? uc.TOP : uc.BOTTOM,
           }
         }),
         (bt = function (e, t, n, r) {
@@ -1327,14 +1327,14 @@ Use ` +
           for (let s = 0; s < r.length; s++) {
             let c = r[s]
             e.intersects(c) &&
-              ((e = n === hc.UP ? c.top - o - t : c.bottom + t),
-              (e = new L(e, e + o, i, i + a)),
+              ((e = n === mc.UP ? c.top - o - t : c.bottom + t),
+              (e = new R(e, e + o, i, i + a)),
               (s = -1))
           }
           return e
         }),
         (xt = function (e, t) {
-          b(F.SERIALIZER, e, t)
+          b(I.SERIALIZER, e, t)
         }),
         (St = function (e, { addCoordinates: t = !1, saveIds: n = !0 } = {}) {
           var r = e.workspace,
@@ -1367,12 +1367,12 @@ Use ` +
               i = t.x ?? e.x
             i = n.RTL ? n.getWidth() - i : i
             var a
-            ;((n = (a = t.y) ?? e.y), r.moveTo(new I(i, n)))
+            ;((n = (a = t.y) ?? e.y), r.moveTo(new L(i, n)))
           }
           return (
             (t.width !== void 0 || t.height) &&
               ((a = r.getSize()),
-              r.setSize(new R(t.width ?? a.width, t.height ?? a.height))),
+              r.setSize(new z(t.width ?? a.width, t.height ?? a.height))),
             t.collapsed !== void 0 && r.setCollapsed(t.collapsed),
             t.editable !== void 0 && r.setEditable(t.editable),
             t.movable !== void 0 && r.setMovable(t.movable),
@@ -1382,21 +1382,21 @@ Use ` +
           )
         }),
         (wt = function (e, t) {
-          b(F.PASTER, e, t)
+          b(I.PASTER, e, t)
         }),
         (Tt = function (e) {
           for (
             var t = e.workspace,
               n = e.getRelativeToSurfaceXY(),
-              r = new I(0, 0),
+              r = new L(0, 0),
               i = t
                 .getTopComments(!1)
                 .filter((t) => t.id !== e.id)
                 .map((e) => e.getRelativeToSurfaceXY());
-            Et(I.sum(n, r), i);
+            Et(L.sum(n, r), i);
           )
             r.translate(t.RTL ? -30 : 30, 30)
-          e.moveTo(I.sum(n, r))
+          e.moveTo(L.sum(n, r))
         }),
         (Et = function (e, t) {
           return t.some(
@@ -1413,31 +1413,31 @@ Use ` +
         (Ot = function (e) {
           return (
             jt(e),
-            Bo
+            zo
               ? (Mt(), Promise.resolve())
-              : ((Ic ||= new Promise((e) => {
-                  ;((Lc = e),
-                    (Rc = window.requestAnimationFrame(() => {
+              : ((Fc ||= new Promise((e) => {
+                  ;((Ic = e),
+                    (Lc = window.requestAnimationFrame(() => {
                       ;(Mt(), e())
                     })))
                 })),
-                Ic)
+                Fc)
           )
         }),
         (kt = function () {
-          return Ic || Promise.resolve()
+          return Fc || Promise.resolve()
         }),
         (At = function (e) {
-          ;(e || window.cancelAnimationFrame(Rc), Mt(e), !e && Lc && Lc())
+          ;(e || window.cancelAnimationFrame(Lc), Mt(e), !e && Ic && Ic())
         }),
         (jt = function (t) {
-          ;(Pc.add(t), Fc.set(t, { group: e.gd, recordUndo: e.Qc }))
+          ;(Nc.add(t), Pc.set(t, { group: e.gd, recordUndo: e.Qc }))
           var n = t.getParent()
-          n ? jt(n) : Nc.add(t)
+          n ? jt(n) : Mc.add(t)
         }),
         (Mt = function (t) {
-          var n = t ? new Set([t]) : new Set([...Nc].map((e) => e.workspace)),
-            r = [...Nc].filter(Pt).filter((e) => n.has(e.workspace))
+          var n = t ? new Set([t]) : new Set([...Mc].map((e) => e.workspace)),
+            r = [...Mc].filter(Pt).filter((e) => n.has(e.workspace))
           for (var i of r) Ft(i)
           for (let e of n)
             (e.resizeContents(),
@@ -1449,44 +1449,44 @@ Use ` +
           for (let t of r)
             ((a = e.gd),
               (o = e.Qc),
-              (i = Fc.get(t)) &&
+              (i = Pc.get(t)) &&
                 (i.group && e.B(i.group), (e.Qc = i.recordUndo)),
               t.bumpNeighbours(),
               e.B(a),
               (e.Qc = o))
           for (let e of r) Nt(e)
-          t || (Ic = null)
+          t || (Fc = null)
         }),
         (Nt = function (e) {
-          ;(Nc.delete(e), Pc.delete(e), Fc.delete(e))
+          ;(Mc.delete(e), Nc.delete(e), Pc.delete(e))
           for (let t of e.getChildren(!1)) Nt(t)
         }),
         (Pt = function (e) {
           return !e.isDisposed() && !e.getParent()
         }),
         (Ft = function (e) {
-          if (Pc.has(e) && e.initialized) {
+          if (Nc.has(e) && e.initialized) {
             for (let t of e.getChildren(!1)) Ft(t)
             e.renderEfficiently()
           }
         }),
         (It = function (e, t) {
-          Ht(Vc.ALERT, e, t, void 0)
+          Ht(Bc.ALERT, e, t, void 0)
         }),
         (Lt = function (e, t) {
-          Ht(Vc.CONFIRM, e, t, void 0)
+          Ht(Bc.CONFIRM, e, t, void 0)
         }),
         (Rt = function (e, t, n) {
-          Ht(Vc.PROMPT, e, n, t)
+          Ht(Bc.PROMPT, e, n, t)
         }),
         (zt = function (e, t) {
-          Wc(e, t)
+          Uc(e, t)
         }),
         (Bt = function (e, t) {
-          Gc(e, t)
+          Wc(e, t)
         }),
         (Vt = function (e, t, n) {
-          Kc(e, t, n)
+          Gc(e, t, n)
         }),
         (Ht = function (...[t, n, r, i]) {
           var a = document.createElement(`dialog`),
@@ -1507,7 +1507,7 @@ Use ` +
             (u.value = `ok`),
             a.appendChild(o),
             o.appendChild(s),
-            t === Vc.PROMPT &&
+            t === Bc.PROMPT &&
               ((c.id = `blockly-form-input`),
               (c.className = `blocklyDialogInput`),
               (c.type = `text`),
@@ -1516,7 +1516,7 @@ Use ` +
               i && (c.value = i),
               o.appendChild(c)),
             l.appendChild(u),
-            (t === Vc.CONFIRM || t === Vc.PROMPT) &&
+            (t === Bc.CONFIRM || t === Bc.PROMPT) &&
               ((n = document.createElement(`button`)),
               (n.className = `blocklyDialogCancelButton`),
               (n.textContent = e.C.DIALOG_CANCEL),
@@ -1524,24 +1524,24 @@ Use ` +
               l.appendChild(n)),
             o.appendChild(l))
           var d
-          ;(Uc === 0 &&
+          ;(Hc === 0 &&
             (d = e.t().ephemeralFocusTaken()
               ? void 0
               : e.t().takeEphemeralFocus(a)),
-            Uc++,
+            Hc++,
             a.addEventListener(`close`, () => {
-              if ((Uc--, !Uc)) {
+              if ((Hc--, !Hc)) {
                 let e
                 ;(e = d) == null || e()
               }
               switch ((a.remove(), t)) {
-                case Vc.CONFIRM:
+                case Bc.CONFIRM:
                   r(a.returnValue === `ok`)
                   break
-                case Vc.PROMPT:
+                case Bc.PROMPT:
                   r(a.returnValue === `ok` ? c.value : null)
                   break
-                case Vc.ALERT:
+                case Bc.ALERT:
                   r?.()
               }
             }),
@@ -1594,8 +1594,8 @@ Use ` +
         }),
         (qt = function (e) {
           return (
-            ss.variables_set ||
-              ss.variables_get ||
+            os.variables_set ||
+              os.variables_get ||
               console.warn(
                 `There are no variable blocks, but there is a variable category.`,
               ),
@@ -1616,11 +1616,11 @@ Use ` +
           return { VAR: { name: e.getName(), type: e.getType() } }
         }),
         (Yt = function (e, t, n, r = `variables_get`, i = `variables_set`) {
-          ;((n &&= ss.math_change), (e = []))
+          ;((n &&= os.math_change), (e = []))
           var a = t.slice(-1)[0]
           return (
             a &&
-              (ss[i] &&
+              (os[i] &&
                 e.push({
                   kind: `block`,
                   type: i,
@@ -1631,7 +1631,7 @@ Use ` +
                 e.push({
                   kind: `block`,
                   type: `math_change`,
-                  gap: ss[r] ? 20 : 8,
+                  gap: os[r] ? 20 : 8,
                   fields: Jt(a),
                   inputs: {
                     DELTA: {
@@ -1639,7 +1639,7 @@ Use ` +
                     },
                   },
                 })),
-            ss[r] &&
+            os[r] &&
               e.push(
                 ...t.sort(cn).map((e) => ({
                   kind: `block`,
@@ -1652,7 +1652,7 @@ Use ` +
           )
         }),
         (Xt = function (e) {
-          return au.generateUniqueNameInternal(e)
+          return iu.generateUniqueNameInternal(e)
         }),
         (Zt = function (e, t) {
           if (!t.length) return e
@@ -1693,7 +1693,7 @@ Use ` +
                   let i = t.getVariableMap().createVariable(r, a)
                   n && n(r)
                   let o = (s = t.getFlyout())?.getWorkspace()
-                  if (o && ru.getIsActive()) {
+                  if (o && nu.getIsActive()) {
                     var c = (t) => {
                       t.type === e.Od &&
                         (t = t.blockId) &&
@@ -1850,7 +1850,7 @@ Use ` +
           return n
         }),
         (cn = function (e, t) {
-          return iu.compare(e.getName(), t.getName())
+          return ru.compare(e.getName(), t.getName())
         }),
         (ln = function (e, t) {
           var n = []
@@ -1877,7 +1877,7 @@ Use ` +
                   `%1`,
                   i,
                 ).replace(`%2`, r)),
-                Wc(i, void 0))
+                Uc(i, void 0))
               return
             }
             n === r && a.splice(t, 1)
@@ -1979,7 +1979,7 @@ Use ` +
           }
           if (
             (hn(n, s),
-            qe() && x(new (S(O.BLOCK_CREATE))(c)),
+            qe() && x(new (S(k.BLOCK_CREATE))(c)),
             e.B(a),
             (e.Qc = o),
             n.rendered)
@@ -1992,7 +1992,7 @@ Use ` +
           return c
         }),
         (mn = function (t, n, { parentConnection: r, isShadow: i = !1 } = {}) {
-          if (!t.type) throw new cu(t)
+          if (!t.type) throw new su(t)
           var a = n.newBlock(t.type, t.id)
           ;(a.setShadow(i), (i = t.x === void 0 ? 0 : t.x))
           var o = t.y === void 0 ? 0 : t.y,
@@ -2017,15 +2017,15 @@ Use ` +
                 : a.domToMutation && a.domToMutation(e.uc(t.extraState))),
             r)
           ) {
-            if (r.getSourceBlock().isShadow() && !a.isShadow()) throw new du(t)
+            if (r.getSourceBlock().isShadow() && !a.isShadow()) throw new uu(t)
             if (r.type === e.je.VALUE) {
-              if (((c = a.outputConnection), !c)) throw new lu(`output`, a, t)
+              if (((c = a.outputConnection), !c)) throw new cu(`output`, a, t)
             } else if (((c = a.previousConnection), !c))
-              throw new lu(`previous`, a, t)
+              throw new cu(`previous`, a, t)
             if (!r.connect(c))
               throw (
                 (n = a.workspace.connectionChecker),
-                new uu(
+                new lu(
                   n.getErrorMessage(n.canConnectWithReason(c, r, !1), c, r),
                   r.type === e.je.VALUE
                     ? `output connection`
@@ -2039,7 +2039,7 @@ Use ` +
             r = Object.keys(t.icons)
             for (var l of r) {
               if (((r = t.icons[l]), (c = a.getIcon(l)), !c)) {
-                if (((c = Ie(F.ICON, l, !1)), !c)) throw new fu(l, a, t)
+                if (((c = Ie(I.ICON, l, !1)), !c)) throw new du(l, a, t)
                 ;((c = new c(a)), a.addIcon(c))
               }
               Dt(c) && c.loadState(r)
@@ -2057,11 +2057,11 @@ Use ` +
           if (t.inputs)
             for (l = Object.keys(t.inputs), r = 0; r < l.length; r++) {
               if (((c = l[r]), (i = a.getInput(c)), !i || !i.connection))
-                throw new lu(c, a, t)
+                throw new cu(c, a, t)
               gn(i.connection, t.inputs[c])
             }
           if (t.next) {
-            if (!a.nextConnection) throw new lu(`next`, a, t)
+            if (!a.nextConnection) throw new cu(`next`, a, t)
             gn(a.nextConnection, t.next)
           }
           if (n.rendered) {
@@ -2075,7 +2075,7 @@ Use ` +
           if (qe())
             for (e = sn(e, t), t = 0; t < e.length; t++) {
               let n = e[t]
-              x(new (S(O.VAR_CREATE))(n))
+              x(new (S(k.VAR_CREATE))(n))
             }
         }),
         (gn = function (e, t) {
@@ -2086,10 +2086,10 @@ Use ` +
               }))
         }),
         (_n = function (e) {
-          return ((e = vn(e, gu)), e.length ? e[0].join(qo ? ` ` : ` + `) : ``)
+          return ((e = vn(e, hu)), e.length ? e[0].join(Ko ? ` ` : ` + `) : ``)
         }),
         (vn = function (t, n) {
-          if (((t = M.registry.getKeyCodesByShortcutName(t)), t.length === 0))
+          if (((t = N.registry.getKeyCodesByShortcutName(t)), t.length === 0))
             return []
           ;((t = t.map((e) => e.split(`+`))),
             t.forEach((e) =>
@@ -2101,7 +2101,7 @@ Use ` +
                 +!!t.includes(`Meta`) - e
               ),
             ))
-          var r = t.filter((e) => e.includes(`Meta`) === qo)
+          var r = t.filter((e) => e.includes(`Meta`) === Ko)
           return (
             (r = r.length === 0 ? t : r),
             r.sort((e, t) => e.length - t.length),
@@ -2207,7 +2207,7 @@ Use ` +
           )
         }),
         (yn = function (e) {
-          return ((e = _u.indexOf(e)), e === -1 ? Number.MAX_VALUE : e)
+          return ((e = gu.indexOf(e)), e === -1 ? Number.MAX_VALUE : e)
         }),
         (bn = function (e) {
           return (
@@ -2235,26 +2235,26 @@ Use ` +
             e.isSelectable()
           )
         }),
-        (Sn = function (t, n = hs.STANDARD, r) {
+        (Sn = function (t, n = ms.STANDARD, r) {
           return [
-            n >= hs.STANDARD && Tn(t),
+            n >= ms.STANDARD && Tn(t),
             wn(t),
             ...En(t, n, r),
-            n === hs.LOQUACIOUS && jn(t),
-            n >= hs.STANDARD &&
+            n === ms.LOQUACIOUS && jn(t),
+            n >= ms.STANDARD &&
               (t.isEnabled() ? void 0 : e.C.BLOCK_LABEL_DISABLED),
-            n >= hs.STANDARD &&
+            n >= ms.STANDARD &&
               (t.isCollapsed() ? e.C.BLOCK_LABEL_COLLAPSED : void 0),
-            n >= hs.LOQUACIOUS &&
+            n >= ms.LOQUACIOUS &&
               (t.isShadow() ? e.C.BLOCK_LABEL_REPLACEABLE : void 0),
-            n >= hs.STANDARD && In(t),
-            n >= hs.LOQUACIOUS && t.getAriaRoleDescription(),
+            n >= ms.STANDARD && In(t),
+            n >= ms.LOQUACIOUS && t.getAriaRoleDescription(),
           ]
             .filter((e) => !!e)
             .join(`, `)
         }),
-        (Cn = function (t, n, r = hs.STANDARD) {
-          var i = r >= hs.LOQUACIOUS,
+        (Cn = function (t, n, r = ms.STANDARD) {
+          var i = r >= ms.LOQUACIOUS,
             a = [],
             o = t.fieldRow
               .filter((e) => e.isVisible())
@@ -2280,7 +2280,7 @@ Use ` +
           return (
             t.type === e.je.VALUE &&
               t.connection?.targetConnection === null &&
-              r >= hs.STANDARD &&
+              r >= ms.STANDARD &&
               o.push(e.C.INPUT_LABEL_EMPTY),
             o.filter((e) => !!e)
           )
@@ -2312,11 +2312,11 @@ Use ` +
           if (!t.isInFlyout && !t.isDragging())
             return t.getRootBlock() === t ? e.C.BLOCK_LABEL_BEGIN_STACK : void 0
         }),
-        (En = function (t, n = hs.STANDARD, r) {
+        (En = function (t, n = ms.STANDARD, r) {
           if (r) return [r]
           if (
             ((r = t = t.inputList.filter((e) => e.isVisible())),
-            n <= hs.STANDARD)
+            n <= ms.STANDARD)
           ) {
             let n = t.filter((t) => t.type === e.je.STATEMENT)
             n.length > 1 && (r = t.slice(0, t.indexOf(n[0]) + 1))
@@ -2329,11 +2329,11 @@ Use ` +
               (s = r < a.length - 1 && On(t) && Dn(a[r + 1])) &&
                 ((s = a[r + 1]),
                 (r =
-                  t.connection?.type === B.NEXT_STATEMENT ||
+                  t.connection?.type === V.NEXT_STATEMENT ||
                   t.type === e.je.END_ROW),
                 (s = !(
                   !t.getSourceBlock().getInputsInline() ||
-                  s.connection?.type === B.NEXT_STATEMENT ||
+                  s.connection?.type === V.NEXT_STATEMENT ||
                   r
                 ))),
               s
@@ -2365,7 +2365,7 @@ Use ` +
           var a = n.type === e.je.STATEMENT,
             o = a ? An(t.inputList, i) : i,
             s = t.inputList.slice(o, i + 1).filter((e) => e.isVisible()),
-            c = s.map((e) => e.getLabel(hs.TERSE, e !== n || r)),
+            c = s.map((e) => e.getLabel(ms.TERSE, e !== n || r)),
             l = a && c.slice(0, -1).some((e) => !!e)
           return c
             .map((t, n) => {
@@ -2419,13 +2419,13 @@ Use ` +
         }),
         (Mn = function (t) {
           switch (t) {
-            case vu.BEFORE:
+            case _u.BEFORE:
               return e.C.ANNOUNCE_MOVE_BEFORE
-            case vu.AFTER:
+            case _u.AFTER:
               return e.C.ANNOUNCE_MOVE_AFTER
-            case vu.INSIDE:
+            case _u.INSIDE:
               return e.C.ANNOUNCE_MOVE_INSIDE
-            case vu.AROUND:
+            case _u.AROUND:
               return e.C.ANNOUNCE_MOVE_AROUND
             default:
               return e.C.ANNOUNCE_MOVE_TO
@@ -2444,12 +2444,12 @@ Use ` +
         (Pn = function (e, t, n, r = !1) {
           var i = Fn(e, t),
             a = Mn(i),
-            o = ![vu.BEFORE, vu.AFTER].includes(i)
+            o = ![_u.BEFORE, _u.AFTER].includes(i)
           return (
             (i = o && n(!0)),
             (n = o && n(!1)),
             (r = r ? e.getSourceBlock().getStackBlocksCountLabel() : ``),
-            (o = t.getSourceBlock().getAriaLabel(hs.TERSE)),
+            (o = t.getSourceBlock().getAriaLabel(ms.TERSE)),
             i && (r = Nn(e, r)),
             n && (o = Nn(t, o)),
             a.replace(`%1`, r).replace(`%2`, o)
@@ -2457,19 +2457,19 @@ Use ` +
         }),
         (Fn = function (e, t) {
           switch (e.type) {
-            case B.INPUT_VALUE:
-            case B.OUTPUT_VALUE:
-              return vu.TO
-            case B.NEXT_STATEMENT:
+            case V.INPUT_VALUE:
+            case V.OUTPUT_VALUE:
+              return _u.TO
+            case V.NEXT_STATEMENT:
               return e === e.getSourceBlock().nextConnection
-                ? vu.BEFORE
-                : vu.AROUND
-            case B.PREVIOUS_STATEMENT:
+                ? _u.BEFORE
+                : _u.AROUND
+            case V.PREVIOUS_STATEMENT:
               return t === t.getSourceBlock().nextConnection
-                ? vu.AFTER
-                : vu.INSIDE
+                ? _u.AFTER
+                : _u.INSIDE
           }
-          return vu.UNKNOWN
+          return _u.UNKNOWN
         }),
         (In = function (t) {
           var n = t.inputList.filter((t) => t.type === e.je.STATEMENT).length
@@ -2481,7 +2481,7 @@ Use ` +
                 t.fieldRow.reduce(
                   (e, t) => (t.EDITABLE && !t.isFullBlockField() ? ++e : e),
                   e,
-                ) + +(t.connection?.type === B.INPUT_VALUE),
+                ) + +(t.connection?.type === V.INPUT_VALUE),
               0,
             )
           ) {
@@ -2505,46 +2505,46 @@ Use ` +
         }),
         (zn = function () {
           document.querySelector(`.blocklyDropDownDiv`) ||
-            ((Tu = document.createElement(`div`)),
-            (Tu.className = `blocklyDropDownDiv`),
-            (Tu.tabIndex = -1),
-            (Tu.id = Ve()),
-            (Oe() || document.body).appendChild(Tu),
-            (Eu = document.createElement(`div`)),
-            (Eu.className = `blocklyDropDownContent`),
-            Tu.appendChild(Eu),
-            (Mu = o(Eu, `keydown`, null, (e) => {
+            ((wu = document.createElement(`div`)),
+            (wu.className = `blocklyDropDownDiv`),
+            (wu.tabIndex = -1),
+            (wu.id = Ve()),
+            (Oe() || document.body).appendChild(wu),
+            (Tu = document.createElement(`div`)),
+            (Tu.className = `blocklyDropDownContent`),
+            wu.appendChild(Tu),
+            (ju = o(Tu, `keydown`, null, (e) => {
               ;(Pe(e), e.stopPropagation())
             })),
-            (Du = document.createElement(`div`)),
-            (Du.className = `blocklyDropDownArrow`),
-            Tu.appendChild(Du),
-            (Tu.style.opacity = `0`),
-            (Tu.style.transition = `transform 0.25s, opacity 0.25s`))
+            (Eu = document.createElement(`div`)),
+            (Eu.className = `blocklyDropDownArrow`),
+            wu.appendChild(Eu),
+            (wu.style.opacity = `0`),
+            (wu.style.transition = `transform 0.25s, opacity 0.25s`))
         }),
         (Bn = function () {
-          ;((ju &&= (ju(!1), null)), Qn())
+          ;((Au &&= (Au(!1), null)), Qn())
         }),
         (Vn = function () {
-          ;((Mu &&= (c(Mu), null)), Tu.remove(), zn())
+          ;((ju &&= (c(ju), null)), wu.remove(), zn())
         }),
         (Hn = function (e, t) {
-          ;((Tu.style.backgroundColor = e), (Tu.style.borderColor = t))
+          ;((wu.style.backgroundColor = e), (wu.style.borderColor = t))
         }),
         (Un = function (e, t, n, r = !0) {
-          return ((Au = !0), Kn(Gn(e), e, r, t, n))
+          return ((ku = !0), Kn(Gn(e), e, r, t, n))
         }),
         (Wn = function (e) {
           var t = e.getSvgRoot(),
             n = e.workspace.scale,
             r = e.height * n
           return (
-            (e = e.width * n), (t = Qe(t)), new L(t.y, t.y + r, t.x, t.x + e)
+            (e = e.width * n), (t = Qe(t)), new R(t.y, t.y + r, t.x, t.x + e)
           )
         }),
         (Gn = function (e) {
           return (
-            (e = e.getScaledBBox()), new L(e.top, e.bottom, e.left, e.right)
+            (e = e.getScaledBBox()), new R(e.top, e.bottom, e.left, e.right)
           )
         }),
         (Kn = function (e, t, n, r, i) {
@@ -2554,27 +2554,27 @@ Use ` +
           for (var s = i.workspace; s.options.parentWorkspace;)
             s = s.options.parentWorkspace
           return (
-            (Ou = s.getParentSvg().parentNode), qn(t, i.RTL, a, o, a, e, n, r)
+            (Du = s.getParentSvg().parentNode), qn(t, i.RTL, a, o, a, e, n, r)
           )
         }),
         (qn = function (t, n, r, i, a, o, s, c) {
           e.t().registerPopoverFocusLossHandler(Bn)
           var l
           return (
-            (l = Oe()) == null || l.appendChild(Tu),
-            (ku = t),
-            (Su = c || null),
-            (Tu.style.direction = n ? `rtl` : `ltr`),
-            (t = Ps),
-            (Cu = t.getRenderer().getClassName()),
-            (wu = t.getTheme().getClassName()),
-            v(Tu, Cu),
-            v(Tu, wu),
-            (n = re(t.getFocusableElement(), A.OWNS)),
-            g(t.getFocusableElement(), A.OWNS, n ? [n, Tu.id] : Tu.id),
+            (l = Oe()) == null || l.appendChild(wu),
+            (Ou = t),
+            (xu = c || null),
+            (wu.style.direction = n ? `rtl` : `ltr`),
+            (t = Ns),
+            (Su = t.getRenderer().getClassName()),
+            (Cu = t.getTheme().getClassName()),
+            v(wu, Su),
+            v(wu, Cu),
+            (n = re(t.getFocusableElement(), j.OWNS)),
+            g(t.getFocusableElement(), j.OWNS, n ? [n, wu.id] : wu.id),
             t.getFocusableElement().classList.add(`blocklyShowingDropDownDiv`),
             (r = er(r, i, a, o)),
-            s && (ju = e.t().takeEphemeralFocus(Tu)),
+            s && (Au = e.t().takeEphemeralFocus(wu)),
             r
           )
         }),
@@ -2617,47 +2617,47 @@ Use ` +
           )
         }),
         (Zn = function (e, t) {
-          return ku === e && (t ? $n() : Qn(), !0)
+          return Ou === e && (t ? $n() : Qn(), !0)
         }),
         (Qn = function () {
-          ku &&
+          Ou &&
             (e.t().unregisterPopoverFocusLossHandler(Bn),
-            (Tu.style.transform = `translate(0, 0)`),
-            (Tu.style.opacity = `0`),
-            (xu = setTimeout(function () {
+            (wu.style.transform = `translate(0, 0)`),
+            (wu.style.opacity = `0`),
+            (bu = setTimeout(function () {
               $n()
             }, 250)),
-            (Su &&= (Su(), null)))
+            (xu &&= (xu(), null)))
         }),
         ($n = function () {
-          if (ku) {
-            ;(xu && clearTimeout(xu), (Su &&= (Su(), null)), (ku = null))
-            var e = Ps,
-              t = re(e.getFocusableElement(), A.OWNS) ?? ``
-            ;(g(e.getFocusableElement(), A.OWNS, t.replace(Tu.id, ``)),
+          if (Ou) {
+            ;(bu && clearTimeout(bu), (xu &&= (xu(), null)), (Ou = null))
+            var e = Ns,
+              t = re(e.getFocusableElement(), j.OWNS) ?? ``
+            ;(g(e.getFocusableElement(), j.OWNS, t.replace(wu.id, ``)),
               e
                 .getFocusableElement()
                 .classList.remove(`blocklyShowingDropDownDiv`),
               e.markFocused(),
-              (ju &&= (ju(), null)),
+              (Au &&= (Au(), null)),
               Vn())
           }
         }),
         (er = function (e, t, n, r) {
-          ;((e = Nu.getPositionMetrics(e, t, n, r)),
+          ;((e = Mu.getPositionMetrics(e, t, n, r)),
             e.arrowVisible
               ? ((t = e.arrowX),
                 (n = e.arrowY),
                 (r = e.arrowAtTop ? 45 : 225),
-                (Du.style.display = ``),
-                (Du.style.transform = `translate(${t}px, ${n}px) rotate(${r}deg)`),
-                Du.setAttribute(`class`, `blocklyDropDownArrow`))
-              : (Du.style.display = `none`),
+                (Eu.style.display = ``),
+                (Eu.style.transform = `translate(${t}px, ${n}px) rotate(${r}deg)`),
+                Eu.setAttribute(`class`, `blocklyDropDownArrow`))
+              : (Eu.style.display = `none`),
             (t = Math.floor(e.initialX)),
             (n = Math.floor(e.initialY)),
             (r = Math.floor(e.finalX)))
           var i = Math.floor(e.finalY),
-            a = Tu.parentElement
+            a = wu.parentElement
           return (
             a &&
               ((a = a.getBoundingClientRect()),
@@ -2665,19 +2665,19 @@ Use ` +
               (r -= a.left + window.scrollX),
               (n -= a.top + window.scrollY),
               (i -= a.top + window.scrollY)),
-            (Tu.style.left = t + `px`),
-            (Tu.style.top = n + `px`),
-            (Tu.style.visibility = `visible`),
-            (Tu.style.opacity = `1`),
-            (Tu.style.transform =
+            (wu.style.left = t + `px`),
+            (wu.style.top = n + `px`),
+            (wu.style.visibility = `visible`),
+            (wu.style.opacity = `1`),
+            (wu.style.transform =
               `translate(` + (r - t) + `px,` + (i - n) + `px)`),
             !!e.arrowAtTop
           )
         }),
         (tr = function () {
-          if (ku) {
-            var e = ku.getSourceBlock()
-            e = Au ? Gn(ku) : Wn(e)
+          if (Ou) {
+            var e = Ou.getSourceBlock()
+            e = ku ? Gn(Ou) : Wn(e)
             let t = e.left + (e.right - e.left) / 2
             er(t, e.bottom, t, e.top)
           } else Qn()
@@ -2813,9 +2813,9 @@ Use ` +
         }),
         (lr = function () {
           document.querySelector(`.blocklyTooltipDiv`) ||
-            ((Gu = document.createElement(`div`)),
-            (Gu.className = `blocklyTooltipDiv`),
-            (Oe() || document.body).appendChild(Gu))
+            ((Wu = document.createElement(`div`)),
+            (Wu.className = `blocklyTooltipDiv`),
+            (Oe() || document.body).appendChild(Wu))
         }),
         (ur = function (e) {
           ;((e.mouseOverWrapper_ = s(e, `pointerover`, null, fr)),
@@ -2829,30 +2829,30 @@ Use ` +
             e.removeEventListener(`pointermove`, mr))
         }),
         (fr = function (e) {
-          Ru ||
+          Lu ||
             ((e = cr(e.currentTarget)),
-            Uu !== e && (gr(), (Wu = null), (Uu = e)),
-            clearTimeout(zu))
+            Hu !== e && (gr(), (Uu = null), (Hu = e)),
+            clearTimeout(Ru))
         }),
         (pr = function () {
-          Ru ||
-            ((zu = setTimeout(function () {
-              ;((Wu = Uu = null), gr())
+          Lu ||
+            ((Ru = setTimeout(function () {
+              ;((Uu = Hu = null), gr())
             }, 1)),
-            clearTimeout(Bu),
-            (Bu = 0))
+            clearTimeout(zu),
+            (zu = 0))
         }),
         (mr = function (e) {
-          if (Uu && Uu.tooltip && !Ru) {
-            if (Lu) {
-              let t = Vu - e.pageX
-              ;((e = Hu - e.pageY), Math.sqrt(t * t + e * e) > 10 && gr())
+          if (Hu && Hu.tooltip && !Lu) {
+            if (Iu) {
+              let t = Bu - e.pageX
+              ;((e = Vu - e.pageY), Math.sqrt(t * t + e * e) > 10 && gr())
             } else
-              Wu !== Uu &&
-                (clearTimeout(Bu),
-                (Vu = e.pageX),
-                (Hu = e.pageY),
-                (Bu = setTimeout(() => {
+              Uu !== Hu &&
+                (clearTimeout(zu),
+                (Bu = e.pageX),
+                (Vu = e.pageY),
+                (zu = setTimeout(() => {
                   if (this instanceof Element)
                     for (let t of xe()) {
                       if (!t.rendered) continue
@@ -2870,37 +2870,37 @@ Use ` +
           }
         }),
         (hr = function () {
-          ;((Wu = Uu = null), gr())
+          ;((Uu = Hu = null), gr())
         }),
         (gr = function () {
-          ;(Lu && ((Lu = !1), Gu && (Gu.style.display = `none`)),
-            (Bu &&= (clearTimeout(Bu), 0)))
+          ;(Iu && ((Iu = !1), Wu && (Wu.style.display = `none`)),
+            (zu &&= (clearTimeout(zu), 0)))
         }),
         (_r = function (e, t) {
-          ;(Uu !== e && (gr(), (Wu = null), (Uu = e)),
-            Uu &&
-              Uu.tooltip &&
-              !Ru &&
+          ;(Hu !== e && (gr(), (Uu = null), (Hu = e)),
+            Hu &&
+              Hu.tooltip &&
+              !Lu &&
               ((e = e.getFocusableElement().getBoundingClientRect()),
-              (Vu = Uu.RTL ? e.x + e.width : e.x),
-              (Hu = e.y + e.height),
+              (Bu = Hu.RTL ? e.x + e.width : e.x),
+              (Vu = e.y + e.height),
               yr(t)))
         }),
         (vr = function () {
-          ;(gr(), (Ru = !0))
+          ;(gr(), (Lu = !0))
         }),
         (yr = function (t) {
-          if (!Ru && ((Wu = Uu), Gu)) {
+          if (!Lu && ((Uu = Hu), Wu)) {
             var n
             if (
-              ((n = Oe(t)) == null || n.appendChild(Gu),
-              (Gu.textContent = ``),
-              Gu && Uu)
+              ((n = Oe(t)) == null || n.appendChild(Wu),
+              (Wu.textContent = ``),
+              Wu && Hu)
             ) {
-              if (typeof Iu == `function`) Iu(Gu, Uu)
+              if (typeof Fu == `function`) Fu(Wu, Hu)
               else
                 for (
-                  t = sr(Uu),
+                  t = sr(Hu),
                     t = e.yf(t, 50),
                     t = t.split(`
 `),
@@ -2910,37 +2910,37 @@ Use ` +
                 ) {
                   var r = document.createElement(`div`)
                   ;(r.appendChild(document.createTextNode(t[n])),
-                    Gu.appendChild(r))
+                    Wu.appendChild(r))
                 }
             }
-            ;((t = Uu.RTL),
-              (Gu.style.direction = t ? `rtl` : `ltr`),
-              (Gu.style.display = `block`),
-              (Lu = !0),
+            ;((t = Hu.RTL),
+              (Wu.style.direction = t ? `rtl` : `ltr`),
+              (Wu.style.display = `block`),
+              (Iu = !0),
               (n = document.documentElement.clientWidth),
               (r = document.documentElement.clientHeight))
-            var i = Vu
-            i = t ? i - (0 + Gu.offsetWidth) : i + 0
-            var a = Hu + 10,
+            var i = Bu
+            i = t ? i - (0 + Wu.offsetWidth) : i + 0
+            var a = Vu + 10,
               o,
-              s = (o = Gu)?.parentElement
+              s = (o = Wu)?.parentElement
             ;(s &&
               ((o = s.getBoundingClientRect()),
               (i -= o.left + window.scrollX),
               (a -= o.top + window.scrollY)),
-              a + Gu.offsetHeight > r + window.scrollY &&
-                (a -= Gu.offsetHeight + 20),
+              a + Wu.offsetHeight > r + window.scrollY &&
+                (a -= Wu.offsetHeight + 20),
               t
                 ? (i = Math.max(5 - window.scrollX, i))
-                : i + Gu.offsetWidth > n + window.scrollX - 10 &&
-                  (i = n - Gu.offsetWidth - 10))
+                : i + Wu.offsetWidth > n + window.scrollX - 10 &&
+                  (i = n - Wu.offsetWidth - 10))
             var { x: c, y: l } = { x: i, y: a }
-            ;((Gu.style.left = c + `px`), (Gu.style.top = l + `px`))
+            ;((Wu.style.left = c + `px`), (Wu.style.top = l + `px`))
           }
         }),
         (br = function (e) {
           e = `${e}`.toLowerCase().trim()
-          var t = Yu[e]
+          var t = Ju[e]
           if (
             t ||
             ((t = e.substring(0, 2) === `0x` ? `#` + e.substring(2) : e),
@@ -3026,7 +3026,7 @@ Use ` +
           )
         }),
         (Tr = function (e) {
-          return Cr(e, qu, Ju * 255)
+          return Cr(e, Ku, qu * 255)
         }),
         (Er = function (t, n, r) {
           var i = [],
@@ -3113,7 +3113,7 @@ Use ` +
           var t = typeof e == `string` ? Or(e) : e,
             n = Number(t)
           if (!isNaN(n) && 0 <= n && n <= 360)
-            return { hue: n, hex: Cr(n, qu, Ju * 255) }
+            return { hue: n, hex: Cr(n, Ku, qu * 255) }
           if ((n = br(t))) return { hue: null, hex: n }
           throw (
             (n = `Invalid colour: "` + t + `"`),
@@ -3122,72 +3122,72 @@ Use ` +
           )
         }),
         (Ar = function () {
-          ;((od &&= (od(!1), null)), Nr())
+          ;((ad &&= (ad(!1), null)), Nr())
         }),
         (jr = function () {
           var e = Oe() || document.body,
             t = document.querySelector(`div.blocklyWidgetDiv`)
           ;(t
-            ? (ad = t)
-            : ((ad = document.createElement(`div`)),
-              (ad.id = Ve()),
-              (ad.className = `blocklyWidgetDiv`),
-              (ad.tabIndex = -1)),
-            o(ad, `keydown`, null, (e) => {
+            ? (id = t)
+            : ((id = document.createElement(`div`)),
+              (id.id = Ve()),
+              (id.className = `blocklyWidgetDiv`),
+              (id.tabIndex = -1)),
+            o(id, `keydown`, null, (e) => {
               ;(Pe(e), e.stopPropagation())
             }),
-            e.appendChild(ad))
+            e.appendChild(id))
         }),
         (Mr = function (t, n, r, i, a = !0) {
-          if ((Nr(), (ed = t), (nd = r), (r = ad))) {
-            td = i ?? Ps
-            var o = re(td.getFocusableElement(), A.OWNS)
-            ;(g(td.getFocusableElement(), A.OWNS, o ? [o, r.id] : r.id),
-              td.getFocusableElement().classList.add(`blocklyShowingWidgetDiv`))
+          if ((Nr(), ($u = t), (td = r), (r = id))) {
+            ed = i ?? Ns
+            var o = re(ed.getFocusableElement(), j.OWNS)
+            ;(g(ed.getFocusableElement(), j.OWNS, o ? [o, r.id] : r.id),
+              ed.getFocusableElement().classList.add(`blocklyShowingWidgetDiv`))
             var s
             ;((s = Oe()) == null || s.appendChild(r),
               (r.style.direction = n ? `rtl` : `ltr`),
               (r.style.display = `block`),
-              !i && t instanceof Qu && t.getSourceBlock(),
-              (rd = td.getRenderer().getClassName()),
-              (id = td.getTheme().getClassName()),
+              !i && t instanceof Zu && t.getSourceBlock(),
+              (nd = ed.getRenderer().getClassName()),
+              (rd = ed.getTheme().getClassName()),
+              nd && v(r, nd),
               rd && v(r, rd),
-              id && v(r, id),
-              a && (od = e.t().takeEphemeralFocus(r)),
+              a && (ad = e.t().takeEphemeralFocus(r)),
               e.t().registerPopoverFocusLossHandler(Ar))
           }
         }),
         (Nr = function () {
-          if (ed) {
-            ed = null
-            var t = ad
+          if ($u) {
+            $u = null
+            var t = id
             if (t) {
               ;(e.t().unregisterPopoverFocusLossHandler(Ar),
                 (t.style.display = `none`),
                 (t.style.left = ``),
                 (t.style.top = ``),
-                (nd &&= (nd(), null)),
+                (td &&= (td(), null)),
                 (t.textContent = ``),
-                (rd &&= (y(t, rd), ``)),
-                (id &&= (y(t, id), ``)))
+                (nd &&= (y(t, nd), ``)),
+                (rd &&= (y(t, rd), ``)))
               var n
-              ;((n = td) == null || n.markFocused(),
-                (od &&= (od(), null)),
-                td &&
-                  ad &&
-                  ((t = re(td.getFocusableElement(), A.OWNS) ?? ``),
-                  g(td.getFocusableElement(), A.OWNS, t.replace(ad.id, ``)),
-                  td
+              ;((n = ed) == null || n.markFocused(),
+                (ad &&= (ad(), null)),
+                ed &&
+                  id &&
+                  ((t = re(ed.getFocusableElement(), j.OWNS) ?? ``),
+                  g(ed.getFocusableElement(), j.OWNS, t.replace(id.id, ``)),
+                  ed
                     .getFocusableElement()
                     .classList.remove(`blocklyShowingWidgetDiv`)))
             }
           }
         }),
         (Pr = function (e) {
-          ed === e && Nr()
+          $u === e && Nr()
         }),
         (Fr = function (e) {
-          for (var t = td === null, n = e; !t && n;) {
+          for (var t = ed === null, n = e; !t && n;) {
             if (n === e) {
               t = !0
               break
@@ -3197,15 +3197,15 @@ Use ` +
           t && Nr()
         }),
         (Ir = function (e, t, n) {
-          if (ad) {
-            var r = ad.parentElement
+          if (id) {
+            var r = id.parentElement
             ;(r &&
               ((r = r.getBoundingClientRect()),
               (e -= r.left + window.scrollX),
               (t -= r.top + window.scrollY)),
-              (ad.style.left = e + `px`),
-              (ad.style.top = t + `px`),
-              (ad.style.height = n + `px`))
+              (id.style.left = e + `px`),
+              (id.style.top = t + `px`),
+              (id.style.height = n + `px`))
           }
         }),
         (Lr = function (e, t, n, r) {
@@ -3217,41 +3217,41 @@ Use ` +
         }),
         (Rr = function () {
           var e
-          ;((e = ed) != null &&
+          ;((e = $u) != null &&
             e.repositionForWindowResize &&
-            ed.repositionForWindowResize()) ||
+            $u.repositionForWindowResize()) ||
             Nr()
         }),
         (zr = function (e, t, n, r, i) {
-          if ((Mr(ld, n, Wr, r), t.length)) {
+          if ((Mr(cd, n, Wr, r), t.length)) {
             i ||
               (e instanceof PointerEvent
-                ? (i = new I(e.clientX, e.clientY))
+                ? (i = new L(e.clientX, e.clientY))
                 : (console.warn(
                     `Context menu opened with keyboard but no location given`,
                   ),
-                  (i = new I(0, 0))))
+                  (i = new L(0, 0))))
             var a = Br(t, n, e, i)
-            ;((ud = a),
+            ;((ld = a),
               Vr(a, n, i),
               setTimeout(function () {
                 a.focus()
               }, 1),
-              (cd = null))
+              (sd = null))
           } else Ur()
         }),
         (Br = function (e, t, n, r) {
-          var i = new Ac()
-          i.setRole(k.MENU)
+          var i = new kc()
+          i.setRole(A.MENU)
           for (let a = 0; a < e.length; a++) {
             let o = e[a]
             if (o.separator) {
-              i.addChild(new jc())
+              i.addChild(new Ac())
               continue
             }
-            let s = new kc(Gr(o))
+            let s = new Oc(Gr(o))
             ;(s.setRightToLeft(t),
-              s.setRole(k.MENUITEM),
+              s.setRole(A.MENUITEM),
               i.addChild(s),
               s.setEnabled(o.enabled),
               o.enabled &&
@@ -3268,8 +3268,8 @@ Use ` +
         }),
         (Vr = function (e, t, n) {
           var r = at()
-          n = new L(n.y + r.top, n.y + r.top, n.x + r.left, n.x + r.left)
-          var i = ad
+          n = new R(n.y + r.top, n.y + r.top, n.x + r.left, n.x + r.left)
+          var i = id
           if (!i)
             throw Error(
               `Attempting to create a context menu when widget div is null`,
@@ -3291,12 +3291,12 @@ Use ` +
           ;(e.preventDefault(), e.stopPropagation())
         }),
         (Ur = function () {
-          ;(Pr(ld), (cd = null))
+          ;(Pr(cd), (sd = null))
           var e
-          ;((e = ud) == null || e.dispose(), (ud = null))
+          ;((e = ld) == null || e.dispose(), (ld = null))
         }),
         (Wr = function () {
-          ud &&= (ud.dispose(), null)
+          ld &&= (ld.dispose(), null)
         }),
         (e.Pg = function (t, n) {
           return () => {
@@ -3312,7 +3312,7 @@ Use ` +
               e.Ub--
             }
             return (
-              qe() && !r.isShadow() && x(new (S(O.BLOCK_CREATE))(r)),
+              qe() && !r.isShadow() && x(new (S(k.BLOCK_CREATE))(r)),
               e.t().focusNode(r),
               r
             )
@@ -3349,12 +3349,12 @@ Use ` +
           )
         }),
         (qr = function (e, t, n) {
-          ;((t = Kr(e, t)), gd.set(e, I.difference(n, t)))
+          ;((t = Kr(e, t)), hd.set(e, L.difference(n, t)))
         }),
         (Jr = function (e, t) {
-          if (((t = Kr(e, t)), (e = gd.get(e)), !e))
+          if (((t = Kr(e, t)), (e = hd.get(e)), !e))
             throw Error(`Drag not initialized`)
-          return I.sum(e, t)
+          return L.sum(e, t)
         }),
         (Yr = function (t, n = !1) {
           var r = e.rc(`comment`)
@@ -3393,7 +3393,7 @@ Use ` +
           if (
             (e.workspace.RTL && (n = e.workspace.getWidth()),
             (t = Qr(e, t)),
-            t.nodeType === xs.ELEMENT_NODE)
+            t.nodeType === bs.ELEMENT_NODE)
           ) {
             let r = e.getRelativeToSurfaceXY()
             ;(t.setAttribute(
@@ -3424,7 +3424,7 @@ Use ` +
               : (i = null),
               i && r.appendChild(i))
           if ((a = t.getCommentText())) {
-            var o = t.getIcon(Qc.COMMENT)
+            var o = t.getIcon(Zc.COMMENT)
             i = o.getBubbleSize()
             var s = o.bubbleIsVisible()
             o = o.getBubbleLocation()
@@ -3463,7 +3463,7 @@ Use ` +
                 !c || (o && o.isShadow()) || l.appendChild($r(c, n)),
                 o &&
                   ((o = Qr(o, n)),
-                  o.nodeType === xs.ELEMENT_NODE &&
+                  o.nodeType === bs.ELEMENT_NODE &&
                     (l.appendChild(o), (s = !1))),
                 l.setAttribute(`name`, i.name),
                 s || r.appendChild(l)))
@@ -3484,7 +3484,7 @@ Use ` +
             t.isOwnMovable() || r.setAttribute(`movable`, `false`),
             t.isOwnEditable() || r.setAttribute(`editable`, `false`),
             (l = t.getNextBlock()),
-            l && ((a = Qr(l, n)), a.nodeType === xs.ELEMENT_NODE))
+            l && ((a = Qr(l, n)), a.nodeType === bs.ELEMENT_NODE))
           ) {
             var u = e.rc(`next`)
             ;(u.appendChild(a), r.appendChild(u))
@@ -3506,14 +3506,14 @@ Use ` +
               for (; n && !n.nextSibling;)
                 ((r = n),
                   (n = n.parentNode),
-                  r.nodeType === xs.TEXT_NODE &&
+                  r.nodeType === bs.TEXT_NODE &&
                     r.data.trim() === `` &&
                     n?.firstChild !== r &&
                     ce(r))
               n &&
                 ((r = n),
                 (n = n.nextSibling),
-                r.nodeType === xs.TEXT_NODE && r.data.trim() === `` && ce(r))
+                r.nodeType === bs.TEXT_NODE && r.data.trim() === `` && ce(r))
             }
           return e
         }),
@@ -3561,12 +3561,12 @@ Use ` +
               n.rendered && At(),
               fe())
           }
-          return (x(new (S(O.FINISHED_LOADING))(n)), i)
+          return (x(new (S(k.FINISHED_LOADING))(n)), i)
         }),
         (ti = function (e, t) {
           var n,
             r = (n = e.getAttribute(`id`)) ?? void 0
-          n = t.rendered ? new Cd(t, r) : new Sd(t, r)
+          n = t.rendered ? new Sd(t, r) : new xd(t, r)
           var i
           n.setText((i = e.textContent) ?? ``)
           var a
@@ -3574,12 +3574,12 @@ Use ` +
             (a = parseInt(e.getAttribute(`y`) ?? ``, 10)),
             isNaN(i) ||
               isNaN(a) ||
-              ((i = t.RTL ? t.getWidth() - i : i), n.moveTo(new I(i, a))))
+              ((i = t.RTL ? t.getWidth() - i : i), n.moveTo(new L(i, a))))
           var o
           return (
             (t = parseInt((o = e.getAttribute(`w`)) ?? ``, 10)),
             (o = parseInt(e.getAttribute(`h`) ?? ``, 10)),
-            isNaN(t) || isNaN(o) || n.setSize(new R(t, o)),
+            isNaN(t) || isNaN(o) || n.setSize(new z(t, o)),
             e.getAttribute(`collapsed`) === `true` && n.setCollapsed(!0),
             e.getAttribute(`editable`) === `false` && n.setEditable(!1),
             e.getAttribute(`movable`) === `false` && n.setMovable(!1),
@@ -3614,8 +3614,8 @@ Use ` +
           }
           if (qe()) {
             for (t = sn(n, r), n = 0; n < t.length; n++)
-              ((r = t[n]), x(new (S(O.VAR_CREATE))(r)))
-            x(new (S(O.BLOCK_CREATE))(i))
+              ((r = t[n]), x(new (S(k.VAR_CREATE))(r)))
+            x(new (S(k.BLOCK_CREATE))(i))
           }
           return i
         }),
@@ -3638,14 +3638,14 @@ Use ` +
               c = parseInt(r.getAttribute(`x`) ?? ``, 10),
               l = parseInt(r.getAttribute(`y`) ?? ``, 10)
             t.setCommentText(i)
-            let u = t.getIcon(Qc.COMMENT)
-            ;(isNaN(o) || isNaN(s) || u.setBubbleSize(new R(o, s)),
+            let u = t.getIcon(Zc.COMMENT)
+            ;(isNaN(o) || isNaN(s) || u.setBubbleSize(new z(o, s)),
               u.setBubbleVisible(a),
               setTimeout(() => {
                 ;(isNaN(c) ||
                   isNaN(l) ||
                   ((c = t.workspace.RTL ? t.workspace.getWidth() - (c + o) : c),
-                  u.setBubbleLocation(new I(c, l))),
+                  u.setBubbleLocation(new L(c, l))),
                   u.setBubbleVisible(a))
               }, 1))
           }
@@ -3655,7 +3655,7 @@ Use ` +
             n = null
           for (let r = 0; r < e.childNodes.length; r++) {
             let i = e.childNodes[r]
-            i.nodeType === xs.ELEMENT_NODE &&
+            i.nodeType === bs.ELEMENT_NODE &&
               (i.nodeName.toLowerCase() === `block`
                 ? (t = i)
                 : i.nodeName.toLowerCase() === `shadow` && (n = i))
@@ -3676,7 +3676,7 @@ Use ` +
           o = []
           for (var f = 0; f < e.children.length; f++) {
             var p = e.children[f]
-            if (p.nodeType !== xs.TEXT_NODE)
+            if (p.nodeType !== bs.TEXT_NODE)
               switch (p.nodeName.toLowerCase()) {
                 case `mutation`:
                   s.push(p)
@@ -3803,10 +3803,10 @@ Use ` +
           return i
         }),
         (si = function (e, t) {
-          b(F.FIELD, e, t, !0)
+          b(I.FIELD, e, t, !0)
         }),
         (e.lh = function (e) {
-          return Td.fromJsonInternal(e)
+          return wd.fromJsonInternal(e)
         }),
         (ci = function (e) {
           return (
@@ -3939,10 +3939,10 @@ Use ` +
         }),
         (mi = function (e, t, n) {
           var r = e.getField(t)
-          if (r instanceof Dd && !r.isOptionListDynamic()) {
+          if (r instanceof Ed && !r.isOptionListDynamic()) {
             r = r.getOptions()
             for (let i of r)
-              i !== Dd.SEPARATOR &&
+              i !== Ed.SEPARATOR &&
                 (([, r] = i),
                 n[r] === void 0 &&
                   console.warn(
@@ -4060,7 +4060,7 @@ Use ` +
               : e.previousConnection &&
                 ((r.x += (e.RTL ? -23 : 23) * n), (r.y += 3 * n))
             var i = _(
-              j.CIRCLE,
+              M.CIRCLE,
               {
                 cx: r.x,
                 cy: r.y,
@@ -4072,7 +4072,7 @@ Use ` +
               t.getParentSvg(),
             )
             ;((e = _(
-              j.ANIMATE,
+              M.ANIMATE,
               {
                 id: `animationCircle`,
                 begin: `indefinite`,
@@ -4084,7 +4084,7 @@ Use ` +
               i,
             )),
               (t = _(
-                j.ANIMATE,
+                M.ANIMATE,
                 {
                   id: `animationOpacity`,
                   begin: `indefinite`,
@@ -4134,16 +4134,16 @@ Use ` +
           for (
             var r = t.workspace,
               i = e.Og.snapRadius,
-              a = I.difference(n, t.getRelativeToSurfaceXY()),
-              o = new I(0, 0),
+              a = L.difference(n, t.getRelativeToSurfaceXY()),
+              o = new L(0, 0),
               s = r
                 .getAllBlocks(!1)
                 .filter((e) => e.id != t.id)
                 .map((e) => e.getRelativeToSurfaceXY());
-            Ai(I.sum(n, o), s) || ji(t, I.sum(a, o), i);
+            Ai(L.sum(n, o), s) || ji(t, L.sum(a, o), i);
           )
             r.RTL ? o.translate(-i, i * 2) : o.translate(i, i * 2)
-          t.moveTo(I.sum(n, o))
+          t.moveTo(L.sum(n, o))
         }),
         (Ai = function (e, t) {
           return t.some(
@@ -4171,15 +4171,15 @@ Use ` +
             var r = t.getMetricsManager()
             if (r.hasFixedEdges() && !t.isDragging()) {
               var i
-              if (os.includes((i = n.type) ?? ``)) {
+              if (as.includes((i = n.type) ?? ``)) {
                 switch (((r = r.getScrollMetrics(!0)), (i = null), n.type)) {
-                  case O.BLOCK_CREATE:
-                  case O.BLOCK_MOVE:
+                  case k.BLOCK_CREATE:
+                  case k.BLOCK_MOVE:
                     ;(i = t.getBlockById(n.blockId)) && (i = i.getRootBlock())
                     break
-                  case O.COMMENT_CREATE:
-                  case O.COMMENT_MOVE:
-                  case O.COMMENT_RESIZE:
+                  case k.COMMENT_CREATE:
+                  case k.COMMENT_MOVE:
+                  case k.COMMENT_RESIZE:
                     i = t.getCommentById(n.commentId)
                 }
                 if (i) {
@@ -4193,7 +4193,7 @@ Use ` +
                     e.B(a))
                 }
               } else
-                n.type === O.VIEWPORT_CHANGE &&
+                n.type === k.VIEWPORT_CHANGE &&
                   n.scale &&
                   n.oldScale &&
                   n.scale > n.oldScale &&
@@ -4224,7 +4224,7 @@ Use ` +
         (Li = function (e, t, n) {
           return (
             (t = t.isMutator ? t : (t.options.parentWorkspace ?? t)),
-            Ie(F.PASTER, e.paster, !1)?.paste(e, t, n) ?? null
+            Ie(I.PASTER, e.paster, !1)?.paste(e, t, n) ?? null
           )
         }),
         (Ri = function (e) {
@@ -4256,7 +4256,7 @@ Use ` +
           )
         }),
         (Hi = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.ESCAPE,
             preconditionFn(e) {
               return !e.isReadOnly()
@@ -4264,12 +4264,12 @@ Use ` +
             callback(e) {
               return (e.hideChaff(), !0)
             },
-            keyCodes: [U.ESC],
+            keyCodes: [W.ESC],
             displayText: () => e.C.SHORTCUTS_ESCAPE,
           })
         }),
         (Ui = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.DELETE,
             preconditionFn(t, n) {
               return (
@@ -4300,7 +4300,7 @@ Use ` +
                 !0
               )
             },
-            keyCodes: [U.DELETE, U.BACKSPACE],
+            keyCodes: [W.DELETE, W.BACKSPACE],
             displayText: () => e.C.SHORTCUTS_DELETE,
           })
         }),
@@ -4308,14 +4308,14 @@ Use ` +
           return zi(e) && Bi(e) && Vi(e)
             ? e.isCopyable
               ? e.isCopyable()
-              : e instanceof Rf || e instanceof Cd
+              : e instanceof Rf || e instanceof Sd
                 ? e.isOwnDeletable() && e.isOwnMovable()
                 : e.isDeletable() && e.isMovable()
             : !1
         }),
         (Gi = function () {
-          var t = M.registry.createSerializedKey(U.C, [U.CTRL_CMD])
-          M.registry.register({
+          var t = N.registry.createSerializedKey(W.C, [W.CTRL_CMD])
+          N.registry.register({
             name: J.COPY,
             preconditionFn(t, n) {
               n = n.focusedNode
@@ -4346,7 +4346,7 @@ Use ` +
                         : void 0),
                     (r = !!Fi(r, i)) &&
                       n instanceof KeyboardEvent &&
-                      Bc.show(t, {
+                      zc.show(t, {
                         message: e.C.KEYBOARD_NAV_COPIED_HINT.replace(
                           `%1`,
                           _n(J.PASTE),
@@ -4362,8 +4362,8 @@ Use ` +
           })
         }),
         (Ki = function () {
-          var t = M.registry.createSerializedKey(U.X, [U.CTRL_CMD])
-          M.registry.register({
+          var t = N.registry.createSerializedKey(W.X, [W.CTRL_CMD])
+          N.registry.register({
             name: J.CUT,
             preconditionFn(t, n) {
               return (
@@ -4395,7 +4395,7 @@ Use ` +
                         n.preventDefault()),
                     i &&
                       n instanceof KeyboardEvent &&
-                      Bc.show(t, {
+                      zc.show(t, {
                         message: e.C.KEYBOARD_NAV_CUT_HINT.replace(
                           `%1`,
                           _n(J.PASTE),
@@ -4412,8 +4412,8 @@ Use ` +
           })
         }),
         (qi = function () {
-          var t = M.registry.createSerializedKey(U.V, [U.CTRL_CMD])
-          M.registry.register({
+          var t = N.registry.createSerializedKey(W.V, [W.CTRL_CMD])
+          N.registry.register({
             name: J.PASTE,
             preconditionFn() {
               var t = uf
@@ -4437,14 +4437,14 @@ Use ` +
               var a = uf
               if (
                 !a ||
-                (Bc.hide(t, `cutHint`),
-                Bc.hide(t, `copiedHint`),
+                (zc.hide(t, `cutHint`),
+                zc.hide(t, `copiedHint`),
                 (t = a.isFlyout ? a.targetWorkspace : a),
                 !t || t.isReadOnly())
               )
                 return !1
               if (n instanceof PointerEvent) {
-                var o = st(t, new I(n.clientX, n.clientY))
+                var o = st(t, new L(n.clientX, n.clientY))
                 return !!Ii(r, t, o)
               }
               if (
@@ -4460,17 +4460,17 @@ Use ` +
                 width: l,
                 height: u,
               } = t.getMetricsManager().getViewMetrics(!0)
-              return new L(c, c + u, s, s + l).contains(o.x, o.y)
+              return new R(c, c + u, s, s + l).contains(o.x, o.y)
                 ? !!Ii(r, t)
-                : ((o = new I(s + l / 2, c + u / 2)), !!Ii(r, t, o))
+                : ((o = new L(s + l / 2, c + u / 2)), !!Ii(r, t, o))
             },
             keyCodes: [t],
             displayText: () => e.C.PASTE_SHORTCUT,
           })
         }),
         (Ji = function () {
-          var t = M.registry.createSerializedKey(U.Z, [U.CTRL_CMD])
-          M.registry.register({
+          var t = N.registry.createSerializedKey(W.Z, [W.CTRL_CMD])
+          N.registry.register({
             name: J.UNDO,
             preconditionFn(t) {
               return (
@@ -4487,9 +4487,9 @@ Use ` +
           })
         }),
         (Yi = function () {
-          var t = M.registry.createSerializedKey(U.Z, [U.CTRL_CMD, U.SHIFT]),
-            n = M.registry.createSerializedKey(U.Y, [U.CTRL])
-          M.registry.register({
+          var t = N.registry.createSerializedKey(W.Z, [W.CTRL_CMD, W.SHIFT]),
+            n = N.registry.createSerializedKey(W.Y, [W.CTRL])
+          N.registry.register({
             name: J.REDO,
             preconditionFn(t) {
               return (
@@ -4514,16 +4514,16 @@ Use ` +
                     .getNavigator()
                     .getSourceBlockFromNode(e.t().getFocusedNode()) ?? void 0)
             },
-            n = M.registry.createSerializedKey(U.M, [U.SHIFT]),
+            n = N.registry.createSerializedKey(W.M, [W.SHIFT]),
             r = {
               name: J.START_MOVE,
-              preconditionFn: (e) => ((e = t(e)), !!e && G.mover.canMove(e)),
+              preconditionFn: (e) => ((e = t(e)), !!e && Ad.mover.canMove(e)),
               callback: (n, r) => (
-                ru.setIsActive(!0),
+                nu.setIsActive(!0),
                 (n = t(n)) && e.t().focusNode(n),
-                !!n && G.mover.startMove(n, r)
+                !!n && Ad.mover.startMove(n, r)
               ),
-              keyCodes: [U.M],
+              keyCodes: [W.M],
               displayText: () => e.C.SHORTCUTS_START_MOVE,
             }
           n = [
@@ -4535,83 +4535,83 @@ Use ` +
             }),
             {
               name: J.FINISH_MOVE,
-              preconditionFn: () => G.mover.isMoving(),
-              callback: (e, t) => G.mover.finishMove(t),
-              keyCodes: [U.ENTER, U.SPACE],
+              preconditionFn: () => Ad.mover.isMoving(),
+              callback: (e, t) => Ad.mover.finishMove(t),
+              keyCodes: [W.ENTER, W.SPACE],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_FINISH_MOVE,
             },
             {
               name: J.ABORT_MOVE,
-              preconditionFn: () => G.mover.isMoving(),
-              callback: (e, t) => G.mover.abortMove(t),
-              keyCodes: [U.ESC],
+              preconditionFn: () => Ad.mover.isMoving(),
+              callback: (e, t) => Ad.mover.abortMove(t),
+              keyCodes: [W.ESC],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_ABORT_MOVE,
             },
             {
               name: J.MOVE_LEFT,
-              preconditionFn: () => G.mover.isMoving(),
+              preconditionFn: () => Ad.mover.isMoving(),
               callback: (e, t) => (
                 t.preventDefault(),
-                G.mover.move(kd.LEFT, t)
+                Ad.mover.move(Od.LEFT, t)
               ),
-              keyCodes: [U.LEFT, _f],
+              keyCodes: [W.LEFT, _f],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_MOVE_LEFT,
             },
             {
               name: J.MOVE_RIGHT,
-              preconditionFn: () => G.mover.isMoving(),
+              preconditionFn: () => Ad.mover.isMoving(),
               callback: (e, t) => (
                 t.preventDefault(),
-                G.mover.move(kd.RIGHT, t)
+                Ad.mover.move(Od.RIGHT, t)
               ),
-              keyCodes: [U.RIGHT, vf],
+              keyCodes: [W.RIGHT, vf],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_MOVE_RIGHT,
             },
             {
               name: J.MOVE_UP,
-              preconditionFn: () => G.mover.isMoving(),
-              callback: (e, t) => (t.preventDefault(), G.mover.move(kd.UP, t)),
-              keyCodes: [U.UP, yf],
+              preconditionFn: () => Ad.mover.isMoving(),
+              callback: (e, t) => (t.preventDefault(), Ad.mover.move(Od.UP, t)),
+              keyCodes: [W.UP, yf],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_MOVE_UP,
             },
             {
               name: J.MOVE_DOWN,
-              preconditionFn: () => G.mover.isMoving(),
+              preconditionFn: () => Ad.mover.isMoving(),
               callback: (e, t) => (
                 t.preventDefault(),
-                G.mover.move(kd.DOWN, t)
+                Ad.mover.move(Od.DOWN, t)
               ),
-              keyCodes: [U.DOWN, bf],
+              keyCodes: [W.DOWN, bf],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_MOVE_DOWN,
             },
           ]
-          for (let e of n) M.registry.register(e)
+          for (let e of n) N.registry.register(e)
         }),
         (Zi = function () {
-          var t = M.registry.createSerializedKey(U.ENTER, [U.CTRL_CMD]),
-            n = M.registry.createSerializedKey(U.F10, [U.SHIFT])
-          M.registry.register({
+          var t = N.registry.createSerializedKey(W.ENTER, [W.CTRL_CMD]),
+            n = N.registry.createSerializedKey(W.F10, [W.SHIFT])
+          N.registry.register({
             name: J.MENU,
             preconditionFn: (e) => !e.isDragging(),
             callback: (t, n) => {
               if (
-                (ru.setIsActive(!0),
+                (nu.setIsActive(!0),
                 (t = e.t().getFocusedNode()) &&
                   typeof t.showContextMenu == `function`)
               ) {
                 t.showContextMenu(n)
                 let e
-                return ((e = ud) == null || e.highlightNext(), !0)
+                return ((e = ld) == null || e.highlightNext(), !0)
               }
               return !1
             },
-            keyCodes: [t, n, U.CONTEXT_MENU],
+            keyCodes: [t, n, W.CONTEXT_MENU],
             displayText: () => e.C.SHORTCUTS_SHOW_CONTEXT_MENU,
           })
         }),
@@ -4619,10 +4619,10 @@ Use ` +
           var t = {
             right: {
               name: J.NAVIGATE_RIGHT,
-              preconditionFn: (e) => !e.isDragging() && !ku && !ed,
+              preconditionFn: (e) => !e.isDragging() && !Ou && !$u,
               callback: (t, n) => (
                 n.preventDefault(),
-                ru.setIsActive(!0),
+                nu.setIsActive(!0),
                 (n = t.RTL
                   ? e.t().getFocusedTree()?.getNavigator().getOutNode()
                   : e.t().getFocusedTree()?.getNavigator().getInNode()),
@@ -4630,16 +4630,16 @@ Use ` +
                   ? (e.t().focusNode(n), !0)
                   : (t.getAudioManager().playErrorBeep(), !1)
               ),
-              keyCodes: [U.RIGHT],
+              keyCodes: [W.RIGHT],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_NAVIGATE_RIGHT,
             },
             left: {
               name: J.NAVIGATE_LEFT,
-              preconditionFn: (e) => !e.isDragging() && !ku && !ed,
+              preconditionFn: (e) => !e.isDragging() && !Ou && !$u,
               callback: (t, n) => (
                 n.preventDefault(),
-                ru.setIsActive(!0),
+                nu.setIsActive(!0),
                 (n = t.RTL
                   ? e.t().getFocusedTree()?.getNavigator().getInNode()
                   : e.t().getFocusedTree()?.getNavigator().getOutNode()),
@@ -4647,16 +4647,16 @@ Use ` +
                   ? (e.t().focusNode(n), !0)
                   : (t.getAudioManager().playErrorBeep(), !1)
               ),
-              keyCodes: [U.LEFT],
+              keyCodes: [W.LEFT],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_NAVIGATE_LEFT,
             },
             down: {
               name: J.NAVIGATE_DOWN,
-              preconditionFn: (e) => !e.isDragging() && !ku && !ed,
+              preconditionFn: (e) => !e.isDragging() && !Ou && !$u,
               callback: (t, n) => (
                 n.preventDefault(),
-                ru.setIsActive(!0),
+                nu.setIsActive(!0),
                 (n = e.t().getFocusedTree()?.getNavigator().getNextNode()),
                 n
                   ? (t.getAudioManager().maybePlayScopeChangeAudioCue(n),
@@ -4664,16 +4664,16 @@ Use ` +
                     !0)
                   : (t.getAudioManager().playErrorBeep(), !1)
               ),
-              keyCodes: [U.DOWN],
+              keyCodes: [W.DOWN],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_NAVIGATE_DOWN,
             },
             up: {
               name: J.NAVIGATE_UP,
-              preconditionFn: (e) => !e.isDragging() && !ku && !ed,
+              preconditionFn: (e) => !e.isDragging() && !Ou && !$u,
               callback: (t, n) => (
                 n.preventDefault(),
-                ru.setIsActive(!0),
+                nu.setIsActive(!0),
                 (n = e.t().getFocusedTree()?.getNavigator().getPreviousNode()),
                 n
                   ? (t.getAudioManager().maybePlayScopeChangeAudioCue(n),
@@ -4681,52 +4681,52 @@ Use ` +
                     !0)
                   : (t.getAudioManager().playErrorBeep(), !1)
               ),
-              keyCodes: [U.UP],
+              keyCodes: [W.UP],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_NAVIGATE_UP,
             },
           }
-          for (let e of Object.values(t)) M.registry.register(e)
+          for (let e of Object.values(t)) N.registry.register(e)
         }),
         ($i = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.FOCUS_WORKSPACE,
             preconditionFn: (e) => !e.isDragging(),
             callback: (t) => (
-              ru.setIsActive(!0),
+              nu.setIsActive(!0),
               (t = xf(t)),
               e.t().focusNode(t.getWorkspaceFocusTarget() ?? t),
               !0
             ),
-            keyCodes: [U.W],
+            keyCodes: [W.W],
             displayText: () => e.C.SHORTCUTS_FOCUS_WORKSPACE,
           })
         }),
         (ea = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.FOCUS_TOOLBOX,
             preconditionFn: (e) => !e.isDragging(),
             callback: (t, n) => {
               var r = t.getToolbox()
-              if (r) (ru.setIsActive(!0), e.t().focusTree(r))
+              if (r) (nu.setIsActive(!0), e.t().focusTree(r))
               else {
                 if (((t = t.getFlyout()), !t)) return !1
-                ;(ru.setIsActive(!0), e.t().focusTree(t.getWorkspace()))
+                ;(nu.setIsActive(!0), e.t().focusTree(t.getWorkspace()))
               }
               return (n.preventDefault(), !0)
             },
-            keyCodes: [U.T],
+            keyCodes: [W.T],
             displayText: () => e.C.SHORTCUTS_FOCUS_TOOLBOX,
           })
         }),
         (ta = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.INFORMATION,
             preconditionFn: () => !0,
             callback: (t) => {
               var n = e.t().getFocusedNode(),
                 r = t.getNavigator().getSourceBlockFromNode(n)
-              if (r) return ((t = Sn(r, hs.LOQUACIOUS)), ae(t), !0)
+              if (r) return ((t = Sn(r, ms.LOQUACIOUS)), ae(t), !0)
               if (n === t) {
                 ;((n = xf(t)),
                   (t = n.getTopBlocks().length),
@@ -4752,13 +4752,13 @@ Use ` +
               }
               return !1
             },
-            keyCodes: [U.I],
+            keyCodes: [W.I],
             displayText: () => e.C.SHORTCUTS_INFORMATION,
           })
         }),
         (na = function () {
-          var t = M.registry.createSerializedKey(U.I, [U.SHIFT])
-          M.registry.register({
+          var t = N.registry.createSerializedKey(W.I, [W.SHIFT])
+          N.registry.register({
             name: J.EXTENDED_INFORMATION,
             preconditionFn: () => !0,
             callback: (t) => {
@@ -4774,8 +4774,8 @@ Use ` +
                 (i = r.outputConnection) != null && i.isConnected();
               )
                 r = r.getParent()
-              for (r !== t && n.push(Sn(r, hs.TERSE)), i = r.getParent(); i;)
-                (n.push(Sn(i, hs.TERSE)), (i = i.getParent()))
+              for (r !== t && n.push(Sn(r, ms.TERSE)), i = r.getParent(); i;)
+                (n.push(Sn(i, ms.TERSE)), (i = i.getParent()))
               if (n.length) {
                 n.reverse()
                 let r
@@ -4783,7 +4783,7 @@ Use ` +
                   n.push(
                     e.C.CURRENT_BLOCK_ANNOUNCEMENT.replace(
                       `%1`,
-                      Sn(t, hs.TERSE),
+                      Sn(t, ms.TERSE),
                     ),
                   ),
                   ae(e.C.PARENT_BLOCKS_ANNOUNCEMENT.replace(`%1`, n.join(`,`))))
@@ -4795,8 +4795,8 @@ Use ` +
           })
         }),
         (ra = function () {
-          var t = M.registry.createSerializedKey(U.X, [U.SHIFT])
-          M.registry.register({
+          var t = N.registry.createSerializedKey(W.X, [W.SHIFT])
+          N.registry.register({
             name: J.DISCONNECT,
             preconditionFn: (e, t) => (
               (t = t.focusedNode),
@@ -4808,7 +4808,7 @@ Use ` +
               t
             ),
             callback: (t, n) => (
-              ru.setIsActive(!0),
+              nu.setIsActive(!0),
               (t = e.t().getFocusedNode()),
               t instanceof Rf &&
                 ((n = !(n instanceof KeyboardEvent && n.shiftKey)),
@@ -4817,7 +4817,7 @@ Use ` +
                 e.B(!1),
                 !0)
             ),
-            keyCodes: [U.X, t],
+            keyCodes: [W.X, t],
             displayText: () => e.C.SHORTCUTS_DISCONNECT,
           })
         }),
@@ -4829,32 +4829,32 @@ Use ` +
             },
             n = {
               name: J.PREVIOUS_STACK,
-              preconditionFn: (e) => !e.isDragging() && !!t(e) && !ku && !ed,
+              preconditionFn: (e) => !e.isDragging() && !!t(e) && !Ou && !$u,
               callback: (n) => {
-                ru.setIsActive(!0)
+                nu.setIsActive(!0)
                 var r = t(n)
                 return !r ||
                   ((n = t(n, n.getNavigator().navigateStacks(r, -1))), !n)
                   ? !1
                   : (e.t().focusNode(n), !0)
               },
-              keyCodes: [U.B],
+              keyCodes: [W.B],
               displayText: () => e.C.SHORTCUTS_PREVIOUS_STACK,
             }
-          ;(M.registry.register({
+          ;(N.registry.register({
             name: J.NEXT_STACK,
-            preconditionFn: (e) => !e.isDragging() && !!t(e) && !ku && !ed,
+            preconditionFn: (e) => !e.isDragging() && !!t(e) && !Ou && !$u,
             callback: (n) => {
-              ru.setIsActive(!0)
+              nu.setIsActive(!0)
               var r = t(n)
               return !r || ((n = n.getNavigator().navigateStacks(r, 1)), !n)
                 ? !1
                 : (e.t().focusNode(n), !0)
             },
-            keyCodes: [U.N],
+            keyCodes: [W.N],
             displayText: () => e.C.SHORTCUTS_NEXT_STACK,
           }),
-            M.registry.register(n))
+            N.registry.register(n))
         }),
         (aa = function () {
           var t = () => {
@@ -4880,41 +4880,41 @@ Use ` +
               }
               return null
             },
-            i = M.registry.createSerializedKey(U.H, [U.SHIFT])
+            i = N.registry.createSerializedKey(W.H, [W.SHIFT])
           ;((i = {
             name: J.PREVIOUS_HEADING,
-            preconditionFn: (e) => !e.isDragging() && !ku && !ed && !!t(),
+            preconditionFn: (e) => !e.isDragging() && !Ou && !$u && !!t(),
             callback: () => {
               var n = t()
               return !n || ((n = r(n, -1)), !n)
                 ? !1
-                : (ru.setIsActive(!0), e.t().focusNode(n), !0)
+                : (nu.setIsActive(!0), e.t().focusNode(n), !0)
             },
             keyCodes: [i],
             displayText: () => e.C.SHORTCUTS_PREVIOUS_HEADING,
           }),
-            M.registry.register({
+            N.registry.register({
               name: J.NEXT_HEADING,
-              preconditionFn: (e) => !e.isDragging() && !ku && !ed && !!t(),
+              preconditionFn: (e) => !e.isDragging() && !Ou && !$u && !!t(),
               callback: () => {
                 var n = t()
                 return !n || ((n = r(n, 1)), !n)
                   ? !1
-                  : (ru.setIsActive(!0), e.t().focusNode(n), !0)
+                  : (nu.setIsActive(!0), e.t().focusNode(n), !0)
               },
-              keyCodes: [U.H],
+              keyCodes: [W.H],
               displayText: () => e.C.SHORTCUTS_NEXT_HEADING,
             }),
-            M.registry.register(i))
+            N.registry.register(i))
         }),
         (oa = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.PERFORM_ACTION,
             preconditionFn: (t) =>
-              !t.isDragging() && !ku && !ed && !e.t().ephemeralFocusTaken(),
+              !t.isDragging() && !Ou && !$u && !e.t().ephemeralFocusTaken(),
             callback: (t, n) => {
               if (
-                (ru.setIsActive(!0),
+                (nu.setIsActive(!0),
                 (t = e.t().getFocusedNode()) && `performAction` in t)
               ) {
                 n.preventDefault()
@@ -4923,13 +4923,13 @@ Use ` +
               }
               return !1
             },
-            keyCodes: [U.ENTER, U.SPACE],
+            keyCodes: [W.ENTER, W.SPACE],
             allowCollision: !0,
             displayText: () => e.C.SHORTCUTS_PERFORM_ACTION,
           })
         }),
         (sa = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.DUPLICATE,
             preconditionFn: (e, t) => (
               ({ focusedNode: t } = t),
@@ -4942,34 +4942,34 @@ Use ` +
               t
             ),
             callback: (e, t, n, r) => (
-              ru.setIsActive(!0),
+              nu.setIsActive(!0),
               (t = zi(r.focusedNode) && r.focusedNode),
               (t &&= t.toCopyData()) ? !!Ii(t, e) : !1
             ),
-            keyCodes: [U.D],
+            keyCodes: [W.D],
             allowCollision: !0,
             displayText: () => e.C.SHORTCUTS_DUPLICATE,
           })
         }),
         (ca = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.CLEANUP,
             preconditionFn: (e) =>
               !e.isDragging() && !e.isReadOnly() && !e.isFlyout,
-            callback: (e) => (ru.setIsActive(!0), e.cleanUp(), !0),
-            keyCodes: [U.C],
+            callback: (e) => (nu.setIsActive(!0), e.cleanUp(), !0),
+            keyCodes: [W.C],
             allowCollision: !0,
             displayText: () => e.C.SHORTCUTS_CLEANUP,
           })
         }),
         (la = function () {
-          var t = M.registry.createSerializedKey(U.J, [U.CTRL_CMD])
-          M.registry.register({
+          var t = N.registry.createSerializedKey(W.J, [W.CTRL_CMD])
+          N.registry.register({
             name: J.SHOW_TOOLTIP,
             preconditionFn: (e) => !e.isDragging(),
             callback: (t) => {
               var n = e.t().getFocusedNode()
-              return (n !== null && (ru.setIsActive(!0), _r(n, t)), !0)
+              return (n !== null && (nu.setIsActive(!0), _r(n, t)), !0)
             },
             keyCodes: [t],
             allowCollision: !0,
@@ -4977,14 +4977,14 @@ Use ` +
           })
         }),
         (ua = function () {
-          var t = M.registry.createSerializedKey(U.A, [U.ALT, U.SHIFT]),
+          var t = N.registry.createSerializedKey(W.A, [W.ALT, W.SHIFT]),
             n = !1
-          M.registry.register({
+          N.registry.register({
             name: J.TOGGLE_SCREENREADER,
             preconditionFn: () => !0,
             callback: (t, r) => {
               ;((n = !n),
-                ru.setScopeChangeAudioCuesEnabled(n),
+                nu.setScopeChangeAudioCuesEnabled(n),
                 t.getNavigator().setNavigationLoops(!n))
               var i
               ;(i = t.getToolbox()) == null ||
@@ -4993,7 +4993,7 @@ Use ` +
               return (
                 (a = t.getFlyout()) == null ||
                   a.getWorkspace().getNavigator().setNavigationLoops(!n),
-                Bc.show(t, {
+                zc.show(t, {
                   message: (n
                     ? e.C.SCREENREADER_MODE_ENABLED
                     : e.C.SCREENREADER_MODE_DISABLED
@@ -5011,7 +5011,7 @@ Use ` +
           })
         }),
         (da = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.JUMP_BLOCK_START,
             preconditionFn: Sf,
             callback(t, n, r, i) {
@@ -5026,12 +5026,12 @@ Use ` +
                 t ? (e.t().focusNode(t), !0) : !1
               )
             },
-            keyCodes: [U.HOME],
+            keyCodes: [W.HOME],
             displayText: () => e.C.SHORTCUTS_JUMP_BLOCK_START,
           })
         }),
         (fa = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.JUMP_BLOCK_END,
             preconditionFn: Sf,
             callback(t, n, r, i) {
@@ -5050,12 +5050,12 @@ Use ` +
                   : (e.t().focusNode(a), !0)
               )
             },
-            keyCodes: [U.END],
+            keyCodes: [W.END],
             displayText: () => e.C.SHORTCUTS_JUMP_BLOCK_END,
           })
         }),
         (pa = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.JUMP_TOP_STACK,
             preconditionFn: Sf,
             callback(t, n, r, i) {
@@ -5065,12 +5065,12 @@ Use ` +
                 ? !1
                 : ((t = t.getRootBlock()), e.t().focusNode(t), !0)
             },
-            keyCodes: [U.PAGE_UP],
+            keyCodes: [W.PAGE_UP],
             displayText: () => e.C.SHORTCUTS_JUMP_TOP_STACK,
           })
         }),
         (ma = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.JUMP_BOTTOM_STACK,
             preconditionFn: Sf,
             callback(t, n, r, i) {
@@ -5093,13 +5093,13 @@ Use ` +
                   : !1
               )
             },
-            keyCodes: [U.PAGE_DOWN],
+            keyCodes: [W.PAGE_DOWN],
             displayText: () => e.C.SHORTCUTS_JUMP_BOTTOM_STACK,
           })
         }),
         (ha = function () {
-          var t = M.registry.createSerializedKey(U.HOME, [U.CTRL_CMD])
-          M.registry.register({
+          var t = N.registry.createSerializedKey(W.HOME, [W.CTRL_CMD])
+          N.registry.register({
             name: J.JUMP_FIRST_BLOCK,
             preconditionFn: (t) =>
               !t.isDragging() && !e.t().ephemeralFocusTaken(),
@@ -5117,8 +5117,8 @@ Use ` +
           })
         }),
         (ga = function () {
-          var t = M.registry.createSerializedKey(U.END, [U.CTRL_CMD])
-          M.registry.register({
+          var t = N.registry.createSerializedKey(W.END, [W.CTRL_CMD])
+          N.registry.register({
             name: J.JUMP_LAST_BLOCK,
             preconditionFn: (t) =>
               !t.isDragging() && !e.t().ephemeralFocusTaken(),
@@ -5224,25 +5224,25 @@ Use ` +
             : (e.t().focusNode(r[o]), !0)
         }),
         (xa = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.JUMP_PREVIOUS_PAGE,
             preconditionFn: Tf,
             callback(e, t) {
               return ba(e, !1) ? (t.preventDefault(), !0) : !1
             },
-            keyCodes: [U.PAGE_UP],
+            keyCodes: [W.PAGE_UP],
             allowCollision: !0,
             displayText: () => e.C.SHORTCUTS_JUMP_PREVIOUS_PAGE,
           })
         }),
         (Sa = function () {
-          M.registry.register({
+          N.registry.register({
             name: J.JUMP_NEXT_PAGE,
             preconditionFn: Tf,
             callback(e, t) {
               return ba(e, !0) ? (t.preventDefault(), !0) : !1
             },
-            keyCodes: [U.PAGE_DOWN],
+            keyCodes: [W.PAGE_DOWN],
             allowCollision: !0,
             displayText: () => e.C.SHORTCUTS_JUMP_NEXT_PAGE,
           })
@@ -5282,7 +5282,7 @@ Use ` +
               displayText: () => e.C.SHORTCUTS_SCROLL_DOWN,
             },
           ]
-          for (let e of t) M.registry.register(e)
+          for (let e of t) N.registry.register(e)
         }),
         (wa = function () {
           ;(Hi(), Ui(), Gi(), Ki(), qi(), Ji(), Yi())
@@ -5307,9 +5307,9 @@ Use ` +
         (Da = function (t, n = !1) {
           var r = e.C.KEYBOARD_NAV_UNCONSTRAINED_MOVE_HINT.replace(
             `%1`,
-            Go || Uo || Wo ? e.C.COMMAND_KEY : e.C.CONTROL_KEY,
+            Wo || Ho || Uo ? e.C.COMMAND_KEY : e.C.CONTROL_KEY,
           ).replace(`%2`, e.C.ENTER_KEY)
-          Bc.show(t, {
+          zc.show(t, {
             message: r,
             id: `unconstrainedMoveHint`,
             oncePerSession: !n,
@@ -5320,7 +5320,7 @@ Use ` +
             `%1`,
             e.C.ENTER_KEY,
           )
-          Bc.show(t, {
+          zc.show(t, {
             message: n,
             id: `constrainedMoveHint`,
             oncePerSession: !0,
@@ -5368,14 +5368,14 @@ Use ` +
         }),
         (Ma = function (e) {
           var t = e.options.toolboxPosition
-          return e.options.RTL && t !== z.TOP && t !== z.BOTTOM
-            ? t === z.LEFT
-              ? z.RIGHT
-              : z.LEFT
+          return e.options.RTL && t !== B.TOP && t !== B.BOTTOM
+            ? t === B.LEFT
+              ? B.RIGHT
+              : B.LEFT
             : t
         }),
         (Na = function (e, t) {
-          b(F.ICON, e.toString(), t)
+          b(I.ICON, e.toString(), t)
         }),
         (Pa = function (e) {
           return (
@@ -5444,7 +5444,7 @@ Use ` +
         }),
         (e.Ej = function (t) {
           var n = this.getSourceBlock()
-          if (!n) throw new $u()
+          if (!n) throw new Qu()
           t = t.trim()
           var r = e.Bj(t, n)
           Pa(n) && !n.isInsertionMarker() && n.getProcedureModel().setName(r)
@@ -5468,21 +5468,21 @@ Use ` +
           }
           var r = []
           return (
-            ss.procedures_defnoreturn &&
+            os.procedures_defnoreturn &&
               r.push({
                 kind: `block`,
                 type: `procedures_defnoreturn`,
                 gap: 16,
                 fields: { NAME: e.C.PROCEDURES_DEFNORETURN_PROCEDURE },
               }),
-            ss.procedures_defreturn &&
+            os.procedures_defreturn &&
               r.push({
                 kind: `block`,
                 type: `procedures_defreturn`,
                 gap: 16,
                 fields: { NAME: e.C.PROCEDURES_DEFRETURN_PROCEDURE },
               }),
-            ss.procedures_ifreturn &&
+            os.procedures_ifreturn &&
               r.push({ kind: `block`, type: `procedures_ifreturn`, gap: 16 }),
             r.length && (r[r.length - 1].gap = 24),
             (t = Ia(t)),
@@ -5509,7 +5509,7 @@ Use ` +
         }),
         (Va = function (t) {
           if (
-            t.type === O.BUBBLE_OPEN &&
+            t.type === k.BUBBLE_OPEN &&
             t.bubbleType === `mutator` &&
             t.isOpen &&
             t.blockId
@@ -5523,10 +5523,10 @@ Use ` +
           }
         }),
         (Ha = function (e) {
-          ;(e.type === O.BLOCK_CREATE ||
-            e.type === O.BLOCK_DELETE ||
-            e.type === O.BLOCK_CHANGE ||
-            e.type === O.BLOCK_FIELD_INTERMEDIATE_CHANGE) &&
+          ;(e.type === k.BLOCK_CREATE ||
+            e.type === k.BLOCK_DELETE ||
+            e.type === k.BLOCK_CHANGE ||
+            e.type === k.BLOCK_FIELD_INTERMEDIATE_CHANGE) &&
             ((e = be(e.workspaceId)), Ba(e))
         }),
         (Ua = function (t, n) {
@@ -5556,7 +5556,7 @@ Use ` +
             ;((a &&= lt(a)),
               r !== a &&
                 ((e.Qc = !1),
-                x(new (S(O.BLOCK_CHANGE))(s, `mutation`, null, r, a)),
+                x(new (S(k.BLOCK_CHANGE))(s, `mutation`, null, r, a)),
                 (e.Qc = n)))
           }
         }),
@@ -5572,10 +5572,10 @@ Use ` +
           return null
         }),
         (Wa = function (e, t) {
-          b(F.RENDERER, e, t)
+          b(I.RENDERER, e, t)
         }),
         (Ga = function (e, t, n) {
-          return ((e = new (Ie(F.RENDERER, e, void 0))(e)), e.init(t, n), e)
+          return ((e = new (Ie(I.RENDERER, e, void 0))(e)), e.init(t, n), e)
         }),
         (Ka = function (e) {
           Qt(e.getTargetWorkspace(), void 0, `String`)
@@ -5588,8 +5588,8 @@ Use ` +
         }),
         (Ya = function (t) {
           return (
-            ss.variables_set_dynamic ||
-              ss.variables_get_dynamic ||
+            os.variables_set_dynamic ||
+              os.variables_get_dynamic ||
               console.warn(
                 `There are no dynamic variable blocks, but there is a dynamic variable category.`,
               ),
@@ -5644,7 +5644,7 @@ Use ` +
         ($a = function (e, t) {
           ;(e.setAttribute(`dir`, `LTR`), ee(e, t.hasCss, t.pathToMedia))
           var n = _(
-              j.SVG,
+              M.SVG,
               {
                 xmlns: `http://www.w3.org/2000/svg`,
                 "xmlns:html": `http://www.w3.org/1999/xhtml`,
@@ -5654,7 +5654,7 @@ Use ` +
               },
               e,
             ),
-            r = _(j.DEFS, {}, n),
+            r = _(M.DEFS, {}, n),
             i = String(Math.random()).substring(2)
           return ((t.gridPattern = pp.createDom(i, t.gridOptions, r, e)), n)
         }),
@@ -5669,7 +5669,7 @@ Use ` +
             (i = n.getTheme().getClassName()) && v(e, i),
             !r.hasCategories &&
               r.languageTree &&
-              ((i = n.addFlyout(j.SVG)), e.insertBefore(i, t)),
+              ((i = n.addFlyout(M.SVG)), e.insertBefore(i, t)),
             r.hasTrashcan && n.addTrashcan(),
             r.zoomOptions && r.zoomOptions.controls && n.addZoomControls(),
             n
@@ -5732,7 +5732,7 @@ Use ` +
             s(document, `touchend`, null, n),
             s(document, `touchcancel`, null, n),
             s(document, `keydown`, null, function (e) {
-              e.key === `Tab` && ru.setIsActive(!0)
+              e.key === `Tab` && nu.setIsActive(!0)
             })),
             (Fm = !0))
         }),
@@ -5744,7 +5744,7 @@ Use ` +
             t.load([`${e}drop.mp3`], `drop`))
         }),
         (io = function () {
-          H.registry.register({
+          U.registry.register({
             displayText() {
               return e.C.UNDO
             },
@@ -5756,14 +5756,14 @@ Use ` +
             callback(e) {
               e.workspace.undo()
             },
-            scopeType: H.ScopeType.WORKSPACE,
+            scopeType: U.ScopeType.WORKSPACE,
             id: `undoWorkspace`,
             weight: 1,
             associatedKeyboardShortcut: `undo`,
           })
         }),
         (T = function () {
-          H.registry.register({
+          U.registry.register({
             displayText() {
               return e.C.REDO
             },
@@ -5775,14 +5775,14 @@ Use ` +
             callback(e) {
               e.workspace.redo()
             },
-            scopeType: H.ScopeType.WORKSPACE,
+            scopeType: U.ScopeType.WORKSPACE,
             id: `redoWorkspace`,
             weight: 2,
             associatedKeyboardShortcut: `redo`,
           })
         }),
         (ao = function () {
-          H.registry.register({
+          U.registry.register({
             displayText() {
               return e.C.CLEAN_UP
             },
@@ -5796,7 +5796,7 @@ Use ` +
             callback(e) {
               e.workspace.cleanUp()
             },
-            scopeType: H.ScopeType.WORKSPACE,
+            scopeType: U.ScopeType.WORKSPACE,
             id: `cleanWorkspace`,
             weight: 3,
             associatedKeyboardShortcut: `cleanup`,
@@ -5818,8 +5818,8 @@ Use ` +
                 (i += 10))
           }
         }),
-        (so = function () {
-          H.registry.register({
+        (E = function () {
+          U.registry.register({
             displayText() {
               return e.C.COLLAPSE_ALL
             },
@@ -5840,13 +5840,13 @@ Use ` +
             callback(e) {
               oo(!0, e.workspace.getTopBlocks(!0))
             },
-            scopeType: H.ScopeType.WORKSPACE,
+            scopeType: U.ScopeType.WORKSPACE,
             id: `collapseWorkspace`,
             weight: 4,
           })
         }),
-        (co = function () {
-          H.registry.register({
+        (so = function () {
+          U.registry.register({
             displayText() {
               return e.C.EXPAND_ALL
             },
@@ -5867,70 +5867,70 @@ Use ` +
             callback(e) {
               oo(!1, e.workspace.getTopBlocks(!0))
             },
-            scopeType: H.ScopeType.WORKSPACE,
+            scopeType: U.ScopeType.WORKSPACE,
             id: `expandWorkspace`,
             weight: 5,
           })
         }),
-        (lo = function (e, t) {
+        (co = function (e, t) {
           if (e.isDeletable())
             Array.prototype.push.apply(t, e.getDescendants(!1))
           else {
             e = e.getChildren(!1)
-            for (let n = 0; n < e.length; n++) lo(e[n], t)
+            for (let n = 0; n < e.length; n++) co(e[n], t)
           }
         }),
-        (uo = function (e) {
+        (lo = function (e) {
           var t = []
           e = e.getTopBlocks(!0)
-          for (let n = 0; n < e.length; n++) lo(e[n], t)
+          for (let n = 0; n < e.length; n++) co(e[n], t)
           return t
         }),
-        (fo = function (t, n) {
+        (uo = function (t, n) {
           n ? e.B(n) : (e.B(!0), (n = e.gd))
           var r = t.shift()
           ;(r &&
             (r.isDeadOrDying()
-              ? fo(t, n)
-              : (r.dispose(!1, !0), setTimeout(fo, 10, t, n))),
+              ? uo(t, n)
+              : (r.dispose(!1, !0), setTimeout(uo, 10, t, n))),
             e.B(!1))
         }),
-        (po = function () {
-          H.registry.register({
+        (fo = function () {
+          U.registry.register({
             displayText(t) {
               return t.workspace
-                ? ((t = uo(t.workspace).length),
+                ? ((t = lo(t.workspace).length),
                   t === 1
                     ? e.C.DELETE_BLOCK
                     : e.C.DELETE_X_BLOCKS.replace(`%1`, `${t}`))
                 : ``
             },
             preconditionFn(e) {
-              return e.workspace && uo(e.workspace).length > 0
+              return e.workspace && lo(e.workspace).length > 0
                 ? `enabled`
                 : `disabled`
             },
             callback(t) {
               if (t.workspace) {
                 t.workspace.cancelCurrentGesture()
-                var n = uo(t.workspace)
+                var n = lo(t.workspace)
                 n.length < 2
-                  ? fo(n)
+                  ? uo(n)
                   : Bt(
                       e.C.DELETE_ALL_BLOCKS.replace(`%1`, String(n.length)),
                       function (e) {
-                        e && fo(n)
+                        e && uo(n)
                       },
                     )
               }
             },
-            scopeType: H.ScopeType.WORKSPACE,
+            scopeType: U.ScopeType.WORKSPACE,
             id: `workspaceDelete`,
             weight: 6,
           })
         }),
-        (mo = function () {
-          H.registry.register({
+        (po = function () {
+          U.registry.register({
             displayText() {
               return e.C.DUPLICATE_BLOCK
             },
@@ -5950,14 +5950,14 @@ Use ` +
                 t && Ii(t, e.block.workspace)
               }
             },
-            scopeType: H.ScopeType.BLOCK,
+            scopeType: U.ScopeType.BLOCK,
             id: `blockDuplicate`,
             weight: 1,
             associatedKeyboardShortcut: `duplicate`,
           })
         }),
-        (ho = function () {
-          H.registry.register({
+        (mo = function () {
+          U.registry.register({
             displayText(t) {
               return t.block.hasIcon(gp.TYPE)
                 ? e.C.REMOVE_COMMENT
@@ -5987,13 +5987,13 @@ Use ` +
                 ? e.setCommentText(null)
                 : e.setCommentText(``)
             },
-            scopeType: H.ScopeType.BLOCK,
+            scopeType: U.ScopeType.BLOCK,
             id: `blockComment`,
             weight: 2,
           })
         }),
-        (go = function () {
-          H.registry.register({
+        (ho = function () {
+          U.registry.register({
             displayText(t) {
               return t.block.getInputsInline()
                 ? e.C.EXTERNAL_INPUTS
@@ -6018,13 +6018,13 @@ Use ` +
             callback(e) {
               e.block.setInputsInline(!e.block.getInputsInline())
             },
-            scopeType: H.ScopeType.BLOCK,
+            scopeType: U.ScopeType.BLOCK,
             id: `blockInline`,
             weight: 3,
           })
         }),
-        (_o = function () {
-          H.registry.register({
+        (go = function () {
+          U.registry.register({
             displayText(t) {
               return t.block.isCollapsed()
                 ? e.C.EXPAND_BLOCK
@@ -6041,13 +6041,13 @@ Use ` +
             callback(e) {
               e.block.setCollapsed(!e.block.isCollapsed())
             },
-            scopeType: H.ScopeType.BLOCK,
+            scopeType: U.ScopeType.BLOCK,
             id: `blockCollapseExpand`,
             weight: 4,
           })
         }),
-        (vo = function () {
-          H.registry.register({
+        (_o = function () {
+          U.registry.register({
             displayText(t) {
               return t.block.hasDisabledReason(`MANUALLY_DISABLED`)
                 ? e.C.ENABLE_BLOCK
@@ -6076,13 +6076,13 @@ Use ` +
                 ),
                 e.B(n))
             },
-            scopeType: H.ScopeType.BLOCK,
+            scopeType: U.ScopeType.BLOCK,
             id: `blockDisable`,
             weight: 5,
           })
         }),
-        (yo = function () {
-          H.registry.register({
+        (vo = function () {
+          U.registry.register({
             displayText(t) {
               var n = t.block
               return (
@@ -6101,14 +6101,14 @@ Use ` +
             callback(t) {
               t.block && (e.t().focusNode(t.block), t.block.checkAndDelete())
             },
-            scopeType: H.ScopeType.BLOCK,
+            scopeType: U.ScopeType.BLOCK,
             id: `blockDelete`,
             weight: 6,
             associatedKeyboardShortcut: `delete`,
           })
         }),
-        (bo = function () {
-          H.registry.register({
+        (yo = function () {
+          U.registry.register({
             displayText() {
               return e.C.HELP
             },
@@ -6123,13 +6123,13 @@ Use ` +
             callback(e) {
               e.block.showHelp()
             },
-            scopeType: H.ScopeType.BLOCK,
+            scopeType: U.ScopeType.BLOCK,
             id: `blockHelp`,
             weight: 7,
           })
         }),
-        (xo = function () {
-          H.registry.register({
+        (bo = function () {
+          U.registry.register({
             displayText: () => e.C.REMOVE_COMMENT,
             preconditionFn(e) {
               var t
@@ -6145,14 +6145,14 @@ Use ` +
               ;(r = t.comment) == null ||
                 r.workspace.getAudioManager().play(`delete`)
             },
-            scopeType: H.ScopeType.COMMENT,
+            scopeType: U.ScopeType.COMMENT,
             id: `commentDelete`,
             weight: 6,
             associatedKeyboardShortcut: `delete`,
           })
         }),
-        (So = function () {
-          H.registry.register({
+        (xo = function () {
+          U.registry.register({
             displayText: () => e.C.DUPLICATE_COMMENT,
             preconditionFn(e) {
               var t
@@ -6166,14 +6166,14 @@ Use ` +
                 t && Ii(t, e.comment.workspace)
               }
             },
-            scopeType: H.ScopeType.COMMENT,
+            scopeType: U.ScopeType.COMMENT,
             id: `commentDuplicate`,
             weight: 1,
             associatedKeyboardShortcut: `duplicate`,
           })
         }),
-        (Co = function () {
-          H.registry.register({
+        (So = function () {
+          U.registry.register({
             displayText: () => e.C.ADD_COMMENT,
             preconditionFn: (e) => {
               var t
@@ -6184,51 +6184,51 @@ Use ` +
             callback: (t, n, r, i) => {
               ;(t = t.workspace) &&
                 (e.B(!0),
-                (n = new Cd(t)),
-                n.moveTo(st(t, new I(i.x, i.y))),
+                (n = new Sd(t)),
+                n.moveTo(st(t, new L(i.x, i.y))),
                 e.t().focusNode(n),
                 e.B(!1))
             },
-            scopeType: H.ScopeType.WORKSPACE,
+            scopeType: U.ScopeType.WORKSPACE,
             id: `commentCreate`,
             weight: 8,
           })
         }),
-        (wo = function () {
+        (Co = function () {
           ;(io(),
             T(),
             ao(),
+            E(),
             so(),
-            co(),
+            fo(),
             po(),
             mo(),
             ho(),
             go(),
             _o(),
             vo(),
-            yo(),
-            bo())
+            yo())
         }),
-        (E ||= {}),
-        (E.scope = {}),
-        (E.ASSUME_ES2020 = !1),
-        (E.ASSUME_ES6 = E.ASSUME_ES2020),
-        (E.ASSUME_ES5 = E.ASSUME_ES6),
-        (E.ASSUME_NO_NATIVE_MAP = !1),
-        (E.ASSUME_NO_NATIVE_SET = !1),
-        (E.ISOLATE_POLYFILLS = !1),
-        (E.FORCE_POLYFILL_PROMISE = !1),
-        (E.FORCE_POLYFILL_PROMISE_WHEN_NO_UNHANDLED_REJECTION = !1),
-        (E.INSTRUMENT_ASYNC_CONTEXT = !0),
-        (E.objectCreate =
-          E.ASSUME_ES5 || typeof Object.create == `function`
+        (D ||= {}),
+        (D.scope = {}),
+        (D.ASSUME_ES2020 = !1),
+        (D.ASSUME_ES6 = D.ASSUME_ES2020),
+        (D.ASSUME_ES5 = D.ASSUME_ES6),
+        (D.ASSUME_NO_NATIVE_MAP = !1),
+        (D.ASSUME_NO_NATIVE_SET = !1),
+        (D.ISOLATE_POLYFILLS = !1),
+        (D.FORCE_POLYFILL_PROMISE = !1),
+        (D.FORCE_POLYFILL_PROMISE_WHEN_NO_UNHANDLED_REJECTION = !1),
+        (D.INSTRUMENT_ASYNC_CONTEXT = !0),
+        (D.objectCreate =
+          D.ASSUME_ES5 || typeof Object.create == `function`
             ? Object.create
             : function (e) {
                 function t() {}
                 return ((t.prototype = e), new t())
               }),
-        (E.defineProperty =
-          E.ASSUME_ES5 || typeof Object.defineProperties == `function`
+        (D.defineProperty =
+          D.ASSUME_ES5 || typeof Object.defineProperties == `function`
             ? Object.defineProperty
             : function (e, t, n) {
                 return (
@@ -6238,7 +6238,7 @@ Use ` +
                   e
                 )
               }),
-        (E.getGlobal = function (e) {
+        (D.getGlobal = function (e) {
           e = [
             typeof globalThis == `object` && globalThis,
             e,
@@ -6252,36 +6252,36 @@ Use ` +
           }
           throw Error(`Cannot find global object`)
         }),
-        (E.global = E.ASSUME_ES2020 ? globalThis : E.getGlobal(this)),
-        (E.IS_SYMBOL_NATIVE =
+        (D.global = D.ASSUME_ES2020 ? globalThis : D.getGlobal(this)),
+        (D.IS_SYMBOL_NATIVE =
           typeof Symbol == `function` && typeof Symbol(`x`) == `symbol`),
-        (E.TRUST_ES6_POLYFILLS = !E.ISOLATE_POLYFILLS || E.IS_SYMBOL_NATIVE),
-        (E.polyfills = {}),
-        (E.propertyToPolyfillSymbol = {}),
-        (E.POLYFILL_PREFIX = `$jscp$`))
-      var To =
+        (D.TRUST_ES6_POLYFILLS = !D.ISOLATE_POLYFILLS || D.IS_SYMBOL_NATIVE),
+        (D.polyfills = {}),
+        (D.propertyToPolyfillSymbol = {}),
+        (D.POLYFILL_PREFIX = `$jscp$`))
+      var wo =
         `Int8 Uint8 Uint8Clamped Int16 Uint16 Int32 Uint32 Float32 Float64`.split(
           ` `,
         )
-      ;(E.global.BigInt64Array && (To.push(`BigInt64`), To.push(`BigUint64`)),
-        (E.TYPED_ARRAY_CLASSES = To),
-        (E.polyfillTypedArrayMethod = function (e, t, n, r) {
+      ;(D.global.BigInt64Array && (wo.push(`BigInt64`), wo.push(`BigUint64`)),
+        (D.TYPED_ARRAY_CLASSES = wo),
+        (D.polyfillTypedArrayMethod = function (e, t, n, r) {
           if (t)
-            for (var i = 0; i < E.TYPED_ARRAY_CLASSES.length; i++) {
-              var a = E.TYPED_ARRAY_CLASSES[i] + `Array.prototype.` + e
-              E.ISOLATE_POLYFILLS
-                ? E.polyfillIsolated(a, t, n, r)
-                : E.polyfillUnisolated(a, t, n, r)
+            for (var i = 0; i < D.TYPED_ARRAY_CLASSES.length; i++) {
+              var a = D.TYPED_ARRAY_CLASSES[i] + `Array.prototype.` + e
+              D.ISOLATE_POLYFILLS
+                ? D.polyfillIsolated(a, t, n, r)
+                : D.polyfillUnisolated(a, t, n, r)
             }
         }),
-        (E.polyfill = function (e, t, n, r) {
+        (D.polyfill = function (e, t, n, r) {
           t &&
-            (E.ISOLATE_POLYFILLS
-              ? E.polyfillIsolated(e, t, n, r)
-              : E.polyfillUnisolated(e, t, n, r))
+            (D.ISOLATE_POLYFILLS
+              ? D.polyfillIsolated(e, t, n, r)
+              : D.polyfillUnisolated(e, t, n, r))
         }),
-        (E.polyfillUnisolated = function (e, t) {
-          var n = E.global
+        (D.polyfillUnisolated = function (e, t) {
+          var n = D.global
           e = e.split(`.`)
           for (var r = 0; r < e.length - 1; r++) {
             var i = e[r]
@@ -6293,45 +6293,45 @@ Use ` +
             (t = t(r)),
             t != r &&
               t != null &&
-              E.defineProperty(n, e, {
+              D.defineProperty(n, e, {
                 configurable: !0,
                 writable: !0,
                 value: t,
               }))
         }),
-        (E.polyfillIsolated = function (e, t, n) {
+        (D.polyfillIsolated = function (e, t, n) {
           var r = e.split(`.`)
           e = r.length === 1
           var i = r[0]
-          i = !e && i in E.polyfills ? E.polyfills : E.global
+          i = !e && i in D.polyfills ? D.polyfills : D.global
           for (var a = 0; a < r.length - 1; a++) {
             var o = r[a]
             if (!(o in i)) return
             i = i[o]
           }
           ;((r = r[r.length - 1]),
-            (n = E.IS_SYMBOL_NATIVE && n === `es6` ? i[r] : null),
+            (n = D.IS_SYMBOL_NATIVE && n === `es6` ? i[r] : null),
             (t = t(n)),
             t != null &&
               (e
-                ? E.defineProperty(E.polyfills, r, {
+                ? D.defineProperty(D.polyfills, r, {
                     configurable: !0,
                     writable: !0,
                     value: t,
                   })
                 : t !== n &&
-                  (E.propertyToPolyfillSymbol[r] === void 0 &&
+                  (D.propertyToPolyfillSymbol[r] === void 0 &&
                     ((e = (Math.random() * 1e9) >>> 0),
-                    (E.propertyToPolyfillSymbol[r] = E.IS_SYMBOL_NATIVE
-                      ? E.global.Symbol(r)
-                      : E.POLYFILL_PREFIX + e + `$` + r)),
-                  E.defineProperty(i, E.propertyToPolyfillSymbol[r], {
+                    (D.propertyToPolyfillSymbol[r] = D.IS_SYMBOL_NATIVE
+                      ? D.global.Symbol(r)
+                      : D.POLYFILL_PREFIX + e + `$` + r)),
+                  D.defineProperty(i, D.propertyToPolyfillSymbol[r], {
                     configurable: !0,
                     writable: !0,
                     value: t,
                   }))))
         }),
-        (E.getConstructImplementation = function () {
+        (D.getConstructImplementation = function () {
           function e() {
             function e() {}
             return (
@@ -6341,7 +6341,7 @@ Use ` +
             )
           }
           if (
-            E.TRUST_ES6_POLYFILLS &&
+            D.TRUST_ES6_POLYFILLS &&
             typeof Reflect < `u` &&
             Reflect.construct
           ) {
@@ -6356,13 +6356,13 @@ Use ` +
           return function (e, t, n) {
             return (
               n === void 0 && (n = e),
-              (n = E.objectCreate(n.prototype || Object.prototype)),
+              (n = D.objectCreate(n.prototype || Object.prototype)),
               Function.prototype.apply.call(e, n, t) || n
             )
           }
         }),
-        (E.construct = { valueOf: E.getConstructImplementation }.valueOf()),
-        (E.underscoreProtoCanBeSet = function () {
+        (D.construct = { valueOf: D.getConstructImplementation }.valueOf()),
+        (D.underscoreProtoCanBeSet = function () {
           var e = { a: !0 },
             t = {}
           try {
@@ -6370,24 +6370,24 @@ Use ` +
           } catch {}
           return !1
         }),
-        (E.setPrototypeOf =
-          E.ASSUME_ES6 ||
-          (E.TRUST_ES6_POLYFILLS && typeof Object.setPrototypeOf == `function`)
+        (D.setPrototypeOf =
+          D.ASSUME_ES6 ||
+          (D.TRUST_ES6_POLYFILLS && typeof Object.setPrototypeOf == `function`)
             ? Object.setPrototypeOf
-            : E.underscoreProtoCanBeSet()
+            : D.underscoreProtoCanBeSet()
               ? function (e, t) {
                   if (((e.__proto__ = t), e.__proto__ !== t))
                     throw TypeError(e + ` is not extensible`)
                   return e
                 }
               : null),
-        (E.inherits = function (e, t) {
+        (D.inherits = function (e, t) {
           if (
-            ((e.prototype = E.objectCreate(t.prototype)),
+            ((e.prototype = D.objectCreate(t.prototype)),
             (e.prototype.constructor = e),
-            E.ASSUME_ES6 || E.setPrototypeOf)
+            D.ASSUME_ES6 || D.setPrototypeOf)
           ) {
-            var n = E.setPrototypeOf
+            var n = D.setPrototypeOf
             n(e, t)
           } else
             for (n in t)
@@ -6399,34 +6399,34 @@ Use ` +
               }
           e.superClass_ = t.prototype
         }),
-        (E.arrayIteratorImpl = function (e) {
+        (D.arrayIteratorImpl = function (e) {
           var t = 0
           return function () {
             return t < e.length ? { done: !1, value: e[t++] } : { done: !0 }
           }
         }),
-        (E.arrayIterator = function (e) {
-          return { next: E.arrayIteratorImpl(e) }
+        (D.arrayIterator = function (e) {
+          return { next: D.arrayIteratorImpl(e) }
         }),
-        (E.makeIterator = function (e) {
+        (D.makeIterator = function (e) {
           var t = typeof Symbol < `u` && Symbol.iterator && e[Symbol.iterator]
           if (t) return t.call(e)
-          if (typeof e.length == `number`) return E.arrayIterator(e)
+          if (typeof e.length == `number`) return D.arrayIterator(e)
           throw Error(String(e) + ` is not an iterable or ArrayLike`)
         }),
-        (E.arrayFromIterator = function (e) {
+        (D.arrayFromIterator = function (e) {
           for (var t, n = []; !(t = e.next()).done;) n.push(t.value)
           return n
         }),
-        (E.arrayFromIterable = function (e) {
-          return e instanceof Array ? e : E.arrayFromIterator(E.makeIterator(e))
+        (D.arrayFromIterable = function (e) {
+          return e instanceof Array ? e : D.arrayFromIterator(D.makeIterator(e))
         }),
-        (E.generator = {}),
-        (E.generator.ensureIteratorResultIsObject_ = function (e) {
+        (D.generator = {}),
+        (D.generator.ensureIteratorResultIsObject_ = function (e) {
           if (!(e instanceof Object))
             throw TypeError(`Iterator result ` + e + ` is not an object`)
         }),
-        (E.generator.Context = function () {
+        (D.generator.Context = function () {
           ;((this.isRunning_ = !1),
             (this.yieldAllIterator_ = null),
             (this.yieldResult = void 0),
@@ -6434,89 +6434,89 @@ Use ` +
             (this.finallyAddress_ = this.catchAddress_ = 0),
             (this.finallyContexts_ = this.abruptCompletion_ = null))
         }),
-        (E.generator.Context.prototype.start_ = function () {
+        (D.generator.Context.prototype.start_ = function () {
           if (this.isRunning_) throw TypeError(`Generator is already running`)
           this.isRunning_ = !0
         }),
-        (E.generator.Context.prototype.stop_ = function () {
+        (D.generator.Context.prototype.stop_ = function () {
           this.isRunning_ = !1
         }),
-        (E.generator.Context.prototype.jumpToErrorHandler_ = function () {
+        (D.generator.Context.prototype.jumpToErrorHandler_ = function () {
           this.nextAddress = this.catchAddress_ || this.finallyAddress_
         }),
-        (E.generator.Context.prototype.next_ = function (e) {
+        (D.generator.Context.prototype.next_ = function (e) {
           this.yieldResult = e
         }),
-        (E.generator.Context.prototype.throw_ = function (e) {
+        (D.generator.Context.prototype.throw_ = function (e) {
           ;((this.abruptCompletion_ = { exception: e, isException: !0 }),
             this.jumpToErrorHandler_())
         }),
-        (E.generator.Context.prototype.getNextAddressJsc = function () {
+        (D.generator.Context.prototype.getNextAddressJsc = function () {
           return this.nextAddress
         }),
-        (E.generator.Context.prototype.getNextAddressJsc = function () {
+        (D.generator.Context.prototype.getNextAddressJsc = function () {
           return this.nextAddress
         }),
-        (E.generator.Context.prototype.getYieldResultJsc = function () {
+        (D.generator.Context.prototype.getYieldResultJsc = function () {
           return this.yieldResult
         }),
-        (E.generator.Context.prototype.getYieldResultJsc = function () {
+        (D.generator.Context.prototype.getYieldResultJsc = function () {
           return this.yieldResult
         }),
-        (E.generator.Context.prototype.return = function (e) {
+        (D.generator.Context.prototype.return = function (e) {
           ;((this.abruptCompletion_ = { return: e }),
             (this.nextAddress = this.finallyAddress_))
         }),
-        (E.generator.Context.prototype.return =
-          E.generator.Context.prototype.return),
-        (E.generator.Context.prototype.jumpThroughFinallyBlocks = function (e) {
+        (D.generator.Context.prototype.return =
+          D.generator.Context.prototype.return),
+        (D.generator.Context.prototype.jumpThroughFinallyBlocks = function (e) {
           ;((this.abruptCompletion_ = { jumpTo: e }),
             this.finallyAddress_ < e
               ? ((this.nextAddress = e), (this.abruptCompletion_ = null))
               : (this.nextAddress = this.finallyAddress_))
         }),
-        (E.generator.Context.prototype.jumpThroughFinallyBlocks =
-          E.generator.Context.prototype.jumpThroughFinallyBlocks),
-        (E.generator.Context.prototype.yield = function (e, t) {
+        (D.generator.Context.prototype.jumpThroughFinallyBlocks =
+          D.generator.Context.prototype.jumpThroughFinallyBlocks),
+        (D.generator.Context.prototype.yield = function (e, t) {
           return ((this.nextAddress = t), { value: e })
         }),
-        (E.generator.Context.prototype.yield =
-          E.generator.Context.prototype.yield),
-        (E.generator.Context.prototype.yieldAll = function (e, t) {
-          e = E.makeIterator(e)
+        (D.generator.Context.prototype.yield =
+          D.generator.Context.prototype.yield),
+        (D.generator.Context.prototype.yieldAll = function (e, t) {
+          e = D.makeIterator(e)
           var n = e.next()
-          if ((E.generator.ensureIteratorResultIsObject_(n), n.done))
+          if ((D.generator.ensureIteratorResultIsObject_(n), n.done))
             ((this.yieldResult = n.value), (this.nextAddress = t))
           else return ((this.yieldAllIterator_ = e), this.yield(n.value, t))
         }),
-        (E.generator.Context.prototype.yieldAll =
-          E.generator.Context.prototype.yieldAll),
-        (E.generator.Context.prototype.jumpTo = function (e) {
+        (D.generator.Context.prototype.yieldAll =
+          D.generator.Context.prototype.yieldAll),
+        (D.generator.Context.prototype.jumpTo = function (e) {
           this.nextAddress = e
         }),
-        (E.generator.Context.prototype.jumpTo =
-          E.generator.Context.prototype.jumpTo),
-        (E.generator.Context.prototype.jumpToEnd = function () {
+        (D.generator.Context.prototype.jumpTo =
+          D.generator.Context.prototype.jumpTo),
+        (D.generator.Context.prototype.jumpToEnd = function () {
           this.nextAddress = 0
         }),
-        (E.generator.Context.prototype.jumpToEnd =
-          E.generator.Context.prototype.jumpToEnd),
-        (E.generator.Context.prototype.setCatchFinallyBlocks = function (e, t) {
+        (D.generator.Context.prototype.jumpToEnd =
+          D.generator.Context.prototype.jumpToEnd),
+        (D.generator.Context.prototype.setCatchFinallyBlocks = function (e, t) {
           ;((this.catchAddress_ = e), t != null && (this.finallyAddress_ = t))
         }),
-        (E.generator.Context.prototype.setCatchFinallyBlocks =
-          E.generator.Context.prototype.setCatchFinallyBlocks),
-        (E.generator.Context.prototype.setFinallyBlock = function (e) {
+        (D.generator.Context.prototype.setCatchFinallyBlocks =
+          D.generator.Context.prototype.setCatchFinallyBlocks),
+        (D.generator.Context.prototype.setFinallyBlock = function (e) {
           ;((this.catchAddress_ = 0), (this.finallyAddress_ = e || 0))
         }),
-        (E.generator.Context.prototype.setFinallyBlock =
-          E.generator.Context.prototype.setFinallyBlock),
-        (E.generator.Context.prototype.leaveTryBlock = function (e, t) {
+        (D.generator.Context.prototype.setFinallyBlock =
+          D.generator.Context.prototype.setFinallyBlock),
+        (D.generator.Context.prototype.leaveTryBlock = function (e, t) {
           ;((this.nextAddress = e), (this.catchAddress_ = t || 0))
         }),
-        (E.generator.Context.prototype.leaveTryBlock =
-          E.generator.Context.prototype.leaveTryBlock),
-        (E.generator.Context.prototype.enterCatchBlock = function (e) {
+        (D.generator.Context.prototype.leaveTryBlock =
+          D.generator.Context.prototype.leaveTryBlock),
+        (D.generator.Context.prototype.enterCatchBlock = function (e) {
           return (
             (this.catchAddress_ = e || 0),
             (e = this.abruptCompletion_.exception),
@@ -6524,9 +6524,9 @@ Use ` +
             e
           )
         }),
-        (E.generator.Context.prototype.enterCatchBlock =
-          E.generator.Context.prototype.enterCatchBlock),
-        (E.generator.Context.prototype.enterFinallyBlock = function (e, t, n) {
+        (D.generator.Context.prototype.enterCatchBlock =
+          D.generator.Context.prototype.enterCatchBlock),
+        (D.generator.Context.prototype.enterFinallyBlock = function (e, t, n) {
           ;(n
             ? (this.finallyContexts_[n] = this.abruptCompletion_)
             : (this.finallyContexts_ = [this.abruptCompletion_]),
@@ -6534,9 +6534,9 @@ Use ` +
             (this.finallyAddress_ = t || 0),
             (this.abruptCompletion_ = null))
         }),
-        (E.generator.Context.prototype.enterFinallyBlock =
-          E.generator.Context.prototype.enterFinallyBlock),
-        (E.generator.Context.prototype.leaveFinallyBlock = function (e, t) {
+        (D.generator.Context.prototype.enterFinallyBlock =
+          D.generator.Context.prototype.enterFinallyBlock),
+        (D.generator.Context.prototype.leaveFinallyBlock = function (e, t) {
           if (
             ((t = this.finallyContexts_.splice(t || 0)[0]),
             (t = this.abruptCompletion_ = this.abruptCompletion_ || t))
@@ -6547,31 +6547,31 @@ Use ` +
               : (this.nextAddress = this.finallyAddress_)
           } else this.nextAddress = e
         }),
-        (E.generator.Context.prototype.leaveFinallyBlock =
-          E.generator.Context.prototype.leaveFinallyBlock),
-        (E.generator.Context.prototype.forIn = function (e) {
-          return new E.generator.Context.PropertyIterator(e)
+        (D.generator.Context.prototype.leaveFinallyBlock =
+          D.generator.Context.prototype.leaveFinallyBlock),
+        (D.generator.Context.prototype.forIn = function (e) {
+          return new D.generator.Context.PropertyIterator(e)
         }),
-        (E.generator.Context.prototype.forIn =
-          E.generator.Context.prototype.forIn),
-        (E.generator.Context.PropertyIterator = function (e) {
+        (D.generator.Context.prototype.forIn =
+          D.generator.Context.prototype.forIn),
+        (D.generator.Context.PropertyIterator = function (e) {
           for (var t in ((this.object_ = e), (this.properties_ = []), e))
             this.properties_.push(t)
           this.properties_.reverse()
         }),
-        (E.generator.Context.PropertyIterator.prototype.getNext = function () {
+        (D.generator.Context.PropertyIterator.prototype.getNext = function () {
           for (; this.properties_.length > 0;) {
             var e = this.properties_.pop()
             if (e in this.object_) return e
           }
           return null
         }),
-        (E.generator.Context.PropertyIterator.prototype.getNext =
-          E.generator.Context.PropertyIterator.prototype.getNext),
-        (E.generator.Engine_ = function (e) {
-          ;((this.context_ = new E.generator.Context()), (this.program_ = e))
+        (D.generator.Context.PropertyIterator.prototype.getNext =
+          D.generator.Context.PropertyIterator.prototype.getNext),
+        (D.generator.Engine_ = function (e) {
+          ;((this.context_ = new D.generator.Context()), (this.program_ = e))
         }),
-        (E.generator.Engine_.prototype.next_ = function (e) {
+        (D.generator.Engine_.prototype.next_ = function (e) {
           return (
             this.context_.start_(),
             this.context_.yieldAllIterator_
@@ -6583,7 +6583,7 @@ Use ` +
               : (this.context_.next_(e), this.nextStep_())
           )
         }),
-        (E.generator.Engine_.prototype.return_ = function (e) {
+        (D.generator.Engine_.prototype.return_ = function (e) {
           this.context_.start_()
           var t = this.context_.yieldAllIterator_
           return t
@@ -6598,7 +6598,7 @@ Use ` +
               )
             : (this.context_.return(e), this.nextStep_())
         }),
-        (E.generator.Engine_.prototype.throw_ = function (e) {
+        (D.generator.Engine_.prototype.throw_ = function (e) {
           if ((this.context_.start_(), this.context_.yieldAllIterator_)) {
             var t = this.context_.yieldAllIterator_.throw
             if (t) return this.yieldAllStep_(t, e, this.context_.next_)
@@ -6607,7 +6607,7 @@ Use ` +
             try {
               if (e.return) {
                 var n = e.return()
-                E.generator.ensureIteratorResultIsObject_(n)
+                D.generator.ensureIteratorResultIsObject_(n)
               }
               this.context_.throw_(
                 TypeError(`The iterator does not provide a 'throw' method.`),
@@ -6619,10 +6619,10 @@ Use ` +
           }
           return (this.context_.throw_(e), this.nextStep_())
         }),
-        (E.generator.Engine_.prototype.yieldAllStep_ = function (e, t, n) {
+        (D.generator.Engine_.prototype.yieldAllStep_ = function (e, t, n) {
           try {
             var r = e.call(this.context_.yieldAllIterator_, t)
-            if ((E.generator.ensureIteratorResultIsObject_(r), !r.done))
+            if ((D.generator.ensureIteratorResultIsObject_(r), !r.done))
               return (this.context_.stop_(), r)
             var i = r.value
           } catch (e) {
@@ -6638,7 +6638,7 @@ Use ` +
             this.nextStep_()
           )
         }),
-        (E.generator.Engine_.prototype.nextStep_ = function () {
+        (D.generator.Engine_.prototype.nextStep_ = function () {
           for (; this.context_.nextAddress;)
             try {
               var e = this.program_(this.context_)
@@ -6658,7 +6658,7 @@ Use ` +
           }
           return { value: void 0, done: !0 }
         }),
-        (E.generator.Generator_ = function (e) {
+        (D.generator.Generator_ = function (e) {
           ;((this.next = function (t) {
             return e.next_(t)
           }),
@@ -6672,14 +6672,14 @@ Use ` +
               return this
             }))
         }),
-        (E.generator.createGenerator = function (e, t) {
+        (D.generator.createGenerator = function (e, t) {
           return (
-            (t = new E.generator.Generator_(new E.generator.Engine_(t))),
-            E.setPrototypeOf && e.prototype && E.setPrototypeOf(t, e.prototype),
+            (t = new D.generator.Generator_(new D.generator.Engine_(t))),
+            D.setPrototypeOf && e.prototype && D.setPrototypeOf(t, e.prototype),
             t
           )
         }),
-        (E.asyncExecutePromiseGenerator = function (e) {
+        (D.asyncExecutePromiseGenerator = function (e) {
           function t(t) {
             return e.next(t)
           }
@@ -6695,23 +6695,23 @@ Use ` +
             a(e.next())
           })
         }),
-        (E.asyncExecutePromiseGeneratorFunction = function (e) {
-          return E.asyncExecutePromiseGenerator(e())
+        (D.asyncExecutePromiseGeneratorFunction = function (e) {
+          return D.asyncExecutePromiseGenerator(e())
         }),
-        (E.asyncExecutePromiseGeneratorProgram = function (e) {
-          return E.asyncExecutePromiseGenerator(
-            new E.generator.Generator_(new E.generator.Engine_(e)),
+        (D.asyncExecutePromiseGeneratorProgram = function (e) {
+          return D.asyncExecutePromiseGenerator(
+            new D.generator.Generator_(new D.generator.Engine_(e)),
           )
         }),
-        E.polyfill(
+        D.polyfill(
           `globalThis`,
           function (e) {
-            return e || E.global
+            return e || D.global
           },
           `es_2020`,
           `es3`,
         ),
-        E.polyfill(
+        D.polyfill(
           `Array.prototype.includes`,
           function (e) {
             return (
@@ -6731,10 +6731,10 @@ Use ` +
           `es7`,
           `es3`,
         ),
-        (E.owns = function (e, t) {
+        (D.owns = function (e, t) {
           return Object.prototype.hasOwnProperty.call(e, t)
         }),
-        E.polyfill(
+        D.polyfill(
           `Object.values`,
           function (e) {
             return (
@@ -6742,7 +6742,7 @@ Use ` +
               function (e) {
                 var t = [],
                   n
-                for (n in e) E.owns(e, n) && t.push(e[n])
+                for (n in e) D.owns(e, n) && t.push(e[n])
                 return t
               }
             )
@@ -6750,11 +6750,11 @@ Use ` +
           `es8`,
           `es3`,
         ),
-        (E.checkEs6ConformanceViaProxy = function () {
+        (D.checkEs6ConformanceViaProxy = function () {
           try {
             var e = {},
               t = Object.create(
-                new E.global.Proxy(e, {
+                new D.global.Proxy(e, {
                   get: function (n, r, i) {
                     return n == e && r == `q` && i == t
                   },
@@ -6765,12 +6765,12 @@ Use ` +
             return !1
           }
         }),
-        (E.USE_PROXY_FOR_ES6_CONFORMANCE_CHECKS = !1),
-        (E.ES6_CONFORMANCE =
-          E.USE_PROXY_FOR_ES6_CONFORMANCE_CHECKS &&
-          E.checkEs6ConformanceViaProxy()),
-        (E.initSymbol = function () {}),
-        (E.iteratorPrototype = function (e) {
+        (D.USE_PROXY_FOR_ES6_CONFORMANCE_CHECKS = !1),
+        (D.ES6_CONFORMANCE =
+          D.USE_PROXY_FOR_ES6_CONFORMANCE_CHECKS &&
+          D.checkEs6ConformanceViaProxy()),
+        (D.initSymbol = function () {}),
+        (D.iteratorPrototype = function (e) {
           return (
             (e = { next: e }),
             (e[Symbol.iterator] = function () {
@@ -6779,15 +6779,15 @@ Use ` +
             e
           )
         }),
-        (E.MapEntry = function () {}),
-        E.polyfill(
+        (D.MapEntry = function () {}),
+        D.polyfill(
           `Set.prototype.difference`,
           function (e) {
             return (
               e ||
               function (e) {
-                ;(E.checkIsSetInstance(this), E.checkIsSetLike(e))
-                var t = E.getSmallerAndLargerSets(this, e)
+                ;(D.checkIsSetInstance(this), D.checkIsSetLike(e))
+                var t = D.getSmallerAndLargerSets(this, e)
                 e = new Set(this)
                 var n = t.smallerSetIterator
                 t = t.largerSet
@@ -6800,7 +6800,7 @@ Use ` +
           `es_next`,
           `es6`,
         ),
-        (E.checkIsSetLike = function (e) {
+        (D.checkIsSetLike = function (e) {
           if (
             typeof e != `object` ||
             !e ||
@@ -6811,25 +6811,25 @@ Use ` +
           )
             throw TypeError(`Argument must be set-like`)
         }),
-        (E.checkIsValidIterator = function (e) {
+        (D.checkIsValidIterator = function (e) {
           if (typeof e != `object` || !e || typeof e.next != `function`)
             throw TypeError(`Invalid iterator.`)
           return e
         }),
-        (E.getSmallerAndLargerSets = function (e, t) {
+        (D.getSmallerAndLargerSets = function (e, t) {
           return e.size <= t.size
             ? { smallerSetIterator: e.keys(), largerSet: t }
             : {
-                smallerSetIterator: E.checkIsValidIterator(t.keys()),
+                smallerSetIterator: D.checkIsValidIterator(t.keys()),
                 largerSet: e,
               }
         }),
-        (E.checkIsSetInstance = function (e) {
+        (D.checkIsSetInstance = function (e) {
           if (!(e instanceof Set))
             throw TypeError(`Method must be called on an instance of Set.`)
         }),
-        (E.iteratorFromArray = function (e, t) {
-          if (E.ASSUME_ES6) return e[Symbol.iterator]()
+        (D.iteratorFromArray = function (e, t) {
+          if (D.ASSUME_ES6) return e[Symbol.iterator]()
           e instanceof String && (e += ``)
           var n = 0,
             r = !1,
@@ -6849,13 +6849,13 @@ Use ` +
             i
           )
         }),
-        E.polyfill(
+        D.polyfill(
           `Array.prototype.values`,
           function (e) {
             return (
               e ||
               function () {
-                return E.iteratorFromArray(this, function (e, t) {
+                return D.iteratorFromArray(this, function (e, t) {
                   return t
                 })
               }
@@ -6864,7 +6864,7 @@ Use ` +
           `es8`,
           `es3`,
         ),
-        E.polyfill(
+        D.polyfill(
           `Array.prototype.flatMap`,
           function (e) {
             return (
@@ -6884,7 +6884,7 @@ Use ` +
           `es9`,
           `es5`,
         ),
-        E.polyfill(
+        D.polyfill(
           `Array.prototype.flat`,
           function (e) {
             return (
@@ -6907,7 +6907,7 @@ Use ` +
           `es9`,
           `es5`,
         ),
-        E.polyfill(
+        D.polyfill(
           `Object.entries`,
           function (e) {
             return (
@@ -6915,7 +6915,7 @@ Use ` +
               function (e) {
                 var t = [],
                   n
-                for (n in e) E.owns(e, n) && t.push([n, e[n]])
+                for (n in e) D.owns(e, n) && t.push([n, e[n]])
                 return t
               }
             )
@@ -6923,7 +6923,7 @@ Use ` +
           `es8`,
           `es3`,
         ))
-      var Eo =
+      var To =
           `ontouchstart` in globalThis ||
           !!(
             globalThis.document &&
@@ -6935,8 +6935,8 @@ Use ` +
             (!globalThis.navigator.maxTouchPoints &&
               !globalThis.navigator.msMaxTouchPoints)
           ),
-        Do = null,
-        Oo = {
+        Eo = null,
+        Do = {
           mousedown: [`pointerdown`],
           mouseenter: [`pointerenter`],
           mouseleave: [`pointerleave`],
@@ -6947,64 +6947,64 @@ Use ` +
           touchend: [`pointerup`],
           touchcancel: [`pointercancel`],
         },
-        ko = 0,
-        D = { TOUCH_ENABLED: Eo, TOUCH_MAP: Oo }
-      ;((D.checkTouchIdentifier = a),
-        (D.clearTouchIdentifier = function () {
-          Do = null
+        Oo = 0,
+        O = { TOUCH_ENABLED: To, TOUCH_MAP: Do }
+      ;((O.checkTouchIdentifier = a),
+        (O.clearTouchIdentifier = function () {
+          Eo = null
         }),
-        (D.getTouchIdentifierFromEvent = i),
-        (D.longStart = t),
-        (D.longStop = n),
-        (D.shouldHandleEvent = r))
-      var Ao, jo, Mo, No, Po, Fo, Io, Lo, Ro, zo
+        (O.getTouchIdentifierFromEvent = i),
+        (O.longStart = t),
+        (O.longStop = n),
+        (O.shouldHandleEvent = r))
+      var ko, Ao, jo, Mo, No, Po, Fo, Io, Lo, Ro
       ;(function (e) {
         function t(e) {
           return n.includes(e.toUpperCase())
         }
-        Ao = e
-        var n = Ao.toUpperCase()
-        ;((jo = t(`JavaFX`)),
-          (Mo = t(`WebKit`)),
-          (No = t(`Gecko`) && !Mo),
-          (Po = t(`Android`)),
+        ko = e
+        var n = ko.toUpperCase()
+        ;((Ao = t(`JavaFX`)),
+          (jo = t(`WebKit`)),
+          (Mo = t(`Gecko`) && !jo),
+          (No = t(`Android`)),
           (e = globalThis.navigator && globalThis.navigator.maxTouchPoints),
-          (Fo = t(`iPad`) || (t(`Macintosh`) && e > 0)),
-          (Io = t(`iPhone`) && !Fo),
-          (Lo = t(`Macintosh`)),
-          (Ro = Fo || (Po && !t(`Mobile`)) || t(`Silk`)),
-          (zo = !Ro && (Io || Po)))
+          (Po = t(`iPad`) || (t(`Macintosh`) && e > 0)),
+          (Fo = t(`iPhone`) && !Po),
+          (Io = t(`Macintosh`)),
+          (Lo = Po || (No && !t(`Mobile`)) || t(`Silk`)),
+          (Ro = !Lo && (Fo || No)))
       })((globalThis.navigator && globalThis.navigator.userAgent) || ``)
-      var Bo = jo,
+      var zo = Ao,
+        Bo = Mo,
         Vo = No,
         Ho = Po,
         Uo = Fo,
         Wo = Io,
-        Go = Lo,
-        Ko = zo,
-        qo = Go || Uo || Wo,
-        Jo = {
-          ANDROID: Ho,
-          APPLE: qo,
-          GECKO: Vo,
-          IPAD: Uo,
-          IPHONE: Wo,
-          JavaFx: Bo,
-          MAC: Go,
-          MOBILE: Ko,
-          raw: Ao,
+        Go = Ro,
+        Ko = Wo || Ho || Uo,
+        qo = {
+          ANDROID: Vo,
+          APPLE: Ko,
+          GECKO: Bo,
+          IPAD: Ho,
+          IPHONE: Uo,
+          JavaFx: zo,
+          MAC: Wo,
+          MOBILE: Go,
+          raw: ko,
         },
-        Yo = {}
-      ;((Yo.bind = s),
-        (Yo.conditionalBind = o),
-        (Yo.getScrollDeltaPixels = f),
-        (Yo.isRightButton = u),
-        (Yo.isTargetInput = l),
-        (Yo.mouseToSvg = d),
-        (Yo.unbind = c))
-      var Xo = {}
-      Xo.removeElem = p
-      var Zo = class {
+        Jo = {}
+      ;((Jo.bind = s),
+        (Jo.conditionalBind = o),
+        (Jo.getScrollDeltaPixels = f),
+        (Jo.isRightButton = u),
+        (Jo.isTargetInput = l),
+        (Jo.mouseToSvg = d),
+        (Jo.unbind = c))
+      var Yo = {}
+      Yo.removeElem = p
+      var Xo = class {
         constructor(e) {
           this.name = e
         }
@@ -7012,12 +7012,12 @@ Use ` +
           return this.name
         }
       }
-      ;((Zo.POSITIONABLE = new Zo(`positionable`)),
-        (Zo.DRAG_TARGET = new Zo(`drag_target`)),
-        (Zo.DELETE_AREA = new Zo(`delete_area`)),
-        (Zo.AUTOHIDEABLE = new Zo(`autohideable`)),
-        (Zo.FOCUSABLE = new Zo(`focusable`)))
-      var Qo = class {
+      ;((Xo.POSITIONABLE = new Xo(`positionable`)),
+        (Xo.DRAG_TARGET = new Xo(`drag_target`)),
+        (Xo.DELETE_AREA = new Xo(`delete_area`)),
+        (Xo.AUTOHIDEABLE = new Xo(`autohideable`)),
+        (Xo.FOCUSABLE = new Xo(`focusable`)))
+      var Zo = class {
         constructor() {
           ;((this.componentData = new Map()),
             (this.capabilityToComponentIds = new Map()))
@@ -7133,16 +7133,16 @@ Use ` +
           return n
         }
       }
-      Qo.Capability = Zo
-      var $o = (Qo ||= {}),
-        es = ($o.ComponentWeight ||= {})
-      ;((es[(es.TOOLBOX_WEIGHT = 0)] = `TOOLBOX_WEIGHT`),
-        (es[(es.FLYOUT_WEIGHT = 1)] = `FLYOUT_WEIGHT`),
-        (es[(es.TRASHCAN_WEIGHT = 2)] = `TRASHCAN_WEIGHT`),
-        (es[(es.ZOOM_CONTROLS_WEIGHT = 3)] = `ZOOM_CONTROLS_WEIGHT`))
-      var ts = new WeakSet(),
-        ns = [],
-        rs = `
+      Zo.Capability = Xo
+      var Qo = (Zo ||= {}),
+        $o = (Qo.ComponentWeight ||= {})
+      ;(($o[($o.TOOLBOX_WEIGHT = 0)] = `TOOLBOX_WEIGHT`),
+        ($o[($o.FLYOUT_WEIGHT = 1)] = `FLYOUT_WEIGHT`),
+        ($o[($o.TRASHCAN_WEIGHT = 2)] = `TRASHCAN_WEIGHT`),
+        ($o[($o.ZOOM_CONTROLS_WEIGHT = 3)] = `ZOOM_CONTROLS_WEIGHT`))
+      var es = new WeakSet(),
+        ts = [],
+        ns = `
 :is(
   .injectionDiv,
   .blocklyWidgetDiv,
@@ -7781,122 +7781,122 @@ input[type=number] {
 }
 .blocklyDialogButtonRow {
   display: flex;
-  flex-direction: ${Ko || qo ? `row-reverse` : `row`};
+  flex-direction: ${Go || Ko ? `row-reverse` : `row`};
   column-gap: 8px;
 }
 `,
-        is = {}
-      ;((is.inject = ee), (is.register = m))
-      var O,
-        as = (O ||= {})
-      ;((as.BLOCK_CREATE = `create`),
-        (as.BLOCK_DELETE = `delete`),
-        (as.BLOCK_CHANGE = `change`),
-        (as.BLOCK_FIELD_INTERMEDIATE_CHANGE = `block_field_intermediate_change`),
-        (as.BLOCK_MOVE = `move`),
-        (as.VAR_CREATE = `var_create`),
-        (as.VAR_DELETE = `var_delete`),
-        (as.VAR_RENAME = `var_rename`),
-        (as.VAR_TYPE_CHANGE = `var_type_change`),
-        (as.UI = `ui`),
-        (as.BLOCK_DRAG = `drag`),
-        (as.SELECTED = `selected`),
-        (as.CLICK = `click`),
-        (as.MARKER_MOVE = `marker_move`),
-        (as.BUBBLE_OPEN = `bubble_open`),
-        (as.TRASHCAN_OPEN = `trashcan_open`),
-        (as.TOOLBOX_ITEM_SELECT = `toolbox_item_select`),
-        (as.THEME_CHANGE = `theme_change`),
-        (as.VIEWPORT_CHANGE = `viewport_change`),
-        (as.COMMENT_CREATE = `comment_create`),
-        (as.COMMENT_DELETE = `comment_delete`),
-        (as.COMMENT_CHANGE = `comment_change`),
-        (as.COMMENT_MOVE = `comment_move`),
-        (as.COMMENT_RESIZE = `comment_resize`),
-        (as.COMMENT_DRAG = `comment_drag`),
-        (as.COMMENT_COLLAPSE = `comment_collapse`),
-        (as.FINISHED_LOADING = `finished_loading`))
-      var os = [O.BLOCK_CREATE, O.BLOCK_MOVE, O.COMMENT_CREATE, O.COMMENT_MOVE],
-        ss = Object.create(null),
-        cs,
-        ls = (cs ||= {})
-      ;((ls.ASSERTIVE = `assertive`), (ls.OFF = `off`), (ls.POLITE = `polite`))
-      var us = cs.OFF,
-        ds = [],
-        k,
-        fs = (k ||= {})
-      ;((fs.APPLICATION = `application`),
-        (fs.BUTTON = `button`),
-        (fs.CHECKBOX = `checkbox`),
-        (fs.DIALOG = `dialog`),
-        (fs.FIGURE = `figure`),
-        (fs.GENERIC = `generic`),
-        (fs.GRID = `grid`),
-        (fs.GRIDCELL = `gridcell`),
-        (fs.GROUP = `group`),
-        (fs.LIST = `list`),
-        (fs.LISTBOX = `listbox`),
-        (fs.LISTITEM = `listitem`),
-        (fs.MENU = `menu`),
-        (fs.MENUITEM = `menuitem`),
-        (fs.NONE = `none`),
-        (fs.OPTION = `option`),
-        (fs.REGION = `region`),
-        (fs.ROW = `row`),
-        (fs.SEARCH = `search`),
-        (fs.SEPARATOR = `separator`),
-        (fs.STATUS = `status`),
-        (fs.TEXTBOX = `textbox`),
-        (fs.TREE = `tree`),
-        (fs.TREEITEM = `treeitem`))
-      var ps = k.STATUS,
+        rs = {}
+      ;((rs.inject = ee), (rs.register = m))
+      var k,
+        is = (k ||= {})
+      ;((is.BLOCK_CREATE = `create`),
+        (is.BLOCK_DELETE = `delete`),
+        (is.BLOCK_CHANGE = `change`),
+        (is.BLOCK_FIELD_INTERMEDIATE_CHANGE = `block_field_intermediate_change`),
+        (is.BLOCK_MOVE = `move`),
+        (is.VAR_CREATE = `var_create`),
+        (is.VAR_DELETE = `var_delete`),
+        (is.VAR_RENAME = `var_rename`),
+        (is.VAR_TYPE_CHANGE = `var_type_change`),
+        (is.UI = `ui`),
+        (is.BLOCK_DRAG = `drag`),
+        (is.SELECTED = `selected`),
+        (is.CLICK = `click`),
+        (is.MARKER_MOVE = `marker_move`),
+        (is.BUBBLE_OPEN = `bubble_open`),
+        (is.TRASHCAN_OPEN = `trashcan_open`),
+        (is.TOOLBOX_ITEM_SELECT = `toolbox_item_select`),
+        (is.THEME_CHANGE = `theme_change`),
+        (is.VIEWPORT_CHANGE = `viewport_change`),
+        (is.COMMENT_CREATE = `comment_create`),
+        (is.COMMENT_DELETE = `comment_delete`),
+        (is.COMMENT_CHANGE = `comment_change`),
+        (is.COMMENT_MOVE = `comment_move`),
+        (is.COMMENT_RESIZE = `comment_resize`),
+        (is.COMMENT_DRAG = `comment_drag`),
+        (is.COMMENT_COLLAPSE = `comment_collapse`),
+        (is.FINISHED_LOADING = `finished_loading`))
+      var as = [k.BLOCK_CREATE, k.BLOCK_MOVE, k.COMMENT_CREATE, k.COMMENT_MOVE],
+        os = Object.create(null),
+        ss,
+        cs = (ss ||= {})
+      ;((cs.ASSERTIVE = `assertive`), (cs.OFF = `off`), (cs.POLITE = `polite`))
+      var ls = ss.OFF,
+        us = [],
         A,
-        ms = (A ||= {})
-      ;((ms.ACTIVEDESCENDANT = `activedescendant`),
-        (ms.ATOMIC = `atomic`),
-        (ms.CHECKED = `checked`),
-        (ms.CONTROLS = `controls`),
-        (ms.DISABLED = `disabled`),
-        (ms.EXPANDED = `expanded`),
-        (ms.HASPOPUP = `haspopup`),
-        (ms.HIDDEN = `hidden`),
-        (ms.INVALID = `invalid`),
-        (ms.LABEL = `label`),
-        (ms.LABELLEDBY = `labelledby`),
-        (ms.LEVEL = `level`),
-        (ms.LIVE = `live`),
-        (ms.PRESSED = `pressed`),
-        (ms.ROLEDESCRIPTION = `roledescription`),
-        (ms.SELECTED = `selected`),
-        (ms.VALUEMAX = `valuemax`),
-        (ms.VALUEMIN = `valuemin`),
-        (ms.OWNS = `owns`))
-      var hs,
-        gs = (hs ||= {})
-      ;((gs[(gs.TERSE = 0)] = `TERSE`),
-        (gs[(gs.STANDARD = 1)] = `STANDARD`),
-        (gs[(gs.LOQUACIOUS = 2)] = `LOQUACIOUS`))
-      var _s = null,
-        vs,
-        ys = !1,
-        bs = {}
-      ;((bs.LiveRegionAssertiveness = cs),
-        (bs.Role = k),
-        (bs.State = A),
-        (bs.Verbosity = hs),
-        (bs.announceDynamicAriaState = ae),
-        (bs.clearState = ne),
-        (bs.getRole = function (e) {
-          return (e = e.getAttribute(`role`)) && Object.values(k).includes(e)
+        ds = (A ||= {})
+      ;((ds.APPLICATION = `application`),
+        (ds.BUTTON = `button`),
+        (ds.CHECKBOX = `checkbox`),
+        (ds.DIALOG = `dialog`),
+        (ds.FIGURE = `figure`),
+        (ds.GENERIC = `generic`),
+        (ds.GRID = `grid`),
+        (ds.GRIDCELL = `gridcell`),
+        (ds.GROUP = `group`),
+        (ds.LIST = `list`),
+        (ds.LISTBOX = `listbox`),
+        (ds.LISTITEM = `listitem`),
+        (ds.MENU = `menu`),
+        (ds.MENUITEM = `menuitem`),
+        (ds.NONE = `none`),
+        (ds.OPTION = `option`),
+        (ds.REGION = `region`),
+        (ds.ROW = `row`),
+        (ds.SEARCH = `search`),
+        (ds.SEPARATOR = `separator`),
+        (ds.STATUS = `status`),
+        (ds.TEXTBOX = `textbox`),
+        (ds.TREE = `tree`),
+        (ds.TREEITEM = `treeitem`))
+      var fs = A.STATUS,
+        j,
+        ps = (j ||= {})
+      ;((ps.ACTIVEDESCENDANT = `activedescendant`),
+        (ps.ATOMIC = `atomic`),
+        (ps.CHECKED = `checked`),
+        (ps.CONTROLS = `controls`),
+        (ps.DISABLED = `disabled`),
+        (ps.EXPANDED = `expanded`),
+        (ps.HASPOPUP = `haspopup`),
+        (ps.HIDDEN = `hidden`),
+        (ps.INVALID = `invalid`),
+        (ps.LABEL = `label`),
+        (ps.LABELLEDBY = `labelledby`),
+        (ps.LEVEL = `level`),
+        (ps.LIVE = `live`),
+        (ps.PRESSED = `pressed`),
+        (ps.ROLEDESCRIPTION = `roledescription`),
+        (ps.SELECTED = `selected`),
+        (ps.VALUEMAX = `valuemax`),
+        (ps.VALUEMIN = `valuemin`),
+        (ps.OWNS = `owns`))
+      var ms,
+        hs = (ms ||= {})
+      ;((hs[(hs.TERSE = 0)] = `TERSE`),
+        (hs[(hs.STANDARD = 1)] = `STANDARD`),
+        (hs[(hs.LOQUACIOUS = 2)] = `LOQUACIOUS`))
+      var gs = null,
+        _s,
+        vs = !1,
+        ys = {}
+      ;((ys.LiveRegionAssertiveness = ss),
+        (ys.Role = A),
+        (ys.State = j),
+        (ys.Verbosity = ms),
+        (ys.announceDynamicAriaState = ae),
+        (ys.clearState = ne),
+        (ys.getRole = function (e) {
+          return (e = e.getAttribute(`role`)) && Object.values(A).includes(e)
             ? e
             : null
         }),
-        (bs.getState = re),
-        (bs.initializeGlobalAriaLiveRegion = ie),
-        (bs.removeRole = te),
-        (bs.setRole = h),
-        (bs.setState = g))
-      var j = class {
+        (ys.getState = re),
+        (ys.initializeGlobalAriaLiveRegion = ie),
+        (ys.removeRole = te),
+        (ys.setRole = h),
+        (ys.setState = g))
+      var M = class {
         constructor(e) {
           this.tagName = e
         }
@@ -7904,71 +7904,71 @@ input[type=number] {
           return this.tagName
         }
       }
-      ;((j.ANIMATE = new j(`animate`)),
-        (j.CIRCLE = new j(`circle`)),
-        (j.CLIPPATH = new j(`clipPath`)),
-        (j.DEFS = new j(`defs`)),
-        (j.FECOMPOSITE = new j(`feComposite`)),
-        (j.FECOMPONENTTRANSFER = new j(`feComponentTransfer`)),
-        (j.FEFLOOD = new j(`feFlood`)),
-        (j.FEFUNCA = new j(`feFuncA`)),
-        (j.FEGAUSSIANBLUR = new j(`feGaussianBlur`)),
-        (j.FEPOINTLIGHT = new j(`fePointLight`)),
-        (j.FESPECULARLIGHTING = new j(`feSpecularLighting`)),
-        (j.FILTER = new j(`filter`)),
-        (j.FOREIGNOBJECT = new j(`foreignObject`)),
-        (j.G = new j(`g`)),
-        (j.IMAGE = new j(`image`)),
-        (j.LINE = new j(`line`)),
-        (j.PATH = new j(`path`)),
-        (j.PATTERN = new j(`pattern`)),
-        (j.POLYGON = new j(`polygon`)),
-        (j.RECT = new j(`rect`)),
-        (j.SVG = new j(`svg`)),
-        (j.TEXT = new j(`text`)),
-        (j.TSPAN = new j(`tspan`)))
-      var xs,
-        Ss = (xs ||= {})
-      ;((Ss[(Ss.ELEMENT_NODE = 1)] = `ELEMENT_NODE`),
-        (Ss[(Ss.TEXT_NODE = 3)] = `TEXT_NODE`),
-        (Ss[(Ss.COMMENT_NODE = 8)] = `COMMENT_NODE`))
-      var Cs = null,
-        ws = 0,
-        Ts = null,
-        Es = { HTML_NS: `http://www.w3.org/1999/xhtml` }
-      ;((Es.NodeType = xs),
-        (Es.SVG_NS = `http://www.w3.org/2000/svg`),
-        (Es.XLINK_NS = `http://www.w3.org/1999/xlink`),
-        (Es.addClass = v),
-        (Es.createSvgElement = _),
-        (Es.getFastTextWidth = function (e, t, n, r) {
+      ;((M.ANIMATE = new M(`animate`)),
+        (M.CIRCLE = new M(`circle`)),
+        (M.CLIPPATH = new M(`clipPath`)),
+        (M.DEFS = new M(`defs`)),
+        (M.FECOMPOSITE = new M(`feComposite`)),
+        (M.FECOMPONENTTRANSFER = new M(`feComponentTransfer`)),
+        (M.FEFLOOD = new M(`feFlood`)),
+        (M.FEFUNCA = new M(`feFuncA`)),
+        (M.FEGAUSSIANBLUR = new M(`feGaussianBlur`)),
+        (M.FEPOINTLIGHT = new M(`fePointLight`)),
+        (M.FESPECULARLIGHTING = new M(`feSpecularLighting`)),
+        (M.FILTER = new M(`filter`)),
+        (M.FOREIGNOBJECT = new M(`foreignObject`)),
+        (M.G = new M(`g`)),
+        (M.IMAGE = new M(`image`)),
+        (M.LINE = new M(`line`)),
+        (M.PATH = new M(`path`)),
+        (M.PATTERN = new M(`pattern`)),
+        (M.POLYGON = new M(`polygon`)),
+        (M.RECT = new M(`rect`)),
+        (M.SVG = new M(`svg`)),
+        (M.TEXT = new M(`text`)),
+        (M.TSPAN = new M(`tspan`)))
+      var bs,
+        xs = (bs ||= {})
+      ;((xs[(xs.ELEMENT_NODE = 1)] = `ELEMENT_NODE`),
+        (xs[(xs.TEXT_NODE = 3)] = `TEXT_NODE`),
+        (xs[(xs.COMMENT_NODE = 8)] = `COMMENT_NODE`))
+      var Ss = null,
+        Cs = 0,
+        ws = null,
+        Ts = { HTML_NS: `http://www.w3.org/1999/xhtml` }
+      ;((Ts.NodeType = bs),
+        (Ts.SVG_NS = `http://www.w3.org/2000/svg`),
+        (Ts.XLINK_NS = `http://www.w3.org/1999/xlink`),
+        (Ts.addClass = v),
+        (Ts.createSvgElement = _),
+        (Ts.getFastTextWidth = function (e, t, n, r) {
           return me(e, t + `pt`, n, r)
         }),
-        (Es.getFastTextWidthWithSizeString = me),
-        (Es.getTextWidth = pe),
-        (Es.hasClass = se),
-        (Es.insertAfter = le),
-        (Es.measureFontMetrics = he),
-        (Es.removeClass = y),
-        (Es.removeClasses = oe),
-        (Es.removeNode = ce),
-        (Es.setCssTransform = ue),
-        (Es.startTextWidthCache = de),
-        (Es.stopTextWidthCache = fe))
-      var Ds = class {
+        (Ts.getFastTextWidthWithSizeString = me),
+        (Ts.getTextWidth = pe),
+        (Ts.hasClass = se),
+        (Ts.insertAfter = le),
+        (Ts.measureFontMetrics = he),
+        (Ts.removeClass = y),
+        (Ts.removeClasses = oe),
+        (Ts.removeNode = ce),
+        (Ts.setCssTransform = ue),
+        (Ts.startTextWidthCache = de),
+        (Ts.stopTextWidthCache = fe))
+      var Es = class {
         static findFocusedNode(e) {
           var t = e.getRootFocusableNode()
           if (!t.canBeFocused()) return null
           var n = t.getFocusableElement()
-          return se(n, Ds.ACTIVE_CLASS_NAME) ||
-            se(n, Ds.PASSIVE_CSS_CLASS_NAME) ||
+          return se(n, Es.ACTIVE_CLASS_NAME) ||
+            se(n, Es.PASSIVE_CSS_CLASS_NAME) ||
             ((t = n.querySelector(this.ACTIVE_FOCUS_NODE_CSS_SELECTOR)),
             (t instanceof HTMLElement || t instanceof SVGElement) &&
-              (t = Ds.findFocusableNodeFor(t, e)))
+              (t = Es.findFocusableNodeFor(t, e)))
             ? t
             : ((n = n.querySelector(this.PASSIVE_FOCUS_NODE_CSS_SELECTOR)),
               (n instanceof HTMLElement || n instanceof SVGElement) &&
-              (e = Ds.findFocusableNodeFor(n, e))
+              (e = Es.findFocusableNodeFor(n, e))
                 ? e
                 : null)
         }
@@ -7978,7 +7978,7 @@ input[type=number] {
             e.id === `null` ||
             t
               .getNestedTrees()
-              .map((t) => Ds.findFocusableNodeFor(e, t))
+              .map((t) => Es.findFocusableNodeFor(e, t))
               .findIndex((e) => !!e) !== -1
           )
             return null
@@ -7991,20 +7991,20 @@ input[type=number] {
               r !== null && Number(r) >= 0
                 ? null
                 : (r = e.parentElement)
-                  ? Ds.findFocusableNodeFor(r, t)
+                  ? Es.findFocusableNodeFor(r, t)
                   : null)
         }
       }
-      ;((Ds.ACTIVE_CLASS_NAME = `blocklyActiveFocus`),
-        (Ds.PASSIVE_CSS_CLASS_NAME = `blocklyPassiveFocus`),
-        (Ds.ACTIVE_FOCUS_NODE_CSS_SELECTOR = `.${Ds.ACTIVE_CLASS_NAME}`),
-        (Ds.PASSIVE_FOCUS_NODE_CSS_SELECTOR = `.${Ds.PASSIVE_CSS_CLASS_NAME}`))
-      var Os = class {
+      ;((Es.ACTIVE_CLASS_NAME = `blocklyActiveFocus`),
+        (Es.PASSIVE_CSS_CLASS_NAME = `blocklyPassiveFocus`),
+        (Es.ACTIVE_FOCUS_NODE_CSS_SELECTOR = `.${Es.ACTIVE_CLASS_NAME}`),
+        (Es.PASSIVE_FOCUS_NODE_CSS_SELECTOR = `.${Es.PASSIVE_CSS_CLASS_NAME}`))
+      var Ds = class {
           constructor(e, t) {
             ;((this.tree = e), (this.rootShouldBeAutoTabbable = t))
           }
         },
-        ks = class {
+        Os = class {
           constructor(e) {
             ;((this.previouslyFocusedNode = this.focusedNode = null),
               (this.registeredTrees = []),
@@ -8030,7 +8030,7 @@ input[type=number] {
                 var t = null
                 if (e instanceof HTMLElement || e instanceof SVGElement) {
                   for (var n of this.registeredTrees)
-                    if ((t = Ds.findFocusableNodeFor(e, n.tree))) break
+                    if ((t = Es.findFocusableNodeFor(e, n.tree))) break
                 }
                 t && t.canBeFocused()
                   ? ((e = t.getFocusableTree()),
@@ -8053,7 +8053,7 @@ input[type=number] {
               throw Error(
                 `Attempted to re-register already registered tree: ${e}.`,
               )
-            this.registeredTrees.push(new Os(e, t))
+            this.registeredTrees.push(new Ds(e, t))
             var n = e.getRootFocusableNode().getFocusableElement()
             if (!n.id || n.id === `null`)
               throw Error(
@@ -8072,7 +8072,7 @@ input[type=number] {
               throw Error(`Attempted to unregister not registered tree: ${e}.`)
             var t = this.registeredTrees.findIndex((t) => t.tree === e),
               n = this.registeredTrees[t]
-            ;(this.registeredTrees.splice(t, 1), (t = Ds.findFocusedNode(e)))
+            ;(this.registeredTrees.splice(t, 1), (t = Es.findFocusedNode(e)))
             var r = e.getRootFocusableNode()
             ;(t && this.removeHighlight(t),
               (this.focusedNode !== t && this.focusedNode !== r) ||
@@ -8096,7 +8096,7 @@ input[type=number] {
           focusTree(e) {
             if ((this.ensureManagerIsUnlocked(), !this.isRegistered(e)))
               throw Error(`Attempted to focus unregistered tree: ${e}.`)
-            var t = Ds.findFocusedNode(e),
+            var t = Es.findFocusedNode(e),
               n = e.getRestoredFocusableNode(t)
             ;((e = e.getRootFocusableNode()), this.focusNode(n ?? t ?? e))
           }
@@ -8117,8 +8117,8 @@ input[type=number] {
                     console.warn(
                       `Trying to focus a node that has an invalid ID.`,
                     ))
-                var i = Ds.findFocusableNodeFor(r, n)
-                r = Ds.findFocusedNode(n)
+                var i = Es.findFocusableNodeFor(r, n)
+                r = Es.findFocusedNode(n)
                 var a = e
                 if (i !== e) {
                   ;((a = n.getRestoredFocusableNode(r)),
@@ -8226,23 +8226,23 @@ input[type=number] {
           }
           setNodeToVisualActiveFocus(e) {
             ;((e = e.getFocusableElement()),
-              v(e, ks.ACTIVE_FOCUS_NODE_CSS_CLASS_NAME),
-              y(e, ks.PASSIVE_FOCUS_NODE_CSS_CLASS_NAME))
+              v(e, Os.ACTIVE_FOCUS_NODE_CSS_CLASS_NAME),
+              y(e, Os.PASSIVE_FOCUS_NODE_CSS_CLASS_NAME))
           }
           setNodeToVisualPassiveFocus(e) {
             ;((e = e.getFocusableElement()),
-              y(e, ks.ACTIVE_FOCUS_NODE_CSS_CLASS_NAME),
-              v(e, ks.PASSIVE_FOCUS_NODE_CSS_CLASS_NAME))
+              y(e, Os.ACTIVE_FOCUS_NODE_CSS_CLASS_NAME),
+              v(e, Os.PASSIVE_FOCUS_NODE_CSS_CLASS_NAME))
           }
           removeHighlight(e) {
             ;((e = e.getFocusableElement()),
-              y(e, ks.ACTIVE_FOCUS_NODE_CSS_CLASS_NAME),
-              y(e, ks.PASSIVE_FOCUS_NODE_CSS_CLASS_NAME))
+              y(e, Os.ACTIVE_FOCUS_NODE_CSS_CLASS_NAME),
+              y(e, Os.PASSIVE_FOCUS_NODE_CSS_CLASS_NAME))
           }
           static getFocusManager() {
             return (
-              (ks.focusManager ||= new ks(document.addEventListener)),
-              ks.focusManager
+              (Os.focusManager ||= new Os(document.addEventListener)),
+              Os.focusManager
             )
           }
           setPopoverFocusRoot(e) {
@@ -8262,12 +8262,12 @@ input[type=number] {
             this.popoverFocusLossHandlers.delete(e)
           }
         }
-      ;((ks.ACTIVE_FOCUS_NODE_CSS_CLASS_NAME = `blocklyActiveFocus`),
-        (ks.PASSIVE_FOCUS_NODE_CSS_CLASS_NAME = `blocklyPassiveFocus`),
-        (ks.focusManager = null))
-      var As = {}
-      As.deepMerge = ve
-      var M = class {
+      ;((Os.ACTIVE_FOCUS_NODE_CSS_CLASS_NAME = `blocklyActiveFocus`),
+        (Os.PASSIVE_FOCUS_NODE_CSS_CLASS_NAME = `blocklyPassiveFocus`),
+        (Os.focusManager = null))
+      var ks = {}
+      ks.deepMerge = ve
+      var N = class {
         constructor() {
           ;((this.shortcuts = new Map()),
             (this.keyMap = new Map()),
@@ -8363,7 +8363,7 @@ input[type=number] {
         }
         serializeKeyEvent(e) {
           var t = ``
-          for (let n in M.modifierKeys)
+          for (let n in N.modifierKeys)
             e.getModifierState(n) && (t !== `` && (t += `+`), (t += n))
           return (
             t !== `` && e.keyCode
@@ -8374,60 +8374,60 @@ input[type=number] {
         }
         checkModifiers(e) {
           for (let t of e)
-            if (!(t in M.modifierKeys))
+            if (!(t in N.modifierKeys))
               throw Error(t + ` is not a valid modifier key.`)
         }
         createSerializedKey(e, t) {
           var n = ``
           if (t) {
             this.checkModifiers(t)
-            for (let e in M.modifierKeys)
-              t.includes(M.modifierKeys[e]) &&
+            for (let e in N.modifierKeys)
+              t.includes(N.modifierKeys[e]) &&
                 (n !== `` && (n += `+`), (n += e))
           }
           return (n !== `` && e ? (n += `+` + e) : e && (n = `${e}`), n)
         }
       }
-      M.registry = new M()
-      var N = (M ||= {}),
-        P = (N.modifierKeys ||= {})
-      ;((P[(P.Shift = 16)] = `Shift`),
-        (P[(P.Control = 17)] = `Control`),
-        (P[(P.Alt = 18)] = `Alt`),
-        (P[(P.Meta = 91)] = `Meta`))
-      var js = new Set(),
-        Ms = {}
-      Ms.warn = ye
-      var Ns = Object.create(null),
+      N.registry = new N()
+      var P = (N ||= {}),
+        F = (P.modifierKeys ||= {})
+      ;((F[(F.Shift = 16)] = `Shift`),
+        (F[(F.Control = 17)] = `Control`),
+        (F[(F.Alt = 18)] = `Alt`),
+        (F[(F.Meta = 91)] = `Meta`))
+      var As = new Set(),
+        js = {}
+      js.warn = ye
+      var Ms = Object.create(null),
+        Ns,
         Ps,
-        Fs,
-        Is = [],
-        Ls = {
+        Fs = [],
+        Is = {
           defineBlocksWithJsonArrayInternal: function (t) {
             e.Ab(e.yb(t))
           },
         },
-        Rs = { TEST_ONLY: Ls }
-      ;((Rs.createBlockDefinitionsFromJsonArray = e.yb),
-        (Rs.defineBlocks = e.Ab),
-        (Rs.defineBlocksWithJsonArray = Ne),
-        (Rs.draggingConnections = Is),
-        (Rs.fireSelectedEvent = De),
-        (Rs.getAllWorkspaces = xe),
-        (Rs.getBlockTypeCounts = je),
-        (Rs.getMainWorkspace = we),
-        (Rs.getParentContainer = Oe),
-        (Rs.getSelected = Ee),
-        (Rs.getWorkspaceById = be),
-        (Rs.globalShortcutHandler = Pe),
-        (Rs.registerWorkspace = Se),
-        (Rs.setMainWorkspace = Te),
-        (Rs.setParentContainer = ke),
-        (Rs.setSelected = function (t) {
+        Ls = { TEST_ONLY: Is }
+      ;((Ls.createBlockDefinitionsFromJsonArray = e.yb),
+        (Ls.defineBlocks = e.Ab),
+        (Ls.defineBlocksWithJsonArray = Ne),
+        (Ls.draggingConnections = Fs),
+        (Ls.fireSelectedEvent = De),
+        (Ls.getAllWorkspaces = xe),
+        (Ls.getBlockTypeCounts = je),
+        (Ls.getMainWorkspace = we),
+        (Ls.getParentContainer = Oe),
+        (Ls.getSelected = Ee),
+        (Ls.getWorkspaceById = be),
+        (Ls.globalShortcutHandler = Pe),
+        (Ls.registerWorkspace = Se),
+        (Ls.setMainWorkspace = Te),
+        (Ls.setParentContainer = ke),
+        (Ls.setSelected = function (t) {
           e.t().focusNode(t)
         }),
-        (Rs.svgResize = Ae),
-        (Rs.unregisterWorkpace = function (e) {
+        (Ls.svgResize = Ae),
+        (Ls.unregisterWorkpace = function (e) {
           ;(ye(
             `Blockly.common.unregisterWorkpace`,
             `v13`,
@@ -8436,11 +8436,11 @@ input[type=number] {
           ),
             Ce(e))
         }),
-        (Rs.unregisterWorkspace = Ce))
-      var zs = Object.create(null),
-        Bs = { typeMap: zs },
-        Vs = Object.create(null),
-        F = class {
+        (Ls.unregisterWorkspace = Ce))
+      var Rs = Object.create(null),
+        zs = { typeMap: Rs },
+        Bs = Object.create(null),
+        I = class {
           constructor(e) {
             this.name = e
           }
@@ -8448,37 +8448,37 @@ input[type=number] {
             return this.name
           }
         }
-      ;((F.CONNECTION_CHECKER = new F(`connectionChecker`)),
-        (F.CONNECTION_PREVIEWER = new F(`connectionPreviewer`)),
-        (F.EVENT = new F(`event`)),
-        (F.FIELD = new F(`field`)),
-        (F.INPUT = new F(`input`)),
-        (F.RENDERER = new F(`renderer`)),
-        (F.TOOLBOX = new F(`toolbox`)),
-        (F.THEME = new F(`theme`)),
-        (F.TOOLBOX_ITEM = new F(`toolboxItem`)),
-        (F.FLYOUTS_VERTICAL_TOOLBOX = new F(`flyoutsVerticalToolbox`)),
-        (F.FLYOUTS_HORIZONTAL_TOOLBOX = new F(`flyoutsHorizontalToolbox`)),
-        (F.FLYOUT_INFLATER = new F(`flyoutInflater`)),
-        (F.METRICS_MANAGER = new F(`metricsManager`)),
-        (F.BLOCK_DRAGGER = new F(`blockDragger`)),
-        (F.SERIALIZER = new F(`serializer`)),
-        (F.ICON = new F(`icon`)),
-        (F.PASTER = new F(`paster`)),
-        (F.VARIABLE_MODEL = new F(`variableModel`)),
-        (F.VARIABLE_MAP = new F(`variableMap`)))
-      var Hs = { DEFAULT: `default`, TEST_ONLY: Bs }
-      ;((Hs.Type = F),
-        (Hs.getAllItems = ze),
-        (Hs.getClass = Re),
-        (Hs.getClassFromOptions = Be),
-        (Hs.getObject = function (e, t, n) {
+      ;((I.CONNECTION_CHECKER = new I(`connectionChecker`)),
+        (I.CONNECTION_PREVIEWER = new I(`connectionPreviewer`)),
+        (I.EVENT = new I(`event`)),
+        (I.FIELD = new I(`field`)),
+        (I.INPUT = new I(`input`)),
+        (I.RENDERER = new I(`renderer`)),
+        (I.TOOLBOX = new I(`toolbox`)),
+        (I.THEME = new I(`theme`)),
+        (I.TOOLBOX_ITEM = new I(`toolboxItem`)),
+        (I.FLYOUTS_VERTICAL_TOOLBOX = new I(`flyoutsVerticalToolbox`)),
+        (I.FLYOUTS_HORIZONTAL_TOOLBOX = new I(`flyoutsHorizontalToolbox`)),
+        (I.FLYOUT_INFLATER = new I(`flyoutInflater`)),
+        (I.METRICS_MANAGER = new I(`metricsManager`)),
+        (I.BLOCK_DRAGGER = new I(`blockDragger`)),
+        (I.SERIALIZER = new I(`serializer`)),
+        (I.ICON = new I(`icon`)),
+        (I.PASTER = new I(`paster`)),
+        (I.VARIABLE_MODEL = new I(`variableModel`)),
+        (I.VARIABLE_MAP = new I(`variableMap`)))
+      var Vs = { DEFAULT: `default`, TEST_ONLY: zs }
+      ;((Vs.Type = I),
+        (Vs.getAllItems = ze),
+        (Vs.getClass = Re),
+        (Vs.getClassFromOptions = Be),
+        (Vs.getObject = function (e, t, n) {
           return Ie(e, t, n)
         }),
-        (Hs.hasItem = Le),
-        (Hs.register = b),
-        (Hs.unregister = Fe))
-      var Us = {
+        (Vs.hasItem = Le),
+        (Vs.register = b),
+        (Vs.unregister = Fe))
+      var Hs = {
           genUid: () => {
             var e = []
             for (let t = 0; t < 20; t++)
@@ -8489,21 +8489,21 @@ input[type=number] {
             return e.join(``)
           },
         },
-        Ws = 0,
-        Gs = { TEST_ONLY: Us }
-      ;((Gs.genUid = He), (Gs.getNextUniqueId = Ve))
-      var Ks, qs
+        Us = 0,
+        Ws = { TEST_ONLY: Hs }
+      ;((Ws.genUid = He), (Ws.getNextUniqueId = Ve))
+      var Gs, Ks
       ;((e.gd = ``),
         (e.Qc = !0),
         (e.Ub = 0),
-        (Ks = []),
-        (qs = {
-          FIRE_QUEUE: Ks,
+        (Gs = []),
+        (Ks = {
+          FIRE_QUEUE: Gs,
           enqueueEvent: We,
           fireNow: Ue,
           fireInternal: function (e) {
             if (qe()) {
-              if (!Ks.length)
+              if (!Gs.length)
                 try {
                   requestAnimationFrame(() => {
                     setTimeout(Ue, 0)
@@ -8518,14 +8518,14 @@ input[type=number] {
             e.gd = typeof t == `boolean` ? (t ? He() : ``) : t
           },
         }))
-      var Js
-      ;((e.C = Object.create(null)), (Js = { Msg: e.C, setLocale: Ye }))
-      var I = class {
+      var qs
+      ;((e.C = Object.create(null)), (qs = { Msg: e.C, setLocale: Ye }))
+      var L = class {
           constructor(e, t) {
             ;((this.x = e), (this.y = t))
           }
           clone() {
-            return new I(this.x, this.y)
+            return new L(this.x, this.y)
           }
           scale(e) {
             return ((this.x *= e), (this.y *= e), this)
@@ -8544,13 +8544,13 @@ input[type=number] {
             return Math.sqrt(e.x * e.x + e.y * e.y)
           }
           static difference(e, t) {
-            return new I(e.x - t.x, e.y - t.y)
+            return new L(e.x - t.x, e.y - t.y)
           }
           static sum(e, t) {
-            return new I(e.x + t.x, e.y + t.y)
+            return new L(e.x + t.x, e.y + t.y)
           }
         },
-        L = class {
+        R = class {
           constructor(e, t, n, r) {
             ;((this.top = e),
               (this.bottom = t),
@@ -8558,10 +8558,10 @@ input[type=number] {
               (this.right = r))
           }
           static from(e) {
-            return new L(e.y, e.y + e.height, e.x, e.x + e.width)
+            return new R(e.y, e.y + e.height, e.x, e.x + e.width)
           }
           clone() {
-            return new L(this.top, this.bottom, this.left, this.right)
+            return new R(this.top, this.bottom, this.left, this.right)
           }
           getHeight() {
             return this.bottom - this.top
@@ -8570,7 +8570,7 @@ input[type=number] {
             return this.right - this.left
           }
           getOrigin() {
-            return new I(this.left, this.top)
+            return new L(this.left, this.top)
           }
           contains(e, t) {
             return (
@@ -8600,10 +8600,10 @@ input[type=number] {
           }
           static createFromPoint(e, t, n) {
             var r = e.x
-            return ((e = e.y), new L(e, e + n, r, r + t))
+            return ((e = e.y), new R(e, e + n, r, r + t))
           }
         },
-        R = class {
+        z = class {
           constructor(e, t) {
             ;((this.width = e), (this.height = t))
           }
@@ -8615,22 +8615,22 @@ input[type=number] {
                 : !1
           }
           static max(e, t) {
-            return new R(
+            return new z(
               Math.max(e.width, t.width),
               Math.max(e.height, t.height),
             )
           }
           static min(e, t) {
-            return new R(
+            return new z(
               Math.min(e.width, t.width),
               Math.min(e.height, t.height),
             )
           }
         },
-        Ys = {
+        Js = {
           getSizeInternal: function (e) {
             if (Ze(e, `display`) !== `none`)
-              return new R(e.offsetWidth, e.offsetHeight)
+              return new z(e.offsetWidth, e.offsetHeight)
             var t = e.style,
               n = t.display,
               r = t.visibility,
@@ -8644,35 +8644,35 @@ input[type=number] {
               (t.display = n),
               (t.position = i),
               (t.visibility = r),
-              new R(a, e)
+              new z(a, e)
             )
           },
         },
-        Xs = { TEST_ONLY: Ys }
-      ;((Xs.getBorderBox = et),
-        (Xs.getComputedStyle = Ze),
-        (Xs.getContainerOffsetToScrollInto = nt),
-        (Xs.getPageOffset = Qe),
-        (Xs.getSize = Xe),
-        (Xs.getViewportPageOffset = $e),
-        (Xs.scrollIntoContainerView = tt))
-      var Zs = /translate\(\s*([-+\d.e]+)([ ,]\s*([-+\d.e]+)\s*)?/,
-        Qs =
+        Ys = { TEST_ONLY: Js }
+      ;((Ys.getBorderBox = et),
+        (Ys.getComputedStyle = Ze),
+        (Ys.getContainerOffsetToScrollInto = nt),
+        (Ys.getPageOffset = Qe),
+        (Ys.getSize = Xe),
+        (Ys.getViewportPageOffset = $e),
+        (Ys.scrollIntoContainerView = tt))
+      var Xs = /translate\(\s*([-+\d.e]+)([ ,]\s*([-+\d.e]+)\s*)?/,
+        Zs =
           /transform:\s*translate(?:3d)?\(\s*([-+\d.e]+)\s*px([ ,]\s*([-+\d.e]+)\s*px)?/,
-        $s = { TEST_ONLY: { XY_REGEX: Zs, XY_STYLE_REGEX: Qs } }
-      ;(($s.getDocumentScroll = ot),
-        ($s.getInjectionDivXY = it),
-        ($s.getRelativeXY = rt),
-        ($s.getViewportBBox = at),
-        ($s.screenToWsCoordinates = st),
-        ($s.wsToScreenCoordinates = ct))
-      var ec = class {
+        Qs = { TEST_ONLY: { XY_REGEX: Xs, XY_STYLE_REGEX: Zs } }
+      ;((Qs.getDocumentScroll = ot),
+        (Qs.getInjectionDivXY = it),
+        (Qs.getRelativeXY = rt),
+        (Qs.getViewportBBox = at),
+        (Qs.screenToWsCoordinates = st),
+        (Qs.wsToScreenCoordinates = ct))
+      var $s = class {
         constructor(e, t, n, r, i) {
           ;((this.workspace = e),
             (this.horizontal = t),
             (this.oldHostMetrics = null),
             (this.ratio = 1),
-            (this.origin = new I(0, 0)),
+            (this.origin = new L(0, 0)),
             (this.startDragHandle =
               this.handlePosition =
               this.handleLength =
@@ -8680,24 +8680,24 @@ input[type=number] {
               this.startDragMouse =
                 0),
             (this.containerVisible = this.isHandleVisible = !0),
-            (this.position = new I(0, 0)),
+            (this.position = new L(0, 0)),
             (this.onMouseMoveWrapper_ = this.onMouseUpWrapper_ = null),
             (this.pair = n || !1),
-            (this.margin = i === void 0 ? ec.DEFAULT_SCROLLBAR_MARGIN : i),
+            (this.margin = i === void 0 ? $s.DEFAULT_SCROLLBAR_MARGIN : i),
             (e =
               `blocklyScrollbar` +
               (this.horizontal ? `Horizontal` : `Vertical`)),
             r && (e += ` ` + r),
-            (this.outerSvg = _(j.SVG, { class: e })),
-            (r = _(j.G, {}, this.outerSvg)),
+            (this.outerSvg = _(M.SVG, { class: e })),
+            (r = _(M.G, {}, this.outerSvg)),
             (this.svgBackground = _(
-              j.RECT,
+              M.RECT,
               { class: `blocklyScrollbarBackground` },
               r,
             )),
-            (e = Math.floor((ec.scrollbarThickness - 5) / 2)),
+            (e = Math.floor(($s.scrollbarThickness - 5) / 2)),
             (this.svgHandle = _(
-              j.RECT,
+              M.RECT,
               { class: `blocklyScrollbarHandle`, rx: e, ry: e },
               r,
             )),
@@ -8728,7 +8728,7 @@ input[type=number] {
             )))
         }
         setInitialThickness() {
-          var e = ec.scrollbarThickness
+          var e = $s.scrollbarThickness
           this.horizontal
             ? (this.svgBackground.setAttribute(`height`, String(e)),
               this.outerSvg.setAttribute(`height`, String(e)),
@@ -8796,7 +8796,7 @@ input[type=number] {
         resize(e) {
           ;(!e && ((e = this.workspace.getMetrics()), !e)) ||
             (this.oldHostMetrics &&
-              ec.metricsAreEquivalent(e, this.oldHostMetrics)) ||
+              $s.metricsAreEquivalent(e, this.oldHostMetrics)) ||
             (this.horizontal
               ? this.resizeHorizontal(e)
               : this.resizeVertical(e),
@@ -8819,15 +8819,15 @@ input[type=number] {
         }
         resizeViewHorizontal(e) {
           var t = e.viewWidth - this.margin * 2
-          ;(this.pair && (t -= ec.scrollbarThickness),
+          ;(this.pair && (t -= $s.scrollbarThickness),
             this.setScrollbarLength(Math.max(0, t)),
             (t = e.absoluteLeft + this.margin),
-            this.pair && this.workspace.RTL && (t += ec.scrollbarThickness),
+            this.pair && this.workspace.RTL && (t += $s.scrollbarThickness),
             this.setPosition(
               t,
               e.absoluteTop +
                 e.viewHeight -
-                ec.scrollbarThickness -
+                $s.scrollbarThickness -
                 this.margin,
             ),
             this.resizeContentHorizontal(e))
@@ -8857,14 +8857,14 @@ input[type=number] {
         }
         resizeViewVertical(e) {
           var t = e.viewHeight - this.margin * 2
-          ;(this.pair && (t -= ec.scrollbarThickness),
+          ;(this.pair && (t -= $s.scrollbarThickness),
             this.setScrollbarLength(Math.max(0, t)),
             this.setPosition(
               this.workspace.RTL
                 ? e.absoluteLeft + this.margin
                 : e.absoluteLeft +
                     e.viewWidth -
-                    ec.scrollbarThickness -
+                    $s.scrollbarThickness -
                     this.margin,
               e.absoluteTop + this.margin,
             ),
@@ -8910,7 +8910,7 @@ input[type=number] {
             : this.outerSvg.setAttribute(`display`, `none`)
         }
         onMouseDownBar(e) {
-          if ((this.workspace.markFocused(), (Do = null), this.cleanUp(), u(e)))
+          if ((this.workspace.markFocused(), (Eo = null), this.cleanUp(), u(e)))
             e.stopPropagation()
           else {
             var t = d(
@@ -8963,7 +8963,7 @@ input[type=number] {
             this.updateMetrics())
         }
         onMouseUpHandle() {
-          ;((Do = null), this.cleanUp())
+          ;((Eo = null), this.cleanUp())
         }
         cleanUp() {
           ;(this.workspace.hideChaff(!0),
@@ -8988,7 +8988,7 @@ input[type=number] {
             (t || t === void 0) && this.updateMetrics())
         }
         setOrigin(e, t) {
-          this.origin = new I(e, t)
+          this.origin = new L(e, t)
         }
         static metricsAreEquivalent(e, t) {
           return (
@@ -9005,46 +9005,46 @@ input[type=number] {
           )
         }
       }
-      ;((ec.scrollbarThickness = Eo ? 25 : 15),
-        (ec.DEFAULT_SCROLLBAR_MARGIN = 0.5))
-      var tc = {
+      ;(($s.scrollbarThickness = To ? 25 : 15),
+        ($s.DEFAULT_SCROLLBAR_MARGIN = 0.5))
+      var ec = {
           parseFromString: function () {
             throw Error(
               `DOMParser was not found in the global scope and was not properly injected using injectDependencies`,
             )
           },
         },
-        nc = {
+        tc = {
           serializeToString: function () {
             throw Error(
               `XMLSerializer was not foundin the global scope and was not properly injected using injectDependencies`,
             )
           },
         },
-        { document: rc, DOMParser: ic, XMLSerializer: ac } = globalThis
-      ;(ic && (tc = new ic()), ac && (nc = new ac()))
-      var oc = /[\x00-\x09\x0B\x0C\x0E-\x1F]/g,
-        sc = { NAME_SPACE: `https://developers.google.com/blockly/xml` }
-      ;((sc.createElement = e.rc),
-        (sc.createTextNode = e.sc),
-        (sc.domToText = lt),
-        (sc.injectDependencies = function (e) {
+        { document: nc, DOMParser: rc, XMLSerializer: ic } = globalThis
+      ;(rc && (ec = new rc()), ic && (tc = new ic()))
+      var ac = /[\x00-\x09\x0B\x0C\x0E-\x1F]/g,
+        oc = { NAME_SPACE: `https://developers.google.com/blockly/xml` }
+      ;((oc.createElement = e.rc),
+        (oc.createTextNode = e.sc),
+        (oc.domToText = lt),
+        (oc.injectDependencies = function (e) {
           ;(({
-            document: rc = rc,
-            DOMParser: ic = ic,
-            XMLSerializer: ac = ac,
+            document: nc = nc,
+            DOMParser: rc = rc,
+            XMLSerializer: ic = ic,
           } = e),
-            (tc = new ic()),
-            (nc = new ac()))
+            (ec = new rc()),
+            (tc = new ic()))
         }),
-        (sc.textToDom = e.uc))
-      var z,
-        cc = (z ||= {})
-      ;((cc[(cc.TOP = 0)] = `TOP`),
-        (cc[(cc.BOTTOM = 1)] = `BOTTOM`),
-        (cc[(cc.LEFT = 2)] = `LEFT`),
-        (cc[(cc.RIGHT = 3)] = `RIGHT`))
-      var lc = {
+        (oc.textToDom = e.uc))
+      var B,
+        sc = (B ||= {})
+      ;((sc[(sc.TOP = 0)] = `TOP`),
+        (sc[(sc.BOTTOM = 1)] = `BOTTOM`),
+        (sc[(sc.LEFT = 2)] = `LEFT`),
+        (sc[(sc.RIGHT = 3)] = `RIGHT`))
+      var cc = {
           hasCategoriesInternal: function (e) {
             if (!e) return !1
             var t = e.kind
@@ -9054,32 +9054,32 @@ input[type=number] {
                   .length
           },
         },
-        uc = {}
-      ;((uc.Position = z),
-        (uc.TEST_ONLY = lc),
-        (uc.convertFlyoutDefToJsonArray = ft),
-        (uc.convertToolboxDefToJson = dt),
-        (uc.hasCategories = pt),
-        (uc.isCategoryCollapsible = mt),
-        (uc.parseToolboxTree = _t))
-      var dc,
-        fc = (dc ||= {})
-      ;((fc[(fc.TOP = 0)] = `TOP`), (fc[(fc.BOTTOM = 1)] = `BOTTOM`))
-      var pc,
-        mc = (pc ||= {})
-      ;((mc[(mc.LEFT = 0)] = `LEFT`), (mc[(mc.RIGHT = 1)] = `RIGHT`))
-      var hc,
-        gc = (hc ||= {})
-      ;((gc[(gc.UP = 0)] = `UP`), (gc[(gc.DOWN = 1)] = `DOWN`))
-      var _c = {}
-      ;((_c.bumpDirection = hc),
-        (_c.bumpPositionRect = bt),
-        (_c.getCornerOppositeToolbox = yt),
-        (_c.getStartPositionRect = vt),
-        (_c.horizontalPosition = pc),
-        (_c.verticalPosition = dc))
-      var vc = { width: 96, height: 124, url: `sprites.svg` },
-        yc = class {
+        lc = {}
+      ;((lc.Position = B),
+        (lc.TEST_ONLY = cc),
+        (lc.convertFlyoutDefToJsonArray = ft),
+        (lc.convertToolboxDefToJson = dt),
+        (lc.hasCategories = pt),
+        (lc.isCategoryCollapsible = mt),
+        (lc.parseToolboxTree = _t))
+      var uc,
+        dc = (uc ||= {})
+      ;((dc[(dc.TOP = 0)] = `TOP`), (dc[(dc.BOTTOM = 1)] = `BOTTOM`))
+      var fc,
+        pc = (fc ||= {})
+      ;((pc[(pc.LEFT = 0)] = `LEFT`), (pc[(pc.RIGHT = 1)] = `RIGHT`))
+      var mc,
+        hc = (mc ||= {})
+      ;((hc[(hc.UP = 0)] = `UP`), (hc[(hc.DOWN = 1)] = `DOWN`))
+      var gc = {}
+      ;((gc.bumpDirection = mc),
+        (gc.bumpPositionRect = bt),
+        (gc.getCornerOppositeToolbox = yt),
+        (gc.getStartPositionRect = vt),
+        (gc.horizontalPosition = fc),
+        (gc.verticalPosition = uc))
+      var _c = { width: 96, height: 124, url: `sprites.svg` },
+        vc = class {
           constructor(e, t) {
             ;((this.workspace = e),
               (this.group = t),
@@ -9090,7 +9090,7 @@ input[type=number] {
                 this.performAction.bind(this),
               )),
               (this.keyDownHandler = s(t, `keydown`, this, this.onKeyDown)),
-              h(t, k.BUTTON),
+              h(t, A.BUTTON),
               (this.id = Ve()),
               (this.group.id = this.id))
           }
@@ -9098,12 +9098,12 @@ input[type=number] {
             ;(this.workspace.markFocused(),
               this.workspace.zoomCenter(e),
               this.fireZoomEvent(),
-              (Do = null),
+              (Eo = null),
               t.stopPropagation(),
               t.preventDefault())
           }
           fireZoomEvent() {
-            var e = new (S(O.CLICK))(null, this.workspace.id, `zoom_controls`)
+            var e = new (S(k.CLICK))(null, this.workspace.id, `zoom_controls`)
             x(e)
           }
           getGroup() {
@@ -9117,17 +9117,17 @@ input[type=number] {
             ;(c(this.pointerDownHandler), c(this.keyDownHandler))
           }
         },
-        bc = class extends yc {
+        yc = class extends vc {
           constructor(t, n) {
             var r = String(Math.random()).substring(2)
             ;((n = _(
-              j.G,
+              M.G,
               { class: `blocklyZoom blocklyZoomIn`, tabindex: `0` },
               n,
             )),
-              g(n, A.LABEL, e.C.ZOOM_IN),
+              g(n, j.LABEL, e.C.ZOOM_IN),
               _(
-                j.RECT,
+                M.RECT,
                 {
                   width: 40,
                   height: 40,
@@ -9140,13 +9140,13 @@ input[type=number] {
                 },
                 n,
               ))
-            var i = _(j.CLIPPATH, { id: `blocklyZoominClipPath` + r }, n)
-            ;(_(j.RECT, { width: 32, height: 32 }, i),
+            var i = _(M.CLIPPATH, { id: `blocklyZoominClipPath` + r }, n)
+            ;(_(M.RECT, { width: 32, height: 32 }, i),
               _(
-                j.IMAGE,
+                M.IMAGE,
                 {
-                  width: vc.width,
-                  height: vc.height,
+                  width: _c.width,
+                  height: _c.height,
                   x: -32,
                   y: -92,
                   "clip-path": `url(#blocklyZoominClipPath` + r + `)`,
@@ -9155,7 +9155,7 @@ input[type=number] {
               ).setAttributeNS(
                 `http://www.w3.org/1999/xlink`,
                 `xlink:href`,
-                t.options.pathToMedia + vc.url,
+                t.options.pathToMedia + _c.url,
               ),
               super(t, n))
           }
@@ -9163,17 +9163,17 @@ input[type=number] {
             this.zoom(1, e)
           }
         },
-        xc = class extends yc {
+        bc = class extends vc {
           constructor(t, n) {
             var r = String(Math.random()).substring(2)
             ;((n = _(
-              j.G,
+              M.G,
               { class: `blocklyZoom blocklyZoomOut`, tabindex: `0` },
               n,
             )),
-              g(n, A.LABEL, e.C.ZOOM_OUT),
+              g(n, j.LABEL, e.C.ZOOM_OUT),
               _(
-                j.RECT,
+                M.RECT,
                 {
                   width: 40,
                   height: 40,
@@ -9186,13 +9186,13 @@ input[type=number] {
                 },
                 n,
               ))
-            var i = _(j.CLIPPATH, { id: `blocklyZoomoutClipPath` + r }, n)
-            ;(_(j.RECT, { width: 32, height: 32 }, i),
+            var i = _(M.CLIPPATH, { id: `blocklyZoomoutClipPath` + r }, n)
+            ;(_(M.RECT, { width: 32, height: 32 }, i),
               _(
-                j.IMAGE,
+                M.IMAGE,
                 {
-                  width: vc.width,
-                  height: vc.height,
+                  width: _c.width,
+                  height: _c.height,
                   x: -64,
                   y: -92,
                   "clip-path": `url(#blocklyZoomoutClipPath` + r + `)`,
@@ -9201,7 +9201,7 @@ input[type=number] {
               ).setAttributeNS(
                 `http://www.w3.org/1999/xlink`,
                 `xlink:href`,
-                t.options.pathToMedia + vc.url,
+                t.options.pathToMedia + _c.url,
               ),
               super(t, n))
           }
@@ -9209,17 +9209,17 @@ input[type=number] {
             this.zoom(-1, e)
           }
         },
-        Sc = class extends yc {
+        xc = class extends vc {
           constructor(t, n) {
             var r = String(Math.random()).substring(2)
             ;((n = _(
-              j.G,
+              M.G,
               { class: `blocklyZoom blocklyZoomReset`, tabindex: `0` },
               n,
             )),
-              g(n, A.LABEL, e.C.RESET_ZOOM),
+              g(n, j.LABEL, e.C.RESET_ZOOM),
               _(
-                j.RECT,
+                M.RECT,
                 {
                   width: 40,
                   height: 40,
@@ -9232,13 +9232,13 @@ input[type=number] {
                 },
                 n,
               ))
-            var i = _(j.CLIPPATH, { id: `blocklyZoomresetClipPath` + r }, n)
-            ;(_(j.RECT, { width: 32, height: 32 }, i),
+            var i = _(M.CLIPPATH, { id: `blocklyZoomresetClipPath` + r }, n)
+            ;(_(M.RECT, { width: 32, height: 32 }, i),
               _(
-                j.IMAGE,
+                M.IMAGE,
                 {
-                  width: vc.width,
-                  height: vc.height,
+                  width: _c.width,
+                  height: _c.height,
                   y: -92,
                   "clip-path": `url(#blocklyZoomresetClipPath` + r + `)`,
                 },
@@ -9246,7 +9246,7 @@ input[type=number] {
               ).setAttributeNS(
                 `http://www.w3.org/1999/xlink`,
                 `xlink:href`,
-                t.options.pathToMedia + vc.url,
+                t.options.pathToMedia + _c.url,
               ),
               super(t, n))
           }
@@ -9265,12 +9265,12 @@ input[type=number] {
                 500,
               ),
               this.fireZoomEvent(),
-              (Do = null),
+              (Eo = null),
               e.stopPropagation(),
               e.preventDefault())
           }
         },
-        Cc = class {
+        Sc = class {
           constructor(e) {
             ;((this.workspace = e),
               (this.id = `zoomControls`),
@@ -9288,19 +9288,19 @@ input[type=number] {
           }
           createDom() {
             return (
-              (this.svgGroup = _(j.G, {})),
-              (this.zoomOutControl = new xc(this.workspace, this.svgGroup)),
-              (this.zoomInControl = new bc(this.workspace, this.svgGroup)),
+              (this.svgGroup = _(M.G, {})),
+              (this.zoomOutControl = new bc(this.workspace, this.svgGroup)),
+              (this.zoomInControl = new yc(this.workspace, this.svgGroup)),
               this.workspace.isMovable() &&
-                (this.zoomResetControl = new Sc(this.workspace, this.svgGroup)),
+                (this.zoomResetControl = new xc(this.workspace, this.svgGroup)),
               this.svgGroup
             )
           }
           init() {
             ;(this.workspace.getComponentManager().addComponent({
               component: this,
-              weight: Qo.ComponentWeight.ZOOM_CONTROLS_WEIGHT,
-              capabilities: [Qo.Capability.POSITIONABLE],
+              weight: Zo.ComponentWeight.ZOOM_CONTROLS_WEIGHT,
+              capabilities: [Zo.Capability.POSITIONABLE],
             }),
               (this.initialized = !0))
           }
@@ -9320,7 +9320,7 @@ input[type=number] {
             var e = this.SMALL_SPACING + 2 * this.HEIGHT
             return (
               this.zoomResetControl && (e += this.LARGE_SPACING + this.HEIGHT),
-              new L(this.top, this.top + e, this.left, this.left + this.WIDTH)
+              new R(this.top, this.top + e, this.left, this.left + this.WIDTH)
             )
           }
           position(e, t) {
@@ -9332,7 +9332,7 @@ input[type=number] {
                   (r += this.LARGE_SPACING + this.HEIGHT),
                 (e = vt(
                   n,
-                  new R(this.WIDTH, r),
+                  new z(this.WIDTH, r),
                   this.MARGIN_HORIZONTAL,
                   this.MARGIN_VERTICAL,
                   e,
@@ -9342,10 +9342,10 @@ input[type=number] {
                 (t = bt(
                   e,
                   this.MARGIN_VERTICAL,
-                  n === dc.TOP ? hc.DOWN : hc.UP,
+                  n === uc.TOP ? mc.DOWN : mc.UP,
                   t,
                 )),
-                n === dc.TOP)
+                n === uc.TOP)
               ) {
                 var i = this.SMALL_SPACING + this.HEIGHT,
                   a
@@ -9394,12 +9394,12 @@ input[type=number] {
   opacity: 1;
 }
 `)
-      var wc = {}
-      ;((wc.register = xt),
-        (wc.unregister = function (e) {
-          Fe(F.SERIALIZER, e)
+      var Cc = {}
+      ;((Cc.register = xt),
+        (Cc.unregister = function (e) {
+          Fe(I.SERIALIZER, e)
         }))
-      var Tc = class {
+      var wc = class {
         constructor() {
           this.priority = 25
         }
@@ -9416,15 +9416,15 @@ input[type=number] {
           for (let t of e.getTopComments()) t.dispose()
         }
       }
-      xt(`workspaceComments`, new Tc())
+      xt(`workspaceComments`, new wc())
+      var Tc = {}
+      ;((Tc.WorkspaceCommentSerializer = wc), (Tc.append = Ct), (Tc.save = St))
       var Ec = {}
-      ;((Ec.WorkspaceCommentSerializer = Tc), (Ec.append = Ct), (Ec.save = St))
-      var Dc = {}
-      ;((Dc.register = wt),
-        (Dc.unregister = function (e) {
-          Fe(F.PASTER, e)
+      ;((Ec.register = wt),
+        (Ec.unregister = function (e) {
+          Fe(I.PASTER, e)
         }))
-      var Oc = class {
+      var Dc = class {
         paste(t, n, r) {
           ;((t = t.commentState), r && ((t.x = r.x), (t.y = r.y)), e.Ub++)
           try {
@@ -9434,12 +9434,12 @@ input[type=number] {
             e.Ub--
           }
           return i
-            ? (qe() && x(new (S(O.COMMENT_CREATE))(i)), e.t().focusNode(i), i)
+            ? (qe() && x(new (S(k.COMMENT_CREATE))(i)), e.t().focusNode(i), i)
             : null
         }
       }
-      ;((Oc.TYPE = `workspace-comment`),
-        wt(Oc.TYPE, new Oc()),
+      ;((Dc.TYPE = `workspace-comment`),
+        wt(Dc.TYPE, new Dc()),
         (e.Og = {
           dragRadius: 5,
           flyoutDragRadius: 10,
@@ -9448,7 +9448,7 @@ input[type=number] {
           currentConnectionPreference: 8,
           bumpDelay: 250,
         }))
-      var kc = class {
+      var Oc = class {
           constructor(e, t, n) {
             ;((this.content = e),
               (this.opt_value = t),
@@ -9472,8 +9472,8 @@ input[type=number] {
                 (this.highlight ? `blocklyMenuItemHighlight ` : ``) +
                 (this.rightToLeft ? `blocklyMenuItemRtl ` : ``)))
             var t = document.createElement(`div`)
-            ;(g(e, A.LABEL, this.getAriaLabel()),
-              h(t, k.NONE),
+            ;(g(e, j.LABEL, this.getAriaLabel()),
+              h(t, A.NONE),
               (t.className = `blocklyMenuItemContent`))
             var n = this.content
             return (
@@ -9483,8 +9483,8 @@ input[type=number] {
               e.appendChild(t),
               this.checkable && this.toggleHasCheckbox(!0),
               this.roleName && h(e, this.roleName),
-              g(e, A.SELECTED, (this.checkable && this.checked) || !1),
-              g(e, A.DISABLED, !this.enabled),
+              g(e, j.SELECTED, (this.checkable && this.checked) || !1),
+              g(e, j.DISABLED, !this.enabled),
               e
             )
           }
@@ -9526,7 +9526,7 @@ input[type=number] {
               ((this.checked = e),
               (e = this.getElement()) &&
                 (e.classList.toggle(`blocklyMenuItemSelected`, this.checked),
-                g(e, A.SELECTED, this.checked)))
+                g(e, j.SELECTED, this.checked)))
           }
           setHighlighted(e) {
             if (((this.highlight = e), this.isEnabled())) {
@@ -9542,7 +9542,7 @@ input[type=number] {
             ;((this.enabled = e),
               (e = this.getElement()) &&
                 (e.classList.toggle(`blocklyMenuItemDisabled`, !this.enabled),
-                g(e, A.DISABLED, !this.enabled)))
+                g(e, j.DISABLED, !this.enabled)))
           }
           performAction(e) {
             this.isEnabled() &&
@@ -9562,7 +9562,7 @@ input[type=number] {
                 )
               ) {
                 ;((e = document.createElement(`div`)),
-                  g(e, A.HIDDEN, !0),
+                  g(e, j.HIDDEN, !0),
                   (e.className = `blocklyMenuItemCheckbox `))
                 var t, n
                 ;(t = this.getElement()) == null ||
@@ -9579,7 +9579,7 @@ input[type=number] {
             }
           }
         },
-        Ac = class {
+        kc = class {
           constructor() {
             ;((this.menuItems = []),
               (this.roleName =
@@ -9690,7 +9690,7 @@ input[type=number] {
                 (this.highlightedItem = e),
                 (t = this.getElement()))
               let n = e.getElement()
-              t && n && (tt(n, t), g(t, A.ACTIVEDESCENDANT, e.getId()))
+              t && n && (tt(n, t), g(t, j.ACTIVEDESCENDANT, e.getId()))
             }
           }
           highlightNext() {
@@ -9733,8 +9733,8 @@ input[type=number] {
             if (
               ((this.openingCoords = null), t && typeof e.clientX == `number`)
             ) {
-              let n = new I(e.clientX, e.clientY)
-              if (I.distance(t, n) < 1) return
+              let n = new L(e.clientX, e.clientY)
+              if (L.distance(t, n) < 1) return
             }
             ;(t = this.getMenuItem(e.target)) && t.performAction(e)
           }
@@ -9781,13 +9781,13 @@ input[type=number] {
             return ((t.height = e.scrollHeight), t)
           }
           getMenuItems() {
-            return this.menuItems.filter((e) => e instanceof kc)
+            return this.menuItems.filter((e) => e instanceof Oc)
           }
           getId() {
             return this.id
           }
         },
-        jc = class {
+        Ac = class {
           constructor() {
             this.element = null
           }
@@ -9795,7 +9795,7 @@ input[type=number] {
             return (
               (this.element = document.createElement(`hr`)),
               (this.element.className = `blocklyMenuSeparator`),
-              h(this.element, k.SEPARATOR),
+              h(this.element, A.SEPARATOR),
               this.element
             )
           }
@@ -9804,23 +9804,23 @@ input[type=number] {
             ;((e = this.element) == null || e.remove(), (this.element = null))
           }
         },
-        Mc = (e.je ||= {})
-      ;((Mc[(Mc.VALUE = 1)] = `VALUE`),
-        (Mc[(Mc.STATEMENT = 3)] = `STATEMENT`),
-        (Mc[(Mc.DUMMY = 5)] = `DUMMY`),
-        (Mc[(Mc.CUSTOM = 6)] = `CUSTOM`),
-        (Mc[(Mc.END_ROW = 7)] = `END_ROW`))
-      var Nc = new Set(),
-        Pc = new WeakSet(),
-        Fc = new WeakMap(),
+        jc = (e.je ||= {})
+      ;((jc[(jc.VALUE = 1)] = `VALUE`),
+        (jc[(jc.STATEMENT = 3)] = `STATEMENT`),
+        (jc[(jc.DUMMY = 5)] = `DUMMY`),
+        (jc[(jc.CUSTOM = 6)] = `CUSTOM`),
+        (jc[(jc.END_ROW = 7)] = `END_ROW`))
+      var Mc = new Set(),
+        Nc = new WeakSet(),
+        Pc = new WeakMap(),
+        Fc = null,
         Ic = null,
-        Lc = null,
-        Rc = 0,
-        zc = {}
-      ;((zc.finishQueuedRenders = kt),
-        (zc.queueRender = Ot),
-        (zc.triggerQueuedRenders = At))
-      var Bc = class {
+        Lc = 0,
+        Rc = {}
+      ;((Rc.finishQueuedRenders = kt),
+        (Rc.queueRender = Ot),
+        (Rc.triggerQueuedRenders = At))
+      var zc = class {
         static show(e, t) {
           if (t.oncePerSession && t.id) {
             if (this.shownIds.has(t.id)) return
@@ -9833,7 +9833,7 @@ input[type=number] {
           })
         }
         static createDom(t, n) {
-          var { message: r, duration: i = 5, assertiveness: a = cs.POLITE } = n,
+          var { message: r, duration: i = 5, assertiveness: a = ss.POLITE } = n,
             o = document.createElement(`div`)
           ;(t.getInjectionDiv().appendChild(o),
             (o.dataset.toastId = n.id),
@@ -9843,15 +9843,15 @@ input[type=number] {
             (n.innerText = r),
             (n = o.appendChild(document.createElement(`button`))),
             (n.className = `blocklyToastCloseButton`),
-            g(n, A.LABEL, e.C.CLOSE))
+            g(n, j.LABEL, e.C.CLOSE))
           var s = _(
-            j.SVG,
+            M.SVG,
             { width: 24, height: 24, viewBox: `0 0 24 24`, fill: `none` },
             n,
           )
-          ;(g(s, A.HIDDEN, !0),
+          ;(g(s, j.HIDDEN, !0),
             _(
-              j.RECT,
+              M.RECT,
               {
                 x: 19.7782,
                 y: 2.80762,
@@ -9863,7 +9863,7 @@ input[type=number] {
               s,
             ),
             _(
-              j.RECT,
+              M.RECT,
               {
                 x: 2.80762,
                 y: 4.22183,
@@ -9892,7 +9892,7 @@ input[type=number] {
             o.addEventListener(`mousemove`, s),
             o.addEventListener(`mouseleave`, n),
             n(),
-            ae(r, { assertiveness: a, role: k.STATUS }),
+            ae(r, { assertiveness: a, role: A.STATUS }),
             o
           )
         }
@@ -9903,7 +9903,7 @@ input[type=number] {
               e.remove())
         }
       }
-      ;((Bc.shownIds = new Set()),
+      ;((zc.shownIds = new Set()),
         m(`
 .blocklyToast {
   font-size: 1.2rem;
@@ -9936,37 +9936,37 @@ input[type=number] {
   cursor: pointer;
 }
 `))
-      var Vc,
-        Hc = (Vc ||= {})
-      ;((Hc[(Hc.ALERT = 1)] = `ALERT`),
-        (Hc[(Hc.CONFIRM = 2)] = `CONFIRM`),
-        (Hc[(Hc.PROMPT = 3)] = `PROMPT`))
-      var Uc = 0,
-        Wc = It,
-        Gc = Lt,
-        Kc = Rt,
-        qc = Bc.show.bind(Bc),
-        Jc = qc,
-        Yc = {}
-      ;((Yc.alert = zt),
-        (Yc.confirm = Bt),
-        (Yc.prompt = Vt),
-        (Yc.setAlert = function (e = It) {
+      var Bc,
+        Vc = (Bc ||= {})
+      ;((Vc[(Vc.ALERT = 1)] = `ALERT`),
+        (Vc[(Vc.CONFIRM = 2)] = `CONFIRM`),
+        (Vc[(Vc.PROMPT = 3)] = `PROMPT`))
+      var Hc = 0,
+        Uc = It,
+        Wc = Lt,
+        Gc = Rt,
+        Kc = zc.show.bind(zc),
+        qc = Kc,
+        Jc = {}
+      ;((Jc.alert = zt),
+        (Jc.confirm = Bt),
+        (Jc.prompt = Vt),
+        (Jc.setAlert = function (e = It) {
+          Uc = e
+        }),
+        (Jc.setConfirm = function (e = Lt) {
           Wc = e
         }),
-        (Yc.setConfirm = function (e = Lt) {
+        (Jc.setPrompt = function (e = Rt) {
           Gc = e
         }),
-        (Yc.setPrompt = function (e = Rt) {
-          Kc = e
+        (Jc.setToast = function (e = Kc) {
+          qc = e
         }),
-        (Yc.setToast = function (e = qc) {
-          Jc = e
-        }),
-        (Yc.toast = function (e, t) {
-          Jc(e, t)
+        (Jc.toast = function (e, t) {
+          qc(e, t)
         }))
-      var Xc = class {
+      var Yc = class {
           constructor() {
             ;((this.workspaceId = void 0),
               (this.isUiEvent = !1),
@@ -9998,7 +9998,7 @@ input[type=number] {
             return e
           }
         },
-        Zc = class extends Xc {
+        Xc = class extends Yc {
           constructor(e) {
             ;(super(),
               (this.isBlank = !0),
@@ -10015,11 +10015,11 @@ input[type=number] {
           }
           static fromJson(e, t, n) {
             return (
-              (t = Xc.fromJson(e, t, n ?? new Zc())), (t.blockId = e.blockId), t
+              (t = Yc.fromJson(e, t, n ?? new Xc())), (t.blockId = e.blockId), t
             )
           }
         },
-        Qc = class {
+        Zc = class {
           constructor(e) {
             this.name = e
           }
@@ -10030,13 +10030,13 @@ input[type=number] {
             return this.name === e.toString()
           }
         }
-      ;((Qc.MUTATOR = new Qc(`mutator`)),
-        (Qc.WARNING = new Qc(`warning`)),
-        (Qc.COMMENT = new Qc(`comment`)))
-      var $c = class extends Zc {
+      ;((Zc.MUTATOR = new Zc(`mutator`)),
+        (Zc.WARNING = new Zc(`warning`)),
+        (Zc.COMMENT = new Zc(`comment`)))
+      var Qc = class extends Xc {
         constructor(e, t, n, r, i) {
           ;(super(e),
-            (this.type = O.BLOCK_CHANGE),
+            (this.type = k.BLOCK_CHANGE),
             e &&
               ((this.element = t),
               (this.name = n || void 0),
@@ -10060,7 +10060,7 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = Zc.fromJson(e, t, n ?? new $c())),
+            (t = Xc.fromJson(e, t, n ?? new Qc())),
             (t.element = e.element),
             (t.name = e.name),
             (t.oldValue = e.oldValue),
@@ -10090,7 +10090,7 @@ input[type=number] {
             throw Error(
               `The associated block is undefined. Either pass a block to the constructor, or call fromJson`,
             )
-          var r = n.getIcon(Qc.MUTATOR)
+          var r = n.getIcon(Zc.MUTATOR)
           switch (
             (r && Ut(r) && r.bubbleIsVisible() && r.setBubbleVisible(!1),
             (t = t ? this.newValue : this.oldValue),
@@ -10118,12 +10118,12 @@ input[type=number] {
               n.setInputsInline(!!t)
               break
             case `mutation`:
-              ;((i = $c.getExtraBlockState_(n)),
+              ;((i = Qc.getExtraBlockState_(n)),
                 n.loadExtraState
                   ? n.loadExtraState(JSON.parse(t || `{}`))
                   : n.domToMutation &&
                     n.domToMutation(e.uc(t || `<mutation/>`)),
-                x(new $c(n, `mutation`, null, i, t)))
+                x(new Qc(n, `mutation`, null, i, t)))
               break
             default:
               console.warn(`Unknown change type: ` + this.element)
@@ -10139,11 +10139,11 @@ input[type=number] {
               : ``
         }
       }
-      b(F.EVENT, O.BLOCK_CHANGE, $c)
-      var el = class extends Zc {
+      b(I.EVENT, k.BLOCK_CHANGE, Qc)
+      var $c = class extends Xc {
         constructor(e) {
           ;(super(e),
-            (this.type = O.BLOCK_CREATE),
+            (this.type = k.BLOCK_CREATE),
             e &&
               (e.isShadow() && (this.recordUndo = !1),
               (this.ids = Je(e)),
@@ -10168,7 +10168,7 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = Zc.fromJson(e, t, n ?? new el())),
+            (t = Xc.fromJson(e, t, n ?? new $c())),
             (t.ids = e.ids),
             (t.json = e.json),
             e.recordUndo !== void 0 && (t.recordUndo = e.recordUndo),
@@ -10199,10 +10199,10 @@ input[type=number] {
           }
         }
       }
-      b(F.EVENT, O.BLOCK_CREATE, el)
-      var tl = class extends Zc {
+      b(I.EVENT, k.BLOCK_CREATE, $c)
+      var el = class extends Xc {
         constructor(e) {
-          if ((super(e), (this.type = O.BLOCK_DELETE), e)) {
+          if ((super(e), (this.type = k.BLOCK_DELETE), e)) {
             if (e.getParent())
               throw Error(`Connected blocks cannot be deleted.`)
             ;(e.isShadow() && (this.recordUndo = !1),
@@ -10235,7 +10235,7 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = Zc.fromJson(e, t, n ?? new tl())),
+            (t = Xc.fromJson(e, t, n ?? new el())),
             (t.ids = e.ids),
             (t.wasShadow = e.wasShadow),
             (t.oldJson = e.oldJson),
@@ -10265,8 +10265,8 @@ input[type=number] {
           else fn(this.oldJson, t)
         }
       }
-      b(F.EVENT, O.BLOCK_DELETE, tl)
-      var nl = class extends Xc {
+      b(I.EVENT, k.BLOCK_DELETE, el)
+      var tl = class extends Yc {
           constructor(e) {
             ;(super(),
               (this.isBlank = !0),
@@ -10276,10 +10276,10 @@ input[type=number] {
               (this.workspaceId = e || ``))
           }
         },
-        rl = class extends nl {
+        nl = class extends tl {
           constructor(e, t, n) {
             ;(super(e ? e.workspace.id : void 0),
-              (this.type = O.BLOCK_DRAG),
+              (this.type = k.BLOCK_DRAG),
               e &&
                 ((this.blockId = e.id), (this.isStart = t), (this.blocks = n)))
           }
@@ -10302,7 +10302,7 @@ input[type=number] {
           }
           static fromJson(e, t, n) {
             return (
-              (t = nl.fromJson(e, t, n ?? new rl())),
+              (t = tl.fromJson(e, t, n ?? new nl())),
               (t.isStart = e.isStart),
               (t.blockId = e.blockId),
               (t.blocks = e.blocks),
@@ -10310,11 +10310,11 @@ input[type=number] {
             )
           }
         }
-      b(F.EVENT, O.BLOCK_DRAG, rl)
-      var il = class extends Zc {
+      b(I.EVENT, k.BLOCK_DRAG, nl)
+      var rl = class extends Xc {
         constructor(e, t, n, r) {
           ;(super(e),
-            (this.type = O.BLOCK_FIELD_INTERMEDIATE_CHANGE),
+            (this.type = k.BLOCK_FIELD_INTERMEDIATE_CHANGE),
             (this.recordUndo = !1),
             e && ((this.name = t), (this.oldValue = n), (this.newValue = r)))
         }
@@ -10333,7 +10333,7 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = Zc.fromJson(e, t, n ?? new il())),
+            (t = Xc.fromJson(e, t, n ?? new rl())),
             (t.name = e.name),
             (t.oldValue = e.oldValue),
             (t.newValue = e.newValue),
@@ -10359,17 +10359,17 @@ input[type=number] {
               : console.warn(`Can't set non-existent field: ` + this.name))
         }
       }
-      b(F.EVENT, O.BLOCK_FIELD_INTERMEDIATE_CHANGE, il)
-      var B,
-        al = (B ||= {})
-      ;((al[(al.INPUT_VALUE = 1)] = `INPUT_VALUE`),
-        (al[(al.OUTPUT_VALUE = 2)] = `OUTPUT_VALUE`),
-        (al[(al.NEXT_STATEMENT = 3)] = `NEXT_STATEMENT`),
-        (al[(al.PREVIOUS_STATEMENT = 4)] = `PREVIOUS_STATEMENT`))
-      var ol = class extends Zc {
+      b(I.EVENT, k.BLOCK_FIELD_INTERMEDIATE_CHANGE, rl)
+      var V,
+        il = (V ||= {})
+      ;((il[(il.INPUT_VALUE = 1)] = `INPUT_VALUE`),
+        (il[(il.OUTPUT_VALUE = 2)] = `OUTPUT_VALUE`),
+        (il[(il.NEXT_STATEMENT = 3)] = `NEXT_STATEMENT`),
+        (il[(il.PREVIOUS_STATEMENT = 4)] = `PREVIOUS_STATEMENT`))
+      var al = class extends Xc {
         constructor(e) {
           ;(super(e),
-            (this.type = O.BLOCK_MOVE),
+            (this.type = k.BLOCK_MOVE),
             e &&
               (e.isShadow() && (this.recordUndo = !1),
               (e = this.currentLocation()),
@@ -10395,17 +10395,17 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = Zc.fromJson(e, t, n ?? new ol())),
+            (t = Xc.fromJson(e, t, n ?? new al())),
             (t.oldParentId = e.oldParentId),
             (t.oldInputName = e.oldInputName),
             e.oldCoordinate &&
               ((n = e.oldCoordinate.split(`,`)),
-              (t.oldCoordinate = new I(Number(n[0]), Number(n[1])))),
+              (t.oldCoordinate = new L(Number(n[0]), Number(n[1])))),
             (t.newParentId = e.newParentId),
             (t.newInputName = e.newInputName),
             e.newCoordinate &&
               ((n = e.newCoordinate.split(`,`)),
-              (t.newCoordinate = new I(Number(n[0]), Number(n[1])))),
+              (t.newCoordinate = new L(Number(n[0]), Number(n[1])))),
             e.reason !== void 0 && (t.reason = e.reason),
             e.recordUndo !== void 0 && (t.recordUndo = e.recordUndo),
             t
@@ -10445,7 +10445,7 @@ input[type=number] {
           return (
             this.oldParentId === this.newParentId &&
             this.oldInputName === this.newInputName &&
-            I.equals(this.oldCoordinate, this.newCoordinate)
+            L.equals(this.oldCoordinate, this.newCoordinate)
           )
         }
         run(e) {
@@ -10478,7 +10478,7 @@ input[type=number] {
               ;((n = t?.type),
                 i
                   ? (n = a.getInput(i)) && (e = n.connection)
-                  : n === B.PREVIOUS_STATEMENT && (e = a.nextConnection),
+                  : n === V.PREVIOUS_STATEMENT && (e = a.nextConnection),
                 e && t
                   ? t.connect(e)
                   : console.warn(`Can't connect to non-existent input: ` + i))
@@ -10486,11 +10486,11 @@ input[type=number] {
           } else console.warn(`Can't move non-existent block: ` + this.blockId)
         }
       }
-      b(F.EVENT, O.BLOCK_MOVE, ol)
-      var sl = class extends nl {
+      b(I.EVENT, k.BLOCK_MOVE, al)
+      var ol = class extends tl {
           constructor(e, t, n) {
             ;(super(e ? e.workspace.id : void 0),
-              (this.type = O.BUBBLE_OPEN),
+              (this.type = k.BUBBLE_OPEN),
               e &&
                 ((this.blockId = e.id),
                 (this.isOpen = t),
@@ -10515,7 +10515,7 @@ input[type=number] {
           }
           static fromJson(e, t, n) {
             return (
-              (t = nl.fromJson(e, t, n ?? new sl())),
+              (t = tl.fromJson(e, t, n ?? new ol())),
               (t.isOpen = e.isOpen),
               (t.bubbleType = e.bubbleType),
               (t.blockId = e.blockId),
@@ -10523,18 +10523,18 @@ input[type=number] {
             )
           }
         },
-        cl,
-        ll = (cl ||= {})
-      ;((ll.MUTATOR = `mutator`),
-        (ll.COMMENT = `comment`),
-        (ll.WARNING = `warning`),
-        b(F.EVENT, O.BUBBLE_OPEN, sl))
-      var ul = class extends nl {
+        sl,
+        cl = (sl ||= {})
+      ;((cl.MUTATOR = `mutator`),
+        (cl.COMMENT = `comment`),
+        (cl.WARNING = `warning`),
+        b(I.EVENT, k.BUBBLE_OPEN, ol))
+      var ll = class extends tl {
           constructor(e, t, n) {
             ;((t = e ? e.workspace.id : t),
               t === null && (t = void 0),
               super(t),
-              (this.type = O.CLICK),
+              (this.type = k.CLICK),
               (this.blockId = e ? e.id : void 0),
               (this.targetType = n))
           }
@@ -10550,20 +10550,20 @@ input[type=number] {
           }
           static fromJson(e, t, n) {
             return (
-              (t = nl.fromJson(e, t, n ?? new ul())),
+              (t = tl.fromJson(e, t, n ?? new ll())),
               (t.targetType = e.targetType),
               (t.blockId = e.blockId),
               t
             )
           }
         },
-        dl,
-        fl = (dl ||= {})
-      ;((fl.BLOCK = `block`),
-        (fl.WORKSPACE = `workspace`),
-        (fl.ZOOM_CONTROLS = `zoom_controls`),
-        b(F.EVENT, O.CLICK, ul))
-      var pl = class extends Xc {
+        ul,
+        dl = (ul ||= {})
+      ;((dl.BLOCK = `block`),
+        (dl.WORKSPACE = `workspace`),
+        (dl.ZOOM_CONTROLS = `zoom_controls`),
+        b(I.EVENT, k.CLICK, ll))
+      var fl = class extends Yc {
           constructor(t) {
             ;(super(),
               (this.isBlank = !0),
@@ -10584,7 +10584,7 @@ input[type=number] {
           }
           static fromJson(e, t, n) {
             return (
-              (t = Xc.fromJson(e, t, n ?? new pl())),
+              (t = Yc.fromJson(e, t, n ?? new fl())),
               (t.commentId = e.commentId),
               t
             )
@@ -10608,10 +10608,10 @@ input[type=number] {
             }
           }
         },
-        ml = class extends pl {
+        pl = class extends fl {
           constructor(e, t, n) {
             ;(super(e),
-              (this.type = O.COMMENT_CHANGE),
+              (this.type = k.COMMENT_CHANGE),
               e &&
                 ((this.oldContents_ = t === void 0 ? `` : t),
                 (this.newContents_ = n === void 0 ? `` : n)))
@@ -10634,7 +10634,7 @@ input[type=number] {
           }
           static fromJson(e, t, n) {
             return (
-              (t = pl.fromJson(e, t, n ?? new ml())),
+              (t = fl.fromJson(e, t, n ?? new pl())),
               (t.oldContents_ = e.oldContents),
               (t.newContents_ = e.newContents),
               t
@@ -10664,10 +10664,10 @@ input[type=number] {
               )
           }
         }
-      b(F.EVENT, O.COMMENT_CHANGE, ml)
-      var hl = class extends pl {
+      b(I.EVENT, k.COMMENT_CHANGE, pl)
+      var ml = class extends fl {
         constructor(e, t) {
-          ;(super(e), (this.newCollapsed = t), (this.type = O.COMMENT_COLLAPSE))
+          ;(super(e), (this.newCollapsed = t), (this.type = k.COMMENT_COLLAPSE))
         }
         toJson() {
           var e = super.toJson()
@@ -10679,7 +10679,7 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = pl.fromJson(e, t, n ?? new hl())),
+            (t = fl.fromJson(e, t, n ?? new ml())),
             (t.newCollapsed = e.newCollapsed),
             t
           )
@@ -10698,11 +10698,11 @@ input[type=number] {
               )
         }
       }
-      b(F.EVENT, O.COMMENT_COLLAPSE, hl)
-      var gl = class extends pl {
+      b(I.EVENT, k.COMMENT_COLLAPSE, ml)
+      var hl = class extends fl {
         constructor(e) {
           ;(super(e),
-            (this.type = O.COMMENT_CREATE),
+            (this.type = k.COMMENT_CREATE),
             e && (this.json = St(e, { addCoordinates: !0 })))
         }
         toJson() {
@@ -10714,21 +10714,21 @@ input[type=number] {
           return ((e.json = this.json), e)
         }
         static fromJson(e, t, n) {
-          return ((t = pl.fromJson(e, t, n ?? new gl())), (t.json = e.json), t)
+          return ((t = fl.fromJson(e, t, n ?? new hl())), (t.json = e.json), t)
         }
         run(e) {
-          pl.CommentCreateDeleteHelper(this, e)
+          fl.CommentCreateDeleteHelper(this, e)
         }
       }
-      b(F.EVENT, O.COMMENT_CREATE, gl)
-      var _l = class extends pl {
+      b(I.EVENT, k.COMMENT_CREATE, hl)
+      var gl = class extends fl {
         constructor(e) {
           ;(super(e),
-            (this.type = O.COMMENT_DELETE),
+            (this.type = k.COMMENT_DELETE),
             e && (this.json = St(e, { addCoordinates: !0 })))
         }
         run(e) {
-          pl.CommentCreateDeleteHelper(this, !e)
+          fl.CommentCreateDeleteHelper(this, !e)
         }
         toJson() {
           var e = super.toJson()
@@ -10739,14 +10739,14 @@ input[type=number] {
           return ((e.json = this.json), e)
         }
         static fromJson(e, t, n) {
-          return ((t = pl.fromJson(e, t, n ?? new _l())), (t.json = e.json), t)
+          return ((t = fl.fromJson(e, t, n ?? new gl())), (t.json = e.json), t)
         }
       }
-      b(F.EVENT, O.COMMENT_DELETE, _l)
-      var vl = class extends nl {
+      b(I.EVENT, k.COMMENT_DELETE, gl)
+      var _l = class extends tl {
         constructor(e, t) {
           ;(super(e ? e.workspace.id : void 0),
-            (this.type = O.COMMENT_DRAG),
+            (this.type = k.COMMENT_DRAG),
             e && ((this.commentId = e.id), (this.isStart = t)))
         }
         toJson() {
@@ -10763,18 +10763,18 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = nl.fromJson(e, t, n ?? new vl())),
+            (t = tl.fromJson(e, t, n ?? new _l())),
             (t.isStart = e.isStart),
             (t.commentId = e.commentId),
             t
           )
         }
       }
-      b(F.EVENT, O.COMMENT_DRAG, vl)
-      var yl = class extends pl {
+      b(I.EVENT, k.COMMENT_DRAG, _l)
+      var vl = class extends fl {
         constructor(e) {
           ;(super(e),
-            (this.type = O.COMMENT_MOVE),
+            (this.type = k.COMMENT_MOVE),
             e &&
               ((this.comment_ = e),
               (this.oldCoordinate_ = e.getRelativeToSurfaceXY())))
@@ -10817,16 +10817,16 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = pl.fromJson(e, t, n ?? new yl())),
+            (t = fl.fromJson(e, t, n ?? new vl())),
             (n = e.oldCoordinate.split(`,`)),
-            (t.oldCoordinate_ = new I(Number(n[0]), Number(n[1]))),
+            (t.oldCoordinate_ = new L(Number(n[0]), Number(n[1]))),
             (n = e.newCoordinate.split(`,`)),
-            (t.newCoordinate_ = new I(Number(n[0]), Number(n[1]))),
+            (t.newCoordinate_ = new L(Number(n[0]), Number(n[1]))),
             t
           )
         }
         isNull() {
-          return I.equals(this.oldCoordinate_, this.newCoordinate_)
+          return L.equals(this.oldCoordinate_, this.newCoordinate_)
         }
         run(e) {
           var t = this.getEventWorkspace_()
@@ -10844,11 +10844,11 @@ input[type=number] {
             console.warn(`Can't move non-existent comment: ` + this.commentId)
         }
       }
-      b(F.EVENT, O.COMMENT_MOVE, yl)
-      var bl = class extends pl {
+      b(I.EVENT, k.COMMENT_MOVE, vl)
+      var yl = class extends fl {
         constructor(e) {
           ;(super(e),
-            (this.type = O.COMMENT_RESIZE),
+            (this.type = k.COMMENT_RESIZE),
             e && (this.oldSize = e.getSize()))
         }
         recordCurrentSizeAsNewSize() {
@@ -10887,14 +10887,14 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = pl.fromJson(e, t, n ?? new bl())),
-            (t.oldSize = new R(e.oldWidth, e.oldHeight)),
-            (t.newSize = new R(e.newWidth, e.newHeight)),
+            (t = fl.fromJson(e, t, n ?? new yl())),
+            (t.oldSize = new z(e.oldWidth, e.oldHeight)),
+            (t.newSize = new z(e.newWidth, e.newHeight)),
             t
           )
         }
         isNull() {
-          return R.equals(this.oldSize, this.newSize)
+          return z.equals(this.oldSize, this.newSize)
         }
         run(e) {
           var t = this.getEventWorkspace_()
@@ -10912,11 +10912,11 @@ input[type=number] {
             console.warn(`Can't resize non-existent comment: ` + this.commentId)
         }
       }
-      b(F.EVENT, O.COMMENT_RESIZE, bl)
-      var xl = class extends nl {
+      b(I.EVENT, k.COMMENT_RESIZE, yl)
+      var bl = class extends tl {
         constructor(e, t, n) {
           ;(super(n),
-            (this.type = O.SELECTED),
+            (this.type = k.SELECTED),
             (this.oldElementId = e ?? void 0),
             (this.newElementId = t ?? void 0))
         }
@@ -10930,17 +10930,17 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = nl.fromJson(e, t, n ?? new xl())),
+            (t = tl.fromJson(e, t, n ?? new bl())),
             (t.oldElementId = e.oldElementId),
             (t.newElementId = e.newElementId),
             t
           )
         }
       }
-      b(F.EVENT, O.SELECTED, xl)
-      var Sl = class extends nl {
+      b(I.EVENT, k.SELECTED, bl)
+      var xl = class extends tl {
         constructor(e, t) {
-          ;(super(t), (this.type = O.THEME_CHANGE), (this.themeName = e))
+          ;(super(t), (this.type = k.THEME_CHANGE), (this.themeName = e))
         }
         toJson() {
           var e = super.toJson()
@@ -10952,17 +10952,17 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = nl.fromJson(e, t, n ?? new Sl())),
+            (t = tl.fromJson(e, t, n ?? new xl())),
             (t.themeName = e.themeName),
             t
           )
         }
       }
-      b(F.EVENT, O.THEME_CHANGE, Sl)
-      var Cl = class extends nl {
+      b(I.EVENT, k.THEME_CHANGE, xl)
+      var Sl = class extends tl {
         constructor(e, t, n) {
           ;(super(n),
-            (this.type = O.TOOLBOX_ITEM_SELECT),
+            (this.type = k.TOOLBOX_ITEM_SELECT),
             (this.oldItem = e ?? void 0),
             (this.newItem = t ?? void 0))
         }
@@ -10972,17 +10972,17 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = nl.fromJson(e, t, n ?? new Cl())),
+            (t = tl.fromJson(e, t, n ?? new Sl())),
             (t.oldItem = e.oldItem),
             (t.newItem = e.newItem),
             t
           )
         }
       }
-      b(F.EVENT, O.TOOLBOX_ITEM_SELECT, Cl)
-      var wl = class extends nl {
+      b(I.EVENT, k.TOOLBOX_ITEM_SELECT, Sl)
+      var Cl = class extends tl {
         constructor(e, t) {
-          ;(super(t), (this.type = O.TRASHCAN_OPEN), (this.isOpen = e))
+          ;(super(t), (this.type = k.TRASHCAN_OPEN), (this.isOpen = e))
         }
         toJson() {
           var e = super.toJson()
@@ -10994,12 +10994,12 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = nl.fromJson(e, t, n ?? new wl())), (t.isOpen = e.isOpen), t
+            (t = tl.fromJson(e, t, n ?? new Cl())), (t.isOpen = e.isOpen), t
           )
         }
       }
-      b(F.EVENT, O.TRASHCAN_OPEN, wl)
-      var Tl = class extends Xc {
+      b(I.EVENT, k.TRASHCAN_OPEN, Cl)
+      var wl = class extends Yc {
           constructor(e) {
             ;(super(),
               (this.isBlank = !0),
@@ -11018,14 +11018,14 @@ input[type=number] {
           }
           static fromJson(e, t, n) {
             return (
-              (t = Xc.fromJson(e, t, n ?? new Tl())), (t.varId = e.varId), t
+              (t = Yc.fromJson(e, t, n ?? new wl())), (t.varId = e.varId), t
             )
           }
         },
-        El = class extends Tl {
+        Tl = class extends wl {
           constructor(e) {
             ;(super(e),
-              (this.type = O.VAR_CREATE),
+              (this.type = k.VAR_CREATE),
               e && ((this.varType = e.getType()), (this.varName = e.getName())))
           }
           toJson() {
@@ -11042,7 +11042,7 @@ input[type=number] {
           }
           static fromJson(e, t, n) {
             return (
-              (t = Tl.fromJson(e, t, n ?? new El())),
+              (t = wl.fromJson(e, t, n ?? new Tl())),
               (t.varType = e.varType),
               (t.varName = e.varName),
               t
@@ -11064,11 +11064,11 @@ input[type=number] {
                 : (e = t.getVariableById(this.varId)) && t.deleteVariable(e))
           }
         }
-      b(F.EVENT, O.VAR_CREATE, El)
-      var Dl = class extends Tl {
+      b(I.EVENT, k.VAR_CREATE, Tl)
+      var El = class extends wl {
         constructor(e) {
           ;(super(e),
-            (this.type = O.VAR_DELETE),
+            (this.type = k.VAR_DELETE),
             e && ((this.varType = e.getType()), (this.varName = e.getName())))
         }
         toJson() {
@@ -11085,7 +11085,7 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = Tl.fromJson(e, t, n ?? new Dl())),
+            (t = wl.fromJson(e, t, n ?? new El())),
             (t.varType = e.varType),
             (t.varName = e.varName),
             t
@@ -11107,11 +11107,11 @@ input[type=number] {
               : t.createVariable(this.varName, this.varType, this.varId))
         }
       }
-      b(F.EVENT, O.VAR_DELETE, Dl)
-      var Ol = class extends Tl {
+      b(I.EVENT, k.VAR_DELETE, El)
+      var Dl = class extends wl {
         constructor(e, t) {
           ;(super(e),
-            (this.type = O.VAR_RENAME),
+            (this.type = k.VAR_RENAME),
             e &&
               ((this.oldName = e.getName()),
               (this.newName = t === void 0 ? `` : t)))
@@ -11130,7 +11130,7 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = Tl.fromJson(e, t, n ?? new Ol())),
+            (t = wl.fromJson(e, t, n ?? new Dl())),
             (t.oldName = e.oldName),
             (t.newName = e.newName),
             t
@@ -11157,13 +11157,13 @@ input[type=number] {
             : n && t.renameVariable(n, this.oldName)
         }
       }
-      b(F.EVENT, O.VAR_RENAME, Ol)
-      var kl = class extends Tl {
+      b(I.EVENT, k.VAR_RENAME, Dl)
+      var Ol = class extends wl {
         constructor(e, t, n) {
           ;(super(e),
             (this.oldType = t),
             (this.newType = n),
-            (this.type = O.VAR_TYPE_CHANGE))
+            (this.type = k.VAR_TYPE_CHANGE))
         }
         toJson() {
           var e = super.toJson()
@@ -11175,7 +11175,7 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = Tl.fromJson(e, t, n ?? new kl())),
+            (t = wl.fromJson(e, t, n ?? new Ol())),
             (t.oldType = e.oldType),
             (t.newType = e.newType),
             t
@@ -11198,11 +11198,11 @@ input[type=number] {
               : t.getVariableMap().changeVariableType(n, this.oldType))
         }
       }
-      b(F.EVENT, O.VAR_TYPE_CHANGE, kl)
-      var Al = class extends nl {
+      b(I.EVENT, k.VAR_TYPE_CHANGE, Ol)
+      var kl = class extends tl {
         constructor(e, t, n, r, i) {
           ;(super(r),
-            (this.type = O.VIEWPORT_CHANGE),
+            (this.type = k.VIEWPORT_CHANGE),
             (this.viewTop = e),
             (this.viewLeft = t),
             (this.scale = n),
@@ -11236,7 +11236,7 @@ input[type=number] {
         }
         static fromJson(e, t, n) {
           return (
-            (t = nl.fromJson(e, t, n ?? new Al())),
+            (t = tl.fromJson(e, t, n ?? new kl())),
             (t.viewTop = e.viewTop),
             (t.viewLeft = e.viewLeft),
             (t.scale = e.scale),
@@ -11245,19 +11245,20 @@ input[type=number] {
           )
         }
       }
-      b(F.EVENT, O.VIEWPORT_CHANGE, Al)
-      var jl = class extends Xc {
+      b(I.EVENT, k.VIEWPORT_CHANGE, kl)
+      var Al = class extends Yc {
         constructor(e) {
           ;(super(),
             (this.isBlank = !0),
             (this.recordUndo = !1),
-            (this.type = O.FINISHED_LOADING),
+            (this.type = k.FINISHED_LOADING),
             (this.isBlank = !!e),
             e && (this.workspaceId = e.id))
         }
       }
-      b(F.EVENT, O.FINISHED_LOADING, jl)
-      var Ml,
+      b(I.EVENT, k.FINISHED_LOADING, Al)
+      var jl,
+        Ml,
         Nl,
         Pl,
         Fl,
@@ -11280,107 +11281,106 @@ input[type=number] {
         Ql,
         $l,
         eu,
-        tu,
-        V
-      ;((e.Dm = O.BLOCK_CHANGE),
-        (e.Od = O.BLOCK_CREATE),
-        (e.Em = O.BLOCK_DELETE),
-        (Ml = O.BLOCK_DRAG),
-        (e.Gm = O.BLOCK_MOVE),
-        (Nl = O.BLOCK_FIELD_INTERMEDIATE_CHANGE),
-        (Pl = O.BUBBLE_OPEN),
-        (Fl = O.BLOCK_CHANGE),
-        (Il = O.CLICK),
-        (Ll = O.COMMENT_CHANGE),
-        (Rl = O.COMMENT_CREATE),
-        (zl = O.COMMENT_DELETE),
-        (Bl = O.COMMENT_MOVE),
-        (Vl = O.COMMENT_RESIZE),
-        (Hl = O.COMMENT_DRAG),
-        (Ul = O.BLOCK_CREATE),
-        (Wl = O.BLOCK_DELETE),
-        (Gl = O.FINISHED_LOADING),
-        (Kl = O.BLOCK_MOVE),
-        (ql = O.SELECTED),
-        (Jl = O.THEME_CHANGE),
-        (Yl = O.TOOLBOX_ITEM_SELECT),
-        (Xl = O.TRASHCAN_OPEN),
-        (Zl = O.UI),
-        (Ql = O.VAR_CREATE),
-        ($l = O.VAR_DELETE),
-        (eu = O.VAR_RENAME),
-        (tu = O.VIEWPORT_CHANGE),
-        (V = {}),
-        (V.Abstract = Xc),
-        (V.BLOCK_CHANGE = e.Dm),
-        (V.BLOCK_CREATE = e.Od),
-        (V.BLOCK_DELETE = e.Em),
-        (V.BLOCK_DRAG = Ml),
-        (V.BLOCK_FIELD_INTERMEDIATE_CHANGE = Nl),
-        (V.BLOCK_MOVE = e.Gm),
-        (V.BUBBLE_OPEN = Pl),
-        (V.BUMP_EVENTS = os),
-        (V.BlockBase = Zc),
-        (V.BlockChange = $c),
-        (V.BlockCreate = el),
-        (V.BlockDelete = tl),
-        (V.BlockDrag = rl),
-        (V.BlockFieldIntermediateChange = il),
-        (V.BlockMove = ol),
-        (V.BubbleOpen = sl),
-        (V.BubbleType = cl),
-        (V.CHANGE = Fl),
-        (V.CLICK = Il),
-        (V.COMMENT_CHANGE = Ll),
-        (V.COMMENT_CREATE = Rl),
-        (V.COMMENT_DELETE = zl),
-        (V.COMMENT_DRAG = Hl),
-        (V.COMMENT_MOVE = Bl),
-        (V.COMMENT_RESIZE = Vl),
-        (V.CREATE = Ul),
-        (V.Click = ul),
-        (V.ClickTarget = dl),
-        (V.CommentBase = pl),
-        (V.CommentChange = ml),
-        (V.CommentCollapse = hl),
-        (V.CommentCreate = gl),
-        (V.CommentDelete = _l),
-        (V.CommentDrag = vl),
-        (V.CommentMove = yl),
-        (V.CommentResize = bl),
-        (V.DELETE = Wl),
-        (V.FINISHED_LOADING = Gl),
-        (V.FinishedLoading = jl),
-        (V.MOVE = Kl),
-        (V.SELECTED = ql),
-        (V.Selected = xl),
-        (V.THEME_CHANGE = Jl),
-        (V.TOOLBOX_ITEM_SELECT = Yl),
-        (V.TRASHCAN_OPEN = Xl),
-        (V.ThemeChange = Sl),
-        (V.ToolboxItemSelect = Cl),
-        (V.TrashcanOpen = wl),
-        (V.UI = Zl),
-        (V.UiBase = nl),
-        (V.VAR_CREATE = Ql),
-        (V.VAR_DELETE = $l),
-        (V.VAR_RENAME = eu),
-        (V.VIEWPORT_CHANGE = tu),
-        (V.VarBase = Tl),
-        (V.VarCreate = El),
-        (V.VarDelete = Dl),
-        (V.VarRename = Ol),
-        (V.VarTypeChange = kl),
-        (V.ViewportChange = Al),
-        (V.clearPendingUndo = Ke),
-        (V.disable = function () {
+        H
+      ;((e.Dm = k.BLOCK_CHANGE),
+        (e.Od = k.BLOCK_CREATE),
+        (e.Em = k.BLOCK_DELETE),
+        (jl = k.BLOCK_DRAG),
+        (e.Gm = k.BLOCK_MOVE),
+        (Ml = k.BLOCK_FIELD_INTERMEDIATE_CHANGE),
+        (Nl = k.BUBBLE_OPEN),
+        (Pl = k.BLOCK_CHANGE),
+        (Fl = k.CLICK),
+        (Il = k.COMMENT_CHANGE),
+        (Ll = k.COMMENT_CREATE),
+        (Rl = k.COMMENT_DELETE),
+        (zl = k.COMMENT_MOVE),
+        (Bl = k.COMMENT_RESIZE),
+        (Vl = k.COMMENT_DRAG),
+        (Hl = k.BLOCK_CREATE),
+        (Ul = k.BLOCK_DELETE),
+        (Wl = k.FINISHED_LOADING),
+        (Gl = k.BLOCK_MOVE),
+        (Kl = k.SELECTED),
+        (ql = k.THEME_CHANGE),
+        (Jl = k.TOOLBOX_ITEM_SELECT),
+        (Yl = k.TRASHCAN_OPEN),
+        (Xl = k.UI),
+        (Zl = k.VAR_CREATE),
+        (Ql = k.VAR_DELETE),
+        ($l = k.VAR_RENAME),
+        (eu = k.VIEWPORT_CHANGE),
+        (H = {}),
+        (H.Abstract = Yc),
+        (H.BLOCK_CHANGE = e.Dm),
+        (H.BLOCK_CREATE = e.Od),
+        (H.BLOCK_DELETE = e.Em),
+        (H.BLOCK_DRAG = jl),
+        (H.BLOCK_FIELD_INTERMEDIATE_CHANGE = Ml),
+        (H.BLOCK_MOVE = e.Gm),
+        (H.BUBBLE_OPEN = Nl),
+        (H.BUMP_EVENTS = as),
+        (H.BlockBase = Xc),
+        (H.BlockChange = Qc),
+        (H.BlockCreate = $c),
+        (H.BlockDelete = el),
+        (H.BlockDrag = nl),
+        (H.BlockFieldIntermediateChange = rl),
+        (H.BlockMove = al),
+        (H.BubbleOpen = ol),
+        (H.BubbleType = sl),
+        (H.CHANGE = Pl),
+        (H.CLICK = Fl),
+        (H.COMMENT_CHANGE = Il),
+        (H.COMMENT_CREATE = Ll),
+        (H.COMMENT_DELETE = Rl),
+        (H.COMMENT_DRAG = Vl),
+        (H.COMMENT_MOVE = zl),
+        (H.COMMENT_RESIZE = Bl),
+        (H.CREATE = Hl),
+        (H.Click = ll),
+        (H.ClickTarget = ul),
+        (H.CommentBase = fl),
+        (H.CommentChange = pl),
+        (H.CommentCollapse = ml),
+        (H.CommentCreate = hl),
+        (H.CommentDelete = gl),
+        (H.CommentDrag = _l),
+        (H.CommentMove = vl),
+        (H.CommentResize = yl),
+        (H.DELETE = Ul),
+        (H.FINISHED_LOADING = Wl),
+        (H.FinishedLoading = Al),
+        (H.MOVE = Gl),
+        (H.SELECTED = Kl),
+        (H.Selected = bl),
+        (H.THEME_CHANGE = ql),
+        (H.TOOLBOX_ITEM_SELECT = Jl),
+        (H.TRASHCAN_OPEN = Yl),
+        (H.ThemeChange = xl),
+        (H.ToolboxItemSelect = Sl),
+        (H.TrashcanOpen = Cl),
+        (H.UI = Xl),
+        (H.UiBase = tl),
+        (H.VAR_CREATE = Zl),
+        (H.VAR_DELETE = Ql),
+        (H.VAR_RENAME = $l),
+        (H.VIEWPORT_CHANGE = eu),
+        (H.VarBase = wl),
+        (H.VarCreate = Tl),
+        (H.VarDelete = El),
+        (H.VarRename = Dl),
+        (H.VarTypeChange = Ol),
+        (H.ViewportChange = kl),
+        (H.clearPendingUndo = Ke),
+        (H.disable = function () {
           e.Ub++
         }),
-        (V.disableOrphans = function (t) {
+        (H.disableOrphans = function (t) {
           if (
-            (t.type === O.BLOCK_MOVE ||
-              t.type === O.BLOCK_CREATE ||
-              (t.type === O.BLOCK_DRAG && !t.isStart)) &&
+            (t.type === k.BLOCK_MOVE ||
+              t.type === k.BLOCK_CREATE ||
+              (t.type === k.BLOCK_DRAG && !t.isStart)) &&
             t.workspaceId
           ) {
             var n = be(t.workspaceId)
@@ -11409,30 +11409,30 @@ input[type=number] {
             }
           }
         }),
-        (V.enable = function () {
+        (H.enable = function () {
           e.Ub--
         }),
-        (V.filter = Ge),
-        (V.fire = x),
-        (V.fromJson = function (e, t) {
+        (H.filter = Ge),
+        (H.fire = x),
+        (H.fromJson = function (e, t) {
           var n = S(e.type)
           if (!n) throw Error(`Unknown event type.`)
           return n.fromJson(e, t)
         }),
-        (V.get = S),
-        (V.getDescendantIds = Je),
-        (V.getGroup = function () {
+        (H.get = S),
+        (H.getDescendantIds = Je),
+        (H.getGroup = function () {
           return e.gd
         }),
-        (V.getRecordUndo = function () {
+        (H.getRecordUndo = function () {
           return e.Qc
         }),
-        (V.isEnabled = qe),
-        (V.setGroup = e.B),
-        (V.setRecordUndo = function (t) {
+        (H.isEnabled = qe),
+        (H.setGroup = e.B),
+        (H.setRecordUndo = function (t) {
           e.Qc = t
         }))
-      var nu = class {
+      var tu = class {
           constructor() {
             ;((this.scopeChangeAudioCuesEnabled = this.isActive = !1),
               (this.activeClassName = `blocklyKeyboardNavigation`))
@@ -11450,15 +11450,15 @@ input[type=number] {
             return this.scopeChangeAudioCuesEnabled
           }
           updateActiveVisualization() {
-            var e = Ps.getInjectionDiv().parentElement
+            var e = Ns.getInjectionDiv().parentElement
             this.isActive
               ? e?.classList.add(this.activeClassName)
               : e?.classList.remove(this.activeClassName)
           }
         },
-        ru = new nu(),
-        iu = new Intl.Collator(void 0, { sensitivity: `base` }),
-        au = {
+        nu = new tu(),
+        ru = new Intl.Collator(void 0, { sensitivity: `base` }),
+        iu = {
           generateUniqueNameInternal: function (e) {
             return Zt(
               `i`,
@@ -11469,41 +11469,41 @@ input[type=number] {
             )
           },
         },
-        ou = {
+        au = {
           CATEGORY_NAME: `VARIABLE`,
-          TEST_ONLY: au,
+          TEST_ONLY: iu,
           VAR_LETTER_OPTIONS: `ijkmnopqrstuvwxyzabcdefgh`,
         }
-      ;((ou.allDeveloperVariables = e.Cd),
-        (ou.allUsedVarModels = e.Bd),
-        (ou.compareByName = cn),
-        (ou.createVariableButtonHandler = Qt),
-        (ou.deleteVariable = e.$d),
-        (ou.flyoutCategory = qt),
-        (ou.flyoutCategoryBlocks = function (t) {
+      ;((au.allDeveloperVariables = e.Cd),
+        (au.allUsedVarModels = e.Bd),
+        (au.compareByName = cn),
+        (au.createVariableButtonHandler = Qt),
+        (au.deleteVariable = e.$d),
+        (au.flyoutCategory = qt),
+        (au.flyoutCategoryBlocks = function (t) {
           t = t.getVariableMap().getVariablesOfType(``)
           var n = []
           if (t.length > 0) {
             var r = t[t.length - 1]
-            if (ss.variables_set) {
+            if (os.variables_set) {
               var i = e.rc(`block`)
               ;(i.setAttribute(`type`, `variables_set`),
-                i.setAttribute(`gap`, ss.math_change ? `8` : `24`),
+                i.setAttribute(`gap`, os.math_change ? `8` : `24`),
                 i.appendChild(on(r)),
                 n.push(i))
             }
             if (
-              (ss.math_change &&
+              (os.math_change &&
                 ((i = e.rc(`block`)),
                 i.setAttribute(`type`, `math_change`),
-                i.setAttribute(`gap`, ss.variables_get ? `20` : `8`),
+                i.setAttribute(`gap`, os.variables_get ? `20` : `8`),
                 i.appendChild(on(r)),
                 (r = e.uc(
                   `<value name="DELTA"><shadow type="math_number"><field name="NUM">1</field></shadow></value>`,
                 )),
                 i.appendChild(r),
                 n.push(i)),
-              ss.variables_get)
+              os.variables_get)
             ) {
               t.sort(cn)
               for (let i = 0, a; (a = t[i]); i++)
@@ -11516,20 +11516,20 @@ input[type=number] {
           }
           return n
         }),
-        (ou.generateUniqueName = Xt),
-        (ou.generateUniqueNameFromOptions = Zt),
-        (ou.generateVariableFieldDom = on),
-        (ou.getAddedVariables = sn),
-        (ou.getOrCreateVariablePackage = e.Wd),
-        (ou.getVariable = e.Vd),
-        (ou.getVariableUsesById = ln),
-        (ou.jsonFlyoutCategoryBlocks = Yt),
-        (ou.nameUsedWithAnyType = tn),
-        (ou.nameUsedWithConflictingParam = nn),
-        (ou.promptName = $t),
-        (ou.renameVariable = e.Rd))
-      var su = class extends Error {},
-        cu = class extends su {
+        (au.generateUniqueName = Xt),
+        (au.generateUniqueNameFromOptions = Zt),
+        (au.generateVariableFieldDom = on),
+        (au.getAddedVariables = sn),
+        (au.getOrCreateVariablePackage = e.Wd),
+        (au.getVariable = e.Vd),
+        (au.getVariableUsesById = ln),
+        (au.jsonFlyoutCategoryBlocks = Yt),
+        (au.nameUsedWithAnyType = tn),
+        (au.nameUsedWithConflictingParam = nn),
+        (au.promptName = $t),
+        (au.renameVariable = e.Rd))
+      var ou = class extends Error {},
+        su = class extends ou {
           constructor(e) {
             ;(super(
               `Expected to find a 'type' property, defining the block type`,
@@ -11537,7 +11537,7 @@ input[type=number] {
               (this.state = e))
           }
         },
-        lu = class extends su {
+        cu = class extends ou {
           constructor(e, t, n) {
             ;(super(`The block ${t.toDevString()} is missing a(n) ${e}
 connection`),
@@ -11545,7 +11545,7 @@ connection`),
               (this.state = n))
           }
         },
-        uu = class extends su {
+        lu = class extends ou {
           constructor(e, t, n, r) {
             ;(super(`The block ${n.toDevString()} could not connect its
 ${t} to its parent, because: ${e}`),
@@ -11553,7 +11553,7 @@ ${t} to its parent, because: ${e}`),
               (this.childState = r))
           }
         },
-        du = class extends su {
+        uu = class extends ou {
           constructor(e) {
             ;(super(`Encountered a real block which is defined as a child of a shadow
 block. It is an invariant of Blockly that shadow blocks only have shadow
@@ -11561,7 +11561,7 @@ children`),
               (this.state = e))
           }
         },
-        fu = class extends su {
+        du = class extends ou {
           constructor(e, t, n) {
             ;(super(
               `Cannot add an icon of type '${e}' to the block ${t.toDevString()}, because there is no icon registered with type '${e}'. Make sure that all of your icons have been registered.`,
@@ -11570,14 +11570,14 @@ children`),
               (this.state = n))
           }
         },
-        pu = {}
-      ;((pu.BadConnectionCheck = uu),
-        (pu.DeserializationError = su),
-        (pu.MissingBlockType = cu),
-        (pu.MissingConnection = lu),
-        (pu.RealChildOfShadow = du),
-        (pu.UnregisteredIcon = fu))
-      var mu = class {
+        fu = {}
+      ;((fu.BadConnectionCheck = lu),
+        (fu.DeserializationError = ou),
+        (fu.MissingBlockType = su),
+        (fu.MissingConnection = cu),
+        (fu.RealChildOfShadow = uu),
+        (fu.UnregisteredIcon = du))
+      var pu = class {
         constructor() {
           this.priority = 50
         }
@@ -11596,48 +11596,48 @@ children`),
           for (let t of e.getTopBlocks(!1)) t.dispose(!1)
         }
       }
-      xt(`blocks`, new mu())
-      var hu = {}
-      ;((hu.BlockSerializer = mu),
-        (hu.append = fn),
-        (hu.appendInternal = pn),
-        (hu.save = un))
-      var gu = {
+      xt(`blocks`, new pu())
+      var mu = {}
+      ;((mu.BlockSerializer = pu),
+        (mu.append = fn),
+        (mu.appendInternal = pn),
+        (mu.save = un))
+      var hu = {
           Control: e.C.CONTROL_KEY,
           Meta: `⌘`,
-          Alt: qo ? `⌥` : e.C.ALT_KEY,
+          Alt: Ko ? `⌥` : e.C.ALT_KEY,
         },
-        _u = [`Meta`, `Control`, `Alt`, `Shift`],
-        vu,
-        yu = (vu ||= {})
-      ;((yu[(yu.UNKNOWN = 0)] = `UNKNOWN`),
-        (yu[(yu.BEFORE = 1)] = `BEFORE`),
-        (yu[(yu.AFTER = 2)] = `AFTER`),
-        (yu[(yu.AROUND = 3)] = `AROUND`),
-        (yu[(yu.INSIDE = 4)] = `INSIDE`),
-        (yu[(yu.TO = 5)] = `TO`))
-      var bu = {}
-      ;((bu.clamp = Rn),
-        (bu.toDegrees = function (e) {
+        gu = [`Meta`, `Control`, `Alt`, `Shift`],
+        _u,
+        vu = (_u ||= {})
+      ;((vu[(vu.UNKNOWN = 0)] = `UNKNOWN`),
+        (vu[(vu.BEFORE = 1)] = `BEFORE`),
+        (vu[(vu.AFTER = 2)] = `AFTER`),
+        (vu[(vu.AROUND = 3)] = `AROUND`),
+        (vu[(vu.INSIDE = 4)] = `INSIDE`),
+        (vu[(vu.TO = 5)] = `TO`))
+      var yu = {}
+      ;((yu.clamp = Rn),
+        (yu.toDegrees = function (e) {
           return (e * 180) / Math.PI
         }),
-        (bu.toRadians = Ln))
-      var xu = null,
-        Su = null,
+        (yu.toRadians = Ln))
+      var bu = null,
+        xu = null,
+        Su = ``,
         Cu = ``,
-        wu = ``,
+        wu,
         Tu,
         Eu,
-        Du,
+        Du = null,
         Ou = null,
         ku = null,
         Au = null,
         ju = null,
-        Mu = null,
-        Nu = {
+        Mu = {
           getBoundsInfo: function () {
-            var e = Qe(Ou),
-              t = Xe(Ou)
+            var e = Qe(Du),
+              t = Xe(Du)
             return {
               left: e.x,
               right: e.x + t.width,
@@ -11648,8 +11648,8 @@ children`),
             }
           },
           getPositionMetrics: function (e, t, n, r) {
-            var i = Nu.getBoundsInfo(),
-              a = Xe(Tu)
+            var i = Mu.getBoundsInfo(),
+              a = Xe(wu)
             return t + a.height < i.bottom
               ? Jn(e, t, i, a)
               : r - a.height > i.top
@@ -11671,56 +11671,56 @@ children`),
                       })
           },
         },
-        Pu = {
+        Nu = {
           ANIMATION_TIME: 0.25,
           ARROW_HORIZONTAL_PADDING: 12,
           ARROW_SIZE: 16,
           BORDER_SIZE: 1,
           PADDING_Y: 16,
-          TEST_ONLY: Nu,
+          TEST_ONLY: Mu,
         }
-      ;((Pu.clearContent = Vn),
-        (Pu.createDom = zn),
-        (Pu.getContentDiv = function () {
-          return Eu
+      ;((Nu.clearContent = Vn),
+        (Nu.createDom = zn),
+        (Nu.getContentDiv = function () {
+          return Tu
         }),
-        (Pu.getOwner = function () {
-          return ku
+        (Nu.getOwner = function () {
+          return Ou
         }),
-        (Pu.getPositionX = Xn),
-        (Pu.hide = Qn),
-        (Pu.hideIfOwner = Zn),
-        (Pu.hideWithoutAnimation = $n),
-        (Pu.isVisible = function () {
-          return !!ku
+        (Nu.getPositionX = Xn),
+        (Nu.hide = Qn),
+        (Nu.hideIfOwner = Zn),
+        (Nu.hideWithoutAnimation = $n),
+        (Nu.isVisible = function () {
+          return !!Ou
         }),
-        (Pu.repositionForWindowResize = tr),
-        (Pu.setBoundsElement = function (e) {
-          Ou = e
+        (Nu.repositionForWindowResize = tr),
+        (Nu.setBoundsElement = function (e) {
+          Du = e
         }),
-        (Pu.setColour = Hn),
-        (Pu.show = qn),
-        (Pu.showPositionedByBlock = function (e, t, n, r, i = !0) {
+        (Nu.setColour = Hn),
+        (Nu.show = qn),
+        (Nu.showPositionedByBlock = function (e, t, n, r, i = !0) {
           return Kn(Wn(t), e, i, n, r)
         }),
-        (Pu.showPositionedByField = Un))
-      var Fu = {}
-      ;((Fu.commonWordPrefix = rr),
-        (Fu.commonWordSuffix = ir),
-        (Fu.isNumber = e.zf),
-        (Fu.shortestStringLength = nr),
-        (Fu.wrap = e.yf))
-      var Iu = void 0,
+        (Nu.showPositionedByField = Un))
+      var Pu = {}
+      ;((Pu.commonWordPrefix = rr),
+        (Pu.commonWordSuffix = ir),
+        (Pu.isNumber = e.zf),
+        (Pu.shortestStringLength = nr),
+        (Pu.wrap = e.yf))
+      var Fu = void 0,
+        Iu = !1,
         Lu = !1,
-        Ru = !1,
+        Ru = 0,
         zu = 0,
         Bu = 0,
         Vu = 0,
-        Hu = 0,
+        Hu = null,
         Uu = null,
         Wu = null,
-        Gu = null,
-        Ku = {
+        Gu = {
           HOVER_MS: 750,
           LIMIT: 50,
           MARGINS: 5,
@@ -11728,32 +11728,32 @@ children`),
           OFFSET_Y: 10,
           RADIUS_OK: 10,
         }
-      ;((Ku.bindMouseEvents = ur),
-        (Ku.block = vr),
-        (Ku.createDom = lr),
-        (Ku.display = _r),
-        (Ku.dispose = hr),
-        (Ku.getCustomTooltip = function () {
+      ;((Gu.bindMouseEvents = ur),
+        (Gu.block = vr),
+        (Gu.createDom = lr),
+        (Gu.display = _r),
+        (Gu.dispose = hr),
+        (Gu.getCustomTooltip = function () {
+          return Fu
+        }),
+        (Gu.getDiv = function () {
+          return Wu
+        }),
+        (Gu.getTooltipOfObject = sr),
+        (Gu.hide = gr),
+        (Gu.isVisible = function () {
           return Iu
         }),
-        (Ku.getDiv = function () {
-          return Gu
+        (Gu.setCustomTooltip = function (e) {
+          Fu = e
         }),
-        (Ku.getTooltipOfObject = sr),
-        (Ku.hide = gr),
-        (Ku.isVisible = function () {
-          return Lu
-        }),
-        (Ku.setCustomTooltip = function (e) {
-          Iu = e
-        }),
-        (Ku.unbindMouseEvents = dr),
-        (Ku.unblock = function () {
-          Ru = !1
+        (Gu.unbindMouseEvents = dr),
+        (Gu.unblock = function () {
+          Lu = !1
         }))
-      var qu = 0.45,
-        Ju = 0.65,
-        Yu = {
+      var Ku = 0.45,
+        qu = 0.65,
+        Ju = {
           aqua: `#00ffff`,
           black: `#000000`,
           blue: `#0000ff`,
@@ -11771,27 +11771,27 @@ children`),
           white: `#ffffff`,
           yellow: `#ffff00`,
         },
-        Xu = {}
-      ;((Xu.blend = wr),
-        (Xu.getHsvSaturation = function () {
+        Yu = {}
+      ;((Yu.blend = wr),
+        (Yu.getHsvSaturation = function () {
+          return Ku
+        }),
+        (Yu.getHsvValue = function () {
           return qu
         }),
-        (Xu.getHsvValue = function () {
-          return Ju
+        (Yu.hexToRgb = Sr),
+        (Yu.hsvToHex = Cr),
+        (Yu.hueToHex = Tr),
+        (Yu.names = Ju),
+        (Yu.parse = br),
+        (Yu.rgbToHex = xr),
+        (Yu.setHsvSaturation = function (e) {
+          Ku = e
         }),
-        (Xu.hexToRgb = Sr),
-        (Xu.hsvToHex = Cr),
-        (Xu.hueToHex = Tr),
-        (Xu.names = Yu),
-        (Xu.parse = br),
-        (Xu.rgbToHex = xr),
-        (Xu.setHsvSaturation = function (e) {
+        (Yu.setHsvValue = function (e) {
           qu = e
-        }),
-        (Xu.setHsvValue = function (e) {
-          Ju = e
         }))
-      var Zu = {
+      var Xu = {
         checkMessageReferences: function (t) {
           var n = !0,
             r = t.match(/%{BKY_[A-Z]\w*}/gi)
@@ -11805,10 +11805,10 @@ children`),
           return n
         },
       }
-      ;((Zu.parseBlockColour = kr),
-        (Zu.replaceMessageReferences = Or),
-        (Zu.tokenizeInterpolation = Dr))
-      var Qu = class {
+      ;((Xu.parseBlockColour = kr),
+        (Xu.replaceMessageReferences = Or),
+        (Xu.tokenizeInterpolation = Dr))
+      var Zu = class {
         get size_() {
           return this.size
         }
@@ -11819,7 +11819,7 @@ children`),
           ;((this.DEFAULT_VALUE = null),
             (this.name = void 0),
             (this.tooltip = this.ariaTypeName = this.validator_ = null),
-            (this.size = new R(0, 0)),
+            (this.size = new z(0, 0)),
             (this.constants_ =
               this.mouseDownWrapper =
               this.textContent_ =
@@ -11839,8 +11839,8 @@ children`),
               `DEFAULT_VALUE` in new.target.prototype
                 ? new.target.prototype.DEFAULT_VALUE
                 : this.DEFAULT_VALUE),
-            (this.size_ = new R(0, 0)),
-            e !== Qu.SKIP_SETUP &&
+            (this.size_ = new z(0, 0)),
+            e !== Zu.SKIP_SETUP &&
               (n && this.configure_(n),
               this.setValue(e),
               t && this.setValidator(t)))
@@ -11890,7 +11890,7 @@ children`),
         }
         init() {
           if (!this.fieldGroup_) {
-            ;((this.fieldGroup_ = _(j.G, {})),
+            ;((this.fieldGroup_ = _(M.G, {})),
               this.isVisible() || (this.fieldGroup_.style.display = `none`))
             var e = this.sourceBlock_
             ;(e.getSvgRoot().appendChild(this.fieldGroup_),
@@ -11920,7 +11920,7 @@ children`),
         }
         createBorderRect_() {
           this.borderRect_ = _(
-            j.RECT,
+            M.RECT,
             {
               rx: this.getConstants().FIELD_BORDER_RECT_RADIUS,
               ry: this.getConstants().FIELD_BORDER_RECT_RADIUS,
@@ -11935,7 +11935,7 @@ children`),
         }
         createTextElement_() {
           ;((this.textElement_ = _(
-            j.TEXT,
+            M.TEXT,
             { class: `blocklyText blocklyFieldText`, "aria-hidden": `true` },
             this.fieldGroup_,
           )),
@@ -11962,11 +11962,11 @@ children`),
           return ((e.textContent = this.getValue()), e)
         }
         saveState() {
-          var e = this.saveLegacyState(Qu)
+          var e = this.saveLegacyState(Zu)
           return e === null ? this.getValue() : e
         }
         loadState(e) {
-          this.loadLegacyState(Qu, e) || this.setValue(e)
+          this.loadLegacyState(Zu, e) || this.setValue(e)
         }
         saveLegacyState(t) {
           return t.prototype.saveState === this.saveState &&
@@ -12016,7 +12016,7 @@ children`),
             this.enabled_ &&
             !!this.sourceBlock_ &&
             this.sourceBlock_.isEditable() &&
-            this.showEditor_ !== Qu.prototype.showEditor_
+            this.showEditor_ !== Zu.prototype.showEditor_
           )
         }
         isClickableInFlyout(e) {
@@ -12104,7 +12104,7 @@ children`),
             i = 0
           ;(this.textElement_ && ((i = pe(this.textElement_)), (n += i)),
             this.borderRect_ && (r = Math.max(r, t.FIELD_BORDER_RECT_HEIGHT)),
-            (this.size_ = new R(n, r)),
+            (this.size_ = new z(n, r)),
             this.positionTextElement_(e, i),
             this.positionBorderRect_())
         }
@@ -12147,11 +12147,11 @@ children`),
         getSize() {
           return this.isVisible()
             ? ((this.isDirty_ &&= (this.render_(), !1)), this.size_)
-            : new R(0, 0)
+            : new z(0, 0)
         }
         getScaledBBox() {
           var e = this.getSourceBlock()
-          if (!e) throw new $u()
+          if (!e) throw new Qu()
           if (this.borderRect_) {
             var t = this.borderRect_.getBoundingClientRect(),
               n = Qe(this.borderRect_)
@@ -12162,11 +12162,11 @@ children`),
             ;((n = this.getAbsoluteXY_()),
               (e = (t.width + 1) * r),
               (t = (t.height + 1) * r),
-              Vo
+              Bo
                 ? ((n.x += 1.5 * r), (n.y += 1.5 * r))
                 : ((n.x -= 0.5 * r), (n.y -= 0.5 * r)))
           }
-          return new L(n.y, n.y + t, n.x, n.x + e)
+          return new R(n.y, n.y + t, n.x, n.x + e)
         }
         onLocationChange() {}
         getDisplayText_() {
@@ -12174,7 +12174,7 @@ children`),
           return (
             e.length > this.maxDisplayLength &&
               (e = e.substring(0, this.maxDisplayLength - 2) + `…`),
-            (e = e.replace(/\s/g, Qu.NBSP)),
+            (e = e.replace(/\s/g, Zu.NBSP)),
             this.sourceBlock_ && this.sourceBlock_.RTL && (e += `‏`),
             e
           )
@@ -12216,7 +12216,7 @@ children`),
                           o &&
                           qe() &&
                           x(
-                            new (S(O.BLOCK_CHANGE))(
+                            new (S(k.BLOCK_CHANGE))(
                               o,
                               `field`,
                               this.name || null,
@@ -12280,7 +12280,7 @@ children`),
         getParentInput() {
           var e = null,
             t = this.getSourceBlock()
-          if (!t) throw new $u()
+          if (!t) throw new Qu()
           var n = t.inputList
           for (let r = 0; r < t.inputList.length; r++) {
             let t = n[r],
@@ -12308,7 +12308,7 @@ children`),
         }
         getFocusableTree() {
           var e = this.getSourceBlock()
-          if (!e) throw new $u()
+          if (!e) throw new Qu()
           return e.workspace
         }
         onNodeFocus() {
@@ -12339,20 +12339,20 @@ children`),
               !i.getFullBlockField() ||
               ((a = this.getSourceBlock()) != null && a.getParent())
             )
-              return (g(t, A.HIDDEN, !0), !1)
+              return (g(t, j.HIDDEN, !0), !1)
             var r
             ;((n =
               (r = this.getSourceBlock())?.getAriaRoleDescription() ||
               e.C.BLOCK_LABEL_VALUE),
-              g(t, A.ROLEDESCRIPTION, n))
+              g(t, j.ROLEDESCRIPTION, n))
           }
           return (
-            ne(t, A.HIDDEN),
-            h(t, k.BUTTON),
+            ne(t, j.HIDDEN),
+            h(t, A.BUTTON),
             (r = this.computeAriaLabel(!0)),
             this.isFullBlockField() &&
-              (r = Sn(this.getSourceBlock(), hs.STANDARD, r)),
-            g(t, A.LABEL, r),
+              (r = Sn(this.getSourceBlock(), ms.STANDARD, r)),
+            g(t, j.LABEL, r),
             !0
           )
         }
@@ -12362,60 +12362,60 @@ children`),
           )
         }
       }
-      ;((Qu.NBSP = `\xA0`), (Qu.SKIP_SETUP = Symbol(`SKIP_SETUP`)))
-      var $u = class extends Error {
+      ;((Zu.NBSP = `\xA0`), (Zu.SKIP_SETUP = Symbol(`SKIP_SETUP`)))
+      var Qu = class extends Error {
           constructor() {
             super(
               `The field has not yet been attached to its input. Call appendField to attach it.`,
             )
           }
         },
+        $u = null,
         ed = null,
         td = null,
-        nd = null,
+        nd = ``,
         rd = ``,
-        id = ``,
-        ad,
-        od = null,
-        sd = {}
-      ;((sd.createDom = jr),
-        (sd.getDiv = function () {
-          return ad
+        id,
+        ad = null,
+        od = {}
+      ;((od.createDom = jr),
+        (od.getDiv = function () {
+          return id
         }),
-        (sd.hide = Nr),
-        (sd.hideIfOwner = Pr),
-        (sd.hideIfOwnerIsInWorkspace = Fr),
-        (sd.isVisible = function () {
-          return !!ed
+        (od.hide = Nr),
+        (od.hideIfOwner = Pr),
+        (od.hideIfOwnerIsInWorkspace = Fr),
+        (od.isVisible = function () {
+          return !!$u
         }),
-        (sd.positionWithAnchor = Lr),
-        (sd.repositionForWindowResize = Rr),
-        (sd.show = Mr),
-        (sd.testOnly_setDiv = function (e) {
-          if (((ad = e), e === null)) {
+        (od.positionWithAnchor = Lr),
+        (od.repositionForWindowResize = Rr),
+        (od.show = Mr),
+        (od.testOnly_setDiv = function (e) {
+          if (((id = e), e === null)) {
             let e
             ;(e = document.querySelector(`.blocklyWidgetDiv`)) == null ||
               e.remove()
           }
         }))
-      var cd = null,
-        ld = {},
-        ud = null,
-        dd = {}
-      ;((dd.callbackFactory = e.Pg),
-        (dd.dispose = Wr),
-        (dd.getCurrentBlock = function () {
-          return cd
+      var sd = null,
+        cd = {},
+        ld = null,
+        ud = {}
+      ;((ud.callbackFactory = e.Pg),
+        (ud.dispose = Wr),
+        (ud.getCurrentBlock = function () {
+          return sd
         }),
-        (dd.getMenu = function () {
-          return ud
+        (ud.getMenu = function () {
+          return ld
         }),
-        (dd.hide = Ur),
-        (dd.setCurrentBlock = function (e) {
-          cd = e
+        (ud.hide = Ur),
+        (ud.setCurrentBlock = function (e) {
+          sd = e
         }),
-        (dd.show = zr))
-      var H = class {
+        (ud.show = zr))
+      var U = class {
           constructor() {
             ;((this.registeredItems = new Map()), this.reset())
           }
@@ -12442,9 +12442,9 @@ children`),
             for (let r of this.registeredItems.values()) {
               if (
                 r.scopeType &&
-                ((r.scopeType === md.BLOCK && !e.block) ||
-                  (r.scopeType === md.COMMENT && !e.comment) ||
-                  (r.scopeType === md.WORKSPACE && !e.workspace))
+                ((r.scopeType === pd.BLOCK && !e.block) ||
+                  (r.scopeType === pd.COMMENT && !e.comment) ||
+                  (r.scopeType === pd.WORKSPACE && !e.workspace))
               )
                 continue
               let i
@@ -12476,14 +12476,14 @@ children`),
             )
           }
         },
-        fd = (H ||= {}),
-        pd = (fd.ScopeType ||= {})
-      ;((pd.BLOCK = `block`),
-        (pd.WORKSPACE = `workspace`),
-        (pd.COMMENT = `comment`),
-        (fd.registry = new fd()))
-      var md = H.ScopeType,
-        hd = class {
+        dd = (U ||= {}),
+        fd = (dd.ScopeType ||= {})
+      ;((fd.BLOCK = `block`),
+        (fd.WORKSPACE = `workspace`),
+        (fd.COMMENT = `comment`),
+        (dd.registry = new dd()))
+      var pd = U.ScopeType,
+        md = class {
           constructor(e) {
             ;((this.comment = e),
               (this.startLoc = null),
@@ -12522,16 +12522,16 @@ children`),
               this.workspace.setResizesEnabled(!0))
           }
           fireDragStartEvent() {
-            var e = new (S(O.COMMENT_DRAG))(this.comment, !0)
+            var e = new (S(k.COMMENT_DRAG))(this.comment, !0)
             x(e)
           }
           fireDragEndEvent() {
-            var e = new (S(O.COMMENT_DRAG))(this.comment, !1)
+            var e = new (S(k.COMMENT_DRAG))(this.comment, !1)
             x(e)
           }
           fireMoveEvent() {
             if (!this.comment.isDeadOrDying()) {
-              var e = new (S(O.COMMENT_MOVE))(this.comment)
+              var e = new (S(k.COMMENT_MOVE))(this.comment)
               ;(e.setReason([`drag`]),
                 (e.oldCoordinate_ = this.startLoc),
                 e.recordNew(),
@@ -12542,8 +12542,8 @@ children`),
             this.startLoc && this.comment.moveDuringDrag(this.startLoc)
           }
         },
-        gd = new WeakMap(),
-        _d = class {
+        hd = new WeakMap(),
+        gd = class {
           constructor(e, t, n, r) {
             ;((this.id = e),
               (this.workspace = t),
@@ -12559,7 +12559,7 @@ children`),
           getSize(e = !1) {
             var t = this.icon.getBBox()
             return (
-              (t = L.from(t)),
+              (t = R.from(t)),
               e &&
                 ((e = this.getMargin()),
                 (t.left -= e),
@@ -12584,7 +12584,7 @@ children`),
             var e = this.getCommentView(),
               t = e.getRelativeToSurfaceXY(),
               n = e.getSize()
-            ;((t = new L(t.y, t.y + n.height, t.x, t.x + n.width)),
+            ;((t = new R(t.y, t.y + n.height, t.x, t.x + n.width)),
               e.workspace.scrollBoundsIntoView(t))
           }
           onNodeBlur() {}
@@ -12593,20 +12593,20 @@ children`),
           }
           recomputeAriaContext() {
             if (this.icon) {
-              h(this.icon, k.BUTTON)
+              h(this.icon, A.BUTTON)
               var t = this.getAriaLabel()
-              g(this.icon, A.LABEL, t || e.C.ARIA_LABEL_BUTTON)
+              g(this.icon, j.LABEL, t || e.C.ARIA_LABEL_BUTTON)
             }
           }
           getAriaLabel() {
             return null
           }
         },
-        vd = class extends _d {
+        _d = class extends gd {
           constructor(e, t, n, r) {
             ;(super(`${e}_collapse_bar_button`, t, n, r),
               (this.icon = _(
-                j.IMAGE,
+                M.IMAGE,
                 {
                   class: `blocklyFoldoutIcon`,
                   href: `${this.workspace.options.pathToMedia}foldout-icon.svg`,
@@ -12631,7 +12631,7 @@ children`),
               this.icon.setAttribute(`x`, `${e}`))
           }
           performAction(e) {
-            ;((Do = null),
+            ;((Eo = null),
               this.getCommentView().bringToFront(),
               e && e instanceof PointerEvent && u(e)
                 ? e.stopPropagation()
@@ -12648,13 +12648,13 @@ children`),
               : e.C.ARIA_LABEL_COMMENT_COLLAPSE
           }
         },
-        yd = class {
+        vd = class {
           constructor(t, n, r) {
             ;((this.workspace = t),
               (this.onFinishEditing = r),
               (this.textChangeListeners = []),
               (this.text = ``),
-              (this.foreignObject = _(j.FOREIGNOBJECT, {
+              (this.foreignObject = _(M.FOREIGNOBJECT, {
                 class: `blocklyCommentForeignObject`,
               })),
               (t = document.createElementNS(
@@ -12672,7 +12672,7 @@ children`),
                 `dir`,
                 this.workspace.RTL ? `RTL` : `LTR`,
               ),
-              h(this.textArea, k.TEXTBOX),
+              h(this.textArea, A.TEXTBOX),
               this.textArea.setAttribute(
                 `placeholder`,
                 e.C.WORKSPACE_COMMENT_DEFAULT_TEXT,
@@ -12686,7 +12686,7 @@ children`),
               this.textArea.setAttribute(`id`, this.id),
               o(this.textArea, `change`, this, this.onTextChange),
               o(this.textArea, `pointerdown`, this, (t) => {
-                ;(t.stopPropagation(), e.t().focusNode(this), (Do = null))
+                ;(t.stopPropagation(), e.t().focusNode(this), (Eo = null))
               }),
               o(
                 this.textArea,
@@ -12761,9 +12761,9 @@ children`),
             return this.workspace
           }
           onNodeFocus() {
-            var e = L.from(this.foreignObject.getBoundingClientRect())
+            var e = R.from(this.foreignObject.getBoundingClientRect())
             this.workspace.scrollBoundsIntoView(
-              L.createFromPoint(
+              R.createFromPoint(
                 st(this.workspace, e.getOrigin()),
                 e.getWidth(),
                 e.getHeight(),
@@ -12775,11 +12775,11 @@ children`),
             return !!this.id
           }
         },
-        bd = class extends _d {
+        yd = class extends gd {
           constructor(e, t, n, r) {
             ;(super(`${e}_delete_bar_button`, t, n, r),
               (this.icon = _(
-                j.IMAGE,
+                M.IMAGE,
                 {
                   class: `blocklyDeleteIcon`,
                   href: `${this.workspace.options.pathToMedia}delete-icon.svg`,
@@ -12809,7 +12809,7 @@ children`),
               ))
           }
           performAction(t) {
-            ;((Do = null),
+            ;((Eo = null),
               t && t instanceof PointerEvent && u(t)
                 ? t.stopPropagation()
                 : (this.getCommentView().dispose(),
@@ -12821,24 +12821,24 @@ children`),
             return e.C.REMOVE_COMMENT
           }
         },
-        xd = class {
+        bd = class {
           constructor(t, n) {
             ;((this.workspace = t),
               (this.commentId = n),
               (this.collapsed = !1),
               (this.editable = !0),
-              (this.location = new I(0, 0)),
+              (this.location = new L(0, 0)),
               (this.sizeChangeListeners = []),
               (this.disposeListeners = []),
               (this.collapseChangeListeners = []),
               (this.resizePointerMoveListener = this.resizePointerUpListener =
                 null),
               (this.disposed = this.disposing = !1),
-              (this.svgRoot = _(j.G, {
+              (this.svgRoot = _(M.G, {
                 class: `blocklyComment blocklyEditable blocklyDraggable`,
               })),
-              h(this.svgRoot, k.BUTTON),
-              g(this.svgRoot, A.ROLEDESCRIPTION, e.C.ARIA_LABEL_COMMENT),
+              h(this.svgRoot, A.BUTTON),
+              g(this.svgRoot, j.ROLEDESCRIPTION, e.C.ARIA_LABEL_COMMENT),
               (this.highlightRect = this.createHighlightRect(this.svgRoot)),
               ({
                 topBarGroup: this.topBarGroup,
@@ -12851,29 +12851,29 @@ children`),
               (this.commentEditor = this.createTextArea()),
               g(
                 this.svgRoot,
-                A.LABELLEDBY,
+                j.LABELLEDBY,
                 this.commentEditor.getFocusableElement().id,
               ),
               (this.resizeHandle = this.createResizeHandle(this.svgRoot, t)))
             var r
             ;((r = t.getLayerManager()) == null || r.append(this, 50),
-              (this.size = xd.defaultCommentSize),
+              (this.size = bd.defaultCommentSize),
               this.setSizeWithoutFiringEvents(this.size),
-              this.moveTo(new I(0, 0)))
+              this.moveTo(new L(0, 0)))
           }
           createHighlightRect(e) {
-            return _(j.RECT, { class: `blocklyCommentHighlight` }, e)
+            return _(M.RECT, { class: `blocklyCommentHighlight` }, e)
           }
           createTopBar(e) {
-            e = _(j.G, { class: `blocklyCommentTopbar` }, e)
-            var t = _(j.RECT, { class: `blocklyCommentTopbarBackground` }, e),
-              n = new bd(this.commentId, this.workspace, e, this),
-              r = new vd(this.commentId, this.workspace, e, this)
+            e = _(M.G, { class: `blocklyCommentTopbar` }, e)
+            var t = _(M.RECT, { class: `blocklyCommentTopbarBackground` }, e),
+              n = new yd(this.commentId, this.workspace, e, this),
+              r = new _d(this.commentId, this.workspace, e, this)
             this.addDisposeListener(() => {
               ;(n.dispose(), r.dispose())
             })
             var i = _(
-                j.TEXT,
+                M.TEXT,
                 {
                   class: `blocklyCommentPreview blocklyCommentText blocklyText`,
                 },
@@ -12893,7 +12893,7 @@ children`),
             )
           }
           createTextArea() {
-            var e = new yd(this.workspace, this.commentId, () =>
+            var e = new vd(this.workspace, this.commentId, () =>
               this.svgRoot.focus(),
             )
             return (
@@ -12910,7 +12910,7 @@ children`),
           createResizeHandle(e, t) {
             return (
               (e = _(
-                j.IMAGE,
+                M.IMAGE,
                 {
                   class: `blocklyResizeHandle`,
                   href: `${t.options.pathToMedia}resize-handle.svg`,
@@ -12931,7 +12931,7 @@ children`),
             var t = this.topBarBackground.getBBox(),
               n = this.textPreview.getBBox(),
               r = this.resizeHandle.getBBox()
-            ;((this.size = e = R.max(e, this.calcMinSize(t))),
+            ;((this.size = e = z.max(e, this.calcMinSize(t))),
               this.svgRoot.setAttribute(`height`, `${e.height}`),
               this.svgRoot.setAttribute(`width`, `${e.width}`),
               this.updateHighlightRect(e),
@@ -12958,7 +12958,7 @@ children`),
               this.deleteButton.isVisible()
                 ? (n += this.deleteButton.getSize(!0).getWidth())
                 : t && (n += 4),
-              new R(n, e.height + 20)
+              new z(n, e.height + 20)
             )
           }
           updateHighlightRect(e) {
@@ -13007,7 +13007,7 @@ children`),
                 qr(
                   this.workspace,
                   e,
-                  new I(
+                  new L(
                     this.workspace.RTL
                       ? -this.getSize().width
                       : this.getSize().width,
@@ -13030,7 +13030,7 @@ children`),
               e.stopPropagation())
           }
           onResizePointerUp() {
-            ;((Do = null),
+            ;((Eo = null),
               (this.resizePointerUpListener &&=
                 (c(this.resizePointerUpListener), null)),
               (this.resizePointerMoveListener &&=
@@ -13041,7 +13041,7 @@ children`),
           onResizePointerMove(e) {
             ;((e = Jr(this.workspace, e)),
               this.setSizeWithoutFiringEvents(
-                new R(this.workspace.RTL ? -e.x : e.x, e.y),
+                new z(this.workspace.RTL ? -e.x : e.x, e.y),
               ))
           }
           isCollapsed() {
@@ -13115,7 +13115,7 @@ children`),
             t[t.length - 1] !== this.svgRoot && e.appendChild(this.svgRoot)
           }
           onDeleteDown(e) {
-            ;((Do = null), u(e) || this.dispose(), e.stopPropagation())
+            ;((Eo = null), u(e) || this.dispose(), e.stopPropagation())
           }
           dispose() {
             ;((this.disposing = !0), ce(this.svgRoot))
@@ -13139,7 +13139,7 @@ children`),
             return [this.foldoutButton, this.deleteButton]
           }
         }
-      ;((xd.defaultCommentSize = new R(120, 100)),
+      ;((bd.defaultCommentSize = new z(120, 100)),
         m(`
 .injectionDiv {
   --commentFillColour: #FFFCC7;
@@ -13250,30 +13250,30 @@ children`),
   stroke-width: 3px;
 }
 `))
-      var Sd = class {
+      var xd = class {
           constructor(e, t) {
             ;((this.workspace = e),
               (this.text = ``),
               (this.collapsed = !1),
               (this.deletable = this.movable = this.editable = !0),
-              (this.location = new I(0, 0)),
+              (this.location = new L(0, 0)),
               (this.disposing = this.disposed = !1),
               (this.id = t && !e.getCommentById(t) ? t : He()),
-              (this.size = xd.defaultCommentSize),
+              (this.size = bd.defaultCommentSize),
               e.addTopComment(this),
               this.fireCreateEvent())
           }
           fireCreateEvent() {
-            qe() && x(new (S(O.COMMENT_CREATE))(this))
+            qe() && x(new (S(k.COMMENT_CREATE))(this))
           }
           fireDeleteEvent() {
-            qe() && x(new (S(O.COMMENT_DELETE))(this))
+            qe() && x(new (S(k.COMMENT_DELETE))(this))
           }
           fireChangeEvent(e, t) {
-            qe() && x(new (S(O.COMMENT_CHANGE))(this, e, t))
+            qe() && x(new (S(k.COMMENT_CHANGE))(this, e, t))
           }
           fireCollapseEvent(e) {
-            qe() && x(new (S(O.COMMENT_COLLAPSE))(this, e))
+            qe() && x(new (S(k.COMMENT_COLLAPSE))(this, e))
           }
           setText(e) {
             var t = this.text
@@ -13283,7 +13283,7 @@ children`),
             return this.text
           }
           setSize(e) {
-            var t = new (S(O.COMMENT_RESIZE))(this)
+            var t = new (S(k.COMMENT_RESIZE))(this)
             ;((this.size = e), t.recordCurrentSizeAsNewSize(), x(t))
           }
           getSize() {
@@ -13332,7 +13332,7 @@ children`),
             return this.deletable
           }
           moveTo(e, t) {
-            var n = new (S(O.COMMENT_MOVE))(this)
+            var n = new (S(k.COMMENT_MOVE))(this)
             ;(t && n.setReason(t), (this.location = e), n.recordNew(), x(n))
           }
           getRelativeToSurfaceXY() {
@@ -13351,12 +13351,12 @@ children`),
             return this.disposing || this.disposed
           }
         },
-        Cd = class extends Sd {
+        Sd = class extends xd {
           constructor(e, t) {
             ;(super(e, t),
-              (this.dragStrategy = new hd(this)),
+              (this.dragStrategy = new md(this)),
               (this.workspace = e),
-              (this.view = new xd(e, this.id)),
+              (this.view = new bd(e, this.id)),
               this.view.getEditorFocusableNode().setParent(this),
               this.view.setSize(this.getSize()),
               this.view.setEditable(this.isEditable()),
@@ -13405,12 +13405,12 @@ children`),
               this.workspace.RTL
                 ? ((t = e.x - r.width), (n = e.x))
                 : ((t = e.x), (n = e.x + r.width)),
-              new L(e.y, e.y + r.height, t, n)
+              new R(e.y, e.y + r.height, t, n)
             )
           }
           moveBy(e, t, n) {
             var r = this.getRelativeToSurfaceXY()
-            ;((e = new I(r.x + e, r.y + t)), this.moveTo(e, n))
+            ;((e = new L(r.x + e, r.y + t)), this.moveTo(e, n))
           }
           moveTo(e, t) {
             ;(super.moveTo(e, t), this.view.moveTo(e))
@@ -13468,18 +13468,18 @@ children`),
           }
           toCopyData() {
             return {
-              paster: Oc.TYPE,
+              paster: Dc.TYPE,
               commentState: St(this, { addCoordinates: !0, saveIds: !1 }),
             }
           }
           showContextMenu(e) {
-            var t = H.registry.getContextMenuOptions(
+            var t = U.registry.getContextMenuOptions(
                 { comment: this, focusedNode: this },
                 e,
               ),
               n =
                 e instanceof PointerEvent
-                  ? new I(e.clientX, e.clientY)
+                  ? new L(e.clientX, e.clientY)
                   : ct(this.workspace, this.getRelativeToSurfaceXY()).translate(
                       10,
                       10,
@@ -13522,7 +13522,7 @@ children`),
               e.t().focusNode(this.getEditorFocusableNode()))
           }
         },
-        wd = {
+        Cd = {
           appendDomToWorkspace: function (t, n) {
             if (!n.getBlocksBoundingBox) return e.ch(t, n)
             var r = n.getBlocksBoundingBox()
@@ -13548,9 +13548,9 @@ children`),
             return t
           },
         }
-      ;((wd.blockToDom = Qr),
-        (wd.blockToDomWithXY = Zr),
-        (wd.clearWorkspaceAndLoadFromXml = function (t, n) {
+      ;((Cd.blockToDom = Qr),
+        (Cd.blockToDomWithXY = Zr),
+        (Cd.clearWorkspaceAndLoadFromXml = function (t, n) {
           return (
             n.setResizesEnabled(!1),
             n.clear(),
@@ -13559,7 +13559,7 @@ children`),
             t
           )
         }),
-        (wd.deleteNext = function (e) {
+        (Cd.deleteNext = function (e) {
           for (let t = 0; t < e.childNodes.length; t++) {
             let n = e.childNodes[t]
             if (n.nodeName.toLowerCase() === `next`) {
@@ -13568,9 +13568,9 @@ children`),
             }
           }
         }),
-        (wd.domToBlock = e.fh),
-        (wd.domToBlockInternal = ni),
-        (wd.domToPrettyText = function (e) {
+        (Cd.domToBlock = e.fh),
+        (Cd.domToBlockInternal = ni),
+        (Cd.domToPrettyText = function (e) {
           e = ei(e).split(`<`)
           var t = ``
           for (let n = 1; n < e.length; n++) {
@@ -13586,13 +13586,13 @@ children`),
             e.replace(/^\n/, ``)
           )
         }),
-        (wd.domToText = ei),
-        (wd.domToVariables = ri),
-        (wd.domToWorkspace = e.ch),
-        (wd.loadWorkspaceComment = ti),
-        (wd.saveWorkspaceComment = Yr),
-        (wd.variablesToDom = Xr),
-        (wd.workspaceToDom = function (t, n = !1) {
+        (Cd.domToText = ei),
+        (Cd.domToVariables = ri),
+        (Cd.domToWorkspace = e.ch),
+        (Cd.loadWorkspaceComment = ti),
+        (Cd.saveWorkspaceComment = Yr),
+        (Cd.variablesToDom = Xr),
+        (Cd.workspaceToDom = function (t, n = !1) {
           var r = e.rc(`xml`),
             i = Xr(e.Bd(t))
           i.hasChildNodes() && r.appendChild(i)
@@ -13601,9 +13601,9 @@ children`),
             r.appendChild(Zr(t[i], n))
           return r
         }))
-      var Td = {
+      var wd = {
           fromJsonInternal: function (e) {
-            var t = Ie(F.FIELD, e.type, void 0)
+            var t = Ie(I.FIELD, e.type, void 0)
             return t
               ? t.fromJson(e)
               : (console.warn(
@@ -13614,15 +13614,15 @@ children`),
                 null)
           },
         },
-        Ed = { TEST_ONLY: Td }
-      ;((Ed.fromJson = e.lh),
-        (Ed.register = si),
-        (Ed.unregister = function (e) {
-          Fe(F.FIELD, e)
+        Td = { TEST_ONLY: wd }
+      ;((Td.fromJson = e.lh),
+        (Td.register = si),
+        (Td.unregister = function (e) {
+          Fe(I.FIELD, e)
         }))
-      var Dd = class extends Qu {
+      var Ed = class extends Zu {
         constructor(e, t, n) {
-          ;(super(Qu.SKIP_SETUP),
+          ;(super(Zu.SKIP_SETUP),
             (this.svgArrow =
               this.arrow =
               this.imageElement =
@@ -13636,7 +13636,7 @@ children`),
               this.generatedOptions =
                 null),
             (this.isInitialized = !1),
-            e !== Qu.SKIP_SETUP &&
+            e !== Zu.SKIP_SETUP &&
               (this.setOptions(e),
               n && this.configure_(n),
               t && this.setValidator(t)))
@@ -13646,7 +13646,7 @@ children`),
             this.setValue(e.textContent))
         }
         loadState(e) {
-          this.loadLegacyState(Dd, e) ||
+          this.loadLegacyState(Ed, e) ||
             (this.isOptionListDynamic() && this.getOptions(!1),
             this.setValue(e))
         }
@@ -13655,7 +13655,7 @@ children`),
             ? this.createBorderRect_()
             : (this.clickTarget_ = this.sourceBlock_.getSvgRoot()),
             this.createTextElement_(),
-            (this.imageElement = _(j.IMAGE, {}, this.fieldGroup_)),
+            (this.imageElement = _(M.IMAGE, {}, this.fieldGroup_)),
             this.getConstants().FIELD_DROPDOWN_SVG_ARROW
               ? this.createSVGArrow_()
               : this.createTextArrow_(),
@@ -13682,13 +13682,13 @@ children`),
           )
         }
         createTextArrow_() {
-          this.arrow = _(j.TSPAN, {}, this.textElement_)
+          this.arrow = _(M.TSPAN, {}, this.textElement_)
           var e
           ;(this.arrow.appendChild(
             document.createTextNode(
               (e = this.getSourceBlock()) != null && e.RTL
-                ? Dd.ARROW_CHAR + ` `
-                : ` ` + Dd.ARROW_CHAR,
+                ? Ed.ARROW_CHAR + ` `
+                : ` ` + Ed.ARROW_CHAR,
             ),
           ),
             this.getConstants().FIELD_TEXT_BASELINE_CENTER &&
@@ -13700,7 +13700,7 @@ children`),
         }
         createSVGArrow_() {
           ;((this.svgArrow = _(
-            j.IMAGE,
+            M.IMAGE,
             {
               height: this.getConstants().FIELD_DROPDOWN_SVG_ARROW_SIZE + `px`,
               width: this.getConstants().FIELD_DROPDOWN_SVG_ARROW_SIZE + `px`,
@@ -13715,41 +13715,41 @@ children`),
         }
         showEditor_(e) {
           var t = this.getSourceBlock()
-          if (!t) throw new $u()
+          if (!t) throw new Qu()
           ;(this.dropdownCreate(),
             this.menu_ &&
               ((this.menu_.openingCoords =
                 e && typeof e.clientX == `number`
-                  ? new I(e.clientX, e.clientY)
+                  ? new L(e.clientX, e.clientY)
                   : null),
               Vn(),
-              (e = this.menu_.render(Eu)),
+              (e = this.menu_.render(Tu)),
               v(e, `blocklyDropdownMenu`),
               this.getConstants().FIELD_DROPDOWN_COLOURED_DIV &&
                 ((t = t.getColour()),
                 (e = this.sourceBlock_.getColourTertiary()),
                 Hn(t, e)),
               Un(this, this.dropdownDispose_.bind(this)),
-              (Eu.style.height = `${this.menu_.getSize().height}px`),
+              (Tu.style.height = `${this.menu_.getSize().height}px`),
               this.menu_.focus(),
               this.selectedMenuItem &&
                 this.menu_.setHighlighted(this.selectedMenuItem),
               this.applyColour(),
-              g(this.getFocusableElement(), A.EXPANDED, !0)))
+              g(this.getFocusableElement(), j.EXPANDED, !0)))
         }
         dropdownCreate() {
           var e = this.getSourceBlock()
-          if (!e) throw new $u()
-          var t = new Ac()
-          ;(t.setRole(k.LISTBOX),
+          if (!e) throw new Qu()
+          var t = new kc()
+          ;(t.setRole(A.LISTBOX),
             (this.menu_ = t),
-            g(this.getFocusableElement(), A.CONTROLS, this.menu_.getId()))
+            g(this.getFocusableElement(), j.CONTROLS, this.menu_.getId()))
           var n = this.getOptions(!1)
           this.selectedMenuItem = null
           for (let a = 0; a < n.length; a++) {
             var r = n[a]
-            if (r === Dd.SEPARATOR) {
-              t.addChild(new jc())
+            if (r === Ed.SEPARATOR) {
+              t.addChild(new Ac())
               continue
             }
             let [o, s] = r
@@ -13757,8 +13757,8 @@ children`),
               var i = new Image(o.width, o.height)
               ;((i.src = o.src), (i.alt = o.alt))
             } else i = o
-            ;((r = new kc(i, s, r)),
-              r.setRole(k.OPTION),
+            ;((r = new Oc(i, s, r)),
+              r.setRole(A.OPTION),
               r.setRightToLeft(e.RTL),
               r.setCheckable(!0),
               t.addChild(r),
@@ -13771,7 +13771,7 @@ children`),
           ;(this.menu_ && this.menu_.dispose(),
             (this.selectedMenuItem = this.menu_ = null),
             this.applyColour(),
-            g(this.getFocusableElement(), A.EXPANDED, !1))
+            g(this.getFocusableElement(), j.EXPANDED, !1))
         }
         handleMenuActionEvent(e) {
           ;(Zn(this, !0), this.onItemSelected_(this.menu_, e))
@@ -13846,7 +13846,7 @@ children`),
         }
         renderSelectedImage(e) {
           var t = this.getSourceBlock()
-          if (!t) throw new $u()
+          if (!t) throw new Qu()
           ;((this.imageElement.style.display = ``),
             this.imageElement.setAttributeNS(
               `http://www.w3.org/1999/xlink`,
@@ -13860,7 +13860,7 @@ children`),
           var r = !!this.borderRect_,
             i = Math.max(
               r ? this.getConstants().FIELD_DROPDOWN_BORDER_RECT_HEIGHT : 0,
-              n + Dd.IMAGE_Y_PADDING,
+              n + Ed.IMAGE_Y_PADDING,
             )
           r = r ? this.getConstants().FIELD_BORDER_RECT_X_PADDING : 0
           var a = this.svgArrow
@@ -13869,7 +13869,7 @@ children`),
                 i / 2 - this.getConstants().FIELD_DROPDOWN_SVG_ARROW_SIZE / 2,
               )
             : pe(this.arrow)
-          this.size_ = new R(e + a + r * 2, i)
+          this.size_ = new z(e + a + r * 2, i)
           var o = 0
           ;(t.RTL
             ? this.imageElement.setAttribute(`x`, `${r + a}`)
@@ -13896,13 +13896,13 @@ children`),
               n + t,
               e / 2 - this.getConstants().FIELD_DROPDOWN_SVG_ARROW_SIZE / 2,
             )),
-            (this.size_ = new R(n + r + t * 2, e)),
+            (this.size_ = new z(n + r + t * 2, e)),
             this.positionTextElement_(t, n))
         }
         positionSVGArrow(e, t) {
           if (!this.svgArrow) return 0
           var n = this.getSourceBlock()
-          if (!n) throw new $u()
+          if (!n) throw new Qu()
           var r = this.borderRect_
               ? this.getConstants().FIELD_BORDER_RECT_X_PADDING
               : 0,
@@ -13940,7 +13940,7 @@ children`),
         trimOptions(e) {
           var t = !1,
             n = e.map((e) => {
-              if (e === Dd.SEPARATOR) return ((t = !0), e)
+              if (e === Ed.SEPARATOR) return ((t = !0), e)
               var [n, r, i] = e
               return typeof n == `string`
                 ? ((e = [Or(n), r]), i && e.push(Or(i)), e)
@@ -13979,7 +13979,7 @@ children`),
           var t = !1
           for (let n = 0; n < e.length; n++) {
             let r = e[n]
-            Array.isArray(r) || r === Dd.SEPARATOR
+            Array.isArray(r) || r === Ed.SEPARATOR
               ? typeof r[1] == `string`
                 ? !r[0] ||
                   typeof r[0] == `string` ||
@@ -14027,11 +14027,11 @@ children`),
           if (!super.recomputeAriaContext()) return !1
           var e = this.getFocusableElement()
           return (
-            g(e, A.HASPOPUP, `listbox`), g(e, A.EXPANDED, !!this.menu_), !0
+            g(e, j.HASPOPUP, `listbox`), g(e, j.EXPANDED, !!this.menu_), !0
           )
         }
         computeOptionAriaLabel(t, n) {
-          if (t === Dd.SEPARATOR) return ``
+          if (t === Ed.SEPARATOR) return ``
           var [r, , i] = t
           return typeof i == `string` && i.trim()
             ? i
@@ -14046,140 +14046,140 @@ children`),
                 : e.C.FIELD_LABEL_OPTION_INDEX.replace(`%1`, String(n + 1)))
         }
       }
-      ;((Dd.SEPARATOR = `separator`),
-        (Dd.ARROW_CHAR = `▾`),
-        (Dd.IMAGE_Y_OFFSET = 5),
-        (Dd.IMAGE_Y_PADDING = Dd.IMAGE_Y_OFFSET * 2),
-        si(`field_dropdown`, Dd))
-      var U,
-        W = (U ||= {})
-      ;((W[(W.WIN_KEY_FF_LINUX = 0)] = `WIN_KEY_FF_LINUX`),
-        (W[(W.MAC_ENTER = 3)] = `MAC_ENTER`),
-        (W[(W.BACKSPACE = 8)] = `BACKSPACE`),
-        (W[(W.TAB = 9)] = `TAB`),
-        (W[(W.NUM_CENTER = 12)] = `NUM_CENTER`),
-        (W[(W.ENTER = 13)] = `ENTER`),
-        (W[(W.SHIFT = 16)] = `SHIFT`),
-        (W[(W.CTRL = 17)] = `CTRL`),
-        (W[(W.ALT = 18)] = `ALT`),
-        (W[(W.PAUSE = 19)] = `PAUSE`),
-        (W[(W.CAPS_LOCK = 20)] = `CAPS_LOCK`),
-        (W[(W.ESC = 27)] = `ESC`),
-        (W[(W.SPACE = 32)] = `SPACE`),
-        (W[(W.PAGE_UP = 33)] = `PAGE_UP`),
-        (W[(W.PAGE_DOWN = 34)] = `PAGE_DOWN`),
-        (W[(W.END = 35)] = `END`),
-        (W[(W.HOME = 36)] = `HOME`),
-        (W[(W.LEFT = 37)] = `LEFT`),
-        (W[(W.UP = 38)] = `UP`),
-        (W[(W.RIGHT = 39)] = `RIGHT`),
-        (W[(W.DOWN = 40)] = `DOWN`),
-        (W[(W.PLUS_SIGN = 43)] = `PLUS_SIGN`),
-        (W[(W.PRINT_SCREEN = 44)] = `PRINT_SCREEN`),
-        (W[(W.INSERT = 45)] = `INSERT`),
-        (W[(W.DELETE = 46)] = `DELETE`),
-        (W[(W.ZERO = 48)] = `ZERO`),
-        (W[(W.ONE = 49)] = `ONE`),
-        (W[(W.TWO = 50)] = `TWO`),
-        (W[(W.THREE = 51)] = `THREE`),
-        (W[(W.FOUR = 52)] = `FOUR`),
-        (W[(W.FIVE = 53)] = `FIVE`),
-        (W[(W.SIX = 54)] = `SIX`),
-        (W[(W.SEVEN = 55)] = `SEVEN`),
-        (W[(W.EIGHT = 56)] = `EIGHT`),
-        (W[(W.NINE = 57)] = `NINE`),
-        (W[(W.FF_SEMICOLON = 59)] = `FF_SEMICOLON`),
-        (W[(W.FF_EQUALS = 61)] = `FF_EQUALS`),
-        (W[(W.FF_DASH = 173)] = `FF_DASH`),
-        (W[(W.FF_HASH = 163)] = `FF_HASH`),
-        (W[(W.QUESTION_MARK = 63)] = `QUESTION_MARK`),
-        (W[(W.AT_SIGN = 64)] = `AT_SIGN`),
-        (W[(W.A = 65)] = `A`),
-        (W[(W.B = 66)] = `B`),
-        (W[(W.C = 67)] = `C`),
-        (W[(W.D = 68)] = `D`),
-        (W[(W.E = 69)] = `E`),
-        (W[(W.F = 70)] = `F`),
-        (W[(W.G = 71)] = `G`),
-        (W[(W.H = 72)] = `H`),
-        (W[(W.I = 73)] = `I`),
-        (W[(W.J = 74)] = `J`),
-        (W[(W.K = 75)] = `K`),
-        (W[(W.L = 76)] = `L`),
-        (W[(W.M = 77)] = `M`),
-        (W[(W.N = 78)] = `N`),
-        (W[(W.O = 79)] = `O`),
-        (W[(W.P = 80)] = `P`),
-        (W[(W.Q = 81)] = `Q`),
-        (W[(W.R = 82)] = `R`),
-        (W[(W.S = 83)] = `S`),
-        (W[(W.T = 84)] = `T`),
-        (W[(W.U = 85)] = `U`),
-        (W[(W.V = 86)] = `V`),
-        (W[(W.W = 87)] = `W`),
-        (W[(W.X = 88)] = `X`),
-        (W[(W.Y = 89)] = `Y`),
-        (W[(W.Z = 90)] = `Z`),
-        (W[(W.META = 91)] = `META`),
-        (W[(W.WIN_KEY_RIGHT = 92)] = `WIN_KEY_RIGHT`),
-        (W[(W.CONTEXT_MENU = 93)] = `CONTEXT_MENU`),
-        (W[(W.NUM_ZERO = 96)] = `NUM_ZERO`),
-        (W[(W.NUM_ONE = 97)] = `NUM_ONE`),
-        (W[(W.NUM_TWO = 98)] = `NUM_TWO`),
-        (W[(W.NUM_THREE = 99)] = `NUM_THREE`),
-        (W[(W.NUM_FOUR = 100)] = `NUM_FOUR`),
-        (W[(W.NUM_FIVE = 101)] = `NUM_FIVE`),
-        (W[(W.NUM_SIX = 102)] = `NUM_SIX`),
-        (W[(W.NUM_SEVEN = 103)] = `NUM_SEVEN`),
-        (W[(W.NUM_EIGHT = 104)] = `NUM_EIGHT`),
-        (W[(W.NUM_NINE = 105)] = `NUM_NINE`),
-        (W[(W.NUM_MULTIPLY = 106)] = `NUM_MULTIPLY`),
-        (W[(W.NUM_PLUS = 107)] = `NUM_PLUS`),
-        (W[(W.NUM_MINUS = 109)] = `NUM_MINUS`),
-        (W[(W.NUM_PERIOD = 110)] = `NUM_PERIOD`),
-        (W[(W.NUM_DIVISION = 111)] = `NUM_DIVISION`),
-        (W[(W.F1 = 112)] = `F1`),
-        (W[(W.F2 = 113)] = `F2`),
-        (W[(W.F3 = 114)] = `F3`),
-        (W[(W.F4 = 115)] = `F4`),
-        (W[(W.F5 = 116)] = `F5`),
-        (W[(W.F6 = 117)] = `F6`),
-        (W[(W.F7 = 118)] = `F7`),
-        (W[(W.F8 = 119)] = `F8`),
-        (W[(W.F9 = 120)] = `F9`),
-        (W[(W.F10 = 121)] = `F10`),
-        (W[(W.F11 = 122)] = `F11`),
-        (W[(W.F12 = 123)] = `F12`),
-        (W[(W.NUMLOCK = 144)] = `NUMLOCK`),
-        (W[(W.SCROLL_LOCK = 145)] = `SCROLL_LOCK`),
-        (W[(W.FIRST_MEDIA_KEY = 166)] = `FIRST_MEDIA_KEY`),
-        (W[(W.LAST_MEDIA_KEY = 183)] = `LAST_MEDIA_KEY`),
-        (W[(W.SEMICOLON = 186)] = `SEMICOLON`),
-        (W[(W.DASH = 189)] = `DASH`),
-        (W[(W.EQUALS = 187)] = `EQUALS`),
-        (W[(W.COMMA = 188)] = `COMMA`),
-        (W[(W.PERIOD = 190)] = `PERIOD`),
-        (W[(W.SLASH = 191)] = `SLASH`),
-        (W[(W.APOSTROPHE = 192)] = `APOSTROPHE`),
-        (W[(W.TILDE = 192)] = `TILDE`),
-        (W[(W.SINGLE_QUOTE = 222)] = `SINGLE_QUOTE`),
-        (W[(W.OPEN_SQUARE_BRACKET = 219)] = `OPEN_SQUARE_BRACKET`),
-        (W[(W.BACKSLASH = 220)] = `BACKSLASH`),
-        (W[(W.CLOSE_SQUARE_BRACKET = 221)] = `CLOSE_SQUARE_BRACKET`),
-        (W[(W.WIN_KEY = 224)] = `WIN_KEY`),
-        (W[(W.MAC_FF_META = 224)] = `MAC_FF_META`),
-        (W[(W.MAC_WK_CMD_LEFT = 91)] = `MAC_WK_CMD_LEFT`),
-        (W[(W.MAC_WK_CMD_RIGHT = 93)] = `MAC_WK_CMD_RIGHT`),
-        (W[(W.WIN_IME = 229)] = `WIN_IME`),
-        (W[(W.VK_NONAME = 252)] = `VK_NONAME`),
-        (W[(W.PHANTOM = 255)] = `PHANTOM`),
-        (W[(W.CTRL_CMD = Go || Wo || Uo ? W.MAC_WK_CMD_LEFT : W.CTRL)] =
+      ;((Ed.SEPARATOR = `separator`),
+        (Ed.ARROW_CHAR = `▾`),
+        (Ed.IMAGE_Y_OFFSET = 5),
+        (Ed.IMAGE_Y_PADDING = Ed.IMAGE_Y_OFFSET * 2),
+        si(`field_dropdown`, Ed))
+      var W,
+        G = (W ||= {})
+      ;((G[(G.WIN_KEY_FF_LINUX = 0)] = `WIN_KEY_FF_LINUX`),
+        (G[(G.MAC_ENTER = 3)] = `MAC_ENTER`),
+        (G[(G.BACKSPACE = 8)] = `BACKSPACE`),
+        (G[(G.TAB = 9)] = `TAB`),
+        (G[(G.NUM_CENTER = 12)] = `NUM_CENTER`),
+        (G[(G.ENTER = 13)] = `ENTER`),
+        (G[(G.SHIFT = 16)] = `SHIFT`),
+        (G[(G.CTRL = 17)] = `CTRL`),
+        (G[(G.ALT = 18)] = `ALT`),
+        (G[(G.PAUSE = 19)] = `PAUSE`),
+        (G[(G.CAPS_LOCK = 20)] = `CAPS_LOCK`),
+        (G[(G.ESC = 27)] = `ESC`),
+        (G[(G.SPACE = 32)] = `SPACE`),
+        (G[(G.PAGE_UP = 33)] = `PAGE_UP`),
+        (G[(G.PAGE_DOWN = 34)] = `PAGE_DOWN`),
+        (G[(G.END = 35)] = `END`),
+        (G[(G.HOME = 36)] = `HOME`),
+        (G[(G.LEFT = 37)] = `LEFT`),
+        (G[(G.UP = 38)] = `UP`),
+        (G[(G.RIGHT = 39)] = `RIGHT`),
+        (G[(G.DOWN = 40)] = `DOWN`),
+        (G[(G.PLUS_SIGN = 43)] = `PLUS_SIGN`),
+        (G[(G.PRINT_SCREEN = 44)] = `PRINT_SCREEN`),
+        (G[(G.INSERT = 45)] = `INSERT`),
+        (G[(G.DELETE = 46)] = `DELETE`),
+        (G[(G.ZERO = 48)] = `ZERO`),
+        (G[(G.ONE = 49)] = `ONE`),
+        (G[(G.TWO = 50)] = `TWO`),
+        (G[(G.THREE = 51)] = `THREE`),
+        (G[(G.FOUR = 52)] = `FOUR`),
+        (G[(G.FIVE = 53)] = `FIVE`),
+        (G[(G.SIX = 54)] = `SIX`),
+        (G[(G.SEVEN = 55)] = `SEVEN`),
+        (G[(G.EIGHT = 56)] = `EIGHT`),
+        (G[(G.NINE = 57)] = `NINE`),
+        (G[(G.FF_SEMICOLON = 59)] = `FF_SEMICOLON`),
+        (G[(G.FF_EQUALS = 61)] = `FF_EQUALS`),
+        (G[(G.FF_DASH = 173)] = `FF_DASH`),
+        (G[(G.FF_HASH = 163)] = `FF_HASH`),
+        (G[(G.QUESTION_MARK = 63)] = `QUESTION_MARK`),
+        (G[(G.AT_SIGN = 64)] = `AT_SIGN`),
+        (G[(G.A = 65)] = `A`),
+        (G[(G.B = 66)] = `B`),
+        (G[(G.C = 67)] = `C`),
+        (G[(G.D = 68)] = `D`),
+        (G[(G.E = 69)] = `E`),
+        (G[(G.F = 70)] = `F`),
+        (G[(G.G = 71)] = `G`),
+        (G[(G.H = 72)] = `H`),
+        (G[(G.I = 73)] = `I`),
+        (G[(G.J = 74)] = `J`),
+        (G[(G.K = 75)] = `K`),
+        (G[(G.L = 76)] = `L`),
+        (G[(G.M = 77)] = `M`),
+        (G[(G.N = 78)] = `N`),
+        (G[(G.O = 79)] = `O`),
+        (G[(G.P = 80)] = `P`),
+        (G[(G.Q = 81)] = `Q`),
+        (G[(G.R = 82)] = `R`),
+        (G[(G.S = 83)] = `S`),
+        (G[(G.T = 84)] = `T`),
+        (G[(G.U = 85)] = `U`),
+        (G[(G.V = 86)] = `V`),
+        (G[(G.W = 87)] = `W`),
+        (G[(G.X = 88)] = `X`),
+        (G[(G.Y = 89)] = `Y`),
+        (G[(G.Z = 90)] = `Z`),
+        (G[(G.META = 91)] = `META`),
+        (G[(G.WIN_KEY_RIGHT = 92)] = `WIN_KEY_RIGHT`),
+        (G[(G.CONTEXT_MENU = 93)] = `CONTEXT_MENU`),
+        (G[(G.NUM_ZERO = 96)] = `NUM_ZERO`),
+        (G[(G.NUM_ONE = 97)] = `NUM_ONE`),
+        (G[(G.NUM_TWO = 98)] = `NUM_TWO`),
+        (G[(G.NUM_THREE = 99)] = `NUM_THREE`),
+        (G[(G.NUM_FOUR = 100)] = `NUM_FOUR`),
+        (G[(G.NUM_FIVE = 101)] = `NUM_FIVE`),
+        (G[(G.NUM_SIX = 102)] = `NUM_SIX`),
+        (G[(G.NUM_SEVEN = 103)] = `NUM_SEVEN`),
+        (G[(G.NUM_EIGHT = 104)] = `NUM_EIGHT`),
+        (G[(G.NUM_NINE = 105)] = `NUM_NINE`),
+        (G[(G.NUM_MULTIPLY = 106)] = `NUM_MULTIPLY`),
+        (G[(G.NUM_PLUS = 107)] = `NUM_PLUS`),
+        (G[(G.NUM_MINUS = 109)] = `NUM_MINUS`),
+        (G[(G.NUM_PERIOD = 110)] = `NUM_PERIOD`),
+        (G[(G.NUM_DIVISION = 111)] = `NUM_DIVISION`),
+        (G[(G.F1 = 112)] = `F1`),
+        (G[(G.F2 = 113)] = `F2`),
+        (G[(G.F3 = 114)] = `F3`),
+        (G[(G.F4 = 115)] = `F4`),
+        (G[(G.F5 = 116)] = `F5`),
+        (G[(G.F6 = 117)] = `F6`),
+        (G[(G.F7 = 118)] = `F7`),
+        (G[(G.F8 = 119)] = `F8`),
+        (G[(G.F9 = 120)] = `F9`),
+        (G[(G.F10 = 121)] = `F10`),
+        (G[(G.F11 = 122)] = `F11`),
+        (G[(G.F12 = 123)] = `F12`),
+        (G[(G.NUMLOCK = 144)] = `NUMLOCK`),
+        (G[(G.SCROLL_LOCK = 145)] = `SCROLL_LOCK`),
+        (G[(G.FIRST_MEDIA_KEY = 166)] = `FIRST_MEDIA_KEY`),
+        (G[(G.LAST_MEDIA_KEY = 183)] = `LAST_MEDIA_KEY`),
+        (G[(G.SEMICOLON = 186)] = `SEMICOLON`),
+        (G[(G.DASH = 189)] = `DASH`),
+        (G[(G.EQUALS = 187)] = `EQUALS`),
+        (G[(G.COMMA = 188)] = `COMMA`),
+        (G[(G.PERIOD = 190)] = `PERIOD`),
+        (G[(G.SLASH = 191)] = `SLASH`),
+        (G[(G.APOSTROPHE = 192)] = `APOSTROPHE`),
+        (G[(G.TILDE = 192)] = `TILDE`),
+        (G[(G.SINGLE_QUOTE = 222)] = `SINGLE_QUOTE`),
+        (G[(G.OPEN_SQUARE_BRACKET = 219)] = `OPEN_SQUARE_BRACKET`),
+        (G[(G.BACKSLASH = 220)] = `BACKSLASH`),
+        (G[(G.CLOSE_SQUARE_BRACKET = 221)] = `CLOSE_SQUARE_BRACKET`),
+        (G[(G.WIN_KEY = 224)] = `WIN_KEY`),
+        (G[(G.MAC_FF_META = 224)] = `MAC_FF_META`),
+        (G[(G.MAC_WK_CMD_LEFT = 91)] = `MAC_WK_CMD_LEFT`),
+        (G[(G.MAC_WK_CMD_RIGHT = 93)] = `MAC_WK_CMD_RIGHT`),
+        (G[(G.WIN_IME = 229)] = `WIN_IME`),
+        (G[(G.VK_NONAME = 252)] = `VK_NONAME`),
+        (G[(G.PHANTOM = 255)] = `PHANTOM`),
+        (G[(G.CTRL_CMD = Wo || Uo || Ho ? G.MAC_WK_CMD_LEFT : G.CTRL)] =
           `CTRL_CMD`))
-      var Od = class {
+      var Dd = class {
           constructor(e) {
             ;((this.workspace = e),
               (this.svgRoot = _(
-                j.G,
+                M.G,
                 {},
                 e.getLayerManager()?.getDragLayer() ??
                   e.getLayerManager()?.getBlockLayer(),
@@ -14187,7 +14187,7 @@ children`),
               this.svgRoot.classList.add(`blocklyMoveIndicator`),
               (e = e.RTL),
               _(
-                j.CIRCLE,
+                M.CIRCLE,
                 {
                   fill: `white`,
                   "fill-opacity": `0.8`,
@@ -14200,7 +14200,7 @@ children`),
                 this.svgRoot,
               ),
               _(
-                j.PATH,
+                M.PATH,
                 {
                   fill: `none`,
                   stroke: `black`,
@@ -14223,16 +14223,16 @@ children`),
             ce(this.svgRoot)
           }
         },
-        kd,
-        Ad = (kd ||= {})
-      ;((Ad[(Ad.NONE = 0)] = `NONE`),
-        (Ad[(Ad.UP = 1)] = `UP`),
-        (Ad[(Ad.DOWN = 2)] = `DOWN`),
-        (Ad[(Ad.LEFT = 3)] = `LEFT`),
-        (Ad[(Ad.RIGHT = 4)] = `RIGHT`))
-      var G = class {
+        Od,
+        kd = (Od ||= {})
+      ;((kd[(kd.NONE = 0)] = `NONE`),
+        (kd[(kd.UP = 1)] = `UP`),
+        (kd[(kd.DOWN = 2)] = `DOWN`),
+        (kd[(kd.LEFT = 3)] = `LEFT`),
+        (kd[(kd.RIGHT = 4)] = `RIGHT`))
+      var Ad = class {
         constructor() {
-          ;((this.totalDelta = new I(0, 0)),
+          ;((this.totalDelta = new L(0, 0)),
             (this.stepDistance = 20),
             (this.allowedShortcuts = []),
             (this.blurListener = () => {
@@ -14249,7 +14249,7 @@ children`),
         startMove(e, t) {
           if (!this.canMove(e) || this.isMoving()) return !1
           this.moving = !0
-          var n = Be(F.BLOCK_DRAGGER, e.workspace.options, !0)
+          var n = Be(I.BLOCK_DRAGGER, e.workspace.options, !0)
           if (!n) throw Error(`no Dragger registered`)
           return (
             (this.dragger = new n(e, e.workspace)),
@@ -14259,20 +14259,20 @@ children`),
             this.draggable
               .getFocusableElement()
               .addEventListener(`blur`, this.blurListener),
-            (e = Object.values(M.registry.getRegistry())
+            (e = Object.values(N.registry.getRegistry())
               .flatMap((e) => e.keyCodes)
               .filter(
                 (e) =>
                   e &&
                   ![
-                    U.RIGHT,
-                    U.LEFT,
-                    U.UP,
-                    U.DOWN,
-                    U.ENTER,
-                    U.SPACE,
-                    U.ESC,
-                    U.M,
+                    W.RIGHT,
+                    W.LEFT,
+                    W.UP,
+                    W.DOWN,
+                    W.ENTER,
+                    W.SPACE,
+                    W.ESC,
+                    W.M,
                   ].includes(
                     typeof e == `number`
                       ? e
@@ -14280,7 +14280,7 @@ children`),
                   ),
               )
               .filter((e) => !!e)),
-            M.registry.register(
+            N.registry.register(
               {
                 name: `commitMove`,
                 preconditionFn: () => this.isMoving(),
@@ -14291,23 +14291,23 @@ children`),
               !0,
             ),
             this.scrollCurrentElementIntoView(),
-            (this.moveIndicator = new Od(this.draggable.workspace)),
+            (this.moveIndicator = new Dd(this.draggable.workspace)),
             this.repositionMoveIndicator(),
             !0
           )
         }
         move(e, t) {
           switch (e) {
-            case kd.UP:
+            case Od.UP:
               this.totalDelta.y -= this.stepDistance
               break
-            case kd.DOWN:
+            case Od.DOWN:
               this.totalDelta.y += this.stepDistance
               break
-            case kd.LEFT:
+            case Od.LEFT:
               this.totalDelta.x -= this.stepDistance
               break
-            case kd.RIGHT:
+            case Od.RIGHT:
               this.totalDelta.x += this.stepDistance
           }
           var n
@@ -14386,7 +14386,7 @@ children`),
           )
         }
         preDragEndCleanup() {
-          M.registry.unregister(`commitMove`)
+          N.registry.unregister(`commitMove`)
           var e
           ;(e = this.draggable) == null ||
             e
@@ -14401,12 +14401,12 @@ children`),
               this.draggable =
               this.moveIndicator =
                 void 0),
-            (this.totalDelta = new I(0, 0)),
+            (this.totalDelta = new L(0, 0)),
             (this.moving = !1))
         }
         totalPixelDelta() {
           var e = this.draggable?.workspace.scale ?? 1
-          return new I(this.totalDelta.x * e, this.totalDelta.y * e)
+          return new L(this.totalDelta.x * e, this.totalDelta.y * e)
         }
         scrollCurrentElementIntoView() {
           if (this.draggable) {
@@ -14417,13 +14417,13 @@ children`),
         updateTotalDelta() {
           this.draggable &&
             this.startLocation &&
-            (this.totalDelta = new I(
+            (this.totalDelta = new L(
               this.draggable.getRelativeToSurfaceXY().x - this.startLocation.x,
               this.draggable.getRelativeToSurfaceXY().y - this.startLocation.y,
             ))
         }
       }
-      G.mover = new G()
+      Ad.mover = new Ad()
       var jd = class {
           constructor(e, t, n, r) {
             ;((this.name = e),
@@ -14432,7 +14432,7 @@ children`),
               (this.categoryStyles = n || Object.create(null)),
               (this.componentStyles = r || Object.create(null)),
               (this.fontStyle = Object.create(null)),
-              b(F.THEME, e, this, !0))
+              b(I.THEME, e, this, !0))
           }
           getClassName() {
             return this.name + `-theme`
@@ -14466,7 +14466,7 @@ children`),
               r = t.base
             return (
               r &&
-                (typeof r == `string` && (r = Ie(F.THEME, r, void 0) ?? void 0),
+                (typeof r == `string` && (r = Ie(I.THEME, r, void 0) ?? void 0),
                 r instanceof jd && (ve(n, r), (n.name = e))),
               ve(n.blockStyles, t.blockStyles),
               ve(n.categoryStyles, t.categoryStyles),
@@ -14536,7 +14536,7 @@ children`),
               d = e.horizontalLayout
             d === void 0 && (d = !1)
             var f = e.toolboxPosition !== `end`
-            f = d ? (f ? z.TOP : z.BOTTOM) : f === u ? z.RIGHT : z.LEFT
+            f = d ? (f ? B.TOP : B.BOTTOM) : f === u ? B.RIGHT : B.LEFT
             var p = e.css
             p === void 0 && (p = !0)
             var m = `https://static.blockly.com/media/`
@@ -14632,7 +14632,7 @@ children`),
             return (
               (e = e.theme || Md),
               typeof e == `string`
-                ? Ie(F.THEME, e, void 0)
+                ? Ie(I.THEME, e, void 0)
                 : e instanceof jd
                   ? e
                   : jd.defineTheme(e.name || `builtin` + Ve(), e)
@@ -14678,7 +14678,7 @@ children`),
               (this.anchor = t),
               (this.ownerRect = n),
               (this.owner = i),
-              (this.size = new R(0, 0)),
+              (this.size = new z(0, 0)),
               (this.colour = `#ffffff`),
               (this.disposed = !1),
               (this.relativeLeft = this.relativeTop = 0),
@@ -14686,14 +14686,14 @@ children`),
               (this.ariaLabelProvider = null),
               (this.id = Ve()),
               (this.svgRoot = _(
-                j.G,
+                M.G,
                 { class: `blocklyBubble` },
                 e.getBubbleCanvas(),
               )),
-              (e = _(j.G, { class: `blocklyEmboss` }, this.svgRoot)),
-              (this.tail = _(j.PATH, { class: `blocklyBubbleTail` }, e)),
+              (e = _(M.G, { class: `blocklyEmboss` }, this.svgRoot)),
+              (this.tail = _(M.PATH, { class: `blocklyBubbleTail` }, e)),
               (this.background = _(
-                j.RECT,
+                M.RECT,
                 {
                   class: `blocklyDraggable`,
                   x: 0,
@@ -14703,7 +14703,7 @@ children`),
                 },
                 e,
               )),
-              (this.contentContainer = _(j.G, {}, this.svgRoot)),
+              (this.contentContainer = _(M.G, {}, this.svgRoot)),
               (this.focusableElement = r ?? this.svgRoot),
               this.focusableElement.setAttribute(`id`, this.id),
               o(this.background, `pointerdown`, this, this.onMouseDown),
@@ -14773,7 +14773,7 @@ children`),
             var n = this.getRelativeToSurfaceXY()
             this.moveTo(n.x + e, n.y + t)
           }
-          positionByRect(e = new L(0, 0, 0, 0)) {
+          positionByRect(e = new R(0, 0, 0, 0)) {
             var t = this.workspace.getMetricsManager().getViewMetrics(!0),
               n = this.getOptimalRelativeLeft(t),
               r = this.getOptimalRelativeTop(t),
@@ -14862,11 +14862,11 @@ children`),
               this.workspace.RTL
                 ? (r -= this.getScrollbarThickness())
                 : (e -= this.getScrollbarThickness()),
-              new L(t, n, r, e)
+              new R(t, n, r, e)
             )
           }
           getScrollbarThickness() {
-            return ec.scrollbarThickness / this.workspace.scale
+            return $s.scrollbarThickness / this.workspace.scale
           }
           renderTail() {
             var e = [],
@@ -14939,7 +14939,7 @@ children`),
               : !1
           }
           getRelativeToSurfaceXY() {
-            return new I(
+            return new L(
               this.workspace.RTL
                 ? -this.relativeLeft + this.anchor.x - this.size.width
                 : this.anchor.x + this.relativeLeft,
@@ -14948,7 +14948,7 @@ children`),
           }
           getBoundingRectangle() {
             var e = this.getRelativeToSurfaceXY()
-            return new L(
+            return new R(
               e.y,
               e.y + this.size.height,
               e.x,
@@ -15003,7 +15003,7 @@ children`),
             ;(this.select(), this.bringToFront())
             var e = this.getRelativeToSurfaceXY(),
               t = this.getSize()
-            ;((e = new L(e.y, e.y + t.height, e.x, e.x + t.width)),
+            ;((e = new R(e.y, e.y + t.height, e.x, e.x + t.width)),
               this.workspace.scrollBoundsIntoView(e))
           }
           onNodeBlur() {
@@ -15018,9 +15018,9 @@ children`),
           recomputeAriaContext() {
             var t = this.getFocusableElement()
             if (t) {
-              h(t, k.GROUP)
+              h(t, A.GROUP)
               var n = this.getAriaLabel()?.trim()
-              g(t, A.LABEL, n || e.C.BUBBLE_LABEL_DEFAULT)
+              g(t, j.LABEL, n || e.C.BUBBLE_LABEL_DEFAULT)
             }
           }
           setAriaLabelProvider(e) {
@@ -15055,7 +15055,7 @@ children`),
             (t = new Nd(e)),
             this.validateWorkspaceOptions(t),
             (this.svgDialog = _(
-              j.SVG,
+              M.SVG,
               { x: K.BORDER_WIDTH, y: K.BORDER_WIDTH },
               this.contentContainer,
             )),
@@ -15066,7 +15066,7 @@ children`),
             this.svgDialog.appendChild(e),
             t.languageTree &&
               (e.insertBefore(
-                this.miniWorkspace.addFlyout(j.G),
+                this.miniWorkspace.addFlyout(M.G),
                 this.miniWorkspace.getCanvas(),
               ),
               (e = this.miniWorkspace.getFlyout()),
@@ -15121,7 +15121,7 @@ children`),
           ;(this.bumpBlocksIntoBounds(), this.updateBubbleSize())
         }
         bumpBlocksIntoBounds() {
-          if (!this.miniWorkspace.isDragging() || G.mover.isMoving())
+          if (!this.miniWorkspace.isDragging() || Ad.mover.isMoving())
             for (let e of this.miniWorkspace.getTopBlocks(!1)) {
               let t = e.getRelativeToSurfaceXY()
               if ((t.y < 20 && e.moveBy(0, 20 - t.y), e.RTL)) {
@@ -15132,8 +15132,8 @@ children`),
             }
         }
         updateBubbleSize() {
-          if (!this.miniWorkspace.isDragging() || G.mover.isMoving()) {
-            this.autoLayout &&= !G.mover.isMoving()
+          if (!this.miniWorkspace.isDragging() || Ad.mover.isMoving()) {
+            this.autoLayout &&= !Ad.mover.isMoving()
             var e = this.getSize(),
               t = this.calculateWorkspaceSize()
             ;(Math.abs(e.width - t.width) < Id.MINIMUM_VIEW_CHANGE &&
@@ -15146,7 +15146,7 @@ children`),
                   .getCanvas()
                   .setAttribute(`transform`, `translate(${t.width}, 0)`),
               this.setSize(
-                new R(t.width + K.DOUBLE_BORDER, t.height + K.DOUBLE_BORDER),
+                new z(t.width + K.DOUBLE_BORDER, t.height + K.DOUBLE_BORDER),
                 this.autoLayout,
               ),
               this.miniWorkspace.resize(),
@@ -15162,7 +15162,7 @@ children`),
             let r = n.getWorkspace().getMetricsManager().getScrollMetrics()
             ;((e = Math.max(e, r.height + 20)), (t += n.getWidth()))
           }
-          return new R(t, e)
+          return new z(t, e)
         }
         updateBlockStyles() {
           for (var e of this.miniWorkspace.getAllBlocks(!1))
@@ -15189,8 +15189,8 @@ children`),
       var Ld = class {
         constructor(e) {
           ;((this.sourceBlock = e),
-            (this.offsetInBlock = new I(0, 0)),
-            (this.workspaceLocation = new I(0, 0)),
+            (this.offsetInBlock = new L(0, 0)),
+            (this.workspaceLocation = new L(0, 0)),
             (this.svgRoot = null),
             (this.tooltip = e),
             (this.id = Ve()))
@@ -15201,7 +15201,7 @@ children`),
         initView(e) {
           if (!this.svgRoot) {
             var t = this.sourceBlock
-            ;((this.svgRoot = _(j.G, {
+            ;((this.svgRoot = _(M.G, {
               class: `blocklyIconGroup`,
               id: this.id,
             })),
@@ -15222,7 +15222,7 @@ children`),
           return -1
         }
         getSize() {
-          return new R(0, 0)
+          return new z(0, 0)
         }
         setTooltip(e) {
           this.tooltip = e ?? this.sourceBlock
@@ -15257,7 +15257,7 @@ children`),
             )
         }
         onLocationChange(e) {
-          this.workspaceLocation = I.sum(e, this.offsetInBlock)
+          this.workspaceLocation = L.sum(e, this.offsetInBlock)
         }
         onClick() {}
         isClickableInFlyout() {
@@ -15273,7 +15273,7 @@ children`),
         }
         onNodeFocus() {
           var e = this.sourceBlock.getBoundingRectangle()
-          ;((e = new L(
+          ;((e = new R(
             e.top + this.offsetInBlock.y,
             e.top + this.offsetInBlock.y + this.getSize().height,
             e.left + this.offsetInBlock.x,
@@ -15306,11 +15306,11 @@ children`),
             var n,
               r = (n = this.sourceBlock.workspace.targetWorkspace)?.getFlyout()
             r && !this.isClickableInFlyout(r.autoClose)
-              ? g(t, A.HIDDEN, !0)
-              : (ne(t, A.HIDDEN),
-                h(t, k.BUTTON),
+              ? g(t, j.HIDDEN, !0)
+              : (ne(t, j.HIDDEN),
+                h(t, A.BUTTON),
                 (n = this.getAriaLabel() ?? e.C.ICON_LABEL_DEFAULT),
-                g(t, A.LABEL, n))
+                g(t, j.LABEL, n))
           }
         }
         getAriaLabel() {
@@ -15335,7 +15335,7 @@ children`),
           this.svgRoot ||
             (super.initView(e),
             _(
-              j.RECT,
+              M.RECT,
               {
                 class: `blocklyIconShape`,
                 rx: `4`,
@@ -15346,7 +15346,7 @@ children`),
               this.svgRoot,
             ),
             _(
-              j.PATH,
+              M.PATH,
               {
                 class: `blocklyIconSymbol`,
                 d: `m4.203,7.296 0,1.368 -0.92,0.677 -0.11,0.41 0.9,1.559 0.41,0.11 1.043,-0.457 1.187,0.683 0.127,1.134 0.3,0.3 1.8,0 0.3,-0.299 0.127,-1.138 1.185,-0.682 1.046,0.458 0.409,-0.11 0.9,-1.559 -0.11,-0.41 -0.92,-0.677 0,-1.366 0.92,-0.677 0.11,-0.41 -0.9,-1.559 -0.409,-0.109 -1.046,0.458 -1.185,-0.682 -0.127,-1.138 -0.3,-0.299 -1.8,0 -0.3,0.3 -0.126,1.135 -1.187,0.682 -1.043,-0.457 -0.41,0.11 -0.899,1.559 0.108,0.409z`,
@@ -15354,7 +15354,7 @@ children`),
               this.svgRoot,
             ),
             _(
-              j.CIRCLE,
+              M.CIRCLE,
               { class: `blocklyIconShape`, r: `2.7`, cx: `8`, cy: `8` },
               this.svgRoot,
             ),
@@ -15369,7 +15369,7 @@ children`),
           return e.sh.WEIGHT
         }
         getSize() {
-          return new R(17, 17)
+          return new z(17, 17)
         }
         applyColour() {
           super.applyColour()
@@ -15402,7 +15402,7 @@ children`),
         }
         setBubbleVisible(t) {
           var n = this
-          return (0, E.asyncExecutePromiseGeneratorFunction)(function* () {
+          return (0, D.asyncExecutePromiseGeneratorFunction)(function* () {
             if (n.bubbleIsVisible() !== t) {
               if ((yield kt(), t)) {
                 ;((n.miniWorkspaceBubble = new Id(
@@ -15433,7 +15433,7 @@ children`),
                     ),
                   (n.saveConnectionsListener = null))
               }
-              ;(x(new (S(O.BUBBLE_OPEN))(n.sourceBlock, t, `mutator`)),
+              ;(x(new (S(k.BUBBLE_OPEN))(n.sourceBlock, t, `mutator`)),
                 n.recomputeAriaContext())
             }
           })
@@ -15463,11 +15463,11 @@ children`),
           )
         }
         getAnchorLocation() {
-          return I.sum(this.workspaceLocation, new I(8.5, 8.5))
+          return L.sum(this.workspaceLocation, new L(8.5, 8.5))
         }
         getBubbleOwnerRect() {
           var e = this.sourceBlock.getSvgRoot().getBBox()
-          return new L(e.y, e.y + e.height, e.x, e.x + e.width)
+          return new R(e.y, e.y + e.height, e.x, e.x + e.width)
         }
         createRootBlock() {
           if (!this.sourceBlock.decompose)
@@ -15512,8 +15512,8 @@ children`),
         static isIgnorableMutatorEvent(e) {
           return (
             e.isUiEvent ||
-            e.type === O.BLOCK_CREATE ||
-            (e.type === O.BLOCK_CHANGE && e.element === `disabled`)
+            e.type === k.BLOCK_CREATE ||
+            (e.type === k.BLOCK_CHANGE && e.element === `disabled`)
           )
         }
         recomposeSourceBlock() {
@@ -15524,12 +15524,12 @@ children`),
               )
             var t = e.gd
             t || e.B(!0)
-            var n = $c.getExtraBlockState_(this.sourceBlock)
+            var n = Qc.getExtraBlockState_(this.sourceBlock)
             this.sourceBlock.compose(this.rootBlock)
-            var r = $c.getExtraBlockState_(this.sourceBlock)
+            var r = Qc.getExtraBlockState_(this.sourceBlock)
             ;(n !== r &&
               x(
-                new (S(O.BLOCK_CHANGE))(
+                new (S(k.BLOCK_CHANGE))(
                   this.sourceBlock,
                   `mutation`,
                   null,
@@ -15549,7 +15549,7 @@ children`),
             : e.C.ICON_LABEL_MUTATOR_CLOSED
         }
       }),
-        (e.sh.TYPE = Qc.MUTATOR),
+        (e.sh.TYPE = Zc.MUTATOR),
         (e.sh.WEIGHT = 1))
       var Rd = Object.create(null),
         zd = { allExtensions: Rd }
@@ -15597,29 +15597,29 @@ children`),
         (Vd.moveTo = gi),
         (Vd.point = C))
       var Hd = {}
-      ;((Hd.Coordinate = I),
-        (Hd.KeyCodes = U),
-        (Hd.Rect = L),
-        (Hd.Size = R),
-        (Hd.Svg = j),
-        (Hd.aria = bs),
-        (Hd.array = Xo),
-        (Hd.browserEvents = Yo),
-        (Hd.colour = Xu),
-        (Hd.deprecation = Ms),
-        (Hd.dom = Es),
+      ;((Hd.Coordinate = L),
+        (Hd.KeyCodes = W),
+        (Hd.Rect = R),
+        (Hd.Size = z),
+        (Hd.Svg = M),
+        (Hd.aria = ys),
+        (Hd.array = Yo),
+        (Hd.browserEvents = Jo),
+        (Hd.colour = Yu),
+        (Hd.deprecation = js),
+        (Hd.dom = Ts),
         (Hd.extensions = Bd),
-        (Hd.idGenerator = Gs),
-        (Hd.math = bu),
-        (Hd.object = As),
-        (Hd.parsing = Zu),
-        (Hd.string = Fu),
-        (Hd.style = Xs),
-        (Hd.svgMath = $s),
+        (Hd.idGenerator = Ws),
+        (Hd.math = yu),
+        (Hd.object = ks),
+        (Hd.parsing = Xu),
+        (Hd.string = Pu),
+        (Hd.style = Ys),
+        (Hd.svgMath = Qs),
         (Hd.svgPaths = Vd),
-        (Hd.toolbox = uc),
-        (Hd.userAgent = Jo),
-        (Hd.xml = sc))
+        (Hd.toolbox = lc),
+        (Hd.userAgent = qo),
+        (Hd.xml = oc))
       var Ud = class extends K {
         constructor(t, n, r, i) {
           ;(super(t, n, r, void 0, i),
@@ -15631,17 +15631,17 @@ children`),
               null),
             (this.sizeChangeListeners = []),
             (this.locationChangeListeners = []),
-            (this.DEFAULT_SIZE = new R(
+            (this.DEFAULT_SIZE = new z(
               160 + K.DOUBLE_BORDER,
               80 + K.DOUBLE_BORDER,
             )),
-            (this.MIN_SIZE = new R(45 + K.DOUBLE_BORDER, 20 + K.DOUBLE_BORDER)),
+            (this.MIN_SIZE = new z(45 + K.DOUBLE_BORDER, 20 + K.DOUBLE_BORDER)),
             (this.editable = !0),
             (this.textChangeListener = () => {
               this.recomputeAriaContext()
             }),
             v(this.svgRoot, `blocklyTextInputBubble`),
-            (this.editor = new yd(t, this.id, () => {
+            (this.editor = new vd(t, this.id, () => {
               e.t().focusNode(this)
             })),
             this.contentContainer.appendChild(this.editor.getDom()),
@@ -15673,7 +15673,7 @@ children`),
         createResizeHandle(e, t) {
           return (
             (e = _(
-              j.IMAGE,
+              M.IMAGE,
               {
                 class: `blocklyResizeHandle`,
                 href: `${t.options.pathToMedia}resize-handle.svg`,
@@ -15689,7 +15689,7 @@ children`),
             (e.height = Math.max(e.height, this.MIN_SIZE.height)))
           var n = e.width - K.DOUBLE_BORDER,
             r = e.height - K.DOUBLE_BORDER
-          ;(this.editor.updateSize(new R(n, r), new R(0, 0)),
+          ;(this.editor.updateSize(new z(n, r), new z(0, 0)),
             this.editor.getDom().setAttribute(`x`, `${K.DOUBLE_BORDER / 2}`),
             this.editor.getDom().setAttribute(`y`, `${K.DOUBLE_BORDER / 2}`),
             this.resizeGroup.setAttribute(`y`, `${r}`),
@@ -15708,7 +15708,7 @@ children`),
         setPositionRelativeToAnchor(e, t) {
           ;(super.setPositionRelativeToAnchor(e, t), this.onLocationChange())
         }
-        positionByRect(e = new L(0, 0, 0, 0)) {
+        positionByRect(e = new R(0, 0, 0, 0)) {
           ;(super.positionByRect(e), this.onLocationChange())
         }
         onResizePointerDown(e) {
@@ -15717,7 +15717,7 @@ children`),
               (qr(
                 this.workspace,
                 e,
-                new I(
+                new L(
                   this.workspace.RTL
                     ? -this.getSize().width
                     : this.getSize().width,
@@ -15740,7 +15740,7 @@ children`),
             e.stopPropagation())
         }
         onResizePointerUp() {
-          ;((Do = null),
+          ;((Eo = null),
             (this.resizePointerUpListener &&=
               (c(this.resizePointerUpListener), null)),
             (this.resizePointerMoveListener &&=
@@ -15748,7 +15748,7 @@ children`),
         }
         onResizePointerMove(e) {
           ;((e = Jr(this.workspace, e)),
-            this.setSize(new R(this.workspace.RTL ? -e.x : e.x, e.y), !1),
+            this.setSize(new z(this.workspace.RTL ? -e.x : e.x, e.y), !1),
             this.onSizeChange())
         }
         onSizeChange() {
@@ -15888,10 +15888,10 @@ children`),
           static init(e) {
             var t = []
             return (
-              (t[B.INPUT_VALUE] = new Wd(e)),
-              (t[B.OUTPUT_VALUE] = new Wd(e)),
-              (t[B.NEXT_STATEMENT] = new Wd(e)),
-              (t[B.PREVIOUS_STATEMENT] = new Wd(e)),
+              (t[V.INPUT_VALUE] = new Wd(e)),
+              (t[V.OUTPUT_VALUE] = new Wd(e)),
+              (t[V.NEXT_STATEMENT] = new Wd(e)),
+              (t[V.PREVIOUS_STATEMENT] = new Wd(e)),
               t
             )
           }
@@ -15914,7 +15914,7 @@ children`),
             this.id = `${e.id}_connection_${Ve()}`
           }
           connect_(e) {
-            var t = B.INPUT_VALUE,
+            var t = V.INPUT_VALUE,
               n = this.getSourceBlock(),
               r = e.getSourceBlock()
             if (
@@ -15930,7 +15930,7 @@ children`),
               this.applyShadowState(e)
             }
             if (qe()) {
-              var a = new (S(O.BLOCK_MOVE))(r)
+              var a = new (S(k.BLOCK_MOVE))(r)
               a.setReason([`connect`])
             }
             if (!this || !e) throw Error(`Cannot connect null connections.`)
@@ -15959,7 +15959,7 @@ children`),
             return this.sourceBlock_
           }
           isSuperior() {
-            return this.type === B.INPUT_VALUE || this.type === B.NEXT_STATEMENT
+            return this.type === V.INPUT_VALUE || this.type === V.NEXT_STATEMENT
           }
           isConnected() {
             return !!this.targetConnection
@@ -15987,7 +15987,7 @@ children`),
             if (!n || !r) throw Error(`Source connection not connected.`)
             var i = e.gd
             if ((i || e.B(!0), qe())) {
-              var a = new (S(O.BLOCK_MOVE))(r.getSourceBlock())
+              var a = new (S(k.BLOCK_MOVE))(r.getSourceBlock())
               a.setReason([`disconnect`])
             }
             var o = this.targetConnection
@@ -16156,12 +16156,12 @@ children`),
               }))
             if (r) {
               if (((t = ni(r, t.workspace)), e)) {
-                if (this.type === B.INPUT_VALUE) {
+                if (this.type === V.INPUT_VALUE) {
                   if (!t.outputConnection)
                     throw Error(`Shadow block is missing an output connection`)
                   if (!this.connect(t.outputConnection))
                     throw Error(`Could not connect shadow block to connection`)
-                } else if (this.type === B.NEXT_STATEMENT) {
+                } else if (this.type === V.NEXT_STATEMENT) {
                   if (!t.previousConnection)
                     throw Error(`Shadow block is missing previous connection`)
                   if (!this.connect(t.previousConnection))
@@ -16179,7 +16179,7 @@ children`),
             e && ((this.shadowDom = Qr(e)), (this.shadowState = un(e)))
           }
           static getConnectionForOrphanedConnection(e, t) {
-            if (t.type === B.OUTPUT_VALUE) {
+            if (t.type === V.OUTPUT_VALUE) {
               a: {
                 t = t.getSourceBlock()
                 for (var n; (n = xi(e, t));)
@@ -16222,10 +16222,10 @@ children`),
         (qd[(qd.CENTRE = 0)] = `CENTRE`),
         (qd[(qd.RIGHT = 1)] = `RIGHT`))
       var Jd = []
-      ;((Jd[B.INPUT_VALUE] = B.OUTPUT_VALUE),
-        (Jd[B.OUTPUT_VALUE] = B.INPUT_VALUE),
-        (Jd[B.NEXT_STATEMENT] = B.PREVIOUS_STATEMENT),
-        (Jd[B.PREVIOUS_STATEMENT] = B.NEXT_STATEMENT))
+      ;((Jd[V.INPUT_VALUE] = V.OUTPUT_VALUE),
+        (Jd[V.OUTPUT_VALUE] = V.INPUT_VALUE),
+        (Jd[V.NEXT_STATEMENT] = V.PREVIOUS_STATEMENT),
+        (Jd[V.PREVIOUS_STATEMENT] = V.NEXT_STATEMENT))
       var Yd = class extends q {
           constructor(e, t) {
             ;(super(e, t),
@@ -16233,7 +16233,7 @@ children`),
               (this.targetConnection = null),
               (this.db = e.workspace.connectionDBList[t]),
               (this.dbOpposite = e.workspace.connectionDBList[Jd[t]]),
-              (this.offsetInBlock = new I(0, 0)),
+              (this.offsetInBlock = new L(0, 0)),
               (this.trackedState = Yd.TrackedState.WILL_TRACK))
           }
           dispose() {
@@ -16309,9 +16309,9 @@ children`),
               t = this.targetBlock()
             e &&
               t &&
-              ((e = I.difference(this.offsetInBlock, e.offsetInBlock)),
+              ((e = L.difference(this.offsetInBlock, e.offsetInBlock)),
               this.insertionMarker &&
-                (this.type === B.INPUT_VALUE
+                (this.type === V.INPUT_VALUE
                   ? (e.x += this.insertionMarker.getHeightWidth().width)
                   : (e.y += this.insertionMarker.getHeightWidth().height)),
               t.translate(e.x, e.y))
@@ -16321,10 +16321,10 @@ children`),
           }
           setAriaRole(t) {
             var n =
-              this.type === B.INPUT_VALUE
+              this.type === V.INPUT_VALUE
                 ? e.C.INPUT_LABEL_VALUE
                 : e.C.INPUT_LABEL_STATEMENT
-            ;(h(t, k.FIGURE), g(t, A.ROLEDESCRIPTION, n))
+            ;(h(t, A.FIGURE), g(t, j.ROLEDESCRIPTION, n))
           }
           recomputeAriaContext(t) {
             this.setAriaRole(t)
@@ -16338,14 +16338,14 @@ children`),
               ? ((n =
                   r?.getAriaLabelText() ??
                   kn(r.getSourceBlock(), r, !0).join(`, `)),
-                this.type === B.NEXT_STATEMENT
+                this.type === V.NEXT_STATEMENT
                   ? g(
                       t,
-                      A.LABEL,
+                      j.LABEL,
                       e.C.INPUT_LABEL_END_STATEMENT.replace(`%1`, n),
                     )
-                  : g(t, A.LABEL, n))
-              : g(t, A.LABEL, e.C.INPUT_LABEL_EMPTY)
+                  : g(t, j.LABEL, n))
+              : g(t, j.LABEL, e.C.INPUT_LABEL_EMPTY)
           }
           highlight() {
             this.highlighted = !0
@@ -16391,7 +16391,7 @@ children`),
           startTrackingAll() {
             this.setTracking(!0)
             var e = []
-            if (this.type !== B.INPUT_VALUE && this.type !== B.NEXT_STATEMENT)
+            if (this.type !== V.INPUT_VALUE && this.type !== V.NEXT_STATEMENT)
               return e
             var t = this.targetBlock()
             if (t) {
@@ -16474,13 +16474,13 @@ children`),
             return (super.setCheck(e), this.sourceBlock_.queueRender(), this)
           }
           showContextMenu(e) {
-            var t = H.registry.getContextMenuOptions({ focusedNode: this }, e)
+            var t = U.registry.getContextMenuOptions({ focusedNode: this }, e)
             if (t.length) {
               var n = this.getSourceBlock(),
                 r = n.workspace
-              if (e instanceof PointerEvent) var i = new I(e.clientX, e.clientY)
+              if (e instanceof PointerEvent) var i = new L(e.clientX, e.clientY)
               else
-                ((i = new I(this.x, this.y)),
+                ((i = new L(this.x, this.y)),
                   (i = ct(r, i).translate(n.RTL ? -5 : 5, 5)))
               zr(e, t, n.RTL, r, i)
             }
@@ -16649,17 +16649,17 @@ children`),
             if (this === e.find((e) => e.isVisible()) || this === e[0])
               return this.getSourceBlock().getRowId()
             var t = e.indexOf(this),
-              n = e[t - 1].connection?.type === B.NEXT_STATEMENT
-            return this.connection?.type === B.NEXT_STATEMENT || n
+              n = e[t - 1].connection?.type === V.NEXT_STATEMENT
+            return this.connection?.type === V.NEXT_STATEMENT || n
               ? `${this.getSourceBlock().id}-input${t}`
               : e[t - 1].getRowId()
           }
-          getLabel(e = hs.STANDARD, t = !0) {
+          getLabel(e = ms.STANDARD, t = !0) {
             if (!this.isVisible()) return ``
             var n = Cn(this, !1, e)
             return (
               t &&
-                this.connection?.type === B.INPUT_VALUE &&
+                this.connection?.type === V.INPUT_VALUE &&
                 (t = this.connection.targetBlock()) &&
                 !t.isInsertionMarker() &&
                 n.push(En(t, e).join(`, `)),
@@ -16689,7 +16689,7 @@ children`),
             ;(super(t, n),
               (this.name = t),
               (this.type = e.je.STATEMENT),
-              (this.connection = this.makeConnection(B.NEXT_STATEMENT)))
+              (this.connection = this.makeConnection(V.NEXT_STATEMENT)))
           }
         }
       e.go = class extends Qd {
@@ -16698,7 +16698,7 @@ children`),
           ;(super(t, n),
             (this.name = t),
             (this.type = e.je.VALUE),
-            (this.connection = this.makeConnection(B.INPUT_VALUE)))
+            (this.connection = this.makeConnection(V.INPUT_VALUE)))
         }
       }
       var nf = class {
@@ -16734,13 +16734,13 @@ children`),
             (this.workspace = e),
             (this.id = n && !e.getBlockById(n) ? n : He()),
             e.setBlockById(this.id, this),
-            (this.xy = new I(0, 0)),
+            (this.xy = new L(0, 0)),
             (this.isInFlyout = e.isFlyout),
             (this.isInMutator = e.isMutator),
             (this.RTL = e.RTL),
             t)
           ) {
-            if (((this.type = t), (n = ss[t]), !n || typeof n != `object`))
+            if (((this.type = t), (n = os[t]), !n || typeof n != `object`))
               throw TypeError(`Invalid block definition for type: ` + t)
             Object.assign(this, n)
           }
@@ -16755,7 +16755,7 @@ children`),
           try {
             ;(typeof this.init == `function` &&
               ((e.Qc = !1), this.init(), (e.Qc = n)),
-              qe() && x(new (S(O.BLOCK_CREATE))(this)))
+              qe() && x(new (S(k.BLOCK_CREATE))(this)))
           } finally {
             ;(e.B(t), (e.Qc = n))
           }
@@ -16769,7 +16769,7 @@ children`),
             this.onchangeWrapper &&
               this.workspace.removeChangeListener(this.onchangeWrapper),
             this.unplug(e),
-            qe() && x(new (S(O.BLOCK_DELETE))(this)),
+            qe() && x(new (S(k.BLOCK_DELETE))(this)),
             this.workspace.removeTopBlock(this),
             this.disposeInternal())
         }
@@ -16821,7 +16821,7 @@ children`),
           var e = null
           for (let t = 0; t < this.inputList.length; t++) {
             let n = this.inputList[t].connection
-            if (n && n.type === B.INPUT_VALUE && n.targetConnection) {
+            if (n && n.type === V.INPUT_VALUE && n.targetConnection) {
               if (e) return null
               e = n
             }
@@ -17115,7 +17115,7 @@ children`),
           if (e)
             (t === void 0 && (t = null),
               (this.previousConnection ||= this.makeConnection_(
-                B.PREVIOUS_STATEMENT,
+                V.PREVIOUS_STATEMENT,
               )),
               this.previousConnection.setCheck(t))
           else if (this.previousConnection) {
@@ -17130,7 +17130,7 @@ children`),
         setNextStatement(e, t) {
           if (e)
             (t === void 0 && (t = null),
-              (this.nextConnection ||= this.makeConnection_(B.NEXT_STATEMENT)),
+              (this.nextConnection ||= this.makeConnection_(V.NEXT_STATEMENT)),
               this.nextConnection.setCheck(t))
           else if (this.nextConnection) {
             if (this.nextConnection.isConnected())
@@ -17143,7 +17143,7 @@ children`),
         setOutput(e, t) {
           if (e)
             (t === void 0 && (t = null),
-              (this.outputConnection ||= this.makeConnection_(B.OUTPUT_VALUE)),
+              (this.outputConnection ||= this.makeConnection_(V.OUTPUT_VALUE)),
               this.outputConnection.setCheck(t))
           else if (this.outputConnection) {
             if (this.outputConnection.isConnected())
@@ -17156,7 +17156,7 @@ children`),
         setInputsInline(e) {
           this.inputsInline !== e &&
             (x(
-              new (S(O.BLOCK_CHANGE))(
+              new (S(k.BLOCK_CHANGE))(
                 this,
                 `inline`,
                 null,
@@ -17201,7 +17201,7 @@ children`),
             this.setDisabledReason(!1, `MANUALLY_DISABLED`),
             this.disabledReasons.has(t) !== e &&
               (e ? this.disabledReasons.add(t) : this.disabledReasons.delete(t),
-              (e = new (S(O.BLOCK_CHANGE))(this, `disabled`, null, !e, e)),
+              (e = new (S(k.BLOCK_CHANGE))(this, `disabled`, null, !e, e)),
               e.setDisabledReason(t),
               x(e)))
         }
@@ -17224,7 +17224,7 @@ children`),
         setCollapsed(e) {
           this.collapsed_ !== e &&
             (x(
-              new (S(O.BLOCK_CHANGE))(
+              new (S(k.BLOCK_CHANGE))(
                 this,
                 `collapsed`,
                 null,
@@ -17308,7 +17308,7 @@ children`),
           return (this.inputList.push(e), e)
         }
         appendInputFromRegistry(e, t) {
-          return (e = Ie(F.INPUT, e, !1))
+          return (e = Ie(I.INPUT, e, !1))
             ? this.appendInput(new e(t, this))
             : null
         }
@@ -17530,7 +17530,7 @@ children`),
             e === `input_statement` ||
             e === `input_dummy` ||
             e === `input_end_row` ||
-            Le(F.INPUT, e)
+            Le(I.INPUT, e)
           )
         }
         stringToFieldJson(e) {
@@ -17583,15 +17583,15 @@ children`),
           )
         }
         getCommentText() {
-          return this.getIcon(Qc.COMMENT)?.getText() ?? null
+          return this.getIcon(Zc.COMMENT)?.getText() ?? null
         }
         setCommentText(t) {
           var n,
-            r = (n = this.getIcon(Qc.COMMENT))?.getText() ?? null
+            r = (n = this.getIcon(Zc.COMMENT))?.getText() ?? null
           if (r !== t) {
             if (t !== null) {
-              if (((n = this.getIcon(Qc.COMMENT)), !n)) {
-                if (((n = Ie(F.ICON, Qc.COMMENT.toString(), !1)), !n))
+              if (((n = this.getIcon(Zc.COMMENT)), !n)) {
+                if (((n = Ie(I.ICON, Zc.COMMENT.toString(), !1)), !n))
                   throw Error(
                     `No comment icon class is registered, so a comment cannot be set`,
                   )
@@ -17607,7 +17607,7 @@ children`),
                     typeof n.getBubbleSize == `function` &&
                     typeof n.setBubbleLocation == `function` &&
                     typeof n.getBubbleLocation == `function` &&
-                    n.getType() === Qc.COMMENT
+                    n.getType() === Zc.COMMENT
                   ))
                 )
                   throw Error(
@@ -17616,8 +17616,8 @@ children`),
                 n = this.addIcon(n)
               }
               ;(e.Ub++, n.setText(t), e.Ub--)
-            } else this.removeIcon(Qc.COMMENT)
-            x(new (S(O.BLOCK_CHANGE))(this, `comment`, null, r, t))
+            } else this.removeIcon(Zc.COMMENT)
+            x(new (S(k.BLOCK_CHANGE))(this, `comment`, null, r, t))
           }
         }
         setWarningText() {}
@@ -17643,7 +17643,7 @@ children`),
           return this.icons.some((t) => t.getType().equals(e))
         }
         getIcon(e) {
-          return e instanceof Qc
+          return e instanceof Zc
             ? this.icons.find((t) => t.getType().equals(e))
             : this.icons.find((t) => t.getType().toString() === e)
         }
@@ -17655,7 +17655,7 @@ children`),
         }
         moveBy(e, t, n) {
           if (this.parentBlock_) throw Error(`Block has parent`)
-          var r = new (S(O.BLOCK_MOVE))(this)
+          var r = new (S(k.BLOCK_MOVE))(this)
           ;(n && r.setReason(n), this.xy.translate(e, t), r.recordNew(), x(r))
         }
         makeConnection_(e) {
@@ -17688,7 +17688,7 @@ children`),
         paste(t, n, r) {
           if (!n.isCapacityAvailable(t.typeCounts)) return null
           ;(r && ((t.blockState.x = r.x), (t.blockState.y = r.y)),
-            (r ??= new I(t.blockState.x || 0, t.blockState.y || 0)),
+            (r ??= new L(t.blockState.x || 0, t.blockState.y || 0)),
             e.Ub++)
           try {
             var i = fn(t.blockState, n)
@@ -17697,7 +17697,7 @@ children`),
             e.Ub--
           }
           if (!i) return i
-          qe() && !i.isShadow() && x(new (S(O.BLOCK_CREATE))(i))
+          qe() && !i.isShadow() && x(new (S(k.BLOCK_CREATE))(i))
           var a = i
           return (
             kt().then(() => {
@@ -17728,7 +17728,7 @@ children`),
           return uf
         }),
         (ff.paste = Ii),
-        (ff.registry = Dc),
+        (ff.registry = Ec),
         (ff.setLastCopiedData = function (e) {
           lf = e
         }),
@@ -17739,13 +17739,13 @@ children`),
           uf = e
         }))
       var pf = {}
-      ;((pf.CollapseCommentBarButton = vd),
-        (pf.CommentBarButton = _d),
-        (pf.CommentEditor = yd),
-        (pf.CommentView = xd),
-        (pf.DeleteCommentBarButton = bd),
-        (pf.RenderedWorkspaceComment = Cd),
-        (pf.WorkspaceComment = Sd))
+      ;((pf.CollapseCommentBarButton = _d),
+        (pf.CommentBarButton = gd),
+        (pf.CommentEditor = vd),
+        (pf.CommentView = bd),
+        (pf.DeleteCommentBarButton = yd),
+        (pf.RenderedWorkspaceComment = Sd),
+        (pf.WorkspaceComment = xd))
       var mf = class {
         constructor(t, n, r, i) {
           if (
@@ -17755,7 +17755,7 @@ children`),
             (this.height = this.width = 0),
             (this.cursorSvg = this.svgText = null),
             (this.text = r.text),
-            (this.position = new I(0, 0)),
+            (this.position = new L(0, 0)),
             (this.callbackKey = r.callbackKey || r.callbackkey),
             (this.cssClass = r[`web-class`] || null),
             (this.info = r),
@@ -17765,14 +17765,14 @@ children`),
             this.cssClass && (t += ` ` + this.cssClass),
             (this.id = Ve()),
             (this.svgGroup = _(
-              j.G,
+              M.G,
               { id: this.id, class: t },
               this.workspace.getCanvas(),
             )),
             !this.isFlyoutLabel)
           ) {
             var a = _(
-              j.RECT,
+              M.RECT,
               {
                 class: `blocklyFlyoutButtonShadow`,
                 rx: mf.BORDER_RADIUS,
@@ -17782,10 +17782,10 @@ children`),
               },
               this.svgGroup,
             )
-            h(a, k.NONE)
+            h(a, A.NONE)
           }
           ;((t = _(
-            j.RECT,
+            M.RECT,
             {
               class: this.isFlyoutLabel
                 ? `blocklyFlyoutLabelBackground`
@@ -17795,9 +17795,9 @@ children`),
             },
             this.svgGroup,
           )),
-            h(t, k.NONE),
+            h(t, A.NONE),
             (n = _(
-              j.TEXT,
+              M.TEXT,
               {
                 class: this.isFlyoutLabel
                   ? `blocklyFlyoutLabelText`
@@ -17816,10 +17816,10 @@ children`),
               this.workspace
                 .getThemeManager()
                 .subscribe(this.svgText, `flyoutForegroundColour`, `fill`)),
-            h(n, k.NONE),
+            h(n, A.NONE),
             (i = `${r}, ${this.isFlyoutLabel ? e.C.ARIA_LABEL_HEADING : e.C.ARIA_LABEL_BUTTON}`),
-            g(this.getFocusableElement(), A.LABEL, i),
-            h(this.getFocusableElement(), k.OPTION),
+            g(this.getFocusableElement(), j.LABEL, i),
+            h(this.getFocusableElement(), A.OPTION),
             (i = Ze(n, `fontSize`)))
           var s = Ze(n, `fontWeight`),
             c = Ze(n, `fontFamily`)
@@ -17885,7 +17885,7 @@ children`),
           return this.position
         }
         getBoundingRectangle() {
-          return new L(
+          return new R(
             this.position.y,
             this.position.y + this.height,
             this.position.x,
@@ -17948,7 +17948,7 @@ children`),
         }
         onNodeFocus() {
           var e = this.getPosition()
-          ;((e = new L(e.y, e.y + this.height, e.x, e.x + this.width)),
+          ;((e = new R(e.y, e.y + this.height, e.x, e.x + this.width)),
             this.workspace.scrollBoundsIntoView(e))
         }
         onNodeBlur() {}
@@ -17965,7 +17965,7 @@ children`),
               `%1`,
               _n(J.NEXT_HEADING),
             )
-            Bc.show(t, { message: n, id: `flyoutLabelHint` })
+            zc.show(t, { message: n, id: `flyoutLabelHint` })
           } else
             (t = this.targetWorkspace.getButtonCallback(this.callbackKey)) &&
               t(this)
@@ -18055,10 +18055,10 @@ children`),
         (Y.SCROLL_RIGHT = `scroll_right`),
         (Y.SCROLL_UP = `scroll_up`),
         (Y.SCROLL_DOWN = `scroll_down`))
-      var _f = M.registry.createSerializedKey(U.LEFT, [U.CTRL_CMD]),
-        vf = M.registry.createSerializedKey(U.RIGHT, [U.CTRL_CMD]),
-        yf = M.registry.createSerializedKey(U.UP, [U.CTRL_CMD]),
-        bf = M.registry.createSerializedKey(U.DOWN, [U.CTRL_CMD]),
+      var _f = N.registry.createSerializedKey(W.LEFT, [W.CTRL_CMD]),
+        vf = N.registry.createSerializedKey(W.RIGHT, [W.CTRL_CMD]),
+        yf = N.registry.createSerializedKey(W.UP, [W.CTRL_CMD]),
+        bf = N.registry.createSerializedKey(W.DOWN, [W.CTRL_CMD]),
         xf = (e) => {
           if (e.isFlyout) {
             let t = e.targetWorkspace
@@ -18108,9 +18108,9 @@ children`),
             !e.isDragging() &&
             e.isMovable() &&
             !((t = e.targetWorkspace) != null && t.isMutator) &&
-            !G.mover.isMoving() &&
-            !ku &&
-            !ed
+            !Ad.mover.isMoving() &&
+            !Ou &&
+            !$u
           )
         },
         Af = (t) => {
@@ -18244,7 +18244,7 @@ children`),
                   .map(
                     (e) => (
                       (e = e.getBoundingRectangle()),
-                      new L(e.top - o, e.bottom + o, e.left - o, e.right + o)
+                      new R(e.top - o, e.bottom + o, e.left - o, e.right + o)
                     ),
                   ),
                 c = n.getHeightWidth().width,
@@ -18340,7 +18340,7 @@ children`),
               (this.startLoc = this.block.getRelativeToSurfaceXY()),
               (this.connectionCandidate = null),
               (this.connectionPreviewer = new (Be(
-                F.CONNECTION_PREVIEWER,
+                I.CONNECTION_PREVIEWER,
                 this.workspace.options,
               ))(this.block)),
               de(),
@@ -18354,7 +18354,7 @@ children`),
               this.cacheAllConnectionPairs(),
               e instanceof KeyboardEvent
                 ? ((e = this.getInitialCandidate() ?? void 0),
-                  this.updateConnectionPreview(this.block, new I(0, 0), e) &&
+                  this.updateConnectionPreview(this.block, new L(0, 0), e) &&
                     this.block.moveDuringDrag(this.determineConnectionOffset()),
                   this.allConnectionPairs.length
                     ? Oa(this.workspace)
@@ -18457,7 +18457,7 @@ children`),
                   (this.startChildConn = t ?? null)))
           }
           fireDragStartEvent() {
-            var e = new (S(O.BLOCK_DRAG))(
+            var e = new (S(k.BLOCK_DRAG))(
               this.block,
               !0,
               this.block.getDescendants(!1),
@@ -18465,7 +18465,7 @@ children`),
             x(e)
           }
           fireDragEndEvent() {
-            var e = new (S(O.BLOCK_DRAG))(
+            var e = new (S(k.BLOCK_DRAG))(
               this.block,
               !1,
               this.block.getDescendants(!1),
@@ -18474,7 +18474,7 @@ children`),
           }
           fireMoveEvent() {
             if (!this.block.isDeadOrDying()) {
-              var e = new (S(O.BLOCK_MOVE))(this.block)
+              var e = new (S(k.BLOCK_MOVE))(this.block)
               ;(e.setReason([`drag`]),
                 (e.oldCoordinate = this.startLoc),
                 e.recordNew(),
@@ -18489,7 +18489,7 @@ children`),
               (t = !!this.connectionCandidate),
               this.updateConnectionPreview(
                 this.block,
-                I.difference(e, this.startLoc),
+                L.difference(e, this.startLoc),
               ),
               this.connectionCandidate)
             )
@@ -18511,10 +18511,10 @@ children`),
             n = t.y - n.y
             var i = this.BLOCK_CONNECTION_OFFSET
             return (
-              e.type === B.PREVIOUS_STATEMENT || e.type === B.OUTPUT_VALUE
+              e.type === V.PREVIOUS_STATEMENT || e.type === V.OUTPUT_VALUE
                 ? ((r += i), (n += i))
                 : ((r -= i), (n -= i)),
-              new I(r, n)
+              new L(r, n)
             )
           }
           updateConnectionPreview(e, t, n) {
@@ -18527,7 +18527,7 @@ children`),
               var i = r && this.currCandidateIsBetter(r, t, n) ? r : n
               this.connectionCandidate = i
               var { local: a, neighbour: o } = i
-              i = a.type === B.OUTPUT_VALUE || a.type === B.PREVIOUS_STATEMENT
+              i = a.type === V.OUTPUT_VALUE || a.type === V.PREVIOUS_STATEMENT
               var s
               if (
                 ((t =
@@ -18573,10 +18573,10 @@ children`),
               switch (
                 ((r = (l = r?.neighbour.x) ?? e.getRelativeToSurfaceXY().x),
                 (l = this.BLOCK_CONNECTION_OFFSET * 2),
-                this.getDirectionToNewLocation(I.sum(this.startLoc, t)))
+                this.getDirectionToNewLocation(L.sum(this.startLoc, t)))
               ) {
-                case kd.LEFT:
-                case kd.UP:
+                case Od.LEFT:
+                case Od.UP:
                   t =
                     Math.min(...s.map((e) => e.top)) -
                     l -
@@ -18585,23 +18585,23 @@ children`),
                 default:
                   t = Math.max(...s.map((e) => e.bottom)) + l
               }
-              e.moveDuringDrag(new I(r, t))
+              e.moveDuringDrag(new L(r, t))
             }
             ;(i = this.connectionPreviewer) == null || i.hidePreview()
           }
           orphanCanConnectAtEnd(e, t, n) {
             return !!q.getConnectionForOrphanedConnection(
               e,
-              n === B.OUTPUT_VALUE ? t.outputConnection : t.previousConnection,
+              n === V.OUTPUT_VALUE ? t.outputConnection : t.previousConnection,
             )
           }
           currCandidateIsBetter(t, n, r) {
             if (this.moveMode === Mf.CONSTRAINED) return !1
             var { local: i, neighbour: a } = t
-            t = new I(i.x, i.y)
-            var o = new I(a.x, a.y)
+            t = new L(i.x, i.y)
+            var o = new L(a.x, a.y)
             return (
-              (n = I.distance(I.sum(t, n), o)),
+              (n = L.distance(L.sum(t, n), o)),
               r.distance > n - e.Og.currentConnectionPreference
             )
           }
@@ -18709,11 +18709,11 @@ children`),
             }
             if (this.startParentConn)
               switch (this.startParentConn.type) {
-                case B.INPUT_VALUE:
+                case V.INPUT_VALUE:
                   this.block.outputConnection &&
                     this.startParentConn.connect(this.block.outputConnection)
                   break
-                case B.NEXT_STATEMENT:
+                case V.NEXT_STATEMENT:
                   this.block.previousConnection &&
                     this.startParentConn.connect(this.block.previousConnection)
               }
@@ -18740,10 +18740,10 @@ children`),
               ae(e.C.ANNOUNCE_MOVE_CANCELED))
           }
           findTraversalCandidate(e) {
-            var t = this.getDirectionToNewLocation(I.sum(this.startLoc, e)),
+            var t = this.getDirectionToNewLocation(L.sum(this.startLoc, e)),
               n = this.allConnectionPairs
-            if (t === kd.NONE || !n.length) return this.connectionCandidate
-            t = t === kd.RIGHT || t === kd.DOWN
+            if (t === Od.NONE || !n.length) return this.connectionCandidate
+            t = t === Od.RIGHT || t === Od.DOWN
             var r = n.findIndex(
                 (e) =>
                   this.connectionCandidate?.local === e.local &&
@@ -18752,7 +18752,7 @@ children`),
               i = this.block.workspace.getNavigator()
             return t
               ? r === -1
-                ? this.isInTerminalPosition(this.block, kd.DOWN)
+                ? this.isInTerminalPosition(this.block, Od.DOWN)
                   ? i.getNavigationLoops()
                     ? this.pairToCandidate(n[0])
                     : null
@@ -18761,7 +18761,7 @@ children`),
                   ? null
                   : this.pairToCandidate(n[r + 1])
               : r === -1
-                ? this.isInTerminalPosition(this.block, kd.UP)
+                ? this.isInTerminalPosition(this.block, Od.UP)
                   ? i.getNavigationLoops()
                     ? this.pairToCandidate(n[n.length - 1])
                     : null
@@ -18774,7 +18774,7 @@ children`),
             if (e.getParent()) return !1
             var n = e.workspace.getTopBlocks(!0),
               r = e.getBoundingRectangle(),
-              i = (t = t === kd.UP) ? `top` : `bottom`,
+              i = (t = t === Od.UP) ? `top` : `bottom`,
               a = t ? (e, t) => e <= t : (e, t) => e >= t
             ;((t = n.filter(
               (t) => t.id !== e.id && a(t.getBoundingRectangle()[i], r[i]),
@@ -18794,17 +18794,17 @@ children`),
           }
           getDirectionToNewLocation(e) {
             var t = this.block.getRelativeToSurfaceXY()
-            e = I.difference(e, t)
+            e = L.difference(e, t)
             var { x: n, y: r } = e
             return Math.abs(n) > Math.abs(r)
               ? n < 0
-                ? kd.LEFT
-                : kd.RIGHT
+                ? Od.LEFT
+                : Od.RIGHT
               : Math.abs(r) > 0
                 ? r < 0
-                  ? kd.UP
-                  : kd.DOWN
-                : kd.NONE
+                  ? Od.UP
+                  : Od.DOWN
+                : Od.NONE
           }
           getAllConnections(e) {
             if (e.isShadow()) return []
@@ -18832,7 +18832,7 @@ children`),
           getInitialCandidate() {
             var e = this.workspace
               .getSvgGroup()
-              .querySelector(`.${ks.PASSIVE_FOCUS_NODE_CSS_CLASS_NAME}`)
+              .querySelector(`.${Os.PASSIVE_FOCUS_NODE_CSS_CLASS_NAME}`)
             if (
               !e ||
               !e.id ||
@@ -18904,16 +18904,16 @@ children`),
               (e.Qc = n))
           }
         },
-        Ff = class extends Qu {
+        Ff = class extends Zu {
           isLabelField() {
             return !0
           }
           constructor(e, t, n) {
-            ;(super(Qu.SKIP_SETUP),
+            ;(super(Zu.SKIP_SETUP),
               (this.class = null),
               (this.EDITABLE = !1),
               (this.maxDisplayLength = 1 / 0),
-              e !== Qu.SKIP_SETUP &&
+              e !== Zu.SKIP_SETUP &&
                 (n ? this.configure_(n) : (this.class = t || null),
                 this.setValue(e)))
           }
@@ -18925,7 +18925,7 @@ children`),
               this.class && v(this.getTextElement(), this.class),
               this.fieldGroup_ &&
                 (v(this.fieldGroup_, `blocklyLabelField`),
-                g(this.fieldGroup_, A.HIDDEN, !0)))
+                g(this.fieldGroup_, j.HIDDEN, !0)))
           }
           computeAriaLabel(e = !0) {
             e = e ? this.getAriaTypeName() : null
@@ -18978,7 +18978,7 @@ children`),
           }
           createParagraph(e) {
             return _(
-              j.G,
+              M.G,
               {
                 class: `blocklyText blocklyBubbleText blocklyNoPointerEvents`,
                 transform: `translate(0,${K.BORDER_WIDTH})`,
@@ -18993,7 +18993,7 @@ children`),
               .split(`
 `)
               .map((t) => {
-                var r = _(j.TEXT, { y: `${n}em`, x: K.BORDER_WIDTH }, e)
+                var r = _(M.TEXT, { y: `${n}em`, x: K.BORDER_WIDTH }, e)
                 return (
                   (t = document.createTextNode(t)),
                   r.appendChild(t),
@@ -19010,7 +19010,7 @@ children`),
           updateBubbleSize() {
             var e = this.paragraph.getBBox()
             this.setSize(
-              new R(
+              new z(
                 e.width + K.BORDER_WIDTH * 2,
                 e.height + K.BORDER_WIDTH * 2,
               ),
@@ -19032,7 +19032,7 @@ children`),
             this.svgRoot ||
               (super.initView(e),
               _(
-                j.PATH,
+                M.PATH,
                 {
                   class: `blocklyIconShape`,
                   d: `M2,15Q-1,15 0.5,12L6.5,1.7Q8,-1 9.5,1.7L15.5,12Q17,15 14,15z`,
@@ -19040,7 +19040,7 @@ children`),
                 this.svgRoot,
               ),
               _(
-                j.PATH,
+                M.PATH,
                 {
                   class: `blocklyIconSymbol`,
                   d: `m7,4.8v3.16l0.27,2.27h1.46l0.27,-2.27v-3.16z`,
@@ -19048,7 +19048,7 @@ children`),
                 this.svgRoot,
               ),
               _(
-                j.RECT,
+                M.RECT,
                 {
                   class: `blocklyIconSymbol`,
                   x: `7`,
@@ -19069,7 +19069,7 @@ children`),
             return Lf.WEIGHT
           }
           getSize() {
-            return new R(17, 17)
+            return new z(17, 17)
           }
           applyColour() {
             super.applyColour()
@@ -19110,7 +19110,7 @@ children`),
           }
           setBubbleVisible(t) {
             var n = this
-            return (0, E.asyncExecutePromiseGeneratorFunction)(function* () {
+            return (0, D.asyncExecutePromiseGeneratorFunction)(function* () {
               if (n.bubbleIsVisible() !== t) {
                 if ((yield kt(), t))
                   ((n.textBubble = new If(
@@ -19129,7 +19129,7 @@ children`),
                   ;((e = n.textBubble) == null || e.dispose(),
                     (n.textBubble = null))
                 }
-                ;(x(new (S(O.BUBBLE_OPEN))(n.sourceBlock, t, `warning`)),
+                ;(x(new (S(k.BUBBLE_OPEN))(n.sourceBlock, t, `warning`)),
                   n.recomputeAriaContext())
               }
             })
@@ -19138,11 +19138,11 @@ children`),
             return this.textBubble
           }
           getAnchorLocation() {
-            return I.sum(this.workspaceLocation, new I(8.5, 8.5))
+            return L.sum(this.workspaceLocation, new L(8.5, 8.5))
           }
           getBubbleOwnerRect() {
             var e = this.sourceBlock.getSvgRoot().getBBox()
-            return new L(e.y, e.y + e.height, e.x, e.x + e.width)
+            return new R(e.y, e.y + e.height, e.x, e.x + e.width)
           }
           getAriaLabel() {
             return this.bubbleIsVisible()
@@ -19150,7 +19150,7 @@ children`),
               : e.C.ICON_LABEL_WARNING_CLOSED
           }
         }
-      ;((Lf.TYPE = Qc.WARNING), (Lf.WEIGHT = 2))
+      ;((Lf.TYPE = Zc.WARNING), (Lf.WEIGHT = 2))
       var Rf = class extends nf {
         constructor(e, t, n) {
           if (
@@ -19166,7 +19166,7 @@ children`),
                 null),
             (this.translation = ``),
             (this.dragging = !1),
-            (this.relativeCoords = new I(0, 0)),
+            (this.relativeCoords = new L(0, 0)),
             (this.dragStrategy = new Pf(this)),
             !e.rendered)
           )
@@ -19174,7 +19174,7 @@ children`),
               `Cannot create a rendered block in a headless workspace`,
             )
           ;((this.workspace = e),
-            (this.svgGroup = _(j.G, {})),
+            (this.svgGroup = _(M.G, {})),
             t && v(this.svgGroup, t),
             (this.style = e.getRenderer().getConstants().getBlockStyle(null)),
             (this.pathObject = e
@@ -19240,10 +19240,10 @@ children`),
           if (this.parentBlock_) throw Error(`Block has parent`)
           var r = qe(),
             i = null
-          ;(r && ((i = new (S(O.BLOCK_MOVE))(this)), n && i.setReason(n)),
-            (e = new I(e, t)),
+          ;(r && ((i = new (S(k.BLOCK_MOVE))(this)), n && i.setReason(n)),
+            (e = new L(e, t)),
             (t = this.getRelativeToSurfaceXY()),
-            (e = I.sum(t, e)),
+            (e = L.sum(t, e)),
             this.translate(e.x, e.y),
             this.workspace.connectionDBList.forEach((e) =>
               e?.beginBulkUpdates(),
@@ -19255,7 +19255,7 @@ children`),
         }
         translate(e, t) {
           ;((this.translation = `translate(${e}, ${t})`),
-            (this.relativeCoords = new I(e, t)),
+            (this.relativeCoords = new L(e, t)),
             this.getSvgRoot().setAttribute(`transform`, this.getTranslation()))
         }
         getTranslation() {
@@ -19292,7 +19292,7 @@ children`),
             var n = t.x - e.width,
               r = t.x
           else ((n = t.x), (r = t.x + e.width))
-          return new L(t.y, t.y + e.height, n, r)
+          return new R(t.y, t.y + e.height, n, r)
         }
         markDirty() {
           this.pathObject.constants = this.workspace
@@ -19352,7 +19352,7 @@ children`),
         generateContextMenu(e) {
           return this.workspace.isReadOnly() || !this.contextMenu
             ? null
-            : ((e = H.registry.getContextMenuOptions(
+            : ((e = U.registry.getContextMenuOptions(
                 { block: this, focusedNode: this },
                 e,
               )),
@@ -19360,7 +19360,7 @@ children`),
               e)
         }
         calculateContextMenuLocation(e) {
-          if (e instanceof PointerEvent) return new I(e.clientX, e.clientY)
+          if (e instanceof PointerEvent) return new L(e.clientX, e.clientY)
           e = ct(this.workspace, this.getRelativeToSurfaceXY())
           var t = this.inputList
             .filter((e) => e.isVisible())
@@ -19368,7 +19368,7 @@ children`),
             .find((e) => e.isVisible())
             ?.getSvgRoot()
             ?.getBoundingClientRect()
-          return new I(
+          return new L(
             this.RTL ? e.x - 5 : e.x + 5,
             (t && t.height ? t.y + t.height : e.y + this.height) + 5,
           )
@@ -19382,7 +19382,7 @@ children`),
             var r = this.calculateContextMenuLocation(t)
             n &&
               n.length &&
-              (zr(t, n, this.RTL, this.workspace, r), (cd = this))
+              (zr(t, n, this.RTL, this.workspace, r), (sd = this))
           }
         }
         updateComponentLocations(e) {
@@ -19392,7 +19392,7 @@ children`),
             this.updateIconLocations(e),
             this.updateFieldLocations(e))
           for (let t of this.getChildren(!1))
-            t.updateComponentLocations(I.sum(e, t.relativeCoords))
+            t.updateComponentLocations(L.sum(e, t.relativeCoords))
         }
         updateConnectionLocations(e) {
           for (let t of this.getConnections_(!1)) t.moveToOffset(e)
@@ -19413,9 +19413,9 @@ children`),
         setDragging(e) {
           ;(this.dragging = e)
             ? ((this.translation = ``),
-              Is.push(...this.getConnections_(!0)),
+              Fs.push(...this.getConnections_(!0)),
               this.addClass(`blocklyDragging`))
-            : ((Is.length = 0),
+            : ((Fs.length = 0),
               this.removeClass(`blocklyDragging`),
               this.getFullBlockField() && this.recomputeAriaContext())
           for (let t = 0; t < this.childBlocks_.length; t++)
@@ -19485,7 +19485,7 @@ children`),
             let e = this.getParent()
             ;(e ||
               ((t = this.outputConnection ?? this.previousConnection) &&
-                (e = t.closest(0, new I(0, 0)).connection?.getSourceBlock())),
+                (e = t.closest(0, new L(0, 0)).connection?.getSourceBlock())),
               setTimeout(() => {
                 if (this.workspace.rendered) {
                   if (e) r.focusNode(e)
@@ -19786,7 +19786,7 @@ children`),
           ;(this.snapToGrid(), this.bumpNeighbours())
         }
         positionNearConnection(e, t, n) {
-          if (e.type === B.NEXT_STATEMENT || e.type === B.INPUT_VALUE) {
+          if (e.type === V.NEXT_STATEMENT || e.type === V.INPUT_VALUE) {
             let r = t.x
             ;((t = t.y),
               (r += n.x - e.getOffsetInBlock().x),
@@ -19904,7 +19904,7 @@ children`),
           return !0
         }
         performAction(t) {
-          if (this.workspace.isFlyout) G.mover.startMove(this, t)
+          if (this.workspace.isFlyout) Ad.mover.startMove(this, t)
           else {
             if (this.isSimpleReporter()) {
               for (var n of this.inputList)
@@ -19918,11 +19918,11 @@ children`),
               ? ((t = this.workspace),
                 (n = _n(t.RTL ? J.NAVIGATE_LEFT : J.NAVIGATE_RIGHT)),
                 (n = e.C.KEYBOARD_NAV_BLOCK_NAVIGATION_HINT.replace(`%1`, n)),
-                Bc.show(t, { message: n, id: `blockNavigationHint` }))
+                zc.show(t, { message: n, id: `blockNavigationHint` }))
               : ((t = this.workspace),
                 (n = _n(`list_shortcuts`)) &&
                   ((n = e.C.HELP_PROMPT.replace(`%1`, n)),
-                  Bc.show(t, { message: n, id: `helpHint` })))
+                  zc.show(t, { message: n, id: `helpHint` })))
           }
         }
         getParents() {
@@ -19945,13 +19945,13 @@ children`),
           var e = this.getFullBlockField()
           e
             ? e.recomputeAriaContext()
-            : ((e = this.getAriaLabel(hs.STANDARD)),
-              !e || qo || e.endsWith(`,`) || (e += `,`),
-              g(this.getFocusableElement(), A.LABEL, e),
-              h(this.getSvgRoot(), k.NONE),
+            : ((e = this.getAriaLabel(ms.STANDARD)),
+              !e || Ko || e.endsWith(`,`) || (e += `,`),
+              g(this.getFocusableElement(), j.LABEL, e),
+              h(this.getSvgRoot(), A.NONE),
               (e = this.getFocusableElement()),
-              this.isInFlyout || h(e, k.FIGURE),
-              g(e, A.ROLEDESCRIPTION, this.getAriaRoleDescription()))
+              this.isInFlyout || h(e, A.FIGURE),
+              g(e, j.ROLEDESCRIPTION, this.getAriaRoleDescription()))
         }
         getAriaLabel(e) {
           return Sn(this, e)
@@ -19960,7 +19960,7 @@ children`),
           for (var t = 1, n = this.getNextBlock(); n;)
             (t++, (n = n.getNextBlock()))
           return t <= 1
-            ? Sn(this, hs.TERSE)
+            ? Sn(this, ms.TERSE)
             : e.C.BLOCK_LABEL_STACK_BLOCKS.replace(`%1`, t.toString())
         }
       }
@@ -19984,7 +19984,7 @@ children`),
           }
           wouldDelete(e) {
             return (
-              G.mover.isMoving()
+              Ad.mover.isMoving()
                 ? this.updateWouldDelete_(!1)
                 : e instanceof Rf
                   ? ((e = !e.getParent() && e.isDeletable()),
@@ -20015,7 +20015,7 @@ children`),
           getDimensionsPx_(e) {
             var t = 0,
               n = 0
-            return (e && ((t = e.getWidth()), (n = e.getHeight())), new R(t, n))
+            return (e && ((t = e.getWidth()), (n = e.getHeight())), new z(t, n))
           }
           getFlyoutMetrics(e) {
             return (
@@ -20047,9 +20047,9 @@ children`),
               a,
               o = !((a = this.workspace_.getFlyout()) != null && a.autoClose)
             a = i ? n.position : r.position
-            var s = a === z.TOP
+            var s = a === B.TOP
             return (
-              a === z.LEFT && (i && (e += n.width), o && (e += r.width)),
+              a === B.LEFT && (i && (e += n.width), o && (e += r.width)),
               s && (i && (t += n.height), o && (t += r.height)),
               { top: t, left: e }
             )
@@ -20063,9 +20063,9 @@ children`),
               a,
               o = !((a = this.workspace_.getFlyout()) != null && a.autoClose)
             a = i ? n.position : r.position
-            var s = a === z.LEFT || a === z.RIGHT
+            var s = a === B.LEFT || a === B.RIGHT
             return (
-              (a === z.TOP || a === z.BOTTOM) &&
+              (a === B.TOP || a === B.BOTTOM) &&
                 (i && (t.height -= n.height), o && (t.height -= r.height)),
               s && (i && (t.width -= n.width), o && (t.width -= r.width)),
               {
@@ -20173,7 +20173,7 @@ children`),
             }
           }
         }
-      b(F.METRICS_MANAGER, `default`, Hf)
+      b(I.METRICS_MANAGER, `default`, Hf)
       var Uf = class extends Hf {
           constructor(e, t) {
             ;(super(e), (this.flyout_ = t))
@@ -20219,9 +20219,9 @@ children`),
           getBoundingRectangle() {
             switch (this.axis) {
               case `x`:
-                return new L(this.y, this.y, this.x, this.x + this.gap)
+                return new R(this.y, this.y, this.x, this.x + this.gap)
               case `y`:
-                return new L(this.y, this.y + this.gap, this.x, this.x)
+                return new R(this.y, this.y + this.gap, this.x, this.x)
             }
           }
           moveBy(e, t) {
@@ -20379,7 +20379,7 @@ children`),
             return e.canBeFocused()
           }
           isApplicable(e) {
-            return e instanceof _d
+            return e instanceof gd
           }
         },
         Xf = class {
@@ -20402,7 +20402,7 @@ children`),
             return e.canBeFocused()
           }
           isApplicable(e) {
-            return e instanceof yd
+            return e instanceof vd
           }
         },
         Zf = class {
@@ -20415,16 +20415,16 @@ children`),
           getNextSibling(e) {
             if (e.getParentInput()) return Aa(e.getSourceBlock(), e, 1)
             if (
-              e.type === B.NEXT_STATEMENT &&
+              e.type === V.NEXT_STATEMENT &&
               e.getSourceBlock().getSurroundParent() &&
               !e.targetConnection
             )
               return Aa(e.getSourceBlock().getSurroundParent(), e, 1)
             switch (e.type) {
-              case B.NEXT_STATEMENT:
+              case V.NEXT_STATEMENT:
                 return e.targetConnection
-              case B.PREVIOUS_STATEMENT:
-              case B.OUTPUT_VALUE:
+              case V.PREVIOUS_STATEMENT:
+              case V.OUTPUT_VALUE:
                 return e.getSourceBlock()
             }
             return null
@@ -20433,20 +20433,20 @@ children`),
             if (e.getParentInput())
               return Aa(e.getParentInput().getSourceBlock(), e, -1)
             switch (e.type) {
-              case B.NEXT_STATEMENT:
+              case V.NEXT_STATEMENT:
                 return e.getSourceBlock()
-              case B.PREVIOUS_STATEMENT:
-              case B.OUTPUT_VALUE:
+              case V.PREVIOUS_STATEMENT:
+              case V.OUTPUT_VALUE:
                 return e.targetConnection
             }
             return null
           }
           getRowId(e) {
             switch (e.type) {
-              case B.NEXT_STATEMENT:
-              case B.PREVIOUS_STATEMENT:
+              case V.NEXT_STATEMENT:
+              case V.PREVIOUS_STATEMENT:
                 return e.id
-              case B.INPUT_VALUE:
+              case V.INPUT_VALUE:
                 return e.getParentInput().getRowId()
               default:
                 return e.getSourceBlock().getRowId()
@@ -20454,13 +20454,13 @@ children`),
           }
           isNavigable(e) {
             return e.canBeFocused()
-              ? e.type === B.NEXT_STATEMENT
+              ? e.type === V.NEXT_STATEMENT
                 ? !e.targetBlock() &&
                   e !==
                     (
                       e.getSourceBlock().getRootBlock() ?? e.getSourceBlock()
                     ).lastConnectionInStack(!1)
-                : e.type === B.INPUT_VALUE && !e.targetBlock()
+                : e.type === V.INPUT_VALUE && !e.targetBlock()
               : !1
           }
           isApplicable(e) {
@@ -20498,7 +20498,7 @@ children`),
             )
           }
           isApplicable(e) {
-            return e instanceof Qu
+            return e instanceof Zu
           }
         },
         $f = class {
@@ -20544,7 +20544,7 @@ children`),
             return e.canBeFocused()
           }
           isApplicable(e) {
-            return e instanceof Cd
+            return e instanceof Sd
           }
         },
         tp = class {
@@ -20738,9 +20738,9 @@ children`),
           getSourceBlockFromNode(e) {
             return e instanceof Rf
               ? e
-              : e instanceof Qu || e instanceof Yd || e instanceof Ld
+              : e instanceof Zu || e instanceof Yd || e instanceof Ld
                 ? e.getSourceBlock()
-                : e instanceof yd
+                : e instanceof vd
                   ? ((e = e.getParent()), e instanceof Rf ? e : null)
                   : null
           }
@@ -20783,17 +20783,17 @@ children`),
             var r = Ma(this.toolbox.getWorkspace())
             if (!n)
               switch (r) {
-                case z.TOP:
-                case z.BOTTOM:
+                case B.TOP:
+                case B.BOTTOM:
                   return this.getNextNode(t, !0)
-                case z.RIGHT:
+                case B.RIGHT:
                   return this.getOutNode(t, !0)
               }
             return !xn(t) || (xn(t) && !t.getContents().length)
               ? null
               : (t = this.toolbox.getFlyout()?.getWorkspace().getNavigator())
                 ? !this.toolbox.getWorkspace().RTL ||
-                  (r !== z.TOP && r !== z.BOTTOM)
+                  (r !== B.TOP && r !== B.BOTTOM)
                   ? t.getFirstNode()
                   : t.getLastNode()
                 : null
@@ -20801,10 +20801,10 @@ children`),
           getOutNode(e, t = !1) {
             if (!t)
               switch (Ma(this.toolbox.getWorkspace())) {
-                case z.TOP:
-                case z.BOTTOM:
+                case B.TOP:
+                case B.BOTTOM:
                   return this.getPreviousNode(e, !0)
-                case z.RIGHT:
+                case B.RIGHT:
                   return this.getInNode(e, !0)
               }
             return super.getOutNode(e)
@@ -20812,9 +20812,9 @@ children`),
           getNextNode(e, t = !1) {
             if (!t)
               switch (Ma(this.toolbox.getWorkspace())) {
-                case z.TOP:
+                case B.TOP:
                   return this.getInNode(e, !0)
-                case z.BOTTOM:
+                case B.BOTTOM:
                   return this.getOutNode(e, !0)
               }
             return super.getNextNode(e)
@@ -20822,9 +20822,9 @@ children`),
           getPreviousNode(e, t = !1) {
             if (!t)
               switch (Ma(this.toolbox.getWorkspace())) {
-                case z.TOP:
+                case B.TOP:
                   return this.getOutNode(e, !0)
-                case z.BOTTOM:
+                case B.BOTTOM:
                   return this.getInNode(e, !0)
               }
             return super.getPreviousNode(e)
@@ -20840,12 +20840,12 @@ children`),
           getOutNode(e, t = !1) {
             if (!t && this.flyout.targetWorkspace)
               switch (Ma(this.flyout.targetWorkspace)) {
-                case z.TOP:
-                case z.BOTTOM:
+                case B.TOP:
+                case B.BOTTOM:
                   return this.flyout.RTL
                     ? this.getNextNode(e, !0)
                     : this.getPreviousNode(e, !0)
-                case z.RIGHT:
+                case B.RIGHT:
                   return null
               }
             return (e = this.flyout.targetWorkspace?.getToolbox())
@@ -20855,12 +20855,12 @@ children`),
           getInNode(e, t = !1) {
             if (!t && this.flyout.targetWorkspace)
               switch (Ma(this.flyout.targetWorkspace)) {
-                case z.TOP:
-                case z.BOTTOM:
+                case B.TOP:
+                case B.BOTTOM:
                   return this.flyout.RTL
                     ? this.getPreviousNode(e, !0)
                     : this.getNextNode(e, !0)
-                case z.RIGHT:
+                case B.RIGHT:
                   return this.getOutNode(e, !0)
               }
             return super.getInNode(e)
@@ -20868,9 +20868,9 @@ children`),
           getNextNode(e, t = !1) {
             if (!t && this.flyout.targetWorkspace)
               switch (Ma(this.flyout.targetWorkspace)) {
-                case z.TOP:
+                case B.TOP:
                   return null
-                case z.BOTTOM:
+                case B.BOTTOM:
                   return this.getOutNode(e, !0)
               }
             return super.getNextNode(e)
@@ -20878,9 +20878,9 @@ children`),
           getPreviousNode(e, t = !1) {
             if (!t && this.flyout.targetWorkspace)
               switch (Ma(this.flyout.targetWorkspace)) {
-                case z.TOP:
+                case B.TOP:
                   return this.getOutNode(e, !0)
-                case z.BOTTOM:
+                case B.BOTTOM:
                   return null
               }
             return super.getPreviousNode(e)
@@ -20912,12 +20912,12 @@ children`),
               (t = t === void 0 || t),
               (n = n === void 0 || n))
             var a = t && n
-            ;(t && (this.hScroll = new ec(e, !0, a, r, i)),
-              n && (this.vScroll = new ec(e, !1, a, r, i)),
+            ;(t && (this.hScroll = new $s(e, !0, a, r, i)),
+              n && (this.vScroll = new $s(e, !1, a, r, i)),
               a &&
-                ((this.corner_ = _(j.RECT, {
-                  height: ec.scrollbarThickness,
-                  width: ec.scrollbarThickness,
+                ((this.corner_ = _(M.RECT, {
+                  height: $s.scrollbarThickness,
+                  width: $s.scrollbarThickness,
                   class: `blocklyScrollbarBackground`,
                 })),
                 le(this.corner_, e.getBubbleCanvas())))
@@ -21048,7 +21048,7 @@ children`),
             return `sep`
           }
         }
-      b(F.FLYOUT_INFLATER, `sep`, lp)
+      b(I.FLYOUT_INFLATER, `sep`, lp)
       var up = class extends Bf {
           constructor(e) {
             ;(super(),
@@ -21086,7 +21086,7 @@ children`),
               (this.svgGroup_ = _(t, { class: `blocklyFlyout` })),
               (this.svgGroup_.style.display = `none`),
               (this.svgBackground_ = _(
-                j.PATH,
+                M.PATH,
                 { class: `blocklyFlyoutBackground` },
                 this.svgGroup_,
               )),
@@ -21143,11 +21143,11 @@ children`),
               this.workspace_.createPotentialVariableMap(),
               e.getComponentManager().addComponent({
                 component: this,
-                weight: Qo.ComponentWeight.FLYOUT_WEIGHT,
+                weight: Zo.ComponentWeight.FLYOUT_WEIGHT,
                 capabilities: [
-                  Qo.Capability.AUTOHIDEABLE,
-                  Qo.Capability.DELETE_AREA,
-                  Qo.Capability.DRAG_TARGET,
+                  Zo.Capability.AUTOHIDEABLE,
+                  Zo.Capability.DELETE_AREA,
+                  Zo.Capability.DRAG_TARGET,
                 ],
               }))
           }
@@ -21269,8 +21269,8 @@ children`),
               this.workspace_.setResizesEnabled(!0),
               (this.reflowWrapper = (e) => {
                 this.inhibitReflowWrapper ||
-                  (e.type !== O.BLOCK_CHANGE &&
-                    e.type !== O.BLOCK_FIELD_INTERMEDIATE_CHANGE) ||
+                  (e.type !== k.BLOCK_CHANGE &&
+                    e.type !== k.BLOCK_FIELD_INTERMEDIATE_CHANGE) ||
                   this.reflow()
               }),
               this.workspace_.addChangeListener(this.reflowWrapper))
@@ -21280,10 +21280,10 @@ children`),
               .map((e) => e.getElement())
               .filter((e) => e.canBeFocused())
               .map((e) => e.getFocusableElement().id)
-            ;(g(this.getWorkspace().getCanvas(), A.OWNS, t.join(` `)),
+            ;(g(this.getWorkspace().getCanvas(), j.OWNS, t.join(` `)),
               this.targetWorkspace.isMutator || this.autoClose
-                ? h(this.getWorkspace().svgGroup_, k.NONE)
-                : h(this.getWorkspace().svgGroup_, k.REGION))
+                ? h(this.getWorkspace().svgGroup_, A.NONE)
+                : h(this.getWorkspace().svgGroup_, A.REGION))
             var n =
               (t = (n =
                 this.targetWorkspace.getToolbox())?.getSelectedItem()) && xn(t)
@@ -21293,8 +21293,8 @@ children`),
               `%1`,
               n,
             ).trim()),
-              g(this.getWorkspace().getCanvas(), A.LABEL, n),
-              h(this.getWorkspace().getCanvas(), k.LISTBOX))
+              g(this.getWorkspace().getCanvas(), j.LABEL, n),
+              h(this.getWorkspace().getCanvas(), A.LISTBOX))
           }
           createFlyoutInfo(e) {
             var t = [],
@@ -21364,7 +21364,7 @@ children`),
               var t
               return (t = this.inflaters.get(e)) ?? null
             }
-            return (t = Ie(F.FLYOUT_INFLATER, e, void 0))
+            return (t = Ie(I.FLYOUT_INFLATER, e, void 0))
               ? ((t = new t()), this.inflaters.set(e, t), t)
               : null
           }
@@ -21376,7 +21376,7 @@ children`),
                 this.workspace.isMovableHorizontally()),
               (this.verticalScrollEnabled =
                 this.workspace.isMovableVertically()),
-              (this.startScrollXY_ = new I(e.scrollX, e.scrollY)))
+              (this.startScrollXY_ = new L(e.scrollX, e.scrollY)))
           }
           startDrag() {}
           endDrag(e) {
@@ -21384,7 +21384,7 @@ children`),
           }
           drag(e) {
             if (
-              ((e = I.sum(this.startScrollXY_, e)),
+              ((e = L.sum(this.startScrollXY_, e)),
               this.horizontalScrollEnabled && this.verticalScrollEnabled)
             )
               this.workspace.scroll(e.x, e.y)
@@ -21398,7 +21398,7 @@ children`),
         fp = class {
           constructor(e, t) {
             ;((this.creatorWorkspace = t),
-              (this.mouseDownXY = new I(0, 0)),
+              (this.mouseDownXY = new L(0, 0)),
               (this.startWorkspace_ =
                 this.targetBlock =
                 this.startComment =
@@ -21421,25 +21421,25 @@ children`),
               (this.startDistance = this.previousScale = 0),
               (this.currentDropdownOwner = this.isPinchZoomEnabled = null),
               (this.mostRecentEvent = e),
-              (this.currentDragDeltaXY = new I(0, 0)))
+              (this.currentDragDeltaXY = new L(0, 0)))
           }
           dispose() {
-            ;((Do = null), (Ru = !1), this.creatorWorkspace.clearGesture())
+            ;((Eo = null), (Lu = !1), this.creatorWorkspace.clearGesture())
             for (let e of this.boundEvents) c(e)
             this.boundEvents.length = 0
           }
           updateFromEvent(e) {
-            var t = new I(e.clientX, e.clientY)
+            var t = new L(e.clientX, e.clientY)
             ;(this.updateDragDelta(t) && (this.updateIsDragging(e), n()),
               (this.mostRecentEvent = e))
           }
           updateDragDelta(t) {
             return (
-              (this.currentDragDeltaXY = I.difference(t, this.mouseDownXY)),
+              (this.currentDragDeltaXY = L.difference(t, this.mouseDownXY)),
               this.hasExceededDragRadius
                 ? !1
                 : (this.hasExceededDragRadius =
-                    I.magnitude(this.currentDragDeltaXY) >
+                    L.magnitude(this.currentDragDeltaXY) >
                     (this.flyout ? e.Og.flyoutDragRadius : e.Og.dragRadius))
             )
           }
@@ -21474,7 +21474,7 @@ children`),
               : this.updateIsDraggingWorkspace()
           }
           createDragger(e) {
-            return new (Be(F.BLOCK_DRAGGER, this.creatorWorkspace.options, !0))(
+            return new (Be(I.BLOCK_DRAGGER, this.creatorWorkspace.options, !0))(
               e,
             )
           }
@@ -21493,7 +21493,7 @@ children`),
                   this.startWorkspace_.updateScreenCalculationsIfScrolled(),
                   this.startWorkspace_.isMutator &&
                     this.startWorkspace_.resize(),
-                  (this.currentDropdownOwner = ku),
+                  (this.currentDropdownOwner = Ou),
                   this.startWorkspace_.hideChaff(!!this.flyout),
                   this.startWorkspace_.markFocused(),
                   (this.mostRecentEvent = e),
@@ -21503,7 +21503,7 @@ children`),
                     : (e.type.toLowerCase() === `pointerdown` &&
                         e.pointerType !== `mouse` &&
                         t(e, this),
-                      (this.mouseDownXY = new I(e.clientX, e.clientY)),
+                      (this.mouseDownXY = new L(e.clientX, e.clientY)),
                       this.bindMouseEvents(e),
                       this.isEnding_ || this.handleTouchStart(e))))
           }
@@ -21565,10 +21565,10 @@ children`),
               }
               ;((this.isEnding_ = !0),
                 this.dragger
-                  ? (ru.setIsActive(!1),
+                  ? (nu.setIsActive(!1),
                     this.dragger.onDragEnd(e, this.currentDragDeltaXY))
                   : this.workspaceDragger
-                    ? (ru.setIsActive(!1),
+                    ? (nu.setIsActive(!1),
                       this.workspaceDragger.endDrag(this.currentDragDeltaXY))
                     : this.isBubbleClick() ||
                       this.isCommentClick() ||
@@ -21590,7 +21590,7 @@ children`),
             n.length === 2 &&
               ((t = this.cachedPoints.get(n[0])),
               (n = this.cachedPoints.get(n[1])),
-              (this.startDistance = I.distance(t, n)),
+              (this.startDistance = L.distance(t, n)),
               (this.multiTouch = !0),
               e.preventDefault())
           }
@@ -21615,7 +21615,7 @@ children`),
               n = this.cachedPoints.get(t[0])
             if (
               ((t = this.cachedPoints.get(t[1])),
-              (n = I.distance(n, t) / this.startDistance),
+              (n = L.distance(n, t) / this.startDistance),
               this.previousScale > 0 && this.previousScale < 1 / 0)
             ) {
               if (
@@ -21639,7 +21639,7 @@ children`),
                 (this.cachedPoints.clear(), (this.previousScale = 0)))
           }
           getTouchPoint(e) {
-            return this.startWorkspace_ ? new I(e.pageX, e.pageY) : null
+            return this.startWorkspace_ ? new L(e.pageX, e.pageY) : null
           }
           isMultiTouch() {
             return this.multiTouch
@@ -21666,7 +21666,7 @@ children`),
             }
             ;(t.preventDefault(),
               t.stopPropagation(),
-              ru.setIsActive(!1),
+              nu.setIsActive(!1),
               this.dispose())
           }
           handleWsStart(t, n) {
@@ -21684,7 +21684,7 @@ children`),
               this.doStart(t))
           }
           fireWorkspaceClick(e) {
-            x(new (S(O.CLICK))(null, e.id, `workspace`))
+            x(new (S(k.CLICK))(null, e.id, `workspace`))
           }
           handleFlyoutStart(e, t) {
             if (this.gestureHasStarted)
@@ -21753,7 +21753,7 @@ children`),
                 throw Error(
                   `Cannot do a block click because the start workspace is undefined`,
                 )
-              ;((t = new (S(O.CLICK))(
+              ;((t = new (S(k.CLICK))(
                 this.startBlock,
                 this.startWorkspace_.id,
                 `block`,
@@ -21932,13 +21932,13 @@ children`),
               r = Math.round(Math.round((e.x - n) / t) * t + n)
             return (
               (t = Math.round(Math.round((e.y - n) / t) * t + n)),
-              r === e.x && t === e.y ? e : new I(r, t)
+              r === e.x && t === e.y ? e : new L(r, t)
             )
           }
           static createDom(e, t, n, r) {
             if (
               ((e = _(
-                j.PATTERN,
+                M.PATTERN,
                 {
                   id: `blocklyGridPattern` + e,
                   patternUnits: `userSpaceOnUse`,
@@ -21947,10 +21947,10 @@ children`),
               )),
               (t.length ?? 1) > 0 && (t.spacing ?? 0) > 0)
             ) {
-              _(j.LINE, { stroke: t.colour }, e)
+              _(M.LINE, { stroke: t.colour }, e)
               let n
-              ;(n = t.length) != null && n && _(j.LINE, { stroke: t.colour }, e)
-            } else _(j.LINE, {}, e)
+              ;(n = t.length) != null && n && _(M.LINE, { stroke: t.colour }, e)
+            } else _(M.LINE, {}, e)
             return (
               r && r.style.setProperty(`--blocklyGridPattern`, `url(#${e.id})`),
               e
@@ -21970,24 +21970,24 @@ children`),
               v(e, `blocklyBubbleCanvas`))
           }
           createDragLayer(e) {
-            var t = _(j.SVG, {
+            var t = _(M.SVG, {
               class: `blocklyBlockDragSurface`,
               xmlns: `http://www.w3.org/2000/svg`,
               "xmlns:html": `http://www.w3.org/1999/xhtml`,
               "xmlns:xlink": `http://www.w3.org/1999/xlink`,
               version: `1.1`,
             })
-            return (e.append(t), _(j.G, {}, t))
+            return (e.append(t), _(M.G, {}, t))
           }
           createAnimationLayer(e) {
-            var t = _(j.SVG, {
+            var t = _(M.SVG, {
               class: `blocklyAnimationLayer`,
               xmlns: `http://www.w3.org/2000/svg`,
               "xmlns:html": `http://www.w3.org/1999/xhtml`,
               "xmlns:xlink": `http://www.w3.org/1999/xlink`,
               version: `1.1`,
             })
-            return (e.append(t), _(j.G, {}, t))
+            return (e.append(t), _(M.G, {}, t))
           }
           appendToAnimationLayer(e) {
             var t = this.dragLayer?.getAttribute(`transform`)
@@ -22025,7 +22025,7 @@ children`),
           }
           createLayer(e) {
             var t = this.workspace.getSvgGroup(),
-              n = _(j.G, {}),
+              n = _(M.G, {}),
               r = !1,
               i = [...this.layers].sort((e, t) => e[0] - t[0])
             for (let [a, o] of i)
@@ -22051,7 +22051,7 @@ children`),
         hp = {}
       ;((hp.register = Na),
         (hp.unregister = function (e) {
-          Fe(F.ICON, e)
+          Fe(I.ICON, e)
         }))
       var gp = class extends Ld {
         constructor(e) {
@@ -22059,7 +22059,7 @@ children`),
             (this.sourceBlock = e),
             (this.textInputBubble = null),
             (this.text = ``),
-            (this.bubbleSize = new R(160, 80)),
+            (this.bubbleSize = new z(160, 80)),
             (this.bubbleVisiblity = !1))
         }
         getType() {
@@ -22069,12 +22069,12 @@ children`),
           this.svgRoot ||
             (super.initView(e),
             _(
-              j.CIRCLE,
+              M.CIRCLE,
               { class: `blocklyIconShape`, r: `8`, cx: `8`, cy: `8` },
               this.svgRoot,
             ),
             _(
-              j.PATH,
+              M.PATH,
               {
                 class: `blocklyIconSymbol`,
                 d: `m6.8,10h2c0.003,-0.617 0.271,-0.962 0.633,-1.266 2.875,-2.4050.607,-5.534 -3.765,-3.874v1.7c3.12,-1.657 3.698,0.118 2.336,1.25-1.201,0.998 -1.201,1.528 -1.204,2.19z`,
@@ -22082,7 +22082,7 @@ children`),
               this.svgRoot,
             ),
             _(
-              j.RECT,
+              M.RECT,
               {
                 class: `blocklyIconSymbol`,
                 x: `6.8`,
@@ -22103,7 +22103,7 @@ children`),
           return gp.WEIGHT
         }
         getSize() {
-          return new R(17, 17)
+          return new z(17, 17)
         }
         applyColour() {
           super.applyColour()
@@ -22114,7 +22114,7 @@ children`),
         updateEditable() {
           var e = this,
             t = () => super.updateEditable
-          return (0, E.asyncExecutePromiseGeneratorFunction)(function* () {
+          return (0, D.asyncExecutePromiseGeneratorFunction)(function* () {
             ;(t().call(e),
               e.bubbleIsVisible() &&
                 (yield e.setBubbleVisible(!1), yield e.setBubbleVisible(!0)))
@@ -22124,15 +22124,15 @@ children`),
           var t = this.workspaceLocation
           ;(super.onLocationChange(e),
             (this.bubbleLocation &&=
-              ((e = I.difference(this.workspaceLocation, t)),
-              I.sum(this.bubbleLocation, e))),
+              ((e = L.difference(this.workspaceLocation, t)),
+              L.sum(this.bubbleLocation, e))),
             (e = this.getAnchorLocation()))
           var n
           ;(n = this.textInputBubble) == null || n.setAnchorLocation(e)
         }
         setText(e) {
           var t = this.text
-          ;(x(new (S(O.BLOCK_CHANGE))(this.sourceBlock, `comment`, null, t, e)),
+          ;(x(new (S(k.BLOCK_CHANGE))(this.sourceBlock, `comment`, null, t, e)),
             (this.text = e))
           var n
           ;(n = this.textInputBubble) == null || n.setText(this.text)
@@ -22179,7 +22179,7 @@ children`),
         }
         loadState(e) {
           ;((this.text = e.text ?? ``),
-            (this.bubbleSize = new R(e.width ?? 160, e.height ?? 80)),
+            (this.bubbleSize = new z(e.width ?? 160, e.height ?? 80)),
             (this.bubbleVisiblity = e.pinned ?? !1),
             this.setBubbleVisible(this.bubbleVisiblity))
           var t = e.x,
@@ -22191,7 +22191,7 @@ children`),
                 ? this.sourceBlock.workspace.getWidth() -
                   (t + this.bubbleSize.width)
                 : t),
-              this.setBubbleLocation(new I(t, n)))
+              this.setBubbleLocation(new L(t, n)))
           })
         }
         onClick() {
@@ -22205,7 +22205,7 @@ children`),
             var e = this.textInputBubble.getText()
             this.text !== e &&
               (x(
-                new (S(O.BLOCK_CHANGE))(
+                new (S(k.BLOCK_CHANGE))(
                   this.sourceBlock,
                   `comment`,
                   null,
@@ -22230,7 +22230,7 @@ children`),
         }
         setBubbleVisible(e) {
           var t = this
-          return (0, E.asyncExecutePromiseGeneratorFunction)(function* () {
+          return (0, D.asyncExecutePromiseGeneratorFunction)(function* () {
             t.bubbleVisiblity !== e &&
               ((t.bubbleVisiblity = e),
               yield kt(),
@@ -22243,7 +22243,7 @@ children`),
                       : t.showNonEditableBubble(),
                     t.applyColour())
                   : t.hideBubble(),
-                x(new (S(O.BUBBLE_OPEN))(t.sourceBlock, e, `comment`)),
+                x(new (S(k.BUBBLE_OPEN))(t.sourceBlock, e, `comment`)),
                 t.svgRoot && t.recomputeAriaContext()))
           })
         }
@@ -22295,7 +22295,7 @@ children`),
             (this.textInputBubble = null))
         }
         getAnchorLocation() {
-          return I.sum(this.workspaceLocation, new I(8.5, 8.5))
+          return L.sum(this.workspaceLocation, new L(8.5, 8.5))
         }
         getBubbleOwnerRect() {
           return this.sourceBlock.getBoundingRectangleWithoutChildren()
@@ -22306,11 +22306,11 @@ children`),
             : e.C.ICON_LABEL_COMMENT_CLOSED
         }
       }
-      ;((gp.TYPE = Qc.COMMENT), (gp.WEIGHT = 3), Na(gp.TYPE, gp))
+      ;((gp.TYPE = Zc.COMMENT), (gp.WEIGHT = 3), Na(gp.TYPE, gp))
       var _p = {}
       ;((_p.CommentIcon = gp),
         (_p.Icon = Ld),
-        (_p.IconType = Qc),
+        (_p.IconType = Zc),
         (_p.MutatorIcon = e.sh),
         (_p.WarningIcon = Lf),
         (_p.exceptions = Kd),
@@ -23217,11 +23217,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           shapeFor(e) {
             switch (e.type) {
-              case B.INPUT_VALUE:
-              case B.OUTPUT_VALUE:
+              case V.INPUT_VALUE:
+              case V.OUTPUT_VALUE:
                 return this.PUZZLE_TAB
-              case B.PREVIOUS_STATEMENT:
-              case B.NEXT_STATEMENT:
+              case V.PREVIOUS_STATEMENT:
+              case V.NEXT_STATEMENT:
                 return this.NOTCH
               default:
                 throw Error(`Unknown connection type`)
@@ -23232,19 +23232,19 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               let e = n.getRootNode()
               this.injectCSS_(e, t)
             }
-            ;((this.defs = _(j.DEFS, {}, e)),
+            ;((this.defs = _(M.DEFS, {}, e)),
               (e = _(
-                j.FILTER,
+                M.FILTER,
                 { id: `blocklyEmbossFilter` + this.randomIdentifier },
                 this.defs,
               )),
               _(
-                j.FEGAUSSIANBLUR,
+                M.FEGAUSSIANBLUR,
                 { in: `SourceAlpha`, stdDeviation: 1, result: `blur` },
                 e,
               ),
               (t = _(
-                j.FESPECULARLIGHTING,
+                M.FESPECULARLIGHTING,
                 {
                   in: `blur`,
                   surfaceScale: 1,
@@ -23255,9 +23255,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 },
                 e,
               )),
-              _(j.FEPOINTLIGHT, { x: -5e3, y: -1e4, z: 2e4 }, t),
+              _(M.FEPOINTLIGHT, { x: -5e3, y: -1e4, z: 2e4 }, t),
               _(
-                j.FECOMPOSITE,
+                M.FECOMPOSITE,
                 {
                   in: `specOut`,
                   in2: `SourceAlpha`,
@@ -23267,7 +23267,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 e,
               ),
               _(
-                j.FECOMPOSITE,
+                M.FECOMPOSITE,
                 {
                   in: `SourceGraphic`,
                   in2: `specOut`,
@@ -23282,7 +23282,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (this.embossFilterId = e.id),
               (this.embossFilter = e),
               (e = _(
-                j.PATTERN,
+                M.PATTERN,
                 {
                   id: `blocklyDisabledPattern` + this.randomIdentifier,
                   patternUnits: `userSpaceOnUse`,
@@ -23291,9 +23291,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 },
                 this.defs,
               )),
-              _(j.RECT, { width: 10, height: 10, fill: `#aaa` }, e),
+              _(M.RECT, { width: 10, height: 10, fill: `#aaa` }, e),
               _(
-                j.PATH,
+                M.PATH,
                 { d: `M 0 0 L 10 10 M 10 0 L 0 10`, stroke: `#cc0` },
                 e,
               ),
@@ -23317,7 +23317,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           createDebugFilter() {
             if (!this.debugFilter) {
               let e = _(
-                  j.FILTER,
+                  M.FILTER,
                   {
                     id: `blocklyDebugFilter` + this.randomIdentifier,
                     height: `160%`,
@@ -23327,9 +23327,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   },
                   this.defs,
                 ),
-                t = _(j.FECOMPONENTTRANSFER, { result: `outBlur` }, e)
+                t = _(M.FECOMPONENTTRANSFER, { result: `outBlur` }, e)
               ;(_(
-                j.FEFUNCA,
+                M.FEFUNCA,
                 {
                   type: `table`,
                   tableValues: `0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1`,
@@ -23337,7 +23337,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 t,
               ),
                 _(
-                  j.FEFLOOD,
+                  M.FEFLOOD,
                   {
                     "flood-color": `#ff0000`,
                     "flood-opacity": 0.5,
@@ -23346,7 +23346,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   e,
                 ),
                 _(
-                  j.FECOMPOSITE,
+                  M.FECOMPOSITE,
                   {
                     in: `outColor`,
                     in2: `outBlur`,
@@ -23578,7 +23578,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               e.flipRtl && ((n += e.width), (r = `scale(-1 1)`))),
               Z.isIcon(e)
                 ? ((r = e.icon),
-                  r.setOffsetInBlock(new I(n, t)),
+                  r.setOffsetInBlock(new L(n, t)),
                   this.info_.isInsertionMarker && r.hideForInsertionMarker())
                 : ((e = e.field.getSvgRoot()),
                   e.setAttribute(
@@ -23678,7 +23678,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           drawConnectionHighlightPath(e) {
             var t = e.connectionModel
             e =
-              t.type === B.INPUT_VALUE || t.type === B.OUTPUT_VALUE
+              t.type === V.INPUT_VALUE || t.type === V.OUTPUT_VALUE
                 ? this.getExpressionConnectionHighlightPath(e)
                 : this.getStatementConnectionHighlightPath(e)
             var n = t.getSourceBlock(),
@@ -24056,7 +24056,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (this.style = t),
               (this.svgRoot = e),
               (this.svgPath = _(
-                j.PATH,
+                M.PATH,
                 { class: `blocklyPath` },
                 this.svgRoot,
               )),
@@ -24117,7 +24117,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (r = this.connectionHighlights.get(e))
                 ? (r.setAttribute(`d`, t), r.setAttribute(`transform`, n), r)
                 : ((t = _(
-                    j.PATH,
+                    M.PATH,
                     {
                       id: e.id,
                       class: `blocklyHighlightedConnectionPath`,
@@ -24189,7 +24189,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           orphanCanConnectAtEnd(e, t, n) {
             return !!q.getConnectionForOrphanedConnection(
               e,
-              n === B.OUTPUT_VALUE ? t.outputConnection : t.previousConnection,
+              n === V.OUTPUT_VALUE ? t.outputConnection : t.previousConnection,
             )
           }
           render(e) {
@@ -24228,7 +24228,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         (Q.init = Ga),
         (Q.register = Wa),
         (Q.unregister = function (e) {
-          Fe(F.RENDERER, e)
+          Fe(I.RENDERER, e)
         }))
       var Yp = class {
           constructor(e, t) {
@@ -24289,7 +24289,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           t = t.getVariableMap().getAllVariables()
           var n = []
           if (t.length > 0) {
-            if (ss.variables_set_dynamic) {
+            if (os.variables_set_dynamic) {
               var r = t[t.length - 1]
               let i = e.rc(`block`)
               ;(i.setAttribute(`type`, `variables_set_dynamic`),
@@ -24297,7 +24297,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 i.appendChild(on(r)),
                 n.push(i))
             }
-            if (ss.variables_get_dynamic) {
+            if (os.variables_get_dynamic) {
               t.sort(cn)
               for (let i = 0, a; (a = t[i]); i++)
                 ((r = e.rc(`block`)),
@@ -24345,7 +24345,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             (this.horizontalLayout = !!this.options.horizontalLayout),
             (this.toolboxPosition = this.options.toolboxPosition),
             (this.connectionChecker = new (Be(
-              F.CONNECTION_CHECKER,
+              I.CONNECTION_CHECKER,
               this.options,
               !0,
             ))(this)),
@@ -24359,7 +24359,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           var n = (e) => ({
             getBoundingRectangle: () => {
               var t = e.getRelativeToSurfaceXY()
-              return new L(t.y, t.y, t.x, t.x)
+              return new R(t.y, t.y, t.x, t.x)
             },
             moveBy: () => {},
           })
@@ -24587,7 +24587,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           return xe()
         }
         getVariableMapClass() {
-          var e = Be(F.VARIABLE_MAP, this.options, !0)
+          var e = Be(I.VARIABLE_MAP, this.options, !0)
           if (!e) throw Error(`No variable map is registered.`)
           return e
         }
@@ -24614,7 +24614,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           load(e, t) {
             var n = this
-            return (0, E.asyncExecutePromiseGeneratorFunction)(function* () {
+            return (0, D.asyncExecutePromiseGeneratorFunction)(function* () {
               if (e.length) {
                 var r = yield (yield fetch(e[0])).arrayBuffer(),
                   i
@@ -24627,7 +24627,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           play(e, t) {
             var n = this
-            return (0, E.asyncExecutePromiseGeneratorFunction)(function* () {
+            return (0, D.asyncExecutePromiseGeneratorFunction)(function* () {
               if (n.isPlayingAllowed() && t !== 0) {
                 var r = n.sounds.get(e)
                 if (r) {
@@ -24654,7 +24654,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           beep(e, t = 0.2) {
             var n = this
-            return (0, E.asyncExecutePromiseGeneratorFunction)(function* () {
+            return (0, D.asyncExecutePromiseGeneratorFunction)(function* () {
               if (
                 n.isPlayingAllowed() &&
                 (yield n.prepareToPlay(), n.context.state === `running`)
@@ -24678,12 +24678,12 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           playErrorBeep() {
             var e = this
-            return (0, E.asyncExecutePromiseGeneratorFunction)(function* () {
+            return (0, D.asyncExecutePromiseGeneratorFunction)(function* () {
               return e.beep(260)
             })
           }
           maybePlayScopeChangeAudioCue(t) {
-            if (ru.getScopeChangeAudioCuesEnabled()) {
+            if (nu.getScopeChangeAudioCuesEnabled()) {
               var n = this.parentWorkspace.getNavigator(),
                 r = n.getSourceBlockFromNode(e.t().getFocusedNode())
               ;((t = n.getSourceBlockFromNode(t)),
@@ -24705,7 +24705,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           prepareToPlay() {
             var e = this
-            return (0, E.asyncExecutePromiseGeneratorFunction)(function* () {
+            return (0, D.asyncExecutePromiseGeneratorFunction)(function* () {
               ;((e.lastSound = new Date()),
                 e.context.state === `suspended` &&
                   navigator.userActivation.hasBeenActive &&
@@ -24779,19 +24779,19 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 this.layerManager =
                   null),
               (this.navigator = new ip()),
-              (this.metricsManager = new (Be(F.METRICS_MANAGER, e, !0))(this)),
+              (this.metricsManager = new (Be(I.METRICS_MANAGER, e, !0))(this)),
               (this.getMetrics =
                 e.getMetrics ||
                 this.metricsManager.getMetrics.bind(this.metricsManager)),
               (this.setMetrics =
                 e.setMetrics || em.setTopLevelWorkspaceMetrics),
-              (this.componentManager = new Qo()),
+              (this.componentManager = new Zo()),
               (this.connectionDBList = Wd.init(this.connectionChecker)),
               (this.audioManager = new Qp(e.parentWorkspace ?? this)),
               (this.grid = this.options.gridPattern
                 ? new pp(this.options.gridPattern, e.gridOptions)
                 : null),
-              ou && qt && this.registerToolboxCategoryCallback(`VARIABLE`, qt),
+              au && qt && this.registerToolboxCategoryCallback(`VARIABLE`, qt),
               Xp &&
                 Ya &&
                 this.registerToolboxCategoryCallback(`VARIABLE_DYNAMIC`, Ya),
@@ -24809,7 +24809,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 this.getTheme(),
                 this.options.rendererOverrides ?? void 0,
               )),
-              (this.cachedParentSvgSize = new R(0, 0)))
+              (this.cachedParentSvgSize = new z(0, 0)))
           }
           getMetricsManager() {
             return this.metricsManager
@@ -24850,7 +24850,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               this.refreshToolboxSelection(),
               this.toolbox && this.toolbox.refreshTheme(),
               this.isVisible() && this.setVisible(!0),
-              (e = new (S(O.THEME_CHANGE))(this.getTheme().name, this.id)),
+              (e = new (S(k.THEME_CHANGE))(this.getTheme().name, this.id)),
               x(e))
           }
           updateBlockStyles(e) {
@@ -24893,11 +24893,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               e !== this.getParentSvg() &&
               e !== this.getInjectionDiv()
             )
-            return new I(t, n)
+            return new L(t, n)
           }
           getCachedParentSvgSize() {
             var e = this.cachedParentSvgSize
-            return new R(e.width, e.height)
+            return new z(e.width, e.height)
           }
           getOriginOffsetInPixels() {
             return it(this.getCanvas())
@@ -24934,19 +24934,19 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 "Must initialize svgGroup_ by calling `createDom` before calling setAriaContext",
               )
             this.isFlyout ||
-              (h(this.svgGroup_, k.REGION),
+              (h(this.svgGroup_, A.REGION),
               this.isMutator
                 ? g(
                     this.svgGroup_,
-                    A.LABEL,
+                    j.LABEL,
                     e.C.WORKSPACE_LABEL_MUTATOR_WORKSPACE,
                   )
-                : (g(this.svgGroup_, A.LABEL, e.C.WORKSPACE_LABEL_PLAIN),
+                : (g(this.svgGroup_, j.LABEL, e.C.WORKSPACE_LABEL_PLAIN),
                   this.workspaceFocusTargetElement &&
-                    (h(this.workspaceFocusTargetElement, k.FIGURE),
+                    (h(this.workspaceFocusTargetElement, A.FIGURE),
                     g(
                       this.workspaceFocusTargetElement,
-                      A.ROLEDESCRIPTION,
+                      j.ROLEDESCRIPTION,
                       e.C.WORKSPACE_ROLEDESCRIPTION,
                     ),
                     this.updateAriaLabel())))
@@ -24957,12 +24957,12 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               t == 1
                 ? g(
                     this.workspaceFocusTargetElement,
-                    A.LABEL,
+                    j.LABEL,
                     e.C.WORKSPACE_LABEL_1_STACK,
                   )
                 : g(
                     this.workspaceFocusTargetElement,
-                    A.LABEL,
+                    j.LABEL,
                     e.C.WORKSPACE_LABEL_MANY_STACKS.replace(`%1`, String(t)),
                   )
             }
@@ -24970,13 +24970,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           createDom(t, n) {
             return (
               (this.injectionDiv ||= n ?? null),
-              (this.svgGroup_ = _(j.G, {
+              (this.svgGroup_ = _(M.G, {
                 class: `blocklyWorkspace`,
                 id: this.id,
               })),
               t &&
                 ((this.svgBackground_ = _(
-                  j.RECT,
+                  M.RECT,
                   { height: `100%`, width: `100%`, class: t },
                   this.svgGroup_,
                 )),
@@ -24989,12 +24989,12 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                     )),
               (this.workspaceSelectionRing = t =
                 _(
-                  j.RECT,
+                  M.RECT,
                   { fill: `none`, class: `blocklyWorkspaceSelectionRing` },
                   this.svgGroup_,
                 )),
               (this.workspaceFocusRing = _(
-                j.RECT,
+                M.RECT,
                 { fill: `none`, class: `blocklyWorkspaceFocusRing` },
                 this.svgGroup_,
               )),
@@ -25019,7 +25019,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   passive: !1,
                 })),
               this.options.hasCategories &&
-                (this.toolbox = new (Be(F.TOOLBOX, this.options, !0))(this)),
+                (this.toolbox = new (Be(I.TOOLBOX, this.options, !0))(this)),
               this.grid && this.grid.update(this.scale),
               this.recordDragTargets(),
               (t = this.options.parentWorkspace === null),
@@ -25083,7 +25083,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             )
           }
           addZoomControls() {
-            this.zoomControls_ = new Cc(this)
+            this.zoomControls_ = new Sc(this)
             var e = this.zoomControls_.createDom()
             this.svgGroup_.appendChild(e)
           }
@@ -25105,8 +25105,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             return (
               (t.toolboxPosition = this.options.toolboxPosition),
               (this.flyout = this.horizontalLayout
-                ? new (Be(F.FLYOUTS_HORIZONTAL_TOOLBOX, this.options, !0))(t)
-                : new (Be(F.FLYOUTS_VERTICAL_TOOLBOX, this.options, !0))(t)),
+                ? new (Be(I.FLYOUTS_HORIZONTAL_TOOLBOX, this.options, !0))(t)
+                : new (Be(I.FLYOUTS_VERTICAL_TOOLBOX, this.options, !0))(t)),
               (this.flyout.autoClose = !1),
               this.flyout.getWorkspace().setVisible(!0),
               this.flyout.createDom(e)
@@ -25136,7 +25136,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               ? this.toolbox.position()
               : this.flyout && this.flyout.position()
             var e = this.componentManager.getComponents(
-                Qo.Capability.POSITIONABLE,
+                Zo.Capability.POSITIONABLE,
                 !0,
               ),
               t = this.getMetricsManager().getUiMetrics(),
@@ -25162,7 +25162,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           updateScreenCalculationsIfScrolled() {
             var e = ot()
-            I.equals(this.lastRecordedPageScroll, e) ||
+            L.equals(this.lastRecordedPageScroll, e) ||
               ((this.lastRecordedPageScroll = e),
               this.updateScreenCalculations())
           }
@@ -25209,7 +25209,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   Math.abs(n - this.oldLeft) < 1
                 )
               ) {
-                var r = new (S(O.VIEWPORT_CHANGE))(
+                var r = new (S(k.VIEWPORT_CHANGE))(
                   t,
                   n,
                   e,
@@ -25226,7 +25226,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           translate(e, t) {
             var n
             ;(n = this.layerManager) == null ||
-              n.translateLayers(new I(e, t), this.scale)
+              n.translateLayers(new L(e, t), this.scale)
             var r
             ;((r = this.grid) == null || r.moveTo(e, t),
               this.maybeFireViewportChangeEvent())
@@ -25267,10 +25267,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           variableChangeCallback(e) {
             switch (e.type) {
-              case O.VAR_CREATE:
-              case O.VAR_DELETE:
-              case O.VAR_RENAME:
-              case O.VAR_TYPE_CHANGE:
+              case k.VAR_CREATE:
+              case k.VAR_DELETE:
+              case k.VAR_RENAME:
+              case k.VAR_TYPE_CHANGE:
                 this.refreshToolboxSelection()
             }
           }
@@ -25284,7 +25284,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           recordDragTargets() {
             var e = this.componentManager.getComponents(
-              Qo.Capability.DRAG_TARGET,
+              Zo.Capability.DRAG_TARGET,
               !0,
             )
             this.dragTargetAreas = []
@@ -25304,7 +25304,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             )
           }
           getDragTarget(e) {
-            e = e instanceof I ? e : new I(e.clientX, e.clientY)
+            e = e instanceof L ? e : new L(e.clientX, e.clientY)
             for (let t = 0, n; (n = this.dragTargetAreas[t]); t++)
               if (n.clientRect.contains(e.x, e.y)) return n.component
             return null
@@ -25321,7 +25321,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           isDragging() {
             return (
-              G.mover.isMoving() ||
+              Ad.mover.isMoving() ||
               (this.currentGesture_ !== null &&
                 this.currentGesture_.isDragging())
             )
@@ -25361,7 +25361,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 n = this.options.moveOptions && this.options.moveOptions.wheel
               if (t || n) {
                 var r = f(e)
-                if (Go) var i = e.metaKey
+                if (Wo) var i = e.metaKey
                 ;(t && (e.ctrlKey || i || !n)
                   ? ((r = -r.y / 50),
                     (t = d(e, this.getParentSvg(), this.getInverseScreenCTM())),
@@ -25378,7 +25378,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           getBlocksBoundingBox() {
             var e = this.getTopBoundedElements()
-            if (!e.length) return new L(0, 0, 0, 0)
+            if (!e.length) return new R(0, 0, 0, 0)
             var t = e[0].getBoundingRectangle()
             for (let r = 1; r < e.length; r++) {
               var n = e[r]
@@ -25426,7 +25426,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           showContextMenu(e) {
             if (!this.isReadOnly() && !this.isFlyout) {
-              var t = H.registry.getContextMenuOptions(
+              var t = U.registry.getContextMenuOptions(
                 { workspace: this, focusedNode: this },
                 e,
               )
@@ -25434,10 +25434,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 (this.configureContextMenu && this.configureContextMenu(t, e),
                 e instanceof PointerEvent)
               )
-                var n = new I(e.clientX, e.clientY)
+                var n = new L(e.clientX, e.clientY)
               else
                 ((n = this.RTL ? this.getWidth() - 5 : 5),
-                  (n = ct(this, new I(n, 5))))
+                  (n = ct(this, new L(n, 5))))
               zr(e, t, this.RTL, this, n)
             }
           }
@@ -25705,7 +25705,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             this.toolboxCategoryCallbacks.delete(e)
           }
           getGesture(e) {
-            if (G.mover.isMoving())
+            if (Ad.mover.isMoving())
               return (e?.preventDefault(), e?.stopPropagation(), null)
             var t = e?.type === `pointerdown`,
               n
@@ -25738,7 +25738,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           hideComponents(e = !1) {
             this.getComponentManager()
-              .getComponents(Qo.Capability.AUTOHIDEABLE, !0)
+              .getComponents(Zo.Capability.AUTOHIDEABLE, !0)
               .forEach((t) => t.autoHide(e))
           }
           static setTopLevelWorkspaceMetrics(e) {
@@ -25775,7 +25775,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               var n = this.getScale(),
                 r = this.getMetricsManager().getViewMetrics(!0)
               if (
-                ((r = new L(r.top, r.top + r.height, r.left, r.left + r.width)),
+                ((r = new R(r.top, r.top + r.height, r.left, r.left + r.width)),
                 !(
                   e.left >= r.left &&
                   e.top >= r.top &&
@@ -25861,7 +25861,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           searchForWorkspaceComment(e) {
             for (let t of this.getTopComments())
               if (
-                t instanceof Cd &&
+                t instanceof Sd &&
                 t.canBeFocused() &&
                 t.getFocusableElement().id === e
               )
@@ -25948,7 +25948,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               }
             }
             s = this.getComponentManager().getComponents(
-              Qo.Capability.FOCUSABLE,
+              Zo.Capability.FOCUSABLE,
               !1,
             )
             for (i of s)
@@ -25967,7 +25967,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             }
           }
           performAction() {
-            Bc.show(this, {
+            zc.show(this, {
               message: e.C.KEYBOARD_NAV_WORKSPACE_NAVIGATION_HINT,
               id: `workspaceNavigationHint`,
             })
@@ -26013,10 +26013,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         static load(e, t) {
           ;((e = new this(t, e.name, e.type, e.id)),
             t.getVariableMap().addVariable(e),
-            x(new (S(O.VAR_CREATE))(e)))
+            x(new (S(k.VAR_CREATE))(e)))
         }
       }
-      b(F.VARIABLE_MODEL, `default`, tm)
+      b(I.VARIABLE_MODEL, `default`, tm)
       var nm = class {
         constructor(e, t = !1) {
           ;((this.workspace = e),
@@ -26055,13 +26055,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             (r = this.variableMap.get(t) ?? new Map()),
             r.set(e.getId(), e),
             this.variableMap.has(t) || this.variableMap.set(t, r),
-            x(new (S(O.VAR_TYPE_CHANGE))(e, n, t)),
+            x(new (S(k.VAR_TYPE_CHANGE))(e, n, t)),
             e
           )
         }
         renameVariableAndUses(e, t, n) {
           for (
-            this.potentialMap || x(new (S(O.VAR_RENAME))(e, t)),
+            this.potentialMap || x(new (S(k.VAR_RENAME))(e, t)),
               e.setName(t),
               t = 0;
             t < n.length;
@@ -26078,7 +26078,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             t++
           )
             r[t].renameVarById(e.getId(), n.getId())
-          this.potentialMap || x(new (S(O.VAR_DELETE))(e))
+          this.potentialMap || x(new (S(k.VAR_DELETE))(e))
           var o
           ;(o = this.variableMap.get(i)) == null || o.delete(e.getId())
         }
@@ -26102,7 +26102,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           if (
             ((r = n || He()),
             (t ||= ``),
-            (n = Be(F.VARIABLE_MODEL, this.workspace.options, !0)),
+            (n = Be(I.VARIABLE_MODEL, this.workspace.options, !0)),
             !n)
           )
             throw Error(`No variable model is registered.`)
@@ -26111,7 +26111,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             (e = this.variableMap.get(t) ?? new Map()),
             e.set(r.getId(), r),
             this.variableMap.has(t) || this.variableMap.set(t, e),
-            this.potentialMap || x(new (S(O.VAR_CREATE))(r)),
+            this.potentialMap || x(new (S(k.VAR_CREATE))(r)),
             r
           )
         }
@@ -26132,7 +26132,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             e &&
               e.has(t.getId()) &&
               (e.delete(t.getId()),
-              this.potentialMap || x(new (S(O.VAR_DELETE))(t)),
+              this.potentialMap || x(new (S(k.VAR_DELETE))(t)),
               e.size === 0 && this.variableMap.delete(t.getType()))
           } finally {
             this.potentialMap || e.B(r)
@@ -26164,7 +26164,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           return e
         }
       }
-      b(F.VARIABLE_MAP, `default`, nm)
+      b(I.VARIABLE_MAP, `default`, nm)
       var rm = class extends Bf {
         constructor(e) {
           ;(super(),
@@ -26181,33 +26181,33 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               ((e = this.workspace.copyOptionsForFlyout()),
               this.workspace.horizontalLayout
                 ? ((e.toolboxPosition =
-                    this.workspace.toolboxPosition === z.TOP
-                      ? z.BOTTOM
-                      : z.TOP),
+                    this.workspace.toolboxPosition === B.TOP
+                      ? B.BOTTOM
+                      : B.TOP),
                   (this.flyout = new (Be(
-                    F.FLYOUTS_HORIZONTAL_TOOLBOX,
+                    I.FLYOUTS_HORIZONTAL_TOOLBOX,
                     this.workspace.options,
                     !0,
                   ))(e)))
                 : ((e.toolboxPosition =
-                    this.workspace.toolboxPosition === z.RIGHT
-                      ? z.LEFT
-                      : z.RIGHT),
+                    this.workspace.toolboxPosition === B.RIGHT
+                      ? B.LEFT
+                      : B.RIGHT),
                   (this.flyout = new (Be(
-                    F.FLYOUTS_VERTICAL_TOOLBOX,
+                    I.FLYOUTS_VERTICAL_TOOLBOX,
                     this.workspace.options,
                     !0,
                   ))(e))),
               this.workspace.addChangeListener(this.onDelete.bind(this))))
         }
         createDom() {
-          ;((this.svgGroup = _(j.G, {
+          ;((this.svgGroup = _(M.G, {
             class: `blocklyTrash`,
             tabindex: `0`,
             id: this.uniqueId,
           })),
             _(
-              j.RECT,
+              M.RECT,
               {
                 width: 55,
                 height: 68,
@@ -26220,23 +26220,23 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               },
               this.svgGroup,
             ),
-            h(this.svgGroup, k.BUTTON),
-            g(this.svgGroup, A.LABEL, e.C.ARIA_LABEL_TRASH_EMPTY),
-            g(this.svgGroup, A.DISABLED, !0))
+            h(this.svgGroup, A.BUTTON),
+            g(this.svgGroup, j.LABEL, e.C.ARIA_LABEL_TRASH_EMPTY),
+            g(this.svgGroup, j.DISABLED, !0))
           var t = String(Math.random()).substring(2),
             n = _(
-              j.CLIPPATH,
+              M.CLIPPATH,
               { id: `blocklyTrashBodyClipPath` + t },
               this.svgGroup,
             )
           return (
-            _(j.RECT, { width: 47, height: 44, y: 16 }, n),
+            _(M.RECT, { width: 47, height: 44, y: 16 }, n),
             _(
-              j.IMAGE,
+              M.IMAGE,
               {
-                width: vc.width,
+                width: _c.width,
                 x: -0,
-                height: vc.height,
+                height: _c.height,
                 y: -32,
                 "clip-path": `url(#blocklyTrashBodyClipPath` + t + `)`,
               },
@@ -26244,22 +26244,22 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             ).setAttributeNS(
               `http://www.w3.org/1999/xlink`,
               `xlink:href`,
-              this.workspace.options.pathToMedia + vc.url,
+              this.workspace.options.pathToMedia + _c.url,
             ),
             (n = _(
-              j.CLIPPATH,
+              M.CLIPPATH,
               { id: `blocklyTrashLidClipPath` + t },
               this.svgGroup,
             )),
-            _(j.RECT, { width: 47, height: 16 }, n),
-            (n = _(j.G, { class: `blocklyTrashLid` }, this.svgGroup)),
-            (n = _(j.SVG, { viewBox: `0 32 47 16`, width: 47, height: 16 }, n)),
+            _(M.RECT, { width: 47, height: 16 }, n),
+            (n = _(M.G, { class: `blocklyTrashLid` }, this.svgGroup)),
+            (n = _(M.SVG, { viewBox: `0 32 47 16`, width: 47, height: 16 }, n)),
             _(
-              j.IMAGE,
+              M.IMAGE,
               {
-                width: vc.width,
-                height: vc.height,
-                href: this.workspace.options.pathToMedia + vc.url,
+                width: _c.width,
+                height: _c.height,
+                href: this.workspace.options.pathToMedia + _c.url,
               },
               n,
             ),
@@ -26276,19 +26276,19 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         init() {
           if (this.workspace.options.maxTrashcanContents > 0) {
-            let e = this.flyout.createDom(j.SVG)
+            let e = this.flyout.createDom(M.SVG)
             ;(v(e, `blocklyTrashcanFlyout`),
               le(e, this.workspace.getParentSvg()),
               this.flyout.init(this.workspace))
           }
           ;(this.workspace.getComponentManager().addComponent({
             component: this,
-            weight: Qo.ComponentWeight.TRASHCAN_WEIGHT,
+            weight: Zo.ComponentWeight.TRASHCAN_WEIGHT,
             capabilities: [
-              Qo.Capability.AUTOHIDEABLE,
-              Qo.Capability.DELETE_AREA,
-              Qo.Capability.DRAG_TARGET,
-              Qo.Capability.POSITIONABLE,
+              Zo.Capability.AUTOHIDEABLE,
+              Zo.Capability.DELETE_AREA,
+              Zo.Capability.DRAG_TARGET,
+              Zo.Capability.POSITIONABLE,
             ],
           }),
             (this.initialized = !0),
@@ -26319,7 +26319,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 ;((r = this.flyout) == null || r.show(t), (n.cursor = ``))
                 var i
                 ;((i = this.workspace.scrollbar) == null || i.setVisible(!1),
-                  ru.getIsActive() &&
+                  nu.getIsActive() &&
                     (r = this.flyout
                       ?.getWorkspace()
                       ?.getNavigator()
@@ -26347,15 +26347,15 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             this.svgGroup &&
             ((this.contents.length = 0),
             this.svgGroup.classList.remove(`blocklyTrashFull`),
-            g(this.svgGroup, A.LABEL, e.C.ARIA_LABEL_TRASH_EMPTY),
-            g(this.svgGroup, A.DISABLED, !0),
+            g(this.svgGroup, j.LABEL, e.C.ARIA_LABEL_TRASH_EMPTY),
+            g(this.svgGroup, j.DISABLED, !0),
             this.closeFlyout())
         }
         position(e, t) {
           if (this.initialized) {
             var n = yt(this.workspace, e)
-            ;((e = vt(n, new R(47, 60), 20, 20, e, this.workspace)),
-              (t = bt(e, 20, n.vertical === dc.TOP ? hc.DOWN : hc.UP, t)),
+            ;((e = vt(n, new z(47, 60), 20, 20, e, this.workspace)),
+              (t = bt(e, 20, n.vertical === uc.TOP ? mc.DOWN : mc.UP, t)),
               (this.top = t.top),
               (this.left = t.left))
             var r
@@ -26369,24 +26369,24 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
         }
         getBoundingRectangle() {
-          return new L(this.top, this.top + 44 + 16, this.left, this.left + 47)
+          return new R(this.top, this.top + 44 + 16, this.left, this.left + 47)
         }
         getClientRect() {
           if (!this.svgGroup) return null
           var e = this.svgGroup.getBoundingClientRect(),
             t = e.top + 32 - 10
           return (
-            (e = e.left + 0 - 10), new L(t, t + 16 + 44 + 20, e, e + 47 + 20)
+            (e = e.left + 0 - 10), new R(t, t + 16 + 44 + 20, e, e + 47 + 20)
           )
         }
         onDragOver() {
-          G.mover.isMoving() || this.setLidOpen(this.wouldDelete_)
+          Ad.mover.isMoving() || this.setLidOpen(this.wouldDelete_)
         }
         onDragExit() {
-          G.mover.isMoving() || this.setLidOpen(!1)
+          Ad.mover.isMoving() || this.setLidOpen(!1)
         }
         onDrop() {
-          G.mover.isMoving() || setTimeout(this.setLidOpen.bind(this, !1), 100)
+          Ad.mover.isMoving() || setTimeout(this.setLidOpen.bind(this, !1), 100)
         }
         setLidOpen(e) {
           if (this.isLidOpen !== e) {
@@ -26409,7 +26409,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             (e.preventDefault(), this.click())
         }
         fireUiEvent(e) {
-          ;((e = new (S(O.TRASHCAN_OPEN))(e, this.workspace.id)), x(e))
+          ;((e = new (S(k.TRASHCAN_OPEN))(e, this.workspace.id)), x(e))
         }
         blockMouseDownWhenOpenable(e) {
           !this.contentsIsOpen() && this.hasContents() && e.stopPropagation()
@@ -26418,7 +26418,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           if (
             !(
               this.workspace.options.maxTrashcanContents <= 0 ||
-              t.type !== O.BLOCK_DELETE ||
+              t.type !== k.BLOCK_DELETE ||
               t.wasShadow
             ) &&
             this.svgGroup
@@ -26436,8 +26436,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               )
                 this.contents.pop()
               ;(this.svgGroup.classList.add(`blocklyTrashFull`),
-                g(this.svgGroup, A.LABEL, e.C.OPEN_TRASH),
-                ne(this.svgGroup, A.DISABLED))
+                g(this.svgGroup, j.LABEL, e.C.OPEN_TRASH),
+                ne(this.svgGroup, j.DISABLED))
             }
           }
         }
@@ -26566,7 +26566,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           )
         }
         load(e, t) {
-          var n = Ie(F.VARIABLE_MODEL, `default`, void 0)
+          var n = Ie(I.VARIABLE_MODEL, `default`, void 0)
           e.forEach((e) => {
             n?.load(e, t)
           })
@@ -26579,8 +26579,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       var sm = {}
       sm.VariableSerializer = om
       var cm = {
-        blocks: hu,
-        exceptions: pu,
+        blocks: mu,
+        exceptions: fu,
         priorities: {
           BLOCKS: 50,
           PROCEDURES: 75,
@@ -26588,12 +26588,12 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           WORKSPACE_COMMENTS: 25,
         },
         procedures: am,
-        registry: wc,
+        registry: Cc,
         variables: sm,
-        workspaceComments: Ec,
+        workspaceComments: Tc,
         workspaces: {
           load: function (t, n, { recordUndo: r = !1 } = {}) {
-            var i = ze(F.SERIALIZER, !0)
+            var i = ze(I.SERIALIZER, !0)
             if (i) {
               i = Object.entries(i).sort(
                 (e, t) => t[1].priority - e[1].priority,
@@ -26614,14 +26614,14 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 }
               ;(n instanceof em && n.setResizesEnabled(!0),
                 fe(),
-                x(new (S(O.FINISHED_LOADING))(n)),
+                x(new (S(k.FINISHED_LOADING))(n)),
                 e.B(r),
                 (e.Qc = a))
             }
           },
           save: function (e) {
             var t = Object.create(null),
-              n = ze(F.SERIALIZER, !0)
+              n = ze(I.SERIALIZER, !0)
             for (let r in n) {
               let i = n[r]?.save(e)
               i && (t[r] = i)
@@ -26630,7 +26630,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           },
         },
       }
-      ;`Blockly` in globalThis || (globalThis.Blockly = { Msg: Js })
+      ;`Blockly` in globalThis || (globalThis.Blockly = { Msg: qs })
       var lm = class {
         load(e, t) {
           return (
@@ -26649,10 +26649,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           return `label`
         }
       }
-      b(F.FLYOUT_INFLATER, `label`, lm)
+      b(I.FLYOUT_INFLATER, `label`, lm)
       var um = class {
           constructor() {
-            this.size = new R(0, 0)
+            this.size = new z(0, 0)
           }
           getHeightWidth() {
             return this.size
@@ -26669,9 +26669,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               this.partiallyTighten(n, t),
               (this.marker = this.makeMarker(n)),
               (i = n.getBoundingRectangleWithoutChildren()),
-              (this.size = new R(i.getWidth(), i.getHeight())),
+              (this.size = new z(i.getWidth(), i.getHeight())),
               (i = e.getSourceBlock().getRelativeToSurfaceXY()))
-            var a = I.difference(e.getOffsetInBlock(), t.getOffsetInBlock())
+            var a = L.difference(e.getOffsetInBlock(), t.getOffsetInBlock())
             for (let [e, t] of r.entries()) e.targetConnection = t
             ;(n.workspace.getRenderer().render(n),
               this.partiallyTighten(n, t),
@@ -26696,13 +26696,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             }
           }
           makeMarker(e) {
-            var t = _(j.G, {
+            var t = _(M.G, {
               transform: `translate(${e.relativeCoords.x}, ${e.relativeCoords.y})`,
               class: `blocklyInsertionMarker`,
             })
             return (
               _(
-                j.PATH,
+                M.PATH,
                 {
                   d: e.pathObject.svgPath.getAttribute(`d`) ?? ``,
                   class: `blocklyPath`,
@@ -27365,13 +27365,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             ;(super(e, t, n),
               (this.constants = n),
               (this.colourDark = `#000000`),
-              (this.svgPathDark = _(j.PATH, {
+              (this.svgPathDark = _(M.PATH, {
                 class: `blocklyPathDark`,
                 transform: `translate(1,1)`,
               })),
               this.svgRoot.insertBefore(this.svgPathDark, this.svgPath),
               (this.svgPathLight = _(
-                j.PATH,
+                M.PATH,
                 { class: `blocklyPathLight` },
                 this.svgRoot,
               )))
@@ -27885,8 +27885,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (!t && e.targetConnection && (t = e.targetConnection.getCheck()),
               e.type)
             ) {
-              case B.INPUT_VALUE:
-              case B.OUTPUT_VALUE:
+              case V.INPUT_VALUE:
+              case V.OUTPUT_VALUE:
                 if (((e = e.getSourceBlock().getOutputShape()), e !== null))
                   switch (e) {
                     case this.SHAPES.HEXAGONAL:
@@ -27900,8 +27900,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   ? this.HEXAGONAL
                   : ((t && t.includes(`Number`)) || (t && t.includes(`String`)),
                     this.ROUNDED)
-              case B.PREVIOUS_STATEMENT:
-              case B.NEXT_STATEMENT:
+              case V.PREVIOUS_STATEMENT:
+              case V.NEXT_STATEMENT:
                 return this.NOTCH
               default:
                 throw Error(`Unknown type`)
@@ -27974,9 +27974,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           createDom(e, t, n) {
             ;(super.createDom(e, t, n),
-              (e = _(j.DEFS, {}, e)),
+              (e = _(M.DEFS, {}, e)),
               (e = _(
-                j.FILTER,
+                M.FILTER,
                 {
                   id: `blocklySelectedGlowFilter` + this.randomIdentifier,
                   height: `160%`,
@@ -27987,13 +27987,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 e,
               )),
               _(
-                j.FEGAUSSIANBLUR,
+                M.FEGAUSSIANBLUR,
                 { in: `SourceGraphic`, stdDeviation: this.SELECTED_GLOW_SIZE },
                 e,
               ),
-              (t = _(j.FECOMPONENTTRANSFER, { result: `outBlur` }, e)),
+              (t = _(M.FECOMPONENTTRANSFER, { result: `outBlur` }, e)),
               _(
-                j.FEFUNCA,
+                M.FEFUNCA,
                 {
                   type: `table`,
                   tableValues: `0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1`,
@@ -28001,7 +28001,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 t,
               ),
               _(
-                j.FEFLOOD,
+                M.FEFLOOD,
                 {
                   "flood-color": this.SELECTED_GLOW_COLOUR,
                   "flood-opacity": 1,
@@ -28010,7 +28010,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 e,
               ),
               _(
-                j.FECOMPOSITE,
+                M.FECOMPOSITE,
                 {
                   in: `outColor`,
                   in2: `outBlur`,
@@ -28225,13 +28225,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           drawConnectionHighlightPath(e) {
             var t = e.connectionModel
             if (
-              t.type === B.NEXT_STATEMENT ||
-              t.type === B.PREVIOUS_STATEMENT ||
-              (t.type === B.OUTPUT_VALUE && !e.isDynamicShape)
+              t.type === V.NEXT_STATEMENT ||
+              t.type === V.PREVIOUS_STATEMENT ||
+              (t.type === V.OUTPUT_VALUE && !e.isDynamicShape)
             )
               return super.drawConnectionHighlightPath(e)
             e =
-              t.type === B.INPUT_VALUE
+              t.type === V.INPUT_VALUE
                 ? gi(e.connectionWidth, -e.height / 2) +
                   this.getInlineInputPath(e)
                 : gi(e.width, -e.height / 2) + e.shape.pathDown(e.height)
@@ -28246,10 +28246,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             )
           }
         },
-        wm = class extends Qu {
+        wm = class extends Zu {
           constructor(e, t, n, r, i, a, o) {
             if (
-              (super(Qu.SKIP_SETUP),
+              (super(Zu.SKIP_SETUP),
               (this.imageElement = this.clickHandler = null),
               (this.flipRtl = this.isDirty_ = this.EDITABLE = !1),
               (this.altText = ``),
@@ -28264,10 +28264,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               throw Error(
                 `Height and width values of an image field must be greater than 0.`,
               )
-            ;((this.size_ = new R(t, n + wm.Y_PADDING)),
+            ;((this.size_ = new z(t, n + wm.Y_PADDING)),
               (this.imageHeight = n),
               typeof i == `function` && (this.clickHandler = i),
-              e !== Qu.SKIP_SETUP &&
+              e !== Zu.SKIP_SETUP &&
                 (o
                   ? this.configure_(o)
                   : typeof r == `object` &&
@@ -28286,7 +28286,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           initView() {
             ;((this.imageElement = _(
-              j.IMAGE,
+              M.IMAGE,
               {
                 height: this.imageHeight + `px`,
                 width: this.size_.width + `px`,
@@ -28357,15 +28357,15 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           recomputeAriaContext() {
             if (!super.recomputeAriaContext()) return !1
             var e = this.getFocusableElement()
-            if (!this.isClickable()) return (h(e, k.NONE), ne(e, A.LABEL), !1)
+            if (!this.isClickable()) return (h(e, A.NONE), ne(e, j.LABEL), !1)
             var t = this.getAriaValue() || ``
-            return (g(e, A.LABEL, t), !0)
+            return (g(e, j.LABEL, t), !0)
           }
         }
       ;((wm.Y_PADDING = 1),
         si(`field_image`, wm),
         (wm.prototype.DEFAULT_VALUE = ``))
-      var Tm = class extends Qu {
+      var Tm = class extends Zu {
         set size_(e) {
           super.size_ = e
         }
@@ -28374,7 +28374,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           return (e.width < 14 && (e.width = 14), e)
         }
         constructor(e, t, n) {
-          ;(super(Qu.SKIP_SETUP),
+          ;(super(Zu.SKIP_SETUP),
             (this.spellcheck_ = !0),
             (this.htmlInput_ = null),
             (this.isTextValid_ = this.isBeingEdited_ = !1),
@@ -28386,7 +28386,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             (this.fullBlockClickTarget_ = !1),
             (this.workspace_ = null),
             (this.SERIALIZABLE = !0),
-            e !== Qu.SKIP_SETUP &&
+            e !== Zu.SKIP_SETUP &&
               (n && this.configure_(n),
               this.setValue(e),
               t && this.setValidator(t)))
@@ -28396,7 +28396,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             e.spellcheck !== void 0 && (this.spellcheck_ = e.spellcheck))
         }
         initView() {
-          if (!this.getSourceBlock()) throw new $u()
+          if (!this.getSourceBlock()) throw new Qu()
           ;(this.isFullBlockField() || this.createBorderRect_(),
             this.createTextElement_(),
             this.fieldGroup_ && v(this.fieldGroup_, `blocklyField`),
@@ -28407,7 +28407,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         isFullBlockField() {
           var e = this.getSourceBlock()
-          if (!e) throw new $u()
+          if (!e) throw new Qu()
           var t
           return (this.fullBlockClickTarget_ =
             !((t = this.getConstants()) == null || !t.FULL_BLOCK_FIELDS) &&
@@ -28418,7 +28418,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           var e = this.getScaledBBox()
           return (
             (e = e.bottom - e.top),
-            (e = _(j.SVG, {
+            (e = _(M.SVG, {
               class: `blocklyInputWarning`,
               viewBox: `-4 0 24 16`,
               x: `0`,
@@ -28427,7 +28427,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               width: `${e}px`,
             })),
             _(
-              j.PATH,
+              M.PATH,
               {
                 class: `blocklyInputWarningIconShape`,
                 d: `M2,15Q-1,15 0.5,12L6.5,1.7Q8,-1 9.5,1.7L15.5,12Q17,15 14,15z`,
@@ -28435,7 +28435,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               e,
             ),
             _(
-              j.PATH,
+              M.PATH,
               {
                 class: `blocklyInputWarningIconSymbol`,
                 d: `m7,4.8v3.16l0.27,2.27h1.46l0.27,-2.27v-3.16z`,
@@ -28443,7 +28443,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               e,
             ),
             _(
-              j.RECT,
+              M.RECT,
               {
                 class: `blocklyInputWarningIconSymbol`,
                 x: `7`,
@@ -28467,7 +28467,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               this.value_ !== e &&
               t &&
               x(
-                new (S(O.BLOCK_CHANGE))(
+                new (S(k.BLOCK_CHANGE))(
                   this.sourceBlock_,
                   `field`,
                   this.name || null,
@@ -28484,7 +28484,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         applyColour() {
           var e = this.getSourceBlock()
-          if (!e) throw new $u()
+          if (!e) throw new Qu()
           this.getConstants().FULL_BLOCK_FIELDS &&
             this.fieldGroup_ &&
             (!this.isFullBlockField() && this.borderRect_
@@ -28510,13 +28510,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         render_() {
           super.render_()
           var e = this.getSourceBlock()
-          if (!e) throw new $u()
+          if (!e) throw new Qu()
           if (this.isBeingEdited_) {
             let t = this.htmlInput_
             ;(this.renderWarningIcon(e.RTL, this.isTextValid_),
               this.isTextValid_
-                ? (y(t, `blocklyInvalidInput`), g(t, A.INVALID, !1))
-                : (v(t, `blocklyInvalidInput`), g(t, A.INVALID, !0)))
+                ? (y(t, `blocklyInvalidInput`), g(t, j.INVALID, !1))
+                : (v(t, `blocklyInvalidInput`), g(t, j.INVALID, !0)))
           }
           this.getConstants().FULL_BLOCK_FIELDS && e.applyColour()
         }
@@ -28557,7 +28557,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         showEditor_(e, t = !1, n = !0) {
           ;((this.workspace_ = this.sourceBlock_.workspace),
-            !t && this.workspace_.options.modalInputs && (Ko || Ho || Uo)
+            !t && this.workspace_.options.modalInputs && (Go || Vo || Ho)
               ? this.showPromptEditor()
               : this.showInlineEditor(t, n))
         }
@@ -28569,7 +28569,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         showInlineEditor(e, t) {
           var n = this.getSourceBlock()
-          if (!n) throw new $u()
+          if (!n) throw new Qu()
           ;(Mr(this, n.RTL, this.widgetDispose_.bind(this), this.workspace_, t),
             (this.htmlInput_ = this.widgetCreate_()),
             (this.isBeingEdited_ = !0),
@@ -28580,9 +28580,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         widgetCreate_() {
           var t = this.getSourceBlock()
-          if (!t) throw new $u()
+          if (!t) throw new Qu()
           e.B(!0)
-          var n = ad,
+          var n = id,
             r = this.getClickTarget_()
           if (!r) throw Error(`A click target has not been set.`)
           ;(v(r, `blocklyEditing`),
@@ -28634,7 +28634,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               this.valueWhenEditorWasOpened_ !== null &&
               this.valueWhenEditorWasOpened_ !== this.value_ &&
               (x(
-                new (S(O.BLOCK_CHANGE))(
+                new (S(k.BLOCK_CHANGE))(
                   this.sourceBlock_,
                   `field`,
                   this.name || null,
@@ -28645,7 +28645,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (this.valueWhenEditorWasOpened_ = null)),
             e.B(!1),
             this.unbindInputEvents_())
-          var t = ad.style
+          var t = id.style
           if (
             ((t.width = `auto`),
             (t.height = `auto`),
@@ -28717,7 +28717,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               qe() &&
               this.value_ !== e &&
               x(
-                new (S(O.BLOCK_FIELD_INTERMEDIATE_CHANGE))(
+                new (S(k.BLOCK_FIELD_INTERMEDIATE_CHANGE))(
                   this.sourceBlock_,
                   this.name || null,
                   e,
@@ -28734,8 +28734,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         resizeEditor_() {
           kt().then(() => {
             var e = this.getSourceBlock()
-            if (!e) throw new $u()
-            var t = ad
+            if (!e) throw new Qu()
+            var t = id
             if (t) {
               var n = this.getScaledBBox()
               ;((t.style.width = n.right - n.left + `px`),
@@ -28758,12 +28758,12 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           if (!(e instanceof Rf)) return !1
           if ((this.resizeEditor_(), (e = this.getClickTarget_()), !e || !t))
             return !0
-          e = L.from(e.getBoundingClientRect())
+          e = R.from(e.getBoundingClientRect())
           var n = st(t, e.getOrigin()),
             r = t.scale
           return (
             t.scrollBoundsIntoView(
-              L.createFromPoint(n, e.getWidth() / r, e.getHeight() / r),
+              R.createFromPoint(n, e.getWidth() / r, e.getHeight() / r),
             ),
             !0
           )
@@ -28799,7 +28799,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               !((r = this.getSourceBlock()) != null && r.isInFlyout)
           return (
             this.isFullBlockField()
-              ? ((r = Sn(this.getSourceBlock(), hs.STANDARD, n)),
+              ? ((r = Sn(this.getSourceBlock(), ms.STANDARD, n)),
                 i &&
                   ((n = r.split(`, `)),
                   (i = Tn(this.getSourceBlock())),
@@ -28811,7 +28811,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   )),
                   (n = n.join(`, `))))
               : i && (n = e.C.FIELD_LABEL_EDIT_PREFIX.replace(`%1`, n)),
-            g(t, A.LABEL, n),
+            g(t, j.LABEL, n),
             !0
           )
         }
@@ -29290,14 +29290,14 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               e
                 ? this.svgPathSelected ||
                   ((this.svgPathSelected = _(
-                    j.PATH,
+                    M.PATH,
                     {
                       class: `blocklyPath blocklyPathSelected`,
                       stroke: this.svgPath.getAttribute(`stroke`) || ``,
                       fill: this.svgPath.getAttribute(`fill`) || ``,
                       d: this.svgPath.getAttribute(`d`) || ``,
                       transform: this.svgPath.getAttribute(`transform`) || ``,
-                      role: k.NONE,
+                      role: A.NONE,
                     },
                     this.svgRoot,
                   )),
@@ -29325,7 +29325,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 this.outlines.set(
                   e,
                   _(
-                    j.PATH,
+                    M.PATH,
                     { class: `blocklyOutlinePath`, d: `` },
                     this.svgRoot,
                   ),
@@ -29363,7 +29363,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           shouldHighlightConnection(e) {
             return (
-              super.shouldHighlightConnection(e) || e.type === B.INPUT_VALUE
+              super.shouldHighlightConnection(e) || e.type === V.INPUT_VALUE
             )
           }
         }
@@ -29412,8 +29412,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         shouldUseMarkerPreview(e, t) {
           return (
-            t.type === B.PREVIOUS_STATEMENT ||
-            t.type === B.NEXT_STATEMENT ||
+            t.type === V.PREVIOUS_STATEMENT ||
+            t.type === V.NEXT_STATEMENT ||
             !(this.workspace.getRenderer() instanceof Mm)
           )
         }
@@ -29514,7 +29514,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
       }
       ;((Nm.useFastInsertionMarkers = !1),
-        b(F.CONNECTION_PREVIEWER, `default`, Nm))
+        b(I.CONNECTION_PREVIEWER, `default`, Nm))
       var Pm = {}
       ;((Pm.Align = e.Xn),
         (Pm.DummyInput = $d),
@@ -29551,7 +29551,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             (console.warn(
               `No workspace specified in workspaceToCode call.  Guessing.`,
             ),
-            Ps)
+            Ns)
           var t = []
           ;(this.init(e), (e = e.getTopBlocks(!0)))
           for (let n = 0, r; (r = e[n]); n++) {
@@ -29792,13 +29792,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             (e = e.getToolboxMetrics()),
             this.targetWorkspace.toolboxPosition === this.toolboxPosition_
               ? this.targetWorkspace.getToolbox()
-                ? this.toolboxPosition_ === z.LEFT
+                ? this.toolboxPosition_ === B.LEFT
                   ? e.width
                   : n.width - this.getWidth()
-                : this.toolboxPosition_ === z.LEFT
+                : this.toolboxPosition_ === B.LEFT
                   ? 0
                   : n.width
-              : this.toolboxPosition_ === z.LEFT
+              : this.toolboxPosition_ === B.LEFT
                 ? 0
                 : n.width + t.left - this.getWidth()
           )
@@ -29818,7 +29818,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
         }
         setBackgroundPath(e, t) {
-          var n = this.toolboxPosition_ === z.RIGHT,
+          var n = this.toolboxPosition_ === B.RIGHT,
             r = e + this.CORNER_RADIUS
           ;((r = [`M ` + (n ? r : 0) + `,0`]),
             r.push(`h`, n ? -e : e),
@@ -29877,9 +29877,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             return null
           var e = this.svgGroup_.getBoundingClientRect(),
             t = e.left
-          return this.toolboxPosition_ === z.LEFT
-            ? new L(-1e9, 1e9, -1e9, t + e.width)
-            : new L(-1e9, 1e9, t, 1e9)
+          return this.toolboxPosition_ === B.LEFT
+            ? new R(-1e9, 1e9, -1e9, t + e.width)
+            : new R(-1e9, 1e9, t, 1e9)
         }
         reflowInternal_() {
           this.workspace_.scale = this.getFlyoutScale()
@@ -29891,7 +29891,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           if (
             ((e += this.MARGIN * 1.5 + this.tabWidth_),
             (e *= this.workspace_.scale),
-            (e += ec.scrollbarThickness),
+            (e += $s.scrollbarThickness),
             this.getWidth() !== e)
           ) {
             if (this.RTL)
@@ -29907,7 +29907,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             ;(this.targetWorkspace.scrollbar ||
               this.autoClose ||
               this.targetWorkspace.getFlyout() !== this ||
-              this.toolboxPosition_ !== z.LEFT ||
+              this.toolboxPosition_ !== B.LEFT ||
               this.targetWorkspace.translate(
                 this.targetWorkspace.scrollX + e,
                 this.targetWorkspace.scrollY,
@@ -29920,7 +29920,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
       }
       ;((Im.registryName = `verticalFlyout`),
-        b(F.FLYOUTS_VERTICAL_TOOLBOX, `default`, Im))
+        b(I.FLYOUTS_VERTICAL_TOOLBOX, `default`, Im))
       var Lm = class extends up {
         constructor(e) {
           ;(super(e), (this.horizontalLayout = !0))
@@ -29951,7 +29951,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             t = e.getAbsoluteMetrics(),
             n = e.getViewMetrics()
           e = e.getToolboxMetrics()
-          var r = this.toolboxPosition_ === z.TOP
+          var r = this.toolboxPosition_ === B.TOP
           return this.targetWorkspace.toolboxPosition === this.toolboxPosition_
             ? this.targetWorkspace.getToolbox()
               ? r
@@ -29976,7 +29976,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
         }
         setBackgroundPath(e, t) {
-          var n = this.toolboxPosition_ === z.TOP,
+          var n = this.toolboxPosition_ === B.TOP,
             r = [`M 0,` + (n ? 0 : this.CORNER_RADIUS)]
           ;(n
             ? (r.push(`h`, e + 2 * this.CORNER_RADIUS),
@@ -30062,9 +30062,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             return null
           var e = this.svgGroup_.getBoundingClientRect(),
             t = e.top
-          return this.toolboxPosition_ === z.TOP
-            ? new L(-1e9, t + e.height, -1e9, 1e9)
-            : new L(t, 1e9, -1e9, 1e9)
+          return this.toolboxPosition_ === B.TOP
+            ? new R(-1e9, t + e.height, -1e9, 1e9)
+            : new R(t, 1e9, -1e9, 1e9)
         }
         reflowInternal_() {
           this.workspace_.scale = this.getFlyoutScale()
@@ -30075,12 +30075,12 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           )
           ;((e += this.MARGIN * 1.5),
             (e *= this.workspace_.scale),
-            (e += ec.scrollbarThickness),
+            (e += $s.scrollbarThickness),
             this.getHeight() !== e &&
               (this.targetWorkspace.scrollbar ||
                 this.autoClose ||
                 this.targetWorkspace.getFlyout() !== this ||
-                this.toolboxPosition_ !== z.TOP ||
+                this.toolboxPosition_ !== B.TOP ||
                 this.targetWorkspace.translate(
                   this.targetWorkspace.scrollX,
                   this.targetWorkspace.scrollY + e,
@@ -30091,18 +30091,18 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               this.targetWorkspace.recordDragTargets()))
         }
       }
-      b(F.FLYOUTS_HORIZONTAL_TOOLBOX, `default`, Lm)
-      var Rm = class extends Dd {
+      b(I.FLYOUTS_HORIZONTAL_TOOLBOX, `default`, Lm)
+      var Rm = class extends Ed {
         constructor(e, t, n, r, i) {
-          ;(super(Qu.SKIP_SETUP),
+          ;(super(Zu.SKIP_SETUP),
             (this.defaultType = ``),
             (this.variableTypes = []),
             (this.variable = null),
             (this.SERIALIZABLE = !0),
             (this.menuGenerator_ = Rm.dropdownCreate),
             (this.defaultVariableName = typeof e == `string` ? e : ``),
-            (this.size_ = new R(0, 0)),
-            e !== Qu.SKIP_SETUP &&
+            (this.size_ = new z(0, 0)),
+            e !== Zu.SKIP_SETUP &&
               (i ? this.configure_(i) : this.setTypes(n, r),
               t && this.setValidator(t)))
         }
@@ -30111,7 +30111,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         initModel() {
           var t = this.getSourceBlock()
-          if (!t) throw new $u()
+          if (!t) throw new Qu()
           this.variable ||
             ((t = e.Wd(
               t.workspace,
@@ -30126,7 +30126,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         shouldAddBorderRect_() {
           var e = this.getSourceBlock()
-          if (!e) throw new $u()
+          if (!e) throw new Qu()
           return (
             super.shouldAddBorderRect_() &&
             (!this.getConstants().FIELD_DROPDOWN_NO_BORDER_RECT_SHADOW ||
@@ -30135,7 +30135,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         fromXml(t) {
           var n = this.getSourceBlock()
-          if (!n) throw new $u()
+          if (!n) throw new Qu()
           var r = t.getAttribute(`id`),
             i = t.textContent,
             a =
@@ -30179,7 +30179,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         loadState(t) {
           var n = this.getSourceBlock()
-          if (!n) throw new $u()
+          if (!n) throw new Qu()
           this.loadLegacyState(Rm, t) ||
             ((t = e.Wd(n.workspace, t.id || null, t.name, t.type || ``)),
             this.setValue(t.getId()))
@@ -30209,7 +30209,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         doClassValidation_(t) {
           if (t === null) return null
           var n = this.getSourceBlock()
-          if (!n) throw new $u()
+          if (!n) throw new Qu()
           return (
             (n = e.Vd(n.workspace, t)),
             n
@@ -30228,7 +30228,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         doValueUpdate_(t) {
           var n = this.getSourceBlock()
-          if (!n) throw new $u()
+          if (!n) throw new Qu()
           ;((this.variable = e.Vd(n.workspace, t)), super.doValueUpdate_(t))
         }
         typeIsAllowed(e) {
@@ -30363,13 +30363,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         (e.Dq.prototype.DEFAULT_VALUE = ``))
       var zm = class extends Tm {
         constructor(e, t, n, r, i, a) {
-          ;(super(Qu.SKIP_SETUP),
+          ;(super(Zu.SKIP_SETUP),
             (this.min_ = -1 / 0),
             (this.max_ = 1 / 0),
             (this.precision_ = 0),
             (this.decimalPlaces = null),
             (this.spellcheck_ = !1),
-            e !== Qu.SKIP_SETUP &&
+            e !== Zu.SKIP_SETUP &&
               (a ? this.configure_(a) : this.setConstraints(t, n, r),
               this.setValue(e),
               i && this.setValidator(i)))
@@ -30471,13 +30471,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
       }
       si(`field_label_serializable`, Bm)
-      var Vm = class extends Qu {
+      var Vm = class extends Zu {
         constructor(e, t, n) {
-          ;(super(Qu.SKIP_SETUP),
+          ;(super(Zu.SKIP_SETUP),
             (this.SERIALIZABLE = !0),
             (this.value_ = this.value_),
             (this.checkChar = Vm.CHECK_CHAR),
-            e !== Qu.SKIP_SETUP &&
+            e !== Zu.SKIP_SETUP &&
               (n && this.configure_(n),
               this.setValue(e),
               t && this.setValidator(t)))
@@ -30552,12 +30552,12 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         recomputeAriaContext() {
           if (!super.recomputeAriaContext()) return !1
           var e = this.getFocusableElement()
-          ;(g(e, A.HIDDEN, !1), h(e, k.CHECKBOX))
+          ;(g(e, j.HIDDEN, !1), h(e, A.CHECKBOX))
           var t = this.convertValueToBool(this.value_)
           return (
-            g(e, A.CHECKED, t),
+            g(e, j.CHECKED, t),
             (t = this.getAriaTypeName()),
-            g(e, A.LABEL, t),
+            g(e, j.LABEL, t),
             !0
           )
         }
@@ -30586,7 +30586,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         onDrag(e, t) {
           ;(this.moveDraggable(e, t),
             (e = e instanceof PointerEvent ? e : null) &&
-              ((e = new I(e.clientX, e.clientY)),
+              ((e = new L(e.clientX, e.clientY)),
               Bi(this.draggable) &&
                 this.draggable.setDeleteStyle(
                   this.wouldDeleteDraggable(e, this.draggable),
@@ -30606,14 +30606,14 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         moveDraggable(e, t) {
           ;((t = this.pixelsToWorkspaceUnits(t)),
-            (t = I.sum(this.startLoc, t)),
+            (t = L.sum(this.startLoc, t)),
             this.draggable.drag(t, e))
         }
         wouldDeleteDraggable(e, t) {
           return (e = this.draggable.workspace.getDragTarget(e)) &&
             this.draggable.workspace
               .getComponentManager()
-              .hasCapability(e.id, Qo.Capability.DELETE_AREA)
+              .hasCapability(e.id, Zo.Capability.DELETE_AREA)
             ? e.wouldDelete(t)
             : !1
         }
@@ -30622,7 +30622,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             r = t instanceof PointerEvent ? t : null
           if (r) {
             if (
-              ((r = new I(r.clientX, r.clientY)),
+              ((r = new L(r.clientX, r.clientY)),
               this.draggable.workspace.getDragTarget(r))
             ) {
               var i
@@ -30658,7 +30658,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         pixelsToWorkspaceUnits(e) {
           return (
-            (e = new I(
+            (e = new L(
               e.x / this.draggable.workspace.scale,
               e.y / this.draggable.workspace.scale,
             )),
@@ -30670,11 +30670,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           )
         }
       }
-      b(F.BLOCK_DRAGGER, `default`, Hm)
+      b(I.BLOCK_DRAGGER, `default`, Hm)
       var Um = {}
       ;((Um.BlockDragStrategy = Pf),
         (Um.BubbleDragStrategy = Pd),
-        (Um.CommentDragStrategy = hd),
+        (Um.CommentDragStrategy = md),
         (Um.Dragger = Hm))
       var Wm = {}
       ;((Wm.BottomRow = Em),
@@ -30686,26 +30686,26 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         (Wm.RightConnectionShape = Om),
         (Wm.StatementInput = Dm),
         (Wm.TopRow = km),
-        wo())
+        Co())
       var Gm = {}
       ;((Gm.registerCleanup = ao),
-        (Gm.registerCollapse = so),
-        (Gm.registerCollapseExpandBlock = _o),
-        (Gm.registerComment = ho),
-        (Gm.registerCommentCreate = Co),
-        (Gm.registerCommentDelete = xo),
-        (Gm.registerCommentDuplicate = So),
+        (Gm.registerCollapse = E),
+        (Gm.registerCollapseExpandBlock = go),
+        (Gm.registerComment = mo),
+        (Gm.registerCommentCreate = So),
+        (Gm.registerCommentDelete = bo),
+        (Gm.registerCommentDuplicate = xo),
         (Gm.registerCommentOptions = function () {
-          ;(So(), xo(), Co())
+          ;(xo(), bo(), So())
         }),
-        (Gm.registerDefaultOptions = wo),
-        (Gm.registerDelete = yo),
-        (Gm.registerDeleteAll = po),
-        (Gm.registerDisable = vo),
-        (Gm.registerDuplicate = mo),
-        (Gm.registerExpand = co),
-        (Gm.registerHelp = bo),
-        (Gm.registerInline = go),
+        (Gm.registerDefaultOptions = Co),
+        (Gm.registerDelete = vo),
+        (Gm.registerDeleteAll = fo),
+        (Gm.registerDisable = _o),
+        (Gm.registerDuplicate = po),
+        (Gm.registerExpand = so),
+        (Gm.registerHelp = yo),
+        (Gm.registerInline = ho),
         (Gm.registerRedo = T),
         (Gm.registerUndo = io))
       var Km = class {
@@ -30764,10 +30764,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               ? n.workspace === r.workspace
                 ? n.isShadow() && !r.isShadow()
                   ? q.REASON_SHADOW_PARENT
-                  : (i.type === B.OUTPUT_VALUE &&
+                  : (i.type === V.OUTPUT_VALUE &&
                         r.previousConnection &&
                         r.previousConnection.isConnected()) ||
-                      (i.type === B.PREVIOUS_STATEMENT &&
+                      (i.type === V.PREVIOUS_STATEMENT &&
                         r.outputConnection &&
                         r.outputConnection.isConnected())
                     ? q.REASON_PREVIOUS_AND_OUTPUT
@@ -30784,16 +30784,16 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           if (e.distanceFrom(t) > n || t.getSourceBlock().isInsertionMarker())
             return !1
           switch (t.type) {
-            case B.PREVIOUS_STATEMENT:
+            case V.PREVIOUS_STATEMENT:
               return this.canConnectToPrevious_(e, t)
-            case B.OUTPUT_VALUE:
+            case V.OUTPUT_VALUE:
               if (
                 (t.isConnected() && !t.targetBlock().isInsertionMarker()) ||
                 e.isConnected()
               )
                 return !1
               break
-            case B.INPUT_VALUE:
+            case V.INPUT_VALUE:
               if (
                 t.isConnected() &&
                 !t.targetBlock().isMovable() &&
@@ -30801,7 +30801,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               )
                 return !1
               break
-            case B.NEXT_STATEMENT:
+            case V.NEXT_STATEMENT:
               if (
                 (t.isConnected() &&
                   !e.getSourceBlock().nextConnection &&
@@ -30816,17 +30816,17 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             default:
               return !1
           }
-          return !Is.includes(t)
+          return !Fs.includes(t)
         }
         canConnectToPrevious_(e, t) {
-          return e.targetConnection || Is.includes(t)
+          return e.targetConnection || Fs.includes(t)
             ? !1
             : !t.targetConnection ||
                 ((e = t.targetBlock()),
                 e.isInsertionMarker() ? !e.getPreviousBlock() : !1)
         }
       }
-      b(F.CONNECTION_CHECKER, `default`, Km)
+      b(I.CONNECTION_CHECKER, `default`, Km)
       var qm = class {
         load(e, t) {
           return (
@@ -30845,7 +30845,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           return `button`
         }
       }
-      b(F.FLYOUT_INFLATER, `button`, qm)
+      b(I.FLYOUT_INFLATER, `button`, qm)
       var Jm = {}
       ;((Jm.Bubble = K),
         (Jm.MiniWorkspaceBubble = Id),
@@ -30867,11 +30867,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             e.getDescendants(!1).forEach((e) => {
               ;((e.isInFlyout = !0),
                 (e = e.getFocusableElement()),
-                g(e, A.HIDDEN, !0),
-                h(e, k.NONE))
+                g(e, j.HIDDEN, !0),
+                h(e, A.NONE))
             }))
           var n = e.getFocusableElement()
-          ;(ne(n, A.HIDDEN), h(n, k.OPTION))
+          ;(ne(n, j.HIDDEN), h(n, A.OPTION))
           var r = e
               .getIcons()
               .filter((e) => e.isClickableInFlyout?.call(e, t.autoClose))
@@ -30880,7 +30880,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             i = e.getConnections_(!0).map((e) => e.id)
           return (
             (r = [...r, ...i]),
-            r.length && g(n, A.OWNS, r),
+            r.length && g(n, j.OWNS, r),
             this.addBlockListeners(e),
             new Vf(e, `block`)
           )
@@ -30977,7 +30977,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         filterFlyoutBasedOnCapacity(e) {
           !this.flyout ||
-            (e && e.type !== O.BLOCK_CREATE && e.type !== O.BLOCK_DELETE) ||
+            (e && e.type !== k.BLOCK_CREATE && e.type !== k.BLOCK_DELETE) ||
             this.flyout
               .getWorkspace()
               .getTopBlocks(!1)
@@ -30990,7 +30990,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           return `block`
         }
       }
-      b(F.FLYOUT_INFLATER, `block`, Ym)
+      b(I.FLYOUT_INFLATER, `block`, Ym)
       var Xm = {}
       ;((Xm.ConstantProvider = dm),
         (Xm.Drawer = pm),
@@ -31184,9 +31184,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           createDom_() {
             ;((this.htmlDiv_ = this.createContainer_()),
-              h(this.htmlDiv_, k.TREEITEM),
-              g(this.htmlDiv_, A.SELECTED, !1),
-              g(this.htmlDiv_, A.LEVEL, this.level_ + 1),
+              h(this.htmlDiv_, A.TREEITEM),
+              g(this.htmlDiv_, j.SELECTED, !1),
+              g(this.htmlDiv_, j.LEVEL, this.level_ + 1),
               (this.rowDiv_ = this.createRowContainer_()),
               (this.rowDiv_.style.pointerEvents = `auto`),
               this.htmlDiv_.appendChild(this.rowDiv_),
@@ -31194,13 +31194,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (this.rowContents_.style.pointerEvents = `none`),
               this.rowDiv_.appendChild(this.rowContents_),
               (this.iconDom_ = this.createIconDom_()),
-              h(this.iconDom_, k.NONE),
+              h(this.iconDom_, A.NONE),
               this.rowContents_.appendChild(this.iconDom_),
               (this.labelDom_ = this.createLabelDom_(this.name_)),
               this.rowContents_.appendChild(this.labelDom_))
             var e = this.labelDom_.getAttribute(`id`)
             return (
-              e && g(this.htmlDiv_, A.LABELLEDBY, e),
+              e && g(this.htmlDiv_, j.LABELLEDBY, e),
               this.addColourBorder_(this.colour_),
               this.htmlDiv_
             )
@@ -31348,7 +31348,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               } else
                 ((this.rowDiv_.style.backgroundColor = ``),
                   t && y(this.rowDiv_, t))
-              g(this.htmlDiv_, A.SELECTED, e)
+              g(this.htmlDiv_, j.SELECTED, e)
             }
           }
           setDisabled(e) {
@@ -31484,7 +31484,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
   color: #fff;
 }
 `),
-        b(F.TOOLBOX_ITEM, eh.registrationName, eh))
+        b(I.TOOLBOX_ITEM, eh.registrationName, eh))
       var th = class extends $m {
         constructor(e, t) {
           ;(super(e, t),
@@ -31499,7 +31499,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           var e = document.createElement(`div`)
           e.id = this.getId()
           var t = this.cssConfig_.container
-          return (t && v(e, t), h(e, k.NONE), (this.htmlDiv = e))
+          return (t && v(e, t), h(e, A.NONE), (this.htmlDiv = e))
         }
         getDiv() {
           return this.htmlDiv
@@ -31528,7 +31528,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
   width: 0;
 }
 `),
-        b(F.TOOLBOX_ITEM, th.registrationName, th))
+        b(I.TOOLBOX_ITEM, th.registrationName, th))
       var nh = class extends eh {
         constructor(e, t, n) {
           ;(super(e, t, n),
@@ -31548,7 +31548,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               ;((this.flyoutItems_ = []), (e = !0))
               for (let n = 0; n < t.length; n++) {
                 let r = t[n]
-                !Le(F.TOOLBOX_ITEM, r.kind) ||
+                !Le(I.TOOLBOX_ITEM, r.kind) ||
                 (r.kind.toLowerCase() === th.registrationName && e)
                   ? (this.flyoutItems_.push(r), (e = !0))
                   : (this.createToolboxItem(r), (e = !1))
@@ -31561,7 +31561,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           ;(t.toUpperCase() === `CATEGORY` &&
             mt(e) &&
             (t = nh.registrationName),
-            (e = new (Ie(F.TOOLBOX_ITEM, t, void 0))(
+            (e = new (Ie(I.TOOLBOX_ITEM, t, void 0))(
               e,
               this.parentToolbox_,
               this,
@@ -31580,10 +31580,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           var e = this.getChildToolboxItems()
           return (
             (this.subcategoriesDiv_ = this.createSubCategoriesDom_(e)),
-            h(this.subcategoriesDiv_, k.GROUP),
+            h(this.subcategoriesDiv_, A.GROUP),
             this.htmlDiv_.appendChild(this.subcategoriesDiv_),
             this.closeIcon_(this.iconDom_),
-            g(this.htmlDiv_, A.EXPANDED, !1),
+            g(this.htmlDiv_, j.EXPANDED, !1),
             this.htmlDiv_
           )
         }
@@ -31619,7 +31619,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               : (this.setFlyoutVisible(!1),
                 (this.subcategoriesDiv_.style.display = `none`),
                 this.closeIcon_(this.iconDom_)),
-            g(this.htmlDiv_, A.EXPANDED, e),
+            g(this.htmlDiv_, j.EXPANDED, e),
             this.parentToolbox_.handleToolboxItemResize())
         }
         setVisible_(e) {
@@ -31664,7 +31664,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
       }
       ;((nh.registrationName = `collapsibleCategory`),
-        b(F.TOOLBOX_ITEM, nh.registrationName, nh))
+        b(I.TOOLBOX_ITEM, nh.registrationName, nh))
       var rh = class extends Bf {
         constructor(e) {
           ;(super(),
@@ -31707,11 +31707,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             t.subscribe(this.HtmlDiv, `toolboxForegroundColour`, `color`),
             this.workspace_.getComponentManager().addComponent({
               component: this,
-              weight: Qo.ComponentWeight.TOOLBOX_WEIGHT,
+              weight: Zo.ComponentWeight.TOOLBOX_WEIGHT,
               capabilities: [
-                Qo.Capability.AUTOHIDEABLE,
-                Qo.Capability.DELETE_AREA,
-                Qo.Capability.DRAG_TARGET,
+                Zo.Capability.AUTOHIDEABLE,
+                Zo.Capability.DELETE_AREA,
+                Zo.Capability.DRAG_TARGET,
               ],
             }),
             e.t().registerTree(this, !0))
@@ -31721,7 +31721,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           var t = this.createContainer_()
           ;((t.id = Ve()),
             (this.contentsDiv_ = this.createContentsContainer_()),
-            h(this.contentsDiv_, k.TREE),
+            h(this.contentsDiv_, A.TREE),
             t.appendChild(this.contentsDiv_))
           var n
           return (
@@ -31761,7 +31761,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           var n = () => {
             ;(e.t().focusNode(this),
               this.clearSelection(),
-              Ps.hideChaff(!1),
+              Ns.hideChaff(!1),
               t.preventDefault())
           }
           if (((this.mouseDown = !0), u(t) || t.target === this.HtmlDiv)) n()
@@ -31773,9 +31773,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (r.onClick(t),
               r === this.getSelectedItem()
                 ? n()
-                : (this.setSelectedItem(r), Ps.hideChaff(!0)))
+                : (this.setSelectedItem(r), Ns.hideChaff(!0)))
           }
-          Do = null
+          Eo = null
         }
         onKeyDown_(t) {
           var n = !1
@@ -31797,8 +31797,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           return (
             (t.toolboxPosition = e.options.toolboxPosition),
             new (e.horizontalLayout
-              ? Be(F.FLYOUTS_HORIZONTAL_TOOLBOX, e.options, !0)
-              : Be(F.FLYOUTS_VERTICAL_TOOLBOX, e.options, !0))(t)
+              ? Be(I.FLYOUTS_HORIZONTAL_TOOLBOX, e.options, !0)
+              : Be(I.FLYOUTS_VERTICAL_TOOLBOX, e.options, !0))(t)
           )
         }
         render(e) {
@@ -31821,7 +31821,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             (n.toUpperCase() === `CATEGORY` &&
               mt(e) &&
               (n = nh.registrationName),
-            (n = Re(F.TOOLBOX_ITEM, n.toLowerCase())))
+            (n = Re(I.TOOLBOX_ITEM, n.toLowerCase())))
           ) {
             ;((e = new n(e, this)),
               e.init(),
@@ -31854,23 +31854,23 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             r = e.left
           return (
             (e = r + e.width),
-            this.toolboxPosition === z.TOP
-              ? new L(-1e7, n, -1e7, 1e7)
-              : this.toolboxPosition === z.BOTTOM
-                ? new L(t, 1e7, -1e7, 1e7)
-                : this.toolboxPosition === z.LEFT
-                  ? new L(-1e7, 1e7, -1e7, e)
-                  : new L(-1e7, 1e7, r, 1e7)
+            this.toolboxPosition === B.TOP
+              ? new R(-1e7, n, -1e7, 1e7)
+              : this.toolboxPosition === B.BOTTOM
+                ? new R(t, 1e7, -1e7, 1e7)
+                : this.toolboxPosition === B.LEFT
+                  ? new R(-1e7, 1e7, -1e7, e)
+                  : new R(-1e7, 1e7, r, 1e7)
           )
         }
         onDragEnter() {
-          G.mover.isMoving() || this.updateCursorDeleteStyle_(!0)
+          Ad.mover.isMoving() || this.updateCursorDeleteStyle_(!0)
         }
         onDragExit() {
-          G.mover.isMoving() || this.updateCursorDeleteStyle_(!1)
+          Ad.mover.isMoving() || this.updateCursorDeleteStyle_(!1)
         }
         onDrop() {
-          G.mover.isMoving() || this.updateCursorDeleteStyle_(!1)
+          Ad.mover.isMoving() || this.updateCursorDeleteStyle_(!1)
         }
         updateWouldDelete_(e) {
           e !== this.wouldDelete_ &&
@@ -31918,10 +31918,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 (t.style.width = `100%`),
                 (this.height_ = t.offsetHeight),
                 (this.width_ = e.viewWidth),
-                this.toolboxPosition === z.TOP
+                this.toolboxPosition === B.TOP
                   ? (t.style.top = `0`)
                   : (t.style.bottom = `0`))
-              : (this.toolboxPosition === z.RIGHT
+              : (this.toolboxPosition === B.RIGHT
                   ? (t.style.right = `0`)
                   : (t.style.left = `0`),
                 (t.style.height = `100%`),
@@ -31937,11 +31937,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               t = this.HtmlDiv.getBoundingClientRect(),
               n = this.getFlyout(),
               r =
-                this.toolboxPosition === z.LEFT
+                this.toolboxPosition === B.LEFT
                   ? e.scrollX + t.width + (n && !n.autoClose ? n.getWidth() : 0)
                   : e.scrollX
             ;((t =
-              this.toolboxPosition === z.TOP
+              this.toolboxPosition === B.TOP
                 ? e.scrollY + t.height + (n && !n.autoClose ? n.getHeight() : 0)
                 : e.scrollY),
               e.translate(r, t),
@@ -32000,13 +32000,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           ;((this.selectedItem_ = null),
             (this.previouslySelectedItem_ = e),
             e.setSelected(!1),
-            g(this.contentsDiv_, A.ACTIVEDESCENDANT, ``))
+            g(this.contentsDiv_, j.ACTIVEDESCENDANT, ``))
         }
         selectItem_(e, t) {
           ;((this.selectedItem_ = t),
             (this.previouslySelectedItem_ = e),
             t.setSelected(!0),
-            g(this.contentsDiv_, A.ACTIVEDESCENDANT, t.getId()))
+            g(this.contentsDiv_, j.ACTIVEDESCENDANT, t.getId()))
         }
         selectItemByPosition(e) {
           ;(e = this.getToolboxItems()[e]) && this.setSelectedItem(e)
@@ -32026,7 +32026,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           var n = e && e.getName(),
             r = t && t.getName()
           ;(e === t && (r = null),
-            (e = new (S(O.TOOLBOX_ITEM_SELECT))(n, r, this.workspace_.id)),
+            (e = new (S(k.TOOLBOX_ITEM_SELECT))(n, r, this.workspace_.id)),
             x(e))
         }
         toggleSelectedItem(e) {
@@ -32133,15 +32133,15 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
   outline: none;
 }
 `),
-        b(F.TOOLBOX, `default`, rh))
-      var ih = B.INPUT_VALUE,
-        ah = B.OUTPUT_VALUE,
-        oh = B.NEXT_STATEMENT,
-        sh = B.PREVIOUS_STATEMENT,
-        ch = z.TOP,
-        lh = z.BOTTOM,
-        uh = z.LEFT,
-        dh = z.RIGHT
+        b(I.TOOLBOX, `default`, rh))
+      var ih = V.INPUT_VALUE,
+        ah = V.OUTPUT_VALUE,
+        oh = V.NEXT_STATEMENT,
+        sh = V.PREVIOUS_STATEMENT,
+        ch = B.TOP,
+        lh = B.BOTTOM,
+        uh = B.LEFT,
+        dh = B.RIGHT
       ;((Zp.prototype.newBlock = function (e, t) {
         return new nf(this, e, t)
       }),
@@ -32149,10 +32149,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           return new Rf(this, e, t)
         }),
         (Zp.prototype.newComment = function (e) {
-          return new Sd(this, e)
+          return new xd(this, e)
         }),
         (em.prototype.newComment = function (e) {
-          return new Cd(this, e)
+          return new Sd(this, e)
         }),
         (em.newTrashcan = function (e) {
           return new rm(e)
@@ -32171,7 +32171,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         ($.BlockFlyoutInflater = Ym),
         ($.BlockNavigationPolicy = qf),
         ($.BlockSvg = Rf),
-        ($.Blocks = ss),
+        ($.Blocks = os),
         ($.BubbleNavigationPolicy = Jf),
         ($.ButtonFlyoutInflater = qm),
         ($.COLLAPSED_FIELD_NAME = `_TEMP_COLLAPSED_FIELD`),
@@ -32181,27 +32181,27 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         ($.CollapsibleToolboxCategory = nh),
         ($.CommentBarButtonNavigationPolicy = Yf),
         ($.CommentEditorNavigationPolicy = Xf),
-        ($.ComponentManager = Qo),
+        ($.ComponentManager = Zo),
         ($.Connection = q),
         ($.ConnectionChecker = Km),
         ($.ConnectionDB = Wd),
         ($.ConnectionNavigationPolicy = Zf),
-        ($.ConnectionType = B),
-        ($.ContextMenu = dd),
+        ($.ConnectionType = V),
+        ($.ContextMenu = ud),
         ($.ContextMenuItems = Gm),
-        ($.ContextMenuRegistry = H),
-        ($.Css = is),
+        ($.ContextMenuRegistry = U),
+        ($.Css = rs),
         ($.DELETE_VARIABLE_ID = `DELETE_VARIABLE_ID`),
         ($.DeleteArea = Bf),
-        ($.Direction = kd),
+        ($.Direction = Od),
         ($.DragDisposition = hf),
         ($.DragTarget = zf),
-        ($.DropDownDiv = Pu),
-        ($.Events = V),
+        ($.DropDownDiv = Nu),
+        ($.Events = H),
         ($.Extensions = Bd),
-        ($.Field = Qu),
+        ($.Field = Zu),
         ($.FieldCheckbox = Vm),
-        ($.FieldDropdown = Dd),
+        ($.FieldDropdown = Ed),
         ($.FieldImage = wm),
         ($.FieldLabel = Ff),
         ($.FieldLabelSerializable = Bm),
@@ -32217,8 +32217,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         ($.FlyoutNavigator = sp),
         ($.FlyoutSeparator = Wf),
         ($.FlyoutSeparatorNavigationPolicy = Kf),
-        ($.FocusManager = ks),
-        ($.FocusableTreeTraverser = Ds),
+        ($.FocusManager = Os),
+        ($.FocusableTreeTraverser = Es),
         ($.Generator = e.zq),
         ($.Gesture = fp),
         ($.Grid = pp),
@@ -32227,13 +32227,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         ($.IconNavigationPolicy = $f),
         ($.Input = Qd),
         ($.InsertionMarkerPreviewer = Nm),
-        ($.KeyboardMover = G),
-        ($.KeyboardNavigationController = nu),
+        ($.KeyboardMover = Ad),
+        ($.KeyboardNavigationController = tu),
         ($.LabelFlyoutInflater = lm),
-        ($.Menu = Ac),
-        ($.MenuItem = kc),
+        ($.Menu = kc),
+        ($.MenuItem = Oc),
         ($.MetricsManager = Hf),
-        ($.MoveIndicator = Od),
+        ($.MoveIndicator = Dd),
         ($.Msg = e.C),
         ($.NEXT_STATEMENT = oh),
         ($.Names = e.Cj),
@@ -32247,11 +32247,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         ($.Procedures = xp),
         ($.RENAME_VARIABLE_ID = `RENAME_VARIABLE_ID`),
         ($.RenderedConnection = Yd),
-        ($.Scrollbar = ec),
+        ($.Scrollbar = $s),
         ($.ScrollbarPair = cp),
         ($.SeparatorFlyoutInflater = lp),
         ($.ShortcutItems = X),
-        ($.ShortcutRegistry = M),
+        ($.ShortcutRegistry = N),
         ($.TOOLBOX_AT_BOTTOM = lh),
         ($.TOOLBOX_AT_LEFT = uh),
         ($.TOOLBOX_AT_RIGHT = dh),
@@ -32259,42 +32259,42 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         ($.Theme = jd),
         ($.ThemeManager = Yp),
         ($.Themes = Qm),
-        ($.Toast = Bc),
+        ($.Toast = zc),
         ($.Toolbox = rh),
         ($.ToolboxCategory = eh),
         ($.ToolboxItem = $m),
         ($.ToolboxItemNavigationPolicy = ap),
         ($.ToolboxNavigator = op),
         ($.ToolboxSeparator = th),
-        ($.Tooltip = Ku),
-        ($.Touch = D),
+        ($.Tooltip = Gu),
+        ($.Touch = O),
         ($.Trashcan = rm),
-        ($.UnattachedFieldError = $u),
+        ($.UnattachedFieldError = Qu),
         ($.VARIABLE_CATEGORY_NAME = `VARIABLE`),
         ($.VARIABLE_DYNAMIC_CATEGORY_NAME = `VARIABLE_DYNAMIC`),
         ($.VERSION = `13.3.0`),
         ($.VariableMap = nm),
         ($.VariableModel = tm),
-        ($.Variables = ou),
+        ($.Variables = au),
         ($.VariablesDynamic = Xp),
         ($.VerticalFlyout = Im),
-        ($.WidgetDiv = sd),
+        ($.WidgetDiv = od),
         ($.Workspace = Zp),
         ($.WorkspaceAudio = Qp),
         ($.WorkspaceCommentNavigationPolicy = ep),
         ($.WorkspaceDragger = dp),
         ($.WorkspaceNavigationPolicy = tp),
         ($.WorkspaceSvg = em),
-        ($.Xml = wd),
-        ($.ZoomControls = Cc),
+        ($.Xml = Cd),
+        ($.ZoomControls = Sc),
         ($.blockAnimations = of),
         ($.blockRendering = Q),
-        ($.browserEvents = Yo),
+        ($.browserEvents = Jo),
         ($.bubbles = Jm),
         ($.bumpObjects = cf),
         ($.clipboard = ff),
         ($.comments = pf),
-        ($.common = Rs),
+        ($.common = Ls),
         ($.config = e.Og),
         ($.constants = {
           COLLAPSED_FIELD_NAME: `_TEMP_COLLAPSED_FIELD`,
@@ -32302,16 +32302,16 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           MANUALLY_DISABLED: `MANUALLY_DISABLED`,
         }),
         ($.defineBlocksWithJsonArray = Ne),
-        ($.dialog = Yc),
+        ($.dialog = Jc),
         ($.dragging = Um),
-        ($.fieldRegistry = Ed),
+        ($.fieldRegistry = Td),
         ($.geras = Xm),
         ($.getFocusManager = e.t),
         ($.getMainWorkspace = we),
         ($.getSelected = Ee),
         ($.hasBubble = Ut),
         ($.hideChaff = function (e) {
-          Ps.hideChaff(e)
+          Ns.hideChaff(e)
         }),
         ($.icons = _p),
         ($.inject = function (e, t) {
@@ -32327,7 +32327,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             (r = document.createElement(`div`)),
             v(r, `injectionDiv`),
             t != null && t.rtl && v(r, `blocklyRTL`),
-            h(r, k.APPLICATION),
+            h(r, A.APPLICATION),
             n.appendChild(r),
             (t = $a(r, e)))
           var i = eo(r, t, e)
@@ -32359,18 +32359,18 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         ($.isSelectable = _e),
         ($.isSerializable = Dt),
         ($.isVariableBackedParameterModel = Kt),
-        ($.keyboardNavigationController = ru),
+        ($.keyboardNavigationController = nu),
         ($.layers = { BLOCK: 50, BUBBLE: 100 }),
         ($.navigateBlock = Aa),
         ($.procedures = xp),
-        ($.registry = Hs),
-        ($.renderManagement = zc),
+        ($.registry = Vs),
+        ($.renderManagement = Rc),
         ($.serialization = cm),
         ($.setLocale = Ye),
         ($.setParentContainer = ke),
         ($.svgResize = Ae),
         ($.thrasos = Zm),
-        ($.uiPosition = _c),
+        ($.uiPosition = gc),
         ($.utils = Hd),
         ($.zelos = Wm),
         (e.__chunk_blockly = $),
@@ -36976,7 +36976,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
   oo = (function (e) {
     return ((e.Variable = `var`), (e.Subscript = `sub`), (e.Call = `call`), e)
   })({}),
-  so = (function (e) {
+  E = (function (e) {
     return (
       (e.Add = `+`),
       (e.Subtract = `-`),
@@ -36995,7 +36995,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       e
     )
   })({}),
-  co = class {
+  so = class {
     name
     constructor(e) {
       this.name = e
@@ -37007,7 +37007,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       return e.envr.context.lookup(this.name)
     }
   },
-  lo = class {
+  co = class {
     target
     index
     constructor(e, t) {
@@ -37035,7 +37035,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       return null
     }
   },
-  uo = class {
+  lo = class {
     callee
     args
     constructor(e, t) {
@@ -37048,7 +37048,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       return t(...this.args.map((t) => e.evaluate(t)))
     }
   },
-  fo = class {
+  uo = class {
     op
     left
     right
@@ -37059,62 +37059,62 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       let t = e.evaluate(this.left) ?? `null`,
         n = e.evaluate(this.right) ?? `null`
       switch (this.op) {
-        case so.Add:
+        case E.Add:
           if (typeof t == `number` && typeof n == `number`) return t + n
           if (typeof t == `string` || typeof n == `string`)
             return t.toString() + n.toString()
           throw Error(`Invalid operands for addition: ${t} and ${n}`)
-        case so.Subtract:
+        case E.Subtract:
           if (typeof t == `number` && typeof n == `number`) return t - n
           throw Error(`Invalid operands for subtraction: ${t} and ${n}`)
-        case so.Multiply:
+        case E.Multiply:
           if (typeof t == `number` && typeof n == `number`) return t * n
           throw Error(`Invalid operands for multiplication: ${t} and ${n}`)
-        case so.Divide:
+        case E.Divide:
           if (typeof t == `number` && typeof n == `number`) {
             if (n === 0) throw Error(`Division by zero`)
             return t / n
           }
           throw Error(`Invalid operands for division: ${t} and ${n}`)
-        case so.Power:
+        case E.Power:
           if (typeof t == `number` && typeof n == `number`) return t ** n
           throw Error(`Invalid operands for exponentiation: ${t} and ${n}`)
-        case so.Modulo:
+        case E.Modulo:
           if (typeof t == `number` && typeof n == `number`) {
             if (n === 0) throw Error(`Division by zero in modulo operation`)
             return t % n
           }
           throw Error(`Invalid operands for modulo: ${t} and ${n}`)
-        case so.Equal:
+        case E.Equal:
           return t === n
-        case so.NotEqual:
+        case E.NotEqual:
           return t !== n
-        case so.LessThan:
+        case E.LessThan:
           if (t === null || n === null)
             throw Error(`Null values are not supported in binary operations`)
           return t < n
-        case so.LessThanOrEqual:
+        case E.LessThanOrEqual:
           if (t === null || n === null)
             throw Error(`Null values are not supported in binary operations`)
           return t <= n
-        case so.GreaterThan:
+        case E.GreaterThan:
           if (t === null || n === null)
             throw Error(`Null values are not supported in binary operations`)
           return t > n
-        case so.GreaterThanOrEqual:
+        case E.GreaterThanOrEqual:
           if (t === null || n === null)
             throw Error(`Null values are not supported in binary operations`)
           return t >= n
-        case so.And:
+        case E.And:
           return !!t && !!n
-        case so.Or:
+        case E.Or:
           return !!t || !!n
         default:
           throw Error(`Unsupported binary operator: ${this.op}`)
       }
     }
   },
-  po = class {
+  fo = class {
     ref
     expr
     constructor(e, t) {
@@ -37125,15 +37125,15 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       this.ref.assign(e, t)
     }
   },
-  mo = class e {
+  po = class e {
     indent
     line
     calls
     constructor(
       { indent: e, line: t, calls: n } = { indent: 1, line: -1, calls: 0 },
     ) {
-      ;((this.indent = new ho(e)),
-        (this.line = new go(t)),
+      ;((this.indent = new mo(e)),
+        (this.line = new ho(t)),
         (this.calls = n ?? 0))
     }
     callTo(t) {
@@ -37168,19 +37168,19 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       return `(${this.indent.x}, ${this.line.y}, ${this.calls})`
     }
   },
-  ho = class {
+  mo = class {
     x
     constructor(e = 1) {
       this.x = e
     }
   },
-  go = class {
+  ho = class {
     y
     constructor(e = -1) {
       this.y = e
     }
   },
-  _o = (function (e) {
+  go = (function (e) {
     return (
       (e[(e.Call = 0)] = `Call`),
       (e[(e.Loop = 1)] = `Loop`),
@@ -37190,7 +37190,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       e
     )
   })({}),
-  vo = (function (e) {
+  _o = (function (e) {
     return (
       (e[(e.Shift = 0)] = `Shift`),
       (e[(e.Shift2 = 1)] = `Shift2`),
@@ -37201,7 +37201,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       e
     )
   })({}),
-  yo = class {
+  vo = class {
     type
     address
     willEnter
@@ -37213,7 +37213,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         (this.didExit = r))
     }
   },
-  bo = class {
+  yo = class {
     parent
     dict = new Map()
     constructor(e = null) {
@@ -37230,11 +37230,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       this.dict.set(e, t)
     }
   },
-  xo = class {
+  bo = class {
     stmts
-    addr = new mo()
+    addr = new po()
     blocks = []
-    context = new bo()
+    context = new yo()
     parentTag = null
     constructor(e) {
       this.stmts = e
@@ -37261,7 +37261,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       this.parentTag = e
     }
   },
-  So = (function (e) {
+  xo = (function (e) {
     return (
       (e[(e.Indent = 0)] = `Indent`),
       (e[(e.Keyword = 1)] = `Keyword`),
@@ -37269,7 +37269,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       e
     )
   })({}),
-  Co = class {
+  So = class {
     envr
     parser
     dispatcher
@@ -37286,10 +37286,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         return e
       if (Array.isArray(e)) return e.map((e) => this.evaluate(e))
       if (
+        e instanceof so ||
         e instanceof co ||
-        e instanceof lo ||
-        e instanceof fo ||
-        e instanceof uo
+        e instanceof uo ||
+        e instanceof lo
       )
         return e.evaluate(this)
       throw Error(`Unsupported expression: ${e}`)
@@ -37303,29 +37303,29 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
     next() {
       outer: for (;;) {
         this.envr.address = this.envr.address.step()
-        let e = this.envr.currentStmt[So.Indent],
+        let e = this.envr.currentStmt[xo.Indent],
           t = this.envr.address.indent.x - e
         inner: for (; t > 0;)
           switch (this.popBlock()) {
-            case vo.Shift:
+            case _o.Shift:
               ;(--t, (this.envr.address = this.envr.address.shift(-1)))
               break
-            case vo.Shift2:
+            case _o.Shift2:
               ;((t -= 2),
                 (this.envr.address = this.envr.address.shift(-2)),
                 this.popBlock())
               break
-            case vo.Jump:
+            case _o.Jump:
               break inner
-            case vo.Return:
+            case _o.Return:
               break inner
-            case vo.EndHandler:
+            case _o.EndHandler:
               this.jumpTo(
-                new mo({ indent: 1, line: this.envr.stmts.length - 1 }),
+                new po({ indent: 1, line: this.envr.stmts.length - 1 }),
               )
               break outer
-            case vo.Error:
-              this.envr.address = new mo({
+            case _o.Error:
+              this.envr.address = new po({
                 indent: 0,
                 line: this.envr.address.line.y,
               })
@@ -37340,48 +37340,65 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
     }
     popBlock() {
       let e = this.envr.blocks.pop()
-      return e ? e.didExit() : vo.Error
+      return e ? e.didExit() : _o.Error
     }
     pushBlock(e) {
       e.willEnter() &&
         (this.envr.blocks.push(e), (this.envr.address = e.address.shift(1)))
     }
   },
-  wo = class {
+  Co = class {
     condition
     constructor(e) {
       this.condition = e
     }
     execute(e) {
-      let t = new yo(
-        _o.Conditional,
+      let t = new vo(
+        go.Conditional,
         e.envr.address,
         () => !!e.evaluate(this.condition),
-        () => vo.Shift2,
+        () => _o.Shift2,
       )
       e.pushBlock(t)
     }
   },
-  E = class {
+  D = class {
     execute(e) {
-      let t = new yo(
-        _o.Conditional,
+      let t = new vo(
+        go.Conditional,
         e.envr.address,
         () => !0,
-        () => vo.Shift,
+        () => _o.Shift,
+      )
+      e.pushBlock(t)
+    }
+  },
+  wo = class {
+    execute(e) {
+      let t = new vo(
+        go.Conditional,
+        e.envr.address,
+        () => !0,
+        () => _o.Shift2,
       )
       e.pushBlock(t)
     }
   },
   To = class {
     execute(e) {
-      let t = new yo(
-        _o.Conditional,
-        e.envr.address,
-        () => !0,
-        () => vo.Shift2,
-      )
-      e.pushBlock(t)
+      for (;;) {
+        let t = e.envr.blocks.at(-1)
+        if (!t) return
+        if (t.type === go.Loop) {
+          ;(e.envr.blocks.pop(), e.jumpTo(t.address))
+          return
+        }
+        if (t.type === go.Conditional) {
+          e.envr.blocks.pop()
+          continue
+        }
+        e.popBlock()
+      }
     }
   },
   Eo = class {
@@ -37389,11 +37406,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       for (;;) {
         let t = e.envr.blocks.at(-1)
         if (!t) return
-        if (t.type === _o.Loop) {
-          ;(e.envr.blocks.pop(), e.jumpTo(t.address))
+        if (t.type === go.Loop) {
+          e.popBlock()
           return
         }
-        if (t.type === _o.Conditional) {
+        if (t.type === go.Conditional) {
           e.envr.blocks.pop()
           continue
         }
@@ -37402,23 +37419,6 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
     }
   },
   Do = class {
-    execute(e) {
-      for (;;) {
-        let t = e.envr.blocks.at(-1)
-        if (!t) return
-        if (t.type === _o.Loop) {
-          e.popBlock()
-          return
-        }
-        if (t.type === _o.Conditional) {
-          e.envr.blocks.pop()
-          continue
-        }
-        e.popBlock()
-      }
-    }
-  },
-  Oo = class {
     times
     constructor(e) {
       this.times = e
@@ -37430,17 +37430,18 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       else if (typeof n == `string`) t = parseInt(n, 10)
       else throw Error(`Invalid repeat times: ${n}`)
       if (!Number.isFinite(t) || !Number.isInteger(t) || t < 0) return
-      let r = new yo(
-        _o.Loop,
+      let r = new vo(
+        go.Loop,
         e.envr.address,
         () => t > 0,
-        () => (t--, e.jumpTo(r.address), e.pushBlock(r), vo.Jump),
+        () => (t--, e.jumpTo(r.address), e.pushBlock(r), _o.Jump),
       )
       e.pushBlock(r)
     }
   },
+  Oo,
+  O,
   ko,
-  D,
   Ao,
   jo,
   Mo,
@@ -37453,19 +37454,18 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
   zo,
   Bo,
   Vo,
-  Ho,
-  Uo = {},
-  Wo = [],
-  Go = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
-  Ko = Array.isArray
-function qo(e, t) {
+  Ho = {},
+  Uo = [],
+  Wo = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
+  Go = Array.isArray
+function Ko(e, t) {
   for (var n in t) e[n] = t[n]
   return e
 }
-function Jo(e) {
+function qo(e) {
   e && e.parentNode && e.parentNode.removeChild(e)
 }
-function Yo(e, t, n) {
+function Jo(e, t, n) {
   var r,
     i,
     a,
@@ -37473,13 +37473,13 @@ function Yo(e, t, n) {
   for (a in t) a == `key` ? (r = t[a]) : a == `ref` ? (i = t[a]) : (o[a] = t[a])
   if (
     (arguments.length > 2 &&
-      (o.children = arguments.length > 3 ? ko.call(arguments, 2) : n),
+      (o.children = arguments.length > 3 ? Oo.call(arguments, 2) : n),
     typeof e == `function` && e.defaultProps != null)
   )
     for (a in e.defaultProps) o[a] === void 0 && (o[a] = e.defaultProps[a])
-  return Xo(e, o, r, i, null)
+  return Yo(e, o, r, i, null)
 }
-function Xo(e, t, n, r, i) {
+function Yo(e, t, n, r, i) {
   var a = {
     type: e,
     props: t,
@@ -37491,34 +37491,34 @@ function Xo(e, t, n, r, i) {
     __e: null,
     __c: null,
     constructor: void 0,
-    __v: i ?? ++Ao,
+    __v: i ?? ++ko,
     __i: -1,
     __u: 0,
   }
-  return (i == null && D.vnode != null && D.vnode(a), a)
+  return (i == null && O.vnode != null && O.vnode(a), a)
 }
-function Zo(e) {
+function Xo(e) {
   return e.children
 }
-function Qo(e, t) {
+function Zo(e, t) {
   ;((this.props = e), (this.context = t))
 }
-function $o(e, t) {
-  if (t == null) return e.__ ? $o(e.__, e.__i + 1) : null
+function Qo(e, t) {
+  if (t == null) return e.__ ? Qo(e.__, e.__i + 1) : null
   for (var n; t < e.__k.length; t++)
     if ((n = e.__k[t]) != null && n.__e != null) return n.__e
-  return typeof e.type == `function` ? $o(e) : null
+  return typeof e.type == `function` ? Qo(e) : null
 }
-function es(e) {
+function $o(e) {
   if (e.__P && e.__d) {
     var t = e.__v,
       n = t.__e,
       r = [],
       i = [],
-      a = qo({}, t)
+      a = Ko({}, t)
     ;((a.__v = t.__v + 1),
-      D.vnode && D.vnode(a),
-      us(
+      O.vnode && O.vnode(a),
+      ls(
         e.__P,
         a,
         t,
@@ -37526,68 +37526,68 @@ function es(e) {
         e.__P.namespaceURI,
         32 & t.__u ? [n] : null,
         r,
-        n ?? $o(t),
+        n ?? Qo(t),
         !!(32 & t.__u),
         i,
       ),
       (a.__v = t.__v),
       (a.__.__k[a.__i] = a),
-      k(r, a, i),
+      A(r, a, i),
       (t.__e = t.__ = null),
-      a.__e != n && ts(a))
+      a.__e != n && es(a))
   }
 }
-function ts(e) {
+function es(e) {
   if ((e = e.__) != null && e.__c != null)
     return (
       (e.__e = e.__c.base = null),
       e.__k.some(function (t) {
         if (t != null && t.__e != null) return (e.__e = e.__c.base = t.__e)
       }),
-      ts(e)
+      es(e)
     )
 }
-function ns(e) {
-  ;((!e.__d && (e.__d = !0) && Mo.push(e) && !rs.__r++) ||
-    No != D.debounceRendering) &&
-    ((No = D.debounceRendering) || Po)(rs)
+function ts(e) {
+  ;((!e.__d && (e.__d = !0) && jo.push(e) && !ns.__r++) ||
+    Mo != O.debounceRendering) &&
+    ((Mo = O.debounceRendering) || No)(ns)
 }
-function rs() {
+function ns() {
   try {
-    for (var e, t = 1; Mo.length;)
-      (Mo.length > t && Mo.sort(Fo), (e = Mo.shift()), (t = Mo.length), es(e))
+    for (var e, t = 1; jo.length;)
+      (jo.length > t && jo.sort(Po), (e = jo.shift()), (t = jo.length), $o(e))
   } finally {
-    Mo.length = rs.__r = 0
+    jo.length = ns.__r = 0
   }
 }
-function is(e, t, n, r, i, a, o, s, c, l, u) {
+function rs(e, t, n, r, i, a, o, s, c, l, u) {
   var d,
     f,
     p,
     m,
     ee,
     te,
-    h = (r && r.__k) || Wo,
+    h = (r && r.__k) || Uo,
     g = t.length
-  for (c = O(n, t, h, c, g), d = 0; d < g; d++)
+  for (c = k(n, t, h, c, g), d = 0; d < g; d++)
     (p = n.__k[d]) != null &&
-      ((f = (p.__i != -1 && h[p.__i]) || Uo),
+      ((f = (p.__i != -1 && h[p.__i]) || Ho),
       (p.__i = d),
-      (te = us(e, p, f, i, a, o, s, c, l, u)),
+      (te = ls(e, p, f, i, a, o, s, c, l, u)),
       (m = p.__e),
       p.ref &&
         f.ref != p.ref &&
-        (f.ref && A(f.ref, null, p), u.push(p.ref, p.__c || m, p)),
+        (f.ref && j(f.ref, null, p), u.push(p.ref, p.__c || m, p)),
       ee == null && m != null && (ee = m),
       4 & p.__u
-        ? ((c = as(p, c, e)), f.__e && (f.__e = null))
+        ? ((c = is(p, c, e)), f.__e && (f.__e = null))
         : typeof p.type == `function` && te !== void 0
           ? (c = te)
           : m && (c = m.nextSibling),
       (p.__u &= -7))
   return ((n.__e = ee), c)
 }
-function O(e, t, n, r, i) {
+function k(e, t, n, r, i) {
   var a,
     o,
     s,
@@ -37602,18 +37602,18 @@ function O(e, t, n, r, i) {
         typeof o == `number` ||
         typeof o == `bigint` ||
         o.constructor == String
-          ? (o = e.__k[a] = Xo(null, o, null, null, null))
-          : Ko(o)
-            ? (o = e.__k[a] = Xo(Zo, { children: o }, null, null, null))
+          ? (o = e.__k[a] = Yo(null, o, null, null, null))
+          : Go(o)
+            ? (o = e.__k[a] = Yo(Xo, { children: o }, null, null, null))
             : o.constructor === void 0 && o.__b > 0
               ? (o = e.__k[a] =
-                  Xo(o.type, o.props, o.key, o.ref ? o.ref : null, o.__v))
+                  Yo(o.type, o.props, o.key, o.ref ? o.ref : null, o.__v))
               : (e.__k[a] = o),
         (c = a + f),
         (o.__ = e),
         (o.__b = e.__b + 1),
         (s = null),
-        (l = o.__i = os(o, n, c, d)) != -1 && (d--, (s = n[l]) && (s.__u |= 2)),
+        (l = o.__i = as(o, n, c, d)) != -1 && (d--, (s = n[l]) && (s.__u |= 2)),
         s == null || s.__v == null
           ? (l == -1 && (i > u ? f-- : i < u && f++),
             typeof o.type != `function` && (o.__u |= 4))
@@ -37628,24 +37628,24 @@ function O(e, t, n, r, i) {
     for (a = 0; a < u; a++)
       (s = n[a]) != null &&
         !(2 & s.__u) &&
-        (s.__e == r && (r = $o(s)), ms(s, s))
+        (s.__e == r && (r = Qo(s)), ps(s, s))
   return r
 }
-function as(e, t, n) {
+function is(e, t, n) {
   var r, i
   if (typeof e.type == `function`) {
     for (r = e.__k, i = 0; r && i < r.length; i++)
-      r[i] && ((r[i].__ = e), (t = as(r[i], t, n)))
+      r[i] && ((r[i].__ = e), (t = is(r[i], t, n)))
     return t
   }
   e.__e != t &&
-    (t && e.type && !t.parentNode && (t = $o(e)),
+    (t && e.type && !t.parentNode && (t = Qo(e)),
     (t = n.insertBefore(e.__e, t || null)))
   do t &&= t.nextSibling
   while (t != null && t.nodeType == 8)
   return t
 }
-function os(e, t, n, r) {
+function as(e, t, n, r) {
   var i,
     a,
     o,
@@ -37666,23 +37666,23 @@ function os(e, t, n, r) {
   }
   return -1
 }
-function ss(e, t, n) {
+function os(e, t, n) {
   t[0] == `-`
     ? e.setProperty(t, n ?? ``)
     : (e[t] =
-        n == null ? `` : typeof n != `number` || Go.test(t) ? n : n + `px`)
+        n == null ? `` : typeof n != `number` || Wo.test(t) ? n : n + `px`)
 }
-function cs(e, t, n, r, i) {
+function ss(e, t, n, r, i) {
   var a, o
   n: if (t == `style`) {
     if (typeof n == `string`) e.style.cssText = n
     else {
       if ((typeof r == `string` && (e.style.cssText = r = ``), r))
-        for (t in r) (n && t in n) || ss(e.style, t, ``)
-      if (n) for (t in n) (r && n[t] == r[t]) || ss(e.style, t, n[t])
+        for (t in r) (n && t in n) || os(e.style, t, ``)
+      if (n) for (t in n) (r && n[t] == r[t]) || os(e.style, t, n[t])
     }
   } else if (t[0] == `o` && t[1] == `n`)
-    ((a = t != (t = t.replace(zo, `$1`))),
+    ((a = t != (t = t.replace(Ro, `$1`))),
       (o = t.toLowerCase()),
       (t =
         o in e || t == `onFocusOut` || t == `onFocusIn`
@@ -37692,9 +37692,9 @@ function cs(e, t, n, r, i) {
       (e.l[t + a] = n),
       n
         ? r
-          ? (n[Ro] = r[Ro])
-          : ((n[Ro] = Bo), e.addEventListener(t, a ? Ho : Vo, a))
-        : e.removeEventListener(t, a ? Ho : Vo, a))
+          ? (n[Lo] = r[Lo])
+          : ((n[Lo] = zo), e.addEventListener(t, a ? Vo : Bo, a))
+        : e.removeEventListener(t, a ? Vo : Bo, a))
   else {
     if (i == `http://www.w3.org/2000/svg`)
       t = t.replace(/xlink(H|:h)/, `h`).replace(/sName$/, `s`)
@@ -37722,17 +37722,17 @@ function cs(e, t, n, r, i) {
         : e.setAttribute(t, t == `popover` && n == 1 ? `` : n))
   }
 }
-function ls(e) {
+function cs(e) {
   return function (t) {
     if (this.l) {
       var n = this.l[t.type + e]
-      if (t[Lo] == null) t[Lo] = Bo++
-      else if (t[Lo] < n[Ro]) return
-      return n(D.event ? D.event(t) : t)
+      if (t[Io] == null) t[Io] = zo++
+      else if (t[Io] < n[Lo]) return
+      return n(O.event ? O.event(t) : t)
     }
   }
 }
-function us(e, t, n, r, i, a, o, s, c, l) {
+function ls(e, t, n, r, i, a, o, s, c, l) {
   var u,
     d,
     f,
@@ -37752,7 +37752,7 @@ function us(e, t, n, r, i, a, o, s, c, l) {
     y = t.type
   if (t.constructor !== void 0) return null
   ;(128 & n.__u && ((c = !!(32 & n.__u)), (a = [(s = t.__e = n.__e)])),
-    (u = D.__b) && u(t))
+    (u = O.__b) && u(t))
   n: if (typeof y == `function`) {
     d = o.length
     try {
@@ -37765,9 +37765,9 @@ function us(e, t, n, r, i, a, o, s, c, l) {
           ? (h = (f = t.__c = n.__c).__ = f.__E)
           : (ne
               ? (t.__c = f = new y(g, ie))
-              : ((t.__c = f = new Qo(g, ie)),
+              : ((t.__c = f = new Zo(g, ie)),
                 (f.constructor = y),
-                (f.render = hs)),
+                (f.render = ms)),
             re && re.sub(f),
             f.state || (f.state = {}),
             (f.__n = r),
@@ -37777,8 +37777,8 @@ function us(e, t, n, r, i, a, o, s, c, l) {
         ne && f.__s == null && (f.__s = f.state),
         ne &&
           y.getDerivedStateFromProps != null &&
-          (f.__s == f.state && (f.__s = qo({}, f.__s)),
-          qo(f.__s, y.getDerivedStateFromProps(g, f.__s))),
+          (f.__s == f.state && (f.__s = Ko({}, f.__s)),
+          Ko(f.__s, y.getDerivedStateFromProps(g, f.__s))),
         (m = f.props),
         (ee = f.state),
         (f.__v = t),
@@ -37807,10 +37807,10 @@ function us(e, t, n, r, i, a, o, s, c, l) {
             t.__k.some(function (e) {
               e && (e.__ = t)
             }),
-            Wo.push.apply(f.__h, f._sb),
+            Uo.push.apply(f.__h, f._sb),
             (f._sb = []),
             f.__h.length && o.push(f),
-            (s = $o(n)))
+            (s = Qo(n)))
           break n
         }
         ;(f.componentWillUpdate != null && f.componentWillUpdate(g, f.__s, ie),
@@ -37825,7 +37825,7 @@ function us(e, t, n, r, i, a, o, s, c, l) {
         (f.props = g),
         (f.__P = e),
         (f.__e = !1),
-        (ae = D.__r),
+        (ae = O.__r),
         (_ = 0),
         ne)
       )
@@ -37833,7 +37833,7 @@ function us(e, t, n, r, i, a, o, s, c, l) {
           (f.__d = !1),
           ae && ae(t),
           (u = f.render(f.props, f.state, f.context)),
-          Wo.push.apply(f.__h, f._sb),
+          Uo.push.apply(f.__h, f._sb),
           (f._sb = []))
       else
         do
@@ -37843,16 +37843,16 @@ function us(e, t, n, r, i, a, o, s, c, l) {
             (f.state = f.__s))
         while (f.__d && ++_ < 25)
       ;((f.state = f.__s),
-        f.getChildContext != null && (r = qo(qo({}, r), f.getChildContext())),
+        f.getChildContext != null && (r = Ko(Ko({}, r), f.getChildContext())),
         ne &&
           !p &&
           f.getSnapshotBeforeUpdate != null &&
           (te = f.getSnapshotBeforeUpdate(m, ee)),
         (v =
-          u != null && u.type === Zo && u.key == null
-            ? fs(u.props.children)
+          u != null && u.type === Xo && u.key == null
+            ? ds(u.props.children)
             : u),
-        (s = is(e, Ko(v) ? v : [v], t, n, r, i, a, o, s, c, l)),
+        (s = rs(e, Go(v) ? v : [v], t, n, r, i, a, o, s, c, l)),
         (f.base = t.__e),
         (t.__u &= -161),
         f.__h.length && o.push(f),
@@ -37863,22 +37863,22 @@ function us(e, t, n, r, i, a, o, s, c, l) {
           for (t.__u |= c ? 160 : 128; s && s.nodeType == 8 && s.nextSibling;)
             s = s.nextSibling
           ;(a != null && (a[a.indexOf(s)] = null), (t.__e = s))
-        } else if (a != null) for (oe = a.length; oe--;) Jo(a[oe])
+        } else if (a != null) for (oe = a.length; oe--;) qo(a[oe])
       } else t.__e = n.__e
-      ;((t.__k ??= n.__k || []), e.then || ds(t), D.__e(e, t, n))
+      ;((t.__k ??= n.__k || []), e.then || us(t), O.__e(e, t, n))
     }
   } else
     a == null && t.__v == n.__v
       ? ((t.__k = n.__k), (t.__e = n.__e))
-      : (s = t.__e = ps(n.__e, t, n, r, i, a, o, c, l))
-  return ((u = D.diffed) && u(t), 128 & t.__u ? void 0 : s)
+      : (s = t.__e = fs(n.__e, t, n, r, i, a, o, c, l))
+  return ((u = O.diffed) && u(t), 128 & t.__u ? void 0 : s)
 }
-function ds(e) {
-  e && (e.__c && (e.__c.__e = !0), e.__k && e.__k.some(ds))
+function us(e) {
+  e && (e.__c && (e.__c.__e = !0), e.__k && e.__k.some(us))
 }
-function k(e, t, n) {
-  for (var r = 0; r < n.length; r++) A(n[r], n[++r], n[++r])
-  ;(D.__c && D.__c(t, e),
+function A(e, t, n) {
+  for (var r = 0; r < n.length; r++) j(n[r], n[++r], n[++r])
+  ;(O.__c && O.__c(t, e),
     e.some(function (t) {
       try {
         ;((e = t.__h),
@@ -37887,20 +37887,20 @@ function k(e, t, n) {
             e.call(t)
           }))
       } catch (e) {
-        D.__e(e, t.__v)
+        O.__e(e, t.__v)
       }
     }))
 }
-function fs(e) {
+function ds(e) {
   return typeof e != `object` || !e || e.__b > 0
     ? e
-    : Ko(e)
-      ? e.map(fs)
+    : Go(e)
+      ? e.map(ds)
       : e.constructor === void 0
-        ? qo({}, e)
+        ? Ko({}, e)
         : null
 }
-function ps(e, t, n, r, i, a, o, s, c) {
+function fs(e, t, n, r, i, a, o, s, c) {
   var l,
     u,
     d,
@@ -37908,7 +37908,7 @@ function ps(e, t, n, r, i, a, o, s, c) {
     p,
     m,
     ee,
-    te = n.props || Uo,
+    te = n.props || Ho,
     h = t.props,
     g = t.type
   if (
@@ -37932,7 +37932,7 @@ function ps(e, t, n, r, i, a, o, s, c) {
   if (e == null) {
     if (g == null) return document.createTextNode(h)
     ;((e = document.createElementNS(i, g, h.is && h)),
-      (s &&= (D.__m && D.__m(t, a), !1)),
+      (s &&= (O.__m && O.__m(t, a), !1)),
       (a = null))
   }
   if (g == null) te === h || (s && e.data == h) || (e.data = h)
@@ -37941,7 +37941,7 @@ function ps(e, t, n, r, i, a, o, s, c) {
       ((a =
         g == `textarea` && h.defaultValue != null
           ? null
-          : a && ko.call(e.childNodes)),
+          : a && Oo.call(e.childNodes)),
       !s && a != null)
     )
       for (te = {}, l = 0; l < e.attributes.length; l++)
@@ -37954,7 +37954,7 @@ function ps(e, t, n, r, i, a, o, s, c) {
             l in h ||
             (l == `value` && `defaultValue` in h) ||
             (l == `checked` && `defaultChecked` in h) ||
-            cs(e, l, null, p, i))
+            ss(e, l, null, p, i))
     for (l in h)
       ((p = h[l]),
         l == `children`
@@ -37967,7 +37967,7 @@ function ps(e, t, n, r, i, a, o, s, c) {
                 ? (ee = p)
                 : (s && typeof p != `function`) ||
                   te[l] === p ||
-                  cs(e, l, p, te[l], i))
+                  ss(e, l, p, te[l], i))
     if (u)
       (s ||
         (d && (u.__html == d.__html || u.__html == e.innerHTML)) ||
@@ -37975,22 +37975,22 @@ function ps(e, t, n, r, i, a, o, s, c) {
         (t.__k = []))
     else if (
       (d && (e.innerHTML = ``),
-      is(
+      rs(
         t.type == `template` ? e.content : e,
-        Ko(f) ? f : [f],
+        Go(f) ? f : [f],
         t,
         n,
         r,
         g == `foreignObject` ? `http://www.w3.org/1999/xhtml` : i,
         a,
         o,
-        a ? a[0] : n.__k && $o(n, 0),
+        a ? a[0] : n.__k && Qo(n, 0),
         s,
         c,
       ),
       a != null)
     )
-      for (l = a.length; l--;) Jo(a[l])
+      for (l = a.length; l--;) qo(a[l])
     ;(s && g != `textarea`) ||
       ((l = `value`),
       g == `progress` && m == null
@@ -37999,69 +37999,69 @@ function ps(e, t, n, r, i, a, o, s, c) {
           (m !== e[l] ||
             (g == `progress` && !m) ||
             (g == `option` && m != te[l])) &&
-          cs(e, l, m, te[l], i),
+          ss(e, l, m, te[l], i),
       (l = `checked`),
-      ee != null && ee != e[l] && cs(e, l, ee, te[l], i))
+      ee != null && ee != e[l] && ss(e, l, ee, te[l], i))
   }
   return e
 }
-function A(e, t, n) {
+function j(e, t, n) {
   try {
     if (typeof e == `function`) {
       var r = typeof e.__u == `function`
       ;(r && e.__u(), (r && t == null) || (e.__u = e(t)))
     } else e.current = t
   } catch (e) {
-    D.__e(e, n)
+    O.__e(e, n)
   }
 }
-function ms(e, t, n) {
+function ps(e, t, n) {
   var r, i
   if (
-    (D.unmount && D.unmount(e),
-    (r = e.ref) && ((r.current && r.current != e.__e) || A(r, null, t)),
+    (O.unmount && O.unmount(e),
+    (r = e.ref) && ((r.current && r.current != e.__e) || j(r, null, t)),
     (r = e.__c) != null)
   ) {
     if (r.componentWillUnmount)
       try {
         r.componentWillUnmount()
       } catch (e) {
-        D.__e(e, t)
+        O.__e(e, t)
       }
     r.base = r.__P = r.__n = null
   }
   if ((r = e.__k))
     for (i = 0; i < r.length; i++)
-      r[i] && ms(r[i], t, n || typeof e.type != `function`)
-  ;(n || Jo(e.__e), (e.__c = e.__ = e.__e = void 0))
+      r[i] && ps(r[i], t, n || typeof e.type != `function`)
+  ;(n || qo(e.__e), (e.__c = e.__ = e.__e = void 0))
 }
-function hs(e, t, n) {
+function ms(e, t, n) {
   return this.constructor(e, n)
 }
-function gs(e, t, n) {
+function hs(e, t, n) {
   var r, i, a, o
   ;(t == document && (t = document.documentElement),
-    D.__ && D.__(e, t),
+    O.__ && O.__(e, t),
     (i = (r = typeof n == `function`) ? null : (n && n.__k) || t.__k),
     (a = []),
     (o = []),
-    us(
+    ls(
       t,
-      (e = ((!r && n) || t).__k = Yo(Zo, null, [e])),
-      i || Uo,
-      Uo,
+      (e = ((!r && n) || t).__k = Jo(Xo, null, [e])),
+      i || Ho,
+      Ho,
       t.namespaceURI,
-      !r && n ? [n] : i ? null : t.firstChild ? ko.call(t.childNodes) : null,
+      !r && n ? [n] : i ? null : t.firstChild ? Oo.call(t.childNodes) : null,
       a,
       !r && n ? n : i ? i.__e : t.firstChild,
       r,
       o,
     ),
-    k(a, e, o),
+    A(a, e, o),
     (e.props.children = null))
 }
-;((ko = Wo.slice),
-  (D = {
+;((Oo = Uo.slice),
+  (O = {
     __e: function (e, t, n, r) {
       for (var i, a, o; (t = t.__);)
         if ((i = t.__c) && !i.__)
@@ -38081,40 +38081,40 @@ function gs(e, t, n) {
       throw e
     },
   }),
-  (Ao = 0),
-  (jo = function (e) {
+  (ko = 0),
+  (Ao = function (e) {
     return e != null && e.constructor === void 0
   }),
-  (Qo.prototype.setState = function (e, t) {
+  (Zo.prototype.setState = function (e, t) {
     var n =
       this.__s != null && this.__s != this.state
         ? this.__s
-        : (this.__s = qo({}, this.state))
-    ;(typeof e == `function` && (e = e(qo({}, n), this.props)),
-      e && qo(n, e),
-      e != null && this.__v && (t && this._sb.push(t), ns(this)))
+        : (this.__s = Ko({}, this.state))
+    ;(typeof e == `function` && (e = e(Ko({}, n), this.props)),
+      e && Ko(n, e),
+      e != null && this.__v && (t && this._sb.push(t), ts(this)))
   }),
-  (Qo.prototype.forceUpdate = function (e) {
-    this.__v && ((this.__e = !0), e && this.__h.push(e), ns(this))
+  (Zo.prototype.forceUpdate = function (e) {
+    this.__v && ((this.__e = !0), e && this.__h.push(e), ts(this))
   }),
-  (Qo.prototype.render = Zo),
-  (Mo = []),
-  (Po =
+  (Zo.prototype.render = Xo),
+  (jo = []),
+  (No =
     typeof Promise == `function`
       ? Promise.prototype.then.bind(Promise.resolve())
       : setTimeout),
-  (Fo = function (e, t) {
+  (Po = function (e, t) {
     return e.__v.__b - t.__v.__b
   }),
-  (rs.__r = 0),
-  (Io = Math.random().toString(8)),
-  (Lo = `__d` + Io),
-  (Ro = `__a` + Io),
-  (zo = /(PointerCapture)$|Capture$/i),
-  (Bo = 0),
-  (Vo = ls(!1)),
-  (Ho = ls(!0)))
-var _s = class {
+  (ns.__r = 0),
+  (Fo = Math.random().toString(8)),
+  (Io = `__d` + Fo),
+  (Lo = `__a` + Fo),
+  (Ro = /(PointerCapture)$|Capture$/i),
+  (zo = 0),
+  (Bo = cs(!1)),
+  (Vo = cs(!0)))
+var gs = class {
     _styles = new Map()
     setStyle(e, t) {
       this._styles.set(e, t)
@@ -38125,7 +38125,7 @@ var _s = class {
       return e
     }
   },
-  vs = class {
+  _s = class {
     attributes = new Map()
     setAttribute(e, t) {
       this.attributes.set(e, t)
@@ -38134,7 +38134,7 @@ var _s = class {
       return Object.fromEntries(this.attributes)
     }
   },
-  ys = class {
+  vs = class {
     handlers = new Map()
     addHandler(e, t) {
       this.handlers.set(`on` + e, t)
@@ -38143,16 +38143,16 @@ var _s = class {
       return Object.fromEntries(this.handlers)
     }
   },
-  bs = class {
+  ys = class {
     tag
     address
     willEnter
     didExit
-    attributes = new vs()
+    attributes = new _s()
     children = []
-    styles = new _s()
-    eventHandlers = new ys()
-    type = _o.Tag
+    styles = new gs()
+    eventHandlers = new vs()
+    type = go.Tag
     constructor(e, t, n, r) {
       ;((this.tag = e),
         (this.address = t),
@@ -38160,47 +38160,47 @@ var _s = class {
         (this.didExit = r))
     }
   }
-function j(e, t) {
+function M(e, t) {
   let n = t.envr.currentTag,
-    r = new bs(
+    r = new ys(
       e,
       t.envr.address,
       () => ((t.envr.currentTag = r), !0),
-      () => (n.children.push(r), (t.envr.currentTag = n), vo.Shift),
+      () => (n.children.push(r), (t.envr.currentTag = n), _o.Shift),
     )
   t.pushBlock(r)
 }
-var xs = class {
+var bs = class {
     execute(e) {
-      let t = new bs(
+      let t = new ys(
         `div`,
         e.envr.address,
         () => ((e.envr.currentTag = t), !0),
-        () => vo.Shift,
+        () => _o.Shift,
       )
       e.pushBlock(t)
     }
   },
-  Ss = class {
+  xs = class {
     keyword
     constructor(e) {
       this.keyword = e
     }
     execute(e) {
-      j(this.keyword, e)
+      M(this.keyword, e)
     }
   },
-  Cs = class extends Ss {
+  Ss = class extends xs {
     constructor() {
       super(T.Div)
     }
   },
-  ws = class extends Ss {
+  Cs = class extends xs {
     constructor() {
       super(T.P)
     }
   },
-  Ts = class {
+  ws = class {
     content
     constructor(e) {
       this.content = e
@@ -38211,7 +38211,7 @@ var xs = class {
       )
     }
   },
-  Es = class {
+  Ts = class {
     content
     constructor(e) {
       this.content = e
@@ -38222,12 +38222,12 @@ var xs = class {
       )
     }
   },
-  Ds = class {
+  Es = class {
     execute(e) {
       e.envr.currentTag?.children.splice(0, e.envr.currentTag.children.length)
     }
   },
-  Os = class {
+  Ds = class {
     name
     value
     constructor(e, t) {
@@ -38237,8 +38237,8 @@ var xs = class {
       e.envr.currentTag.styles.setStyle(this.name, () => e.evaluate(this.value))
     }
   },
-  ks = `eValue`,
-  As = class {
+  Os = `eValue`,
+  ks = class {
     eventName
     eventValue
     constructor(e, t) {
@@ -38251,16 +38251,16 @@ var xs = class {
       let n = e.evaluate(this.eventValue),
         r = e.envr.address
       t.eventHandlers.addHandler(this.eventName, () => {
-        let i = new yo(
-          _o.Handler,
+        let i = new vo(
+          go.Handler,
           r,
           () => !0,
-          () => (e.dispatcher?.requestUpdate(), vo.EndHandler),
+          () => (e.dispatcher?.requestUpdate(), _o.EndHandler),
         )
         e.pushBlock(i)
         let a = e.envr.currentTag
         for (
-          e.envr.currentTag = t, e.envr.context.assign(ks, n);
+          e.envr.currentTag = t, e.envr.context.assign(Os, n);
           e.hasNext();
         ) {
           let t = e.next(),
@@ -38271,16 +38271,16 @@ var xs = class {
       })
     }
   },
-  M = class {
+  N = class {
     execute(e) {}
   },
-  N = new oe(`Shiba11`)
-;((N.init = function (e) {
+  P = new oe(`Shiba11`)
+;((P.init = function (e) {
   ;((this.nameDB_ = new st(this.RESERVED_WORDS_)),
     this.nameDB_.reset(),
     this.nameDB_.setVariableMap(e.getVariableMap()))
 }),
-  (N.scrub_ = function (e, t, n) {
+  (P.scrub_ = function (e, t, n) {
     let r = e.nextConnection && e.nextConnection.targetBlock(),
       i = n ? `` : this.blockToCode(r)
     return (
@@ -38288,73 +38288,73 @@ var xs = class {
       r ? t + i : t
     )
   }),
-  (N.finish = function (e) {
+  (P.finish = function (e) {
     return `[${JSON.stringify([1, `html`])},${e}${JSON.stringify([1, `end`])}]`
   }))
-var P = { indent: 2 }
-function js(e) {
-  N.forBlock[e] = function (t) {
-    P.indent++
-    let n = N.statementToCode(t, `CHILDREN`) || ``
-    return (P.indent--, JSON.stringify([P.indent, e]) + `,` + n)
+var F = { indent: 2 }
+function As(e) {
+  P.forBlock[e] = function (t) {
+    F.indent++
+    let n = P.statementToCode(t, `CHILDREN`) || ``
+    return (F.indent--, JSON.stringify([F.indent, e]) + `,` + n)
   }
 }
-;((N.forBlock.variables_set = (e) => {
+;((P.forBlock.variables_set = (e) => {
   let t = e.getFieldValue(`VAR`),
-    n = N.getVariableName(t),
-    r = JSON.parse(N.valueToCode(e, `VALUE`, 0) || `null`)
-  return JSON.stringify([P.indent, T.Assign, [oo.Variable, n], r]) + `,`
+    n = P.getVariableName(t),
+    r = JSON.parse(P.valueToCode(e, `VALUE`, 0) || `null`)
+  return JSON.stringify([F.indent, T.Assign, [oo.Variable, n], r]) + `,`
 }),
-  (N.forBlock.variables_get = (e) => {
+  (P.forBlock.variables_get = (e) => {
     let t = e.getFieldValue(`VAR`),
-      n = N.getVariableName(t)
+      n = P.getVariableName(t)
     return [JSON.stringify([oo.Variable, n]), 0]
   }),
-  (N.forBlock.controls_if = (e) => {
+  (P.forBlock.controls_if = (e) => {
     let t = e.elseifCount_ || 0,
       n = 0,
-      r = JSON.stringify([P.indent, T.Ifs]) + `,`
-    P.indent++
-    let i = JSON.parse(N.valueToCode(e, `IF` + n, 0) || `false`),
-      a = JSON.stringify([P.indent, T.If, i])
-    P.indent++
-    let o = N.statementToCode(e, `DO` + n)
-    for (P.indent--, r += `${a},${o}`, n = 1; n <= t; n++) {
-      i = JSON.parse(N.valueToCode(e, `IF` + n, 0) || `false`)
-      let t = JSON.stringify([P.indent, T.ElseIf, i])
-      P.indent++
-      let a = N.statementToCode(e, `DO` + n)
-      ;(P.indent--, (r += `${t},${a}`))
+      r = JSON.stringify([F.indent, T.Ifs]) + `,`
+    F.indent++
+    let i = JSON.parse(P.valueToCode(e, `IF` + n, 0) || `false`),
+      a = JSON.stringify([F.indent, T.If, i])
+    F.indent++
+    let o = P.statementToCode(e, `DO` + n)
+    for (F.indent--, r += `${a},${o}`, n = 1; n <= t; n++) {
+      i = JSON.parse(P.valueToCode(e, `IF` + n, 0) || `false`)
+      let t = JSON.stringify([F.indent, T.ElseIf, i])
+      F.indent++
+      let a = P.statementToCode(e, `DO` + n)
+      ;(F.indent--, (r += `${t},${a}`))
     }
     if (e.elseCount_) {
-      let t = JSON.stringify([P.indent, T.Else])
-      P.indent++
-      let n = N.statementToCode(e, `ELSE`)
-      ;(P.indent--, (r += `${t},${n}`))
+      let t = JSON.stringify([F.indent, T.Else])
+      F.indent++
+      let n = P.statementToCode(e, `ELSE`)
+      ;(F.indent--, (r += `${t},${n}`))
     }
-    return (P.indent--, r)
+    return (F.indent--, r)
   }),
-  (N.forBlock.controls_repeat_ext = (e) => {
-    let t = JSON.parse(N.valueToCode(e, `TIMES`, 0) || `0`),
-      n = JSON.stringify([P.indent, T.Repeat, t]) + `,`
-    return (P.indent++, (n += N.statementToCode(e, `DO`)), P.indent--, n)
+  (P.forBlock.controls_repeat_ext = (e) => {
+    let t = JSON.parse(P.valueToCode(e, `TIMES`, 0) || `0`),
+      n = JSON.stringify([F.indent, T.Repeat, t]) + `,`
+    return (F.indent++, (n += P.statementToCode(e, `DO`)), F.indent--, n)
   }),
-  (N.forBlock.controls_flow_statements = (e) => {
+  (P.forBlock.controls_flow_statements = (e) => {
     let t = e.getFieldValue(`FLOW`),
       n = ``
     return (
       t === `BREAK`
-        ? (n = JSON.stringify([P.indent, T.Break]) + `,`)
+        ? (n = JSON.stringify([F.indent, T.Break]) + `,`)
         : t === `CONTINUE` &&
-          (n = JSON.stringify([P.indent, T.Continue]) + `,`),
+          (n = JSON.stringify([F.indent, T.Continue]) + `,`),
       n
     )
   }),
-  (N.forBlock.logic_boolean = (e) => {
+  (P.forBlock.logic_boolean = (e) => {
     let t = e.getFieldValue(`BOOL`) === `TRUE`
     return [JSON.stringify(t), 0]
   }))
-var Ms = {
+var js = {
   EQ: `===`,
   NEQ: `!==`,
   LT: `<`,
@@ -38364,104 +38364,104 @@ var Ms = {
   AND: `&&`,
   OR: `||`,
 }
-;((N.forBlock.logic_compare = (e) => {
-  let t = Ms[e.getFieldValue(`OP`)],
-    n = JSON.parse(N.valueToCode(e, `A`, 0) || `0`),
-    r = JSON.parse(N.valueToCode(e, `B`, 0) || `0`)
+;((P.forBlock.logic_compare = (e) => {
+  let t = js[e.getFieldValue(`OP`)],
+    n = JSON.parse(P.valueToCode(e, `A`, 0) || `0`),
+    r = JSON.parse(P.valueToCode(e, `B`, 0) || `0`)
   return [JSON.stringify([t, n, r]), 0]
 }),
-  (N.forBlock.logic_operation = (e) => {
-    let t = Ms[e.getFieldValue(`OP`)],
-      n = JSON.parse(N.valueToCode(e, `A`, 0) || `false`),
-      r = JSON.parse(N.valueToCode(e, `B`, 0) || `false`)
+  (P.forBlock.logic_operation = (e) => {
+    let t = js[e.getFieldValue(`OP`)],
+      n = JSON.parse(P.valueToCode(e, `A`, 0) || `false`),
+      r = JSON.parse(P.valueToCode(e, `B`, 0) || `false`)
     return [JSON.stringify([t, n, r]), 0]
   }),
-  (N.forBlock.math_number = (e) => [e.getFieldValue(`NUM`) || `0`, 0]))
-var Ns = { ADD: `+`, MINUS: `-`, MULTIPLY: `*`, DIVIDE: `/`, POWER: `**` }
-;((N.forBlock.math_arithmetic = (e) => {
-  let t = Ns[e.getFieldValue(`OP`) || `ADD`],
-    n = JSON.parse(N.valueToCode(e, `A`, 0) || `0`),
-    r = JSON.parse(N.valueToCode(e, `B`, 0) || `1`)
+  (P.forBlock.math_number = (e) => [e.getFieldValue(`NUM`) || `0`, 0]))
+var Ms = { ADD: `+`, MINUS: `-`, MULTIPLY: `*`, DIVIDE: `/`, POWER: `**` }
+;((P.forBlock.math_arithmetic = (e) => {
+  let t = Ms[e.getFieldValue(`OP`) || `ADD`],
+    n = JSON.parse(P.valueToCode(e, `A`, 0) || `0`),
+    r = JSON.parse(P.valueToCode(e, `B`, 0) || `1`)
   return [JSON.stringify([t, n, r]), 0]
 }),
-  (N.forBlock.math_modulo = (e) => {
-    let t = JSON.parse(N.valueToCode(e, `DIVIDEND`, 0) || `0`),
-      n = JSON.parse(N.valueToCode(e, `DIVISOR`, 0) || `1`)
+  (P.forBlock.math_modulo = (e) => {
+    let t = JSON.parse(P.valueToCode(e, `DIVIDEND`, 0) || `0`),
+      n = JSON.parse(P.valueToCode(e, `DIVISOR`, 0) || `1`)
     return [JSON.stringify([`%`, t, n]), 0]
   }),
-  (N.forBlock.lists_subscript = (e) => {
-    let t = N.valueToCode(e, `LIST`, 0) || `[]`,
-      n = N.valueToCode(e, `INDEX`, 0) || `0`
+  (P.forBlock.lists_subscript = (e) => {
+    let t = P.valueToCode(e, `LIST`, 0) || `[]`,
+      n = P.valueToCode(e, `INDEX`, 0) || `0`
     return [`["${oo.Subscript}", ${t}, ${n}]`, 0]
   }),
-  (N.forBlock.lists_set = (e) => {
-    let t = N.valueToCode(e, `LIST`, 0) || `["${oo.Variable}","item"]`,
-      n = N.valueToCode(e, `TO`, 0) || `0`
-    return `[${P.indent},"${T.Assign}",${t},${n}],`
+  (P.forBlock.lists_set = (e) => {
+    let t = P.valueToCode(e, `LIST`, 0) || `["${oo.Variable}","item"]`,
+      n = P.valueToCode(e, `TO`, 0) || `0`
+    return `[${F.indent},"${T.Assign}",${t},${n}],`
   }),
-  (N.forBlock.lists_create_empty = () => [`[[]]`, 0]),
-  (N.forBlock.lists_create_with = (e) => {
+  (P.forBlock.lists_create_empty = () => [`[[]]`, 0]),
+  (P.forBlock.lists_create_with = (e) => {
     let t = []
     for (let n = 0; n < e.itemCount_; n++)
-      t.push(N.valueToCode(e, `ADD` + n, 0) || `0`)
+      t.push(P.valueToCode(e, `ADD` + n, 0) || `0`)
     return [`[[` + t.join(`,`) + `]]`, 0]
   }),
-  (N.forBlock.lists_repeat = (e) => {
-    let t = N.valueToCode(e, `ITEM`, 0) || `0`,
-      n = N.valueToCode(e, `NUM`, 0) || `0`
+  (P.forBlock.lists_repeat = (e) => {
+    let t = P.valueToCode(e, `ITEM`, 0) || `0`,
+      n = P.valueToCode(e, `NUM`, 0) || `0`
     return [`["${oo.Call}", "listsRepeat", [${t}, ${n}]]`, 0]
   }),
-  (N.forBlock.lists_split = (e) => {
-    let t = N.valueToCode(e, `INPUT`, 0) || `""`,
-      n = N.valueToCode(e, `DELIM`, 0) || `""`
+  (P.forBlock.lists_split = (e) => {
+    let t = P.valueToCode(e, `INPUT`, 0) || `""`,
+      n = P.valueToCode(e, `DELIM`, 0) || `""`
     return [`["${oo.Call}", "listsSplit", [${t}, ${n}]]`, 0]
   }),
-  (N.forBlock.lists_length = (e) => {
-    let t = N.valueToCode(e, `VALUE`, 0) || `[]`
+  (P.forBlock.lists_length = (e) => {
+    let t = P.valueToCode(e, `VALUE`, 0) || `[]`
     return [`["${oo.Call}", "listsLength", [${t}]]`, 0]
   }),
-  (N.forBlock.lists_isEmpty = (e) => {
-    let t = N.valueToCode(e, `VALUE`, 0) || `[]`
+  (P.forBlock.lists_isEmpty = (e) => {
+    let t = P.valueToCode(e, `VALUE`, 0) || `[]`
     return [`["${oo.Call}", "listsIsEmpty", [${t}]]`, 0]
   }),
-  (N.forBlock.lists_indexOf = (e) => {
-    let t = N.valueToCode(e, `VALUE`, 0) || `[]`,
-      n = N.valueToCode(e, `FIND`, 0) || `0`,
+  (P.forBlock.lists_indexOf = (e) => {
+    let t = P.valueToCode(e, `VALUE`, 0) || `[]`,
+      n = P.valueToCode(e, `FIND`, 0) || `0`,
       r = e.getFieldValue(`END`) === `FIRST` ? `IndexOf` : `LastIndexOf`
     return [`["${oo.Call}", "lists${r}", [${t}, ${n}]]`, 0]
   }),
-  js(T.Div),
-  js(T.P),
-  (N.forBlock.static_text = (e) => {
-    let t = N.valueToCode(e, `CONTENT`, 0) || `"Hello, World."`
-    return `[${P.indent},"${T.StaticText}",${t}],`
+  As(T.Div),
+  As(T.P),
+  (P.forBlock.static_text = (e) => {
+    let t = P.valueToCode(e, `CONTENT`, 0) || `"Hello, World."`
+    return `[${F.indent},"${T.StaticText}",${t}],`
   }),
-  (N.forBlock.dynamic_text = (e) => {
-    let t = N.valueToCode(e, `CONTENT`, 0) || `"Hello, World."`
-    return `[${P.indent},"${T.DynamicText}",${t}],`
+  (P.forBlock.dynamic_text = (e) => {
+    let t = P.valueToCode(e, `CONTENT`, 0) || `"Hello, World."`
+    return `[${F.indent},"${T.DynamicText}",${t}],`
   }),
-  (N.forBlock.text_content = (e) => [
+  (P.forBlock.text_content = (e) => [
     `"${e.getFieldValue(`TEXT`) || `Hello, World.`}"`,
     0,
   ]),
-  (N.forBlock.clear = () => `[${P.indent},"${T.Clear}"],`),
-  (N.forBlock.style = (e) => {
+  (P.forBlock.clear = () => `[${F.indent},"${T.Clear}"],`),
+  (P.forBlock.style = (e) => {
     let t = e.getFieldValue(`NAME`) || `color`,
-      n = N.valueToCode(e, `VALUE`, 0) || `"black"`
-    return `[${P.indent},"${T.Style}","${t}",${n}],`
+      n = P.valueToCode(e, `VALUE`, 0) || `"black"`
+    return `[${F.indent},"${T.Style}","${t}",${n}],`
   }),
-  (N.forBlock.style_value = (e) => [
+  (P.forBlock.style_value = (e) => [
     `"${e.getFieldValue(`VALUE`) || `blue`}"`,
     0,
   ]),
-  (N.forBlock.on = (e) => {
+  (P.forBlock.on = (e) => {
     let t = e.getFieldValue(`EVENT`) || `click`,
-      n = JSON.parse(N.valueToCode(e, `VALUE`, 0) || `null`)
-    ++P.indent
-    let r = N.statementToCode(e, `HANDLER`)
-    return (--P.indent, JSON.stringify([P.indent, `on`, t, n]) + `,` + r)
+      n = JSON.parse(P.valueToCode(e, `VALUE`, 0) || `null`)
+    ++F.indent
+    let r = P.statementToCode(e, `HANDLER`)
+    return (--F.indent, JSON.stringify([F.indent, `on`, t, n]) + `,` + r)
   }),
-  (N.forBlock.string = (e) => {
+  (P.forBlock.string = (e) => {
     let t = e.getFieldValue(`VALUE`) || ``
     return [JSON.stringify(t), 0]
   }),
@@ -38590,123 +38590,123 @@ var Ns = { ADD: `+`, MINUS: `-`, MULTIPLY: `*`, DIVIDE: `/`, POWER: `**` }
       colour: 260,
     },
   ]))
-var Ps,
+var Ns,
+  Ps,
   Fs,
   Is,
-  Ls,
-  Rs = 0,
-  zs = [],
-  Bs = D,
-  Vs = Bs.__b,
-  F = Bs.__r,
-  Hs = Bs.diffed,
-  Us = Bs.__c,
-  Ws = Bs.unmount,
-  Gs = Bs.__
-function Ks(e, t) {
-  ;(Bs.__h && Bs.__h(Fs, e, Rs || t), (Rs = 0))
-  var n = Fs.__H || (Fs.__H = { __: [], __h: [] })
+  Ls = 0,
+  Rs = [],
+  zs = O,
+  Bs = zs.__b,
+  I = zs.__r,
+  Vs = zs.diffed,
+  Hs = zs.__c,
+  Us = zs.unmount,
+  Ws = zs.__
+function Gs(e, t) {
+  ;(zs.__h && zs.__h(Ps, e, Ls || t), (Ls = 0))
+  var n = Ps.__H || (Ps.__H = { __: [], __h: [] })
   return (e >= n.__.length && n.__.push({}), n.__[e])
 }
-function qs(e, t) {
-  var n = Ks(Ps++, 7)
-  return (Xs(n.__H, t) && ((n.__ = e()), (n.__H = t), (n.__h = e)), n.__)
+function Ks(e, t) {
+  var n = Gs(Ns++, 7)
+  return (Ys(n.__H, t) && ((n.__ = e()), (n.__H = t), (n.__h = e)), n.__)
 }
-function Js() {
-  for (var e; (e = zs.shift());) {
+function qs() {
+  for (var e; (e = Rs.shift());) {
     var t = e.__H
     if (e.__P && t)
       try {
-        ;(t.__h.some(R), t.__h.some(Ys), (t.__h = []))
+        ;(t.__h.some(z), t.__h.some(Js), (t.__h = []))
       } catch (n) {
-        ;((t.__h = []), Bs.__e(n, e.__v))
+        ;((t.__h = []), zs.__e(n, e.__v))
       }
   }
 }
-;((Bs.__b = function (e) {
-  ;((Fs = null), Vs && Vs(e))
+;((zs.__b = function (e) {
+  ;((Ps = null), Bs && Bs(e))
 }),
-  (Bs.__ = function (e, t) {
-    ;(e && t.__k && t.__k.__m && (e.__m = t.__k.__m), Gs && Gs(e, t))
+  (zs.__ = function (e, t) {
+    ;(e && t.__k && t.__k.__m && (e.__m = t.__k.__m), Ws && Ws(e, t))
   }),
-  (Bs.__r = function (e) {
-    ;(F && F(e), (Ps = 0))
-    var t = (Fs = e.__c).__H
+  (zs.__r = function (e) {
+    ;(I && I(e), (Ns = 0))
+    var t = (Ps = e.__c).__H
     ;(t &&
-      (Is === Fs
+      (Fs === Ps
         ? ((t.__h = []),
-          (Fs.__h = []),
+          (Ps.__h = []),
           t.__.some(function (e) {
             ;(e.__N && (e.__ = e.__N), (e.u = e.__N = void 0))
           }))
-        : (t.__h.some(R), t.__h.some(Ys), (t.__h = []), (Ps = 0))),
-      (Is = Fs))
+        : (t.__h.some(z), t.__h.some(Js), (t.__h = []), (Ns = 0))),
+      (Fs = Ps))
   }),
-  (Bs.diffed = function (e) {
-    Hs && Hs(e)
+  (zs.diffed = function (e) {
+    Vs && Vs(e)
     var t = e.__c
     ;(t &&
       t.__H &&
       (t.__H.__h.length &&
-        ((zs.push(t) !== 1 && Ls === Bs.requestAnimationFrame) ||
-          ((Ls = Bs.requestAnimationFrame) || L)(Js)),
+        ((Rs.push(t) !== 1 && Is === zs.requestAnimationFrame) ||
+          ((Is = zs.requestAnimationFrame) || R)(qs)),
       t.__H.__.some(function (e) {
         e.u &&= ((e.__H = e.u), void 0)
       })),
-      (Is = Fs = null))
+      (Fs = Ps = null))
   }),
-  (Bs.__c = function (e, t) {
+  (zs.__c = function (e, t) {
     ;(t.some(function (e) {
       try {
-        ;(e.__h.some(R),
+        ;(e.__h.some(z),
           (e.__h = e.__h.filter(function (e) {
-            return !e.__ || Ys(e)
+            return !e.__ || Js(e)
           })))
       } catch (n) {
         ;(t.some(function (e) {
           e.__h &&= []
         }),
           (t = []),
-          Bs.__e(n, e.__v))
+          zs.__e(n, e.__v))
       }
     }),
-      Us && Us(e, t))
+      Hs && Hs(e, t))
   }),
-  (Bs.unmount = function (e) {
-    Ws && Ws(e)
+  (zs.unmount = function (e) {
+    Us && Us(e)
     var t,
       n = e.__c
     n &&
       n.__H &&
       (n.__H.__.some(function (e) {
         try {
-          R(e)
+          z(e)
         } catch (e) {
           t = e
         }
       }),
       (n.__H = void 0),
-      t && Bs.__e(t, n.__v))
+      t && zs.__e(t, n.__v))
   }))
-var I = typeof requestAnimationFrame == `function`
-function L(e) {
+var L = typeof requestAnimationFrame == `function`
+function R(e) {
   var t,
     n = function () {
-      ;(clearTimeout(r), I && cancelAnimationFrame(t), setTimeout(e))
+      ;(clearTimeout(r), L && cancelAnimationFrame(t), setTimeout(e))
     },
     r = setTimeout(n, 35)
-  I && (t = requestAnimationFrame(n))
+  L && (t = requestAnimationFrame(n))
 }
-function R(e) {
-  var t = Fs,
+function z(e) {
+  var t = Ps,
     n = e.__c
-  ;(typeof n == `function` && ((e.__c = void 0), n()), (Fs = t))
+  ;(typeof n == `function` && ((e.__c = void 0), n()), (Ps = t))
 }
-function Ys(e) {
-  var t = Fs
-  ;((e.__c = e.__()), (Fs = t))
+function Js(e) {
+  var t = Ps
+  ;((e.__c = e.__()), (Ps = t))
 }
-function Xs(e, t) {
+function Ys(e, t) {
   return (
     !e ||
     e.length !== t.length ||
@@ -38715,28 +38715,28 @@ function Xs(e, t) {
     })
   )
 }
-var Zs = Symbol.for(`preact-signals`)
-function Qs() {
-  if (ic > 1) ic--
+var Xs = Symbol.for(`preact-signals`)
+function Zs() {
+  if (rc > 1) rc--
   else {
     var e,
       t = !1
     for (
       (function () {
-        var e = z
-        for (z = void 0; e !== void 0;) {
+        var e = B
+        for (B = void 0; e !== void 0;) {
           var t = e.S
           if (t.v === e.v)
             for (var n = t.t; n !== void 0; n = n.x) n.i === e.i && (n.i = t.i)
           e = e.o
         }
       })();
-      rc !== void 0;
+      nc !== void 0;
     ) {
-      var n = rc
-      for (rc = void 0, ac++; n !== void 0;) {
+      var n = nc
+      for (nc = void 0, ic++; n !== void 0;) {
         var r = n.u
-        if (((n.u = void 0), (n.f &= -3), !(8 & n.f) && fc(n)))
+        if (((n.u = void 0), (n.f &= -3), !(8 & n.f) && dc(n)))
           try {
             n.c()
           } catch (n) {
@@ -38745,56 +38745,56 @@ function Qs() {
         n = r
       }
     }
-    if (((ac = 0), ic--, t)) throw e
+    if (((ic = 0), rc--, t)) throw e
   }
 }
-function $s(e) {
-  if (ic > 0) return e()
-  ;((sc = ++oc), ic++)
+function Qs(e) {
+  if (rc > 0) return e()
+  ;((oc = ++ac), rc++)
   try {
     return e()
   } finally {
-    Qs()
+    Zs()
   }
 }
-var ec,
-  tc = void 0
-function nc(e) {
-  var t = tc,
-    n = ec
-  ;((tc = void 0), (ec = void 0))
+var $s,
+  ec = void 0
+function tc(e) {
+  var t = ec,
+    n = $s
+  ;((ec = void 0), ($s = void 0))
   try {
     return e()
   } finally {
-    ;((tc = t), (ec = n))
+    ;((ec = t), ($s = n))
   }
 }
-var rc = void 0,
+var nc = void 0,
+  rc = 0,
   ic = 0,
   ac = 0,
   oc = 0,
-  sc = 0,
-  z = void 0,
-  cc = 0
-function lc(e) {
-  if (tc !== void 0) {
+  B = void 0,
+  sc = 0
+function cc(e) {
+  if (ec !== void 0) {
     var t = e.n
-    if (t === void 0 || t.t !== tc)
+    if (t === void 0 || t.t !== ec)
       return (
         (t = {
           i: 0,
           S: e,
-          p: tc.s,
+          p: ec.s,
           n: void 0,
-          t: tc,
+          t: ec,
           e: void 0,
           x: void 0,
           r: t,
         }),
-        tc.s !== void 0 && (tc.s.n = t),
-        (tc.s = t),
+        ec.s !== void 0 && (ec.s.n = t),
+        (ec.s = t),
         (e.n = t),
-        32 & tc.f && e.S(t),
+        32 & ec.f && e.S(t),
         t
       )
     if (t.i === -1)
@@ -38803,15 +38803,15 @@ function lc(e) {
         t.n !== void 0 &&
           ((t.n.p = t.p),
           t.p !== void 0 && (t.p.n = t.n),
-          (t.p = tc.s),
+          (t.p = ec.s),
           (t.n = void 0),
-          (tc.s.n = t),
-          (tc.s = t)),
+          (ec.s.n = t),
+          (ec.s = t)),
         t
       )
   }
 }
-function uc(e, t) {
+function lc(e, t) {
   ;((this.v = e),
     (this.i = 0),
     (this.n = void 0),
@@ -38821,11 +38821,11 @@ function uc(e, t) {
     (this.Z = t?.unwatched),
     (this.name = t?.name))
 }
-;((uc.prototype.brand = Zs),
-  (uc.prototype.h = function () {
+;((lc.prototype.brand = Xs),
+  (lc.prototype.h = function () {
     return !0
   }),
-  (uc.prototype.S = function (e) {
+  (lc.prototype.S = function (e) {
     var t = this,
       n = this.t
     n !== e &&
@@ -38833,13 +38833,13 @@ function uc(e, t) {
       ((e.x = n),
       (this.t = e),
       n === void 0
-        ? nc(function () {
+        ? tc(function () {
             var e
             ;(e = t.W) == null || e.call(t)
           })
         : (n.e = e))
   }),
-  (uc.prototype.U = function (e) {
+  (lc.prototype.U = function (e) {
     var t = this
     if (this.t !== void 0) {
       var n = e.e,
@@ -38849,74 +38849,74 @@ function uc(e, t) {
         e === this.t &&
           ((this.t = r),
           r === void 0 &&
-            nc(function () {
+            tc(function () {
               var e
               ;(e = t.Z) == null || e.call(t)
             })))
     }
   }),
-  (uc.prototype.subscribe = function (e) {
+  (lc.prototype.subscribe = function (e) {
     var t = this
-    return xc(
+    return bc(
       function () {
         var n = t.value
-        nc(function () {
+        tc(function () {
           return e(n)
         })
       },
       { name: `sub` },
     )
   }),
-  (uc.prototype.valueOf = function () {
+  (lc.prototype.valueOf = function () {
     return this.value
   }),
-  (uc.prototype.toString = function () {
+  (lc.prototype.toString = function () {
     return this.value + ``
   }),
-  (uc.prototype.toJSON = function () {
+  (lc.prototype.toJSON = function () {
     return this.value
   }),
-  (uc.prototype.peek = function () {
+  (lc.prototype.peek = function () {
     var e = this
-    return nc(function () {
+    return tc(function () {
       return e.value
     })
   }),
-  Object.defineProperty(uc.prototype, "value", {
+  Object.defineProperty(lc.prototype, "value", {
     get: function () {
-      var e = lc(this)
+      var e = cc(this)
       return (e !== void 0 && (e.i = this.i), this.v)
     },
     set: function (e) {
       if (e !== this.v) {
-        if (ac > 100) throw Error(`Cycle detected`)
+        if (ic > 100) throw Error(`Cycle detected`)
         ;((function (e) {
-          ic !== 0 &&
-            ac === 0 &&
-            e.l !== sc &&
-            ((e.l = sc), (z = { S: e, v: e.v, i: e.i, o: z }))
+          rc !== 0 &&
+            ic === 0 &&
+            e.l !== oc &&
+            ((e.l = oc), (B = { S: e, v: e.v, i: e.i, o: B }))
         })(this),
           (this.v = e),
           this.i++,
-          cc++,
-          ic++)
+          sc++,
+          rc++)
         try {
           for (var t = this.t; t !== void 0; t = t.x) t.t.N()
         } finally {
-          Qs()
+          Zs()
         }
       }
     },
   }))
-function dc(e, t) {
-  return new uc(e, t)
+function uc(e, t) {
+  return new lc(e, t)
 }
-function fc(e) {
+function dc(e) {
   for (var t = e.s; t !== void 0; t = t.n)
     if (t.S.i !== t.i || !t.S.h() || t.S.i !== t.i) return !0
   return !1
 }
-function pc(e) {
+function fc(e) {
   for (var t = e.s; t !== void 0; t = t.n) {
     var n = t.S.n
     if ((n !== void 0 && (t.r = n), (t.S.n = t), (t.i = -1), t.n === void 0)) {
@@ -38925,7 +38925,7 @@ function pc(e) {
     }
   }
 }
-function mc(e) {
+function pc(e) {
   for (var t = e.s, n = void 0; t !== void 0;) {
     var r = t.p
     ;(t.i === -1
@@ -38937,96 +38937,96 @@ function mc(e) {
   }
   e.s = n
 }
-function hc(e, t) {
-  ;(uc.call(this, void 0, t),
+function mc(e, t) {
+  ;(lc.call(this, void 0, t),
     (this.x = e),
     (this.s = void 0),
-    (this.g = cc - 1),
+    (this.g = sc - 1),
     (this.f = 4))
 }
-;((hc.prototype = new uc()),
-  (hc.prototype.h = function () {
+;((mc.prototype = new lc()),
+  (mc.prototype.h = function () {
     if (((this.f &= -3), 1 & this.f)) return !1
-    if ((36 & this.f) == 32 || ((this.f &= -5), this.g === cc)) return !0
-    if (((this.g = cc), (this.f |= 1), this.i > 0 && !fc(this)))
+    if ((36 & this.f) == 32 || ((this.f &= -5), this.g === sc)) return !0
+    if (((this.g = sc), (this.f |= 1), this.i > 0 && !dc(this)))
       return ((this.f &= -2), !0)
-    var e = tc
+    var e = ec
     try {
-      ;(pc(this), (tc = this))
+      ;(fc(this), (ec = this))
       var t = this.x()
       ;(16 & this.f || this.v !== t || this.i === 0) &&
         ((this.v = t), (this.f &= -17), this.i++)
     } catch (e) {
       ;((this.v = e), (this.f |= 16), this.i++)
     }
-    return ((tc = e), mc(this), (this.f &= -2), !0)
+    return ((ec = e), pc(this), (this.f &= -2), !0)
   }),
-  (hc.prototype.S = function (e) {
+  (mc.prototype.S = function (e) {
     if (this.t === void 0) {
       this.f |= 36
       for (var t = this.s; t !== void 0; t = t.n) t.S.S(t)
     }
-    uc.prototype.S.call(this, e)
+    lc.prototype.S.call(this, e)
   }),
-  (hc.prototype.U = function (e) {
+  (mc.prototype.U = function (e) {
     if (
       this.t !== void 0 &&
-      (uc.prototype.U.call(this, e), this.t === void 0)
+      (lc.prototype.U.call(this, e), this.t === void 0)
     ) {
       this.f &= -33
       for (var t = this.s; t !== void 0; t = t.n) t.S.U(t)
     }
   }),
-  (hc.prototype.N = function () {
+  (mc.prototype.N = function () {
     if (!(2 & this.f)) {
       this.f |= 6
       for (var e = this.t; e !== void 0; e = e.x) e.t.N()
     }
   }),
-  Object.defineProperty(hc.prototype, "value", {
+  Object.defineProperty(mc.prototype, "value", {
     get: function () {
       if (1 & this.f) throw Error(`Cycle detected`)
-      var e = lc(this)
+      var e = cc(this)
       if ((this.h(), e !== void 0 && (e.i = this.i), 16 & this.f)) throw this.v
       return this.v
     },
   }))
-function gc(e, t) {
-  return new hc(e, t)
+function hc(e, t) {
+  return new mc(e, t)
 }
-function _c(e) {
+function gc(e) {
   var t = e.m
   if (((e.m = void 0), typeof t == `function`)) {
-    ic++
-    var n = tc
-    tc = void 0
+    rc++
+    var n = ec
+    ec = void 0
     try {
       t()
     } catch (t) {
-      throw ((e.f &= -2), (e.f |= 8), vc(e), t)
+      throw ((e.f &= -2), (e.f |= 8), _c(e), t)
     } finally {
-      ;((tc = n), Qs())
+      ;((ec = n), Zs())
     }
   }
 }
-function vc(e) {
+function _c(e) {
   for (var t = e.s; t !== void 0; t = t.n) t.S.U(t)
-  ;((e.x = void 0), (e.s = void 0), _c(e))
+  ;((e.x = void 0), (e.s = void 0), gc(e))
 }
-function yc(e) {
-  if (tc !== this) throw Error(`Out-of-order effect`)
-  ;(mc(this), (tc = e), (this.f &= -2), 8 & this.f && vc(this), Qs())
+function vc(e) {
+  if (ec !== this) throw Error(`Out-of-order effect`)
+  ;(pc(this), (ec = e), (this.f &= -2), 8 & this.f && _c(this), Zs())
 }
-function bc(e, t) {
+function yc(e, t) {
   ;((this.x = e),
     (this.m = void 0),
     (this.s = void 0),
     (this.u = void 0),
     (this.f = 32),
     (this.name = t?.name),
-    ec && ec.push(this))
+    $s && $s.push(this))
 }
-;((bc.prototype.c = function () {
+;((yc.prototype.c = function () {
   var e = this.S()
   try {
     if (8 & this.f || this.x === void 0) return
@@ -39036,23 +39036,23 @@ function bc(e, t) {
     e()
   }
 }),
-  (bc.prototype.S = function () {
+  (yc.prototype.S = function () {
     if (1 & this.f) throw Error(`Cycle detected`)
-    ;((this.f |= 1), (this.f &= -9), _c(this), pc(this), ic++)
-    var e = tc
-    return ((tc = this), yc.bind(this, e))
+    ;((this.f |= 1), (this.f &= -9), gc(this), fc(this), rc++)
+    var e = ec
+    return ((ec = this), vc.bind(this, e))
   }),
-  (bc.prototype.N = function () {
-    2 & this.f || ((this.f |= 2), (this.u = rc), (rc = this))
+  (yc.prototype.N = function () {
+    2 & this.f || ((this.f |= 2), (this.u = nc), (nc = this))
   }),
-  (bc.prototype.d = function () {
-    ;((this.f |= 8), 1 & this.f || vc(this))
+  (yc.prototype.d = function () {
+    ;((this.f |= 8), 1 & this.f || _c(this))
   }),
-  (bc.prototype.dispose = function () {
+  (yc.prototype.dispose = function () {
     this.d()
   }))
-function xc(e, t) {
-  var n = new bc(e, t)
+function bc(e, t) {
+  var n = new yc(e, t)
   try {
     n.c()
   } catch (e) {
@@ -39061,43 +39061,43 @@ function xc(e, t) {
   var r = n.d.bind(n)
   return ((r[Symbol.dispose] = r), r)
 }
-var Sc,
-  Cc,
-  wc = typeof window < `u` && !!window.__PREACT_SIGNALS_DEVTOOLS__,
-  Tc = []
-xc(function () {
-  Sc = this.N
+var xc,
+  Sc,
+  Cc = typeof window < `u` && !!window.__PREACT_SIGNALS_DEVTOOLS__,
+  wc = []
+bc(function () {
+  xc = this.N
 })()
-function Ec(e, t) {
-  D[e] = t.bind(null, D[e] || function () {})
+function Tc(e, t) {
+  O[e] = t.bind(null, O[e] || function () {})
+}
+function Ec(e) {
+  if (Sc) {
+    var t = Sc
+    ;((Sc = void 0), t())
+  }
+  Sc = e && e.S()
 }
 function Dc(e) {
-  if (Cc) {
-    var t = Cc
-    ;((Cc = void 0), t())
-  }
-  Cc = e && e.S()
-}
-function Oc(e) {
   var t = this,
     n = e.data,
-    r = Ac(n)
+    r = kc(n)
   ;((r.name = `ReactiveDom`), (r.value = n))
-  var i = qs(function () {
+  var i = Ks(function () {
       for (var e = t, n = t.__v; (n = n.__);)
         if (n.__c) {
           n.__c.__$f |= 4
           break
         }
-      var i = gc(function () {
+      var i = hc(function () {
           var e = r.value.value
           return e === 0 ? 0 : !0 === e ? `` : e || ``
         }),
-        a = gc(function () {
-          return !Array.isArray(i.value) && !jo(i.value)
+        a = hc(function () {
+          return !Array.isArray(i.value) && !Ao(i.value)
         }),
-        o = xc(function () {
-          if (((this.N = Nc), a.value)) {
+        o = bc(function () {
+          if (((this.N = Mc), a.value)) {
             var t = i.value
             e.__v &&
               e.__v.__e &&
@@ -39117,10 +39117,10 @@ function Oc(e) {
     o = i[1]
   return a.value ? o.peek() : o.value
 }
-;((Oc.displayName = `ReactiveTextNode`),
-  Object.defineProperties(uc.prototype, {
+;((Dc.displayName = `ReactiveTextNode`),
+  Object.defineProperties(lc.prototype, {
     constructor: { configurable: !0, value: void 0 },
-    type: { configurable: !0, value: Oc },
+    type: { configurable: !0, value: Dc },
     props: {
       configurable: !0,
       get: function () {
@@ -39136,22 +39136,22 @@ function Oc(e) {
     },
     __b: { configurable: !0, value: 1 },
   }),
-  Ec(`__b`, function (e, t) {
-    if ((Dc(), typeof t.type == `string`)) {
+  Tc(`__b`, function (e, t) {
+    if ((Ec(), typeof t.type == `string`)) {
       var n,
         r = t.props
       for (var i in r)
         if (i !== `children`) {
           var a = r[i]
-          a instanceof uc &&
+          a instanceof lc &&
             (n || (t.__np = n = {}), (n[i] = a), (r[i] = a.peek()))
         }
     }
     e(t)
   }),
-  Ec(`__r`, function (e, t) {
-    if ((e(t), t.type !== Zo)) {
-      Dc()
+  Tc(`__r`, function (e, t) {
+    if ((e(t), t.type !== Xo)) {
+      Ec()
       var n,
         r = t.__c
       ;(r &&
@@ -39161,7 +39161,7 @@ function Oc(e) {
             (function (e, t) {
               var n
               return (
-                xc(
+                bc(
                   function () {
                     n = this
                   },
@@ -39174,7 +39174,7 @@ function Oc(e) {
               (function (e) {
                 return function () {
                   var t
-                  ;(wc && ((t = this.y) == null || t.call(this)),
+                  ;(Cc && ((t = this.y) == null || t.call(this)),
                     (e.__$f |= 1),
                     e.setState({}))
                 }
@@ -39183,14 +39183,14 @@ function Oc(e) {
                 ? t.type.displayName || t.type.name
                 : ``,
             ))),
-        Dc(n))
+        Ec(n))
     }
   }),
-  Ec(`__e`, function (e, t, n, r) {
-    ;(Dc(), e(t, n, r))
+  Tc(`__e`, function (e, t, n, r) {
+    ;(Ec(), e(t, n, r))
   }),
-  Ec(`diffed`, function (e, t) {
-    Dc()
+  Tc(`diffed`, function (e, t) {
+    Ec()
     var n
     if (typeof t.type == `string` && (n = t.__e)) {
       var r = t.__np,
@@ -39205,20 +39205,20 @@ function Oc(e) {
         for (var c in (a || ((a = {}), (n.U = a)), r)) {
           var l = a[c],
             u = r[c]
-          l === void 0 ? ((l = kc(n, c, u, i)), (a[c] = l)) : l.o(u, i)
+          l === void 0 ? ((l = Oc(n, c, u, i)), (a[c] = l)) : l.o(u, i)
         }
     }
     e(t)
   }))
-function kc(e, t, n, r) {
+function Oc(e, t, n, r) {
   var i = t in e && e.ownerSVGElement === void 0,
-    a = dc(n)
+    a = uc(n)
   return {
     o: function (e, t) {
       ;((a.value = e), (r = t))
     },
-    d: xc(function () {
-      this.N = Nc
+    d: bc(function () {
+      this.N = Mc
       var n = a.value.value
       r[t] !== n &&
         ((r[t] = n),
@@ -39230,7 +39230,7 @@ function kc(e, t, n, r) {
     }),
   }
 }
-;(Ec(`unmount`, function (e, t) {
+;(Tc(`unmount`, function (e, t) {
   if (typeof t.type == `string`) {
     var n = t.__e
     if (n) {
@@ -39256,10 +39256,10 @@ function kc(e, t, n, r) {
   }
   e(t)
 }),
-  Ec(`__h`, function (e, t, n, r) {
+  Tc(`__h`, function (e, t, n, r) {
     ;(r < 3 && (t.__$f |= 2), e(t, n, r))
   }),
-  (Qo.prototype.shouldComponentUpdate = function (e, t) {
+  (Zo.prototype.shouldComponentUpdate = function (e, t) {
     if (this.__R) return !0
     var n = this.__$u,
       r = n && n.s !== void 0
@@ -39272,25 +39272,25 @@ function kc(e, t, n, r) {
     for (var s in this.props) if (!(s in e)) return !0
     return !1
   }))
-function Ac(e, t) {
-  return qs(function () {
-    return dc(e, t)
+function kc(e, t) {
+  return Ks(function () {
+    return uc(e, t)
   }, [])
 }
-var jc = function (e) {
+var Ac = function (e) {
   queueMicrotask(function () {
     queueMicrotask(e)
   })
 }
-function Mc() {
-  $s(function () {
-    for (var e; (e = Tc.shift());) Sc.call(e)
+function jc() {
+  Qs(function () {
+    for (var e; (e = wc.shift());) xc.call(e)
   })
 }
-function Nc() {
-  Tc.push(this) === 1 && (D.requestAnimationFrame || jc)(Mc)
+function Mc() {
+  wc.push(this) === 1 && (O.requestAnimationFrame || Ac)(jc)
 }
-var Pc = dc(
+var Nc = uc(
     JSON.stringify([
       [1, `html`],
       [2, `p`],
@@ -39300,31 +39300,56 @@ var Pc = dc(
       [1, `end`],
     ]),
   ),
+  Pc = class {
+    key
+    storageKey
+    workspace
+    defaultKey = `shiba-11-editor-`
+    constructor(e, t = ``) {
+      this.workspace = e
+      let n = new URLSearchParams(window.location.search).get(`k`)
+      n
+        ? ((this.key = n), (this.storageKey = this.defaultKey + n + `-${t}`))
+        : ((this.key = t), (this.storageKey = this.defaultKey + t))
+    }
+    loadWorkspace(e) {
+      let t = localStorage.getItem(this.storageKey)
+      if (t) Gn.workspaces.load(JSON.parse(t), this.workspace)
+      else {
+        let t = e.get(this.key)
+        Gn.workspaces.load(t ?? ``, this.workspace)
+      }
+    }
+    saveWorkspace() {
+      let e = Gn.workspaces.save(this.workspace)
+      localStorage.setItem(this.storageKey, JSON.stringify(e))
+    }
+  },
   Fc = class {
     _table
     constructor() {
       this._table = {
-        [T.Comment]: (e) => new ao(e[So.FirstArg].toString()),
+        [T.Comment]: (e) => new ao(e[xo.FirstArg].toString()),
         [T.Assign]: (e, t) =>
-          new po(t.readRef(e[So.FirstArg]), t.readExpr(e[So.FirstArg + 1])),
-        [T.Ifs]: () => new E(),
-        [T.If]: (e, t) => new wo(t.readExpr(e[So.FirstArg])),
-        [T.ElseIf]: (e, t) => new wo(t.readExpr(e[So.FirstArg])),
-        [T.Else]: () => new To(),
-        [T.Repeat]: (e, t) => new Oo(t.readExpr(e[So.FirstArg])),
-        [T.Break]: () => new Eo(),
-        [T.Continue]: () => new Do(),
-        [T.Html]: () => new xs(),
-        [T.Div]: () => new Cs(),
-        [T.P]: () => new ws(),
-        [T.StaticText]: (e, t) => new Ts(t.readExpr(e[So.FirstArg])),
-        [T.DynamicText]: (e, t) => new Es(t.readExpr(e[So.FirstArg])),
-        [T.Clear]: () => new Ds(),
+          new fo(t.readRef(e[xo.FirstArg]), t.readExpr(e[xo.FirstArg + 1])),
+        [T.Ifs]: () => new D(),
+        [T.If]: (e, t) => new Co(t.readExpr(e[xo.FirstArg])),
+        [T.ElseIf]: (e, t) => new Co(t.readExpr(e[xo.FirstArg])),
+        [T.Else]: () => new wo(),
+        [T.Repeat]: (e, t) => new Do(t.readExpr(e[xo.FirstArg])),
+        [T.Break]: () => new To(),
+        [T.Continue]: () => new Eo(),
+        [T.Html]: () => new bs(),
+        [T.Div]: () => new Ss(),
+        [T.P]: () => new Cs(),
+        [T.StaticText]: (e, t) => new ws(t.readExpr(e[xo.FirstArg])),
+        [T.DynamicText]: (e, t) => new Ts(t.readExpr(e[xo.FirstArg])),
+        [T.Clear]: () => new Es(),
         [T.Style]: (e, t) =>
-          new Os(e[So.FirstArg].toString(), t.readExpr(e[So.FirstArg + 1])),
+          new Ds(e[xo.FirstArg].toString(), t.readExpr(e[xo.FirstArg + 1])),
         [T.On]: (e, t) =>
-          new As(e[So.FirstArg].toString(), t.readExpr(e[So.FirstArg + 1])),
-        [T.End]: () => new M(),
+          new ks(e[xo.FirstArg].toString(), t.readExpr(e[xo.FirstArg + 1])),
+        [T.End]: () => new N(),
       }
     }
     get table() {
@@ -39346,7 +39371,7 @@ var Pc = dc(
   })({}),
   Lc = (e, t) => {
     let n = e[Ic.Keyword]
-    return new fo(n, t.readExpr(e[Ic.BinOpLeft]), t.readExpr(e[Ic.BinOpRight]))
+    return new uo(n, t.readExpr(e[Ic.BinOpLeft]), t.readExpr(e[Ic.BinOpRight]))
   },
   Rc = class {
     _table
@@ -39354,35 +39379,35 @@ var Pc = dc(
       this._table = {
         [oo.Variable]: (e) => {
           let t = e[Ic.VariableName]
-          return new co(t)
+          return new so(t)
         },
         [oo.Subscript]: (e, t) => {
           let n = e[Ic.SubscriptTarget],
             r = t.readExpr(n),
             i = e[Ic.SubscriptIndex]
-          return new lo(r, t.readExpr(i))
+          return new co(r, t.readExpr(i))
         },
         [oo.Call]: (e, t) => {
           let n = e[Ic.Callee]
-          return new uo(
+          return new lo(
             n,
             e[Ic.CallArgs].map((e) => t.readExpr(e)),
           )
         },
-        [so.Add]: Lc,
-        [so.Subtract]: Lc,
-        [so.Multiply]: Lc,
-        [so.Divide]: Lc,
-        [so.Power]: Lc,
-        [so.Modulo]: Lc,
-        [so.Equal]: Lc,
-        [so.NotEqual]: Lc,
-        [so.LessThan]: Lc,
-        [so.LessThanOrEqual]: Lc,
-        [so.GreaterThan]: Lc,
-        [so.GreaterThanOrEqual]: Lc,
-        [so.And]: Lc,
-        [so.Or]: Lc,
+        [E.Add]: Lc,
+        [E.Subtract]: Lc,
+        [E.Multiply]: Lc,
+        [E.Divide]: Lc,
+        [E.Power]: Lc,
+        [E.Modulo]: Lc,
+        [E.Equal]: Lc,
+        [E.NotEqual]: Lc,
+        [E.LessThan]: Lc,
+        [E.LessThanOrEqual]: Lc,
+        [E.GreaterThan]: Lc,
+        [E.GreaterThanOrEqual]: Lc,
+        [E.And]: Lc,
+        [E.Or]: Lc,
       }
     }
     get table() {
@@ -39413,7 +39438,7 @@ var Pc = dc(
         typeof n != `number` &&
         typeof n != `string` &&
         typeof n != `boolean` &&
-        !(n instanceof fo) &&
+        !(n instanceof uo) &&
         !Array.isArray(n)
       )
         return n
@@ -39427,7 +39452,7 @@ var Pc = dc(
       ;((this.table = e.table), (this.exprParser = new zc(t)))
     }
     parse(e) {
-      let t = e[So.Keyword]
+      let t = e[xo.Keyword]
       return this.table[t]?.(e, this.exprParser) ?? null
     }
   },
@@ -39437,8 +39462,8 @@ var Pc = dc(
     constructor(e, t, n = new Fc(), r = new Rc()) {
       this.renderer = t
       let i = new Bc(n, r),
-        a = new xo(typeof e == `string` ? JSON.parse(e) : e)
-      this.runtime = new Co(a, i, t)
+        a = new bo(typeof e == `string` ? JSON.parse(e) : e)
+      this.runtime = new So(a, i, t)
     }
     defineExternalFunction(e, t) {
       this.runtime.envr.context.assign(e, t)
@@ -39522,13 +39547,13 @@ function Gc(e, t, n, r, i, a) {
   }
   if (typeof e == `function` && (o = e.defaultProps))
     for (s in o) c[s] === void 0 && (c[s] = o[s])
-  return (D.vnode && D.vnode(l), l)
+  return (O.vnode && O.vnode(l), l)
 }
 function Kc({ interpreter: e }) {
   return (
     e.subscribeToUiChanges().value,
     e.renderer.isCompleted
-      ? Gc(Zo, { children: e.resultDom })
+      ? Gc(Xo, { children: e.resultDom })
       : Gc(`div`, { children: `Running...` })
   )
 }
@@ -39536,8 +39561,8 @@ function qc({ code: e, renderer: t }) {
   let n = new Vc(e, t)
   return (Uc(n), n.run(), t.completeRun(), Gc(Kc, { interpreter: n }))
 }
-var Jc = dc(0),
-  Yc = dc(!1),
+var Jc = uc(0),
+  Yc = uc(!1),
   Xc = class {
     createVNode(e) {
       return typeof e == `string` ? e : typeof e == `function` ? e() : this.h(e)
@@ -39558,7 +39583,7 @@ var Jc = dc(0),
       Jc.value = (Jc.value + 1) % 1e3
     }
     h(e) {
-      return Yo(
+      return Jo(
         e.tag,
         { ...e.attributes.all, style: e.styles.all, ...e.eventHandlers.all },
         ...e.children.map((e) => this.createVNode(e)),
@@ -39566,22 +39591,23 @@ var Jc = dc(0),
     }
   }
 export {
-  s as _,
-  xc as a,
-  Zo as c,
-  Kt as d,
-  En as f,
-  o as g,
-  f as h,
+  o as _,
+  Nc as a,
+  hs as c,
+  ro as d,
+  Kt as f,
+  f as g,
+  Kn as h,
   Pc as i,
-  io as l,
-  Kn as m,
+  Xo as l,
+  Gn as m,
   qc as n,
-  N as o,
-  Gn as p,
+  bc as o,
+  En as p,
   Gc as r,
-  gs as s,
+  P as s,
   Xc as t,
-  ro as u,
-  l as v,
+  io as u,
+  s as v,
+  l as y,
 }
