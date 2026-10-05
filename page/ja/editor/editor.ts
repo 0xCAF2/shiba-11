@@ -696,6 +696,153 @@ code.set("ja", {
     },
   ],
 })
+code.set("memorize", {
+  blocks: {
+    languageVersion: 0,
+    blocks: [
+      {
+        type: "variables_set",
+        id: "KW(n|B3:Ut~|uly)`Seu",
+        x: 44,
+        y: 46,
+        fields: {
+          VAR: {
+            id: "mqw5OsFG:A_8J.+yavl3",
+          },
+        },
+        inputs: {
+          VALUE: {
+            shadow: {
+              type: "math_number",
+              id: "R`sBhFPg]vvsBk(w+V^h",
+              fields: {
+                NUM: 50,
+              },
+            },
+          },
+        },
+        next: {
+          block: {
+            type: "variables_set",
+            id: "pncUB9)db=JQmNOtJKJZ",
+            fields: {
+              VAR: {
+                id: ":BSb/SPJa7kpfA2gP-;i",
+              },
+            },
+            inputs: {
+              VALUE: {
+                shadow: {
+                  type: "math_number",
+                  id: "P9!;_3-@XhJ4KQ|%P/)o",
+                  fields: {
+                    NUM: 0,
+                  },
+                },
+                block: {
+                  type: "math_arithmetic",
+                  id: "3(SNZ,9*Ryc$(g*7`BgV",
+                  fields: {
+                    OP: "MULTIPLY",
+                  },
+                  inputs: {
+                    A: {
+                      shadow: {
+                        type: "variables_get",
+                        id: "o.!/)gQR7]6Q9qV.K3Pd",
+                        fields: {
+                          VAR: {
+                            id: "mqw5OsFG:A_8J.+yavl3",
+                            name: "candy",
+                            type: "",
+                          },
+                        },
+                      },
+                    },
+                    B: {
+                      shadow: {
+                        type: "math_number",
+                        id: "QlcRKecTpjs=kOx}oYC-",
+                        fields: {
+                          NUM: 3,
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      {
+        type: "p",
+        id: "%d*L(e:dRTs/~L/N:z`g",
+        x: 43,
+        y: 203,
+        inputs: {
+          CHILDREN: {
+            block: {
+              type: "static_text",
+              id: "FkPFl/neD+*T.FYP8A6t",
+              inputs: {
+                CONTENT: {
+                  shadow: {
+                    type: "text_content",
+                    id: "L5R7Vq8Z-P)|t6s=@@NI",
+                    fields: {
+                      TEXT: "Hello, World.",
+                    },
+                  },
+                  block: {
+                    type: "variables_get",
+                    id: "wr%jfUkS%cyLR*RtyYJ1",
+                    fields: {
+                      VAR: {
+                        id: ":BSb/SPJa7kpfA2gP-;i",
+                      },
+                    },
+                  },
+                },
+              },
+              next: {
+                block: {
+                  type: "static_text",
+                  id: "VCNkH)5a(1[q0^/*_Hc}",
+                  inputs: {
+                    CONTENT: {
+                      shadow: {
+                        type: "text_content",
+                        id: "36J|,eHQg#c1}#,doSL[",
+                        fields: {
+                          TEXT: " 円です。",
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    ],
+  },
+  variables: [
+    {
+      name: "candy",
+      id: "mqw5OsFG:A_8J.+yavl3",
+    },
+    {
+      name: "total",
+      id: ":BSb/SPJa7kpfA2gP-;i",
+    },
+    {
+      name: "項目",
+      id: "uZ09oDA.Rp5W-MFyg.zY",
+    },
+  ],
+})
 
 loader.loadWorkspace(code)
 
