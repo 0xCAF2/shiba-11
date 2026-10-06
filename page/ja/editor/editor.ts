@@ -843,6 +843,233 @@ code.set("memorize", {
     },
   ],
 })
+code.set("conditional", {
+  blocks: {
+    languageVersion: 0,
+    blocks: [
+      {
+        type: "variables_set",
+        id: "xD?;t1}D-$?UksH|;:TL",
+        x: 61,
+        y: 14,
+        fields: {
+          VAR: {
+            id: "nS,XKH-mD,63lz^Qd*[A",
+          },
+        },
+        inputs: {
+          VALUE: {
+            shadow: {
+              type: "math_number",
+              id: "}=N(Wy$!hYy=+dqLR-~u",
+              fields: {
+                NUM: 0,
+              },
+            },
+            block: {
+              type: "string",
+              id: "Y0S{Z2{q0i/yE^BYK]$|",
+              fields: {
+                VALUE: "晴れ",
+              },
+            },
+          },
+        },
+      },
+      {
+        type: "p",
+        id: "K@oV3./;8%IcI:nB]2bI",
+        x: 12,
+        y: 107,
+        inputs: {
+          CHILDREN: {
+            block: {
+              type: "controls_if",
+              id: "7Z_|_i{3al[{Vl+-$|Ef",
+              extraState: {
+                elseIfCount: 2,
+                hasElse: true,
+              },
+              inputs: {
+                IF0: {
+                  block: {
+                    type: "logic_compare",
+                    id: "18quUKeswf+0ze)MxG]v",
+                    fields: {
+                      OP: "EQ",
+                    },
+                    inputs: {
+                      A: {
+                        block: {
+                          type: "variables_get",
+                          id: "Ceuft,jDix($O;vqi`[.",
+                          fields: {
+                            VAR: {
+                              id: "nS,XKH-mD,63lz^Qd*[A",
+                            },
+                          },
+                        },
+                      },
+                      B: {
+                        block: {
+                          type: "string",
+                          id: "C3O*{dy82;+`Bu^F:ar#",
+                          fields: {
+                            VALUE: "晴れ",
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+                DO0: {
+                  block: {
+                    type: "static_text",
+                    id: "wSdI$#BE/?D=BtB`U4q?",
+                    inputs: {
+                      CONTENT: {
+                        shadow: {
+                          type: "text_content",
+                          id: "+{2V2HjDC`Bb^:zyo]$!",
+                          fields: {
+                            TEXT: "☀️ です。",
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+                IF1: {
+                  block: {
+                    type: "logic_compare",
+                    id: "Ns=h?j(B8Pc]i@V({U`9",
+                    fields: {
+                      OP: "EQ",
+                    },
+                    inputs: {
+                      A: {
+                        block: {
+                          type: "variables_get",
+                          id: "c(r4.{(b3dcMn!,{Tz^O",
+                          fields: {
+                            VAR: {
+                              id: "nS,XKH-mD,63lz^Qd*[A",
+                            },
+                          },
+                        },
+                      },
+                      B: {
+                        block: {
+                          type: "string",
+                          id: "CEL?p^?l=Oua{JH`JEeT",
+                          fields: {
+                            VALUE: "くもり",
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+                DO1: {
+                  block: {
+                    type: "static_text",
+                    id: "?||p:%hN@oP0SV]B9fdw",
+                    inputs: {
+                      CONTENT: {
+                        shadow: {
+                          type: "text_content",
+                          id: "Xw)+,gTLAI{$53]|6KgT",
+                          fields: {
+                            TEXT: "☁️ です。",
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+                IF2: {
+                  block: {
+                    type: "logic_compare",
+                    id: "+tM$i9p_VEHFNy-/dR:i",
+                    fields: {
+                      OP: "EQ",
+                    },
+                    inputs: {
+                      A: {
+                        block: {
+                          type: "variables_get",
+                          id: ":QNdML~oL;1nW9PgLpS~",
+                          fields: {
+                            VAR: {
+                              id: "nS,XKH-mD,63lz^Qd*[A",
+                            },
+                          },
+                        },
+                      },
+                      B: {
+                        block: {
+                          type: "string",
+                          id: "Av1V|Y+fmVB,^2vUFSTV",
+                          fields: {
+                            VALUE: "雨",
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+                DO2: {
+                  block: {
+                    type: "static_text",
+                    id: "Qb!F@L5W0[eS7Xz+TLF=",
+                    inputs: {
+                      CONTENT: {
+                        shadow: {
+                          type: "text_content",
+                          id: "{JpBDTtKmL/omBNV1Y7P",
+                          fields: {
+                            TEXT: "☔️ です。",
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+                ELSE: {
+                  block: {
+                    type: "static_text",
+                    id: ";x+T}`hNuKDJ^ZO0v_HF",
+                    inputs: {
+                      CONTENT: {
+                        shadow: {
+                          type: "text_content",
+                          id: "doevah.mjRoEg4Us@?r;",
+                          fields: {
+                            TEXT: "未知です。",
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    ],
+  },
+  variables: [
+    {
+      name: "今日の天気",
+      id: "nS,XKH-mD,63lz^Qd*[A",
+    },
+    {
+      name: "項目",
+      id: "lf}Cm3w-qDHBF(*^7N@]",
+    },
+  ],
+})
 
 loader.loadWorkspace(code)
 
