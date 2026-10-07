@@ -39314,11 +39314,9 @@ var Nc = uc(
     }
     loadWorkspace(e) {
       let t = localStorage.getItem(this.storageKey)
-      if (t) Gn.workspaces.load(JSON.parse(t), this.workspace)
-      else {
-        let t = e.get(this.key)
-        Gn.workspaces.load(t ?? ``, this.workspace)
-      }
+      t
+        ? Gn.workspaces.load(JSON.parse(t), this.workspace)
+        : Gn.workspaces.load(e, this.workspace)
     }
     saveWorkspace() {
       let e = Gn.workspaces.save(this.workspace)
