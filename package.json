@@ -5,7 +5,7 @@
   "module": "index.ts",
   "scripts": {
     "test": "vp test -r tests",
-    "build": "vp build && rm -rf docs && mv page/dist docs && git checkout ./docs/CNAME",
+    "build": "vp build && rm -rf docs && mv page/dist docs && git checkout ./docs/CNAME && cp -r page/ja/editor/blocks docs/ja/editor && cp -r page/en/editor/blocks docs/en/editor",
     "prepare": "vp config"
   },
   "dependencies": {

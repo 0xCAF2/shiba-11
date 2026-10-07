@@ -20,7 +20,7 @@ const loader = new Loader(workspace, "en")
 const codeKeys = new Set<string>(["en", "memorize", "conditional"])
 
 if (codeKeys.has(loader.key)) {
-  const response = await fetch(`./${loader.key}.json`)
+  const response = await fetch(`./blocks/${loader.key}.json`)
   const code = await response.json()
   loader.loadWorkspace(code)
 }
