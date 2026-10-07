@@ -22,13 +22,12 @@ export class Loader {
     }
   }
 
-  loadWorkspace(defaultCode: Map<string, any>) {
+  loadWorkspace(defaultCode: any) {
     const code = localStorage.getItem(this.storageKey)
     if (code) {
       Blockly.serialization.workspaces.load(JSON.parse(code), this.workspace)
     } else {
-      const initialCode = defaultCode.get(this.key)
-      Blockly.serialization.workspaces.load(initialCode ?? "", this.workspace)
+      Blockly.serialization.workspaces.load(defaultCode, this.workspace)
     }
   }
 
