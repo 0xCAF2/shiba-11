@@ -3,7 +3,7 @@ import * as Blockly from "blockly"
 Blockly.common.defineBlocksWithJsonArray([
   {
     type: "on",
-    message0: "on %1 with %2 as eValue: %3",
+    message0: "on %1 with %2 : %3",
     args0: [
       {
         type: "field_input",
@@ -13,6 +13,7 @@ Blockly.common.defineBlocksWithJsonArray([
       {
         type: "input_value",
         name: "VALUE",
+        check: ["variable_get"],
       },
       {
         type: "input_statement",
