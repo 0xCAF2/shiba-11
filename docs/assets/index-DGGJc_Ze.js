@@ -17,7 +17,7 @@ import {
   t as u,
   v as d,
   y as f,
-} from "./preact-RW6-zMjW.js"
+} from "./preact-Bpo2CpaP.js"
 var {
     blocks: ae,
     lists: oe,
