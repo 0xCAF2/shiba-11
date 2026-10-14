@@ -3825,11 +3825,11 @@ Use ` +
         (e.oh = function (e, t) {
           if (typeof e != `string` || e.trim() === ``)
             throw Error(`Error: Invalid extension name "` + e + `"`)
-          if (Rd[e])
+          if (Ld[e])
             throw Error(`Error: Extension "` + e + `" is already registered.`)
           if (typeof t != `function`)
             throw Error(`Error: Extension "` + e + `" must be a function`)
-          Rd[e] = t
+          Ld[e] = t
         }),
         (e.ph = function (t, n) {
           if (!n || typeof n != `object`)
@@ -3851,10 +3851,10 @@ Use ` +
           })
         }),
         (li = function (e) {
-          return !!Rd[e]
+          return !!Ld[e]
         }),
         (ui = function (e, t, n) {
-          var r = Rd[e]
+          var r = Ld[e]
           if (typeof r != `function`)
             throw Error(`Error: Extension "` + e + `" not found.`)
           if (n) {
@@ -4109,7 +4109,7 @@ Use ` +
             var t = e.getHeightWidth().height
             ;((t = (Math.atan(10 / t) / Math.PI) * 180),
               e.RTL || (t *= -1),
-              (af = e),
+              (rf = e),
               Di(e, t, new Date(), 0))
           }
         }),
@@ -4118,15 +4118,15 @@ Use ` +
             a = ``
           ;(n.getTime() + 200 > new Date().getTime() &&
             ((a = `skewX(${Math.round(i[r % i.length] * t)})`),
-            (rf = setTimeout(Di, 15, e, t, n, r + 1))),
+            (nf = setTimeout(Di, 15, e, t, n, r + 1))),
             e
               .getSvgRoot()
               .setAttribute(`transform`, `${e.getTranslation()} ${a}`))
         }),
         (Oi = function () {
-          af &&=
-            ((rf &&= (clearTimeout(rf), null)),
-            af.getSvgRoot().setAttribute(`transform`, af.getTranslation()),
+          rf &&=
+            ((nf &&= (clearTimeout(nf), null)),
+            rf.getSvgRoot().setAttribute(`transform`, rf.getTranslation()),
             null)
         }),
         (ki = function (t, n) {
@@ -4212,14 +4212,14 @@ Use ` +
         (Fi = function (e, t) {
           var n = e.toCopyData()
           return (
-            (lf = n),
-            (uf = _e(e) && e.workspace instanceof em ? e.workspace : null),
-            (df = t),
+            (cf = n),
+            (lf = _e(e) && e.workspace instanceof em ? e.workspace : null),
+            (uf = t),
             n
           )
         }),
         (Ii = function (e, t, n) {
-          return e && t ? Li(e, t, n) : lf && uf ? Li(lf, uf, df) : null
+          return e && t ? Li(e, t, n) : cf && lf ? Li(cf, lf, uf) : null
         }),
         (Li = function (e, t, n) {
           return (
@@ -4257,7 +4257,7 @@ Use ` +
         }),
         (Hi = function () {
           N.registry.register({
-            name: J.ESCAPE,
+            name: Y.ESCAPE,
             preconditionFn(e) {
               return !e.isReadOnly()
             },
@@ -4270,7 +4270,7 @@ Use ` +
         }),
         (Ui = function () {
           N.registry.register({
-            name: J.DELETE,
+            name: Y.DELETE,
             preconditionFn(t, n) {
               return (
                 (n = n.focusedNode),
@@ -4289,7 +4289,7 @@ Use ` +
               return (
                 n.preventDefault(),
                 (n = i.focusedNode),
-                n instanceof Rf
+                n instanceof Lf
                   ? n.checkAndDelete()
                   : Bi(n) &&
                     n.isDeletable() &&
@@ -4308,7 +4308,7 @@ Use ` +
           return zi(e) && Bi(e) && Vi(e)
             ? e.isCopyable
               ? e.isCopyable()
-              : e instanceof Rf || e instanceof Sd
+              : e instanceof Lf || e instanceof Sd
                 ? e.isOwnDeletable() && e.isOwnMovable()
                 : e.isDeletable() && e.isMovable()
             : !1
@@ -4316,7 +4316,7 @@ Use ` +
         (Gi = function () {
           var t = N.registry.createSerializedKey(W.C, [W.CTRL_CMD])
           N.registry.register({
-            name: J.COPY,
+            name: Y.COPY,
             preconditionFn(t, n) {
               n = n.focusedNode
               var r = t.isFlyout ? t.targetWorkspace : t
@@ -4349,7 +4349,7 @@ Use ` +
                       zc.show(t, {
                         message: e.C.KEYBOARD_NAV_COPIED_HINT.replace(
                           `%1`,
-                          _n(J.PASTE),
+                          _n(Y.PASTE),
                         ),
                         duration: 7,
                         id: `copiedHint`,
@@ -4364,7 +4364,7 @@ Use ` +
         (Ki = function () {
           var t = N.registry.createSerializedKey(W.X, [W.CTRL_CMD])
           N.registry.register({
-            name: J.CUT,
+            name: Y.CUT,
             preconditionFn(t, n) {
               return (
                 (n = n.focusedNode),
@@ -4385,7 +4385,7 @@ Use ` +
                 r && Wi(r) && Bi(r) && r.isDeletable() && zi(r)
                   ? ((i = Vi(r) ? r.getRelativeToSurfaceXY() : void 0),
                     (i = Fi(r, i)),
-                    r instanceof Rf
+                    r instanceof Lf
                       ? (r.checkAndDelete(), n.preventDefault())
                       : Bi(r) &&
                         (e.B(!0),
@@ -4398,7 +4398,7 @@ Use ` +
                       zc.show(t, {
                         message: e.C.KEYBOARD_NAV_CUT_HINT.replace(
                           `%1`,
-                          _n(J.PASTE),
+                          _n(Y.PASTE),
                         ),
                         duration: 7,
                         id: `cutHint`,
@@ -4414,14 +4414,14 @@ Use ` +
         (qi = function () {
           var t = N.registry.createSerializedKey(W.V, [W.CTRL_CMD])
           N.registry.register({
-            name: J.PASTE,
+            name: Y.PASTE,
             preconditionFn() {
-              var t = uf
+              var t = lf
               if (!t || !t.rendered) return !1
               var n = t.isFlyout ? t.targetWorkspace : t
               return (
                 (n =
-                  !!lf &&
+                  !!cf &&
                   !!n &&
                   !n.isReadOnly() &&
                   !n.isDragging() &&
@@ -4431,10 +4431,10 @@ Use ` +
               )
             },
             callback(t, n) {
-              var r = lf,
+              var r = cf,
                 i = e.t().getFocusedNode()
               if (!r) return !1
-              var a = uf
+              var a = lf
               if (
                 !a ||
                 (zc.hide(t, `cutHint`),
@@ -4453,7 +4453,7 @@ Use ` +
                   .getSourceBlockFromNode(i))?.getRelativeToSurfaceXY())
               )
                 return !!Ii(r, t, n)
-              if (((o = df), !o)) return !!Ii(r, t)
+              if (((o = uf), !o)) return !!Ii(r, t)
               var {
                 left: s,
                 top: c,
@@ -4471,7 +4471,7 @@ Use ` +
         (Ji = function () {
           var t = N.registry.createSerializedKey(W.Z, [W.CTRL_CMD])
           N.registry.register({
-            name: J.UNDO,
+            name: Y.UNDO,
             preconditionFn(t) {
               return (
                 !t.isReadOnly() &&
@@ -4490,7 +4490,7 @@ Use ` +
           var t = N.registry.createSerializedKey(W.Z, [W.CTRL_CMD, W.SHIFT]),
             n = N.registry.createSerializedKey(W.Y, [W.CTRL])
           N.registry.register({
-            name: J.REDO,
+            name: Y.REDO,
             preconditionFn(t) {
               return (
                 !t.isDragging() &&
@@ -4516,12 +4516,12 @@ Use ` +
             },
             n = N.registry.createSerializedKey(W.M, [W.SHIFT]),
             r = {
-              name: J.START_MOVE,
-              preconditionFn: (e) => ((e = t(e)), !!e && Ad.mover.canMove(e)),
+              name: Y.START_MOVE,
+              preconditionFn: (e) => ((e = t(e)), !!e && K.mover.canMove(e)),
               callback: (n, r) => (
                 nu.setIsActive(!0),
                 (n = t(n)) && e.t().focusNode(n),
-                !!n && Ad.mover.startMove(n, r)
+                !!n && K.mover.startMove(n, r)
               ),
               keyCodes: [W.M],
               displayText: () => e.C.SHORTCUTS_START_MOVE,
@@ -4529,64 +4529,64 @@ Use ` +
           n = [
             r,
             Object.assign({}, r, {
-              name: J.START_MOVE_STACK,
+              name: Y.START_MOVE_STACK,
               keyCodes: [n],
               displayText: () => e.C.SHORTCUTS_START_MOVE_STACK,
             }),
             {
-              name: J.FINISH_MOVE,
-              preconditionFn: () => Ad.mover.isMoving(),
-              callback: (e, t) => Ad.mover.finishMove(t),
+              name: Y.FINISH_MOVE,
+              preconditionFn: () => K.mover.isMoving(),
+              callback: (e, t) => K.mover.finishMove(t),
               keyCodes: [W.ENTER, W.SPACE],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_FINISH_MOVE,
             },
             {
-              name: J.ABORT_MOVE,
-              preconditionFn: () => Ad.mover.isMoving(),
-              callback: (e, t) => Ad.mover.abortMove(t),
+              name: Y.ABORT_MOVE,
+              preconditionFn: () => K.mover.isMoving(),
+              callback: (e, t) => K.mover.abortMove(t),
               keyCodes: [W.ESC],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_ABORT_MOVE,
             },
             {
-              name: J.MOVE_LEFT,
-              preconditionFn: () => Ad.mover.isMoving(),
+              name: Y.MOVE_LEFT,
+              preconditionFn: () => K.mover.isMoving(),
               callback: (e, t) => (
                 t.preventDefault(),
-                Ad.mover.move(Od.LEFT, t)
+                K.mover.move(Od.LEFT, t)
               ),
-              keyCodes: [W.LEFT, _f],
+              keyCodes: [W.LEFT, gf],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_MOVE_LEFT,
             },
             {
-              name: J.MOVE_RIGHT,
-              preconditionFn: () => Ad.mover.isMoving(),
+              name: Y.MOVE_RIGHT,
+              preconditionFn: () => K.mover.isMoving(),
               callback: (e, t) => (
                 t.preventDefault(),
-                Ad.mover.move(Od.RIGHT, t)
+                K.mover.move(Od.RIGHT, t)
               ),
-              keyCodes: [W.RIGHT, vf],
+              keyCodes: [W.RIGHT, _f],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_MOVE_RIGHT,
             },
             {
-              name: J.MOVE_UP,
-              preconditionFn: () => Ad.mover.isMoving(),
-              callback: (e, t) => (t.preventDefault(), Ad.mover.move(Od.UP, t)),
-              keyCodes: [W.UP, yf],
+              name: Y.MOVE_UP,
+              preconditionFn: () => K.mover.isMoving(),
+              callback: (e, t) => (t.preventDefault(), K.mover.move(Od.UP, t)),
+              keyCodes: [W.UP, vf],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_MOVE_UP,
             },
             {
-              name: J.MOVE_DOWN,
-              preconditionFn: () => Ad.mover.isMoving(),
+              name: Y.MOVE_DOWN,
+              preconditionFn: () => K.mover.isMoving(),
               callback: (e, t) => (
                 t.preventDefault(),
-                Ad.mover.move(Od.DOWN, t)
+                K.mover.move(Od.DOWN, t)
               ),
-              keyCodes: [W.DOWN, bf],
+              keyCodes: [W.DOWN, yf],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_MOVE_DOWN,
             },
@@ -4597,7 +4597,7 @@ Use ` +
           var t = N.registry.createSerializedKey(W.ENTER, [W.CTRL_CMD]),
             n = N.registry.createSerializedKey(W.F10, [W.SHIFT])
           N.registry.register({
-            name: J.MENU,
+            name: Y.MENU,
             preconditionFn: (e) => !e.isDragging(),
             callback: (t, n) => {
               if (
@@ -4618,7 +4618,7 @@ Use ` +
         (Qi = function () {
           var t = {
             right: {
-              name: J.NAVIGATE_RIGHT,
+              name: Y.NAVIGATE_RIGHT,
               preconditionFn: (e) => !e.isDragging() && !Ou && !$u,
               callback: (t, n) => (
                 n.preventDefault(),
@@ -4635,7 +4635,7 @@ Use ` +
               displayText: () => e.C.SHORTCUTS_NAVIGATE_RIGHT,
             },
             left: {
-              name: J.NAVIGATE_LEFT,
+              name: Y.NAVIGATE_LEFT,
               preconditionFn: (e) => !e.isDragging() && !Ou && !$u,
               callback: (t, n) => (
                 n.preventDefault(),
@@ -4652,7 +4652,7 @@ Use ` +
               displayText: () => e.C.SHORTCUTS_NAVIGATE_LEFT,
             },
             down: {
-              name: J.NAVIGATE_DOWN,
+              name: Y.NAVIGATE_DOWN,
               preconditionFn: (e) => !e.isDragging() && !Ou && !$u,
               callback: (t, n) => (
                 n.preventDefault(),
@@ -4669,7 +4669,7 @@ Use ` +
               displayText: () => e.C.SHORTCUTS_NAVIGATE_DOWN,
             },
             up: {
-              name: J.NAVIGATE_UP,
+              name: Y.NAVIGATE_UP,
               preconditionFn: (e) => !e.isDragging() && !Ou && !$u,
               callback: (t, n) => (
                 n.preventDefault(),
@@ -4690,11 +4690,11 @@ Use ` +
         }),
         ($i = function () {
           N.registry.register({
-            name: J.FOCUS_WORKSPACE,
+            name: Y.FOCUS_WORKSPACE,
             preconditionFn: (e) => !e.isDragging(),
             callback: (t) => (
               nu.setIsActive(!0),
-              (t = xf(t)),
+              (t = bf(t)),
               e.t().focusNode(t.getWorkspaceFocusTarget() ?? t),
               !0
             ),
@@ -4704,7 +4704,7 @@ Use ` +
         }),
         (ea = function () {
           N.registry.register({
-            name: J.FOCUS_TOOLBOX,
+            name: Y.FOCUS_TOOLBOX,
             preconditionFn: (e) => !e.isDragging(),
             callback: (t, n) => {
               var r = t.getToolbox()
@@ -4721,14 +4721,14 @@ Use ` +
         }),
         (ta = function () {
           N.registry.register({
-            name: J.INFORMATION,
+            name: Y.INFORMATION,
             preconditionFn: () => !0,
             callback: (t) => {
               var n = e.t().getFocusedNode(),
                 r = t.getNavigator().getSourceBlockFromNode(n)
               if (r) return ((t = Sn(r, ms.LOQUACIOUS)), ae(t), !0)
               if (n === t) {
-                ;((n = xf(t)),
+                ;((n = bf(t)),
                   (t = n.getTopBlocks().length),
                   (n = n.getTopComments().length),
                   (r =
@@ -4759,7 +4759,7 @@ Use ` +
         (na = function () {
           var t = N.registry.createSerializedKey(W.I, [W.SHIFT])
           N.registry.register({
-            name: J.EXTENDED_INFORMATION,
+            name: Y.EXTENDED_INFORMATION,
             preconditionFn: () => !0,
             callback: (t) => {
               if (
@@ -4797,20 +4797,20 @@ Use ` +
         (ra = function () {
           var t = N.registry.createSerializedKey(W.X, [W.SHIFT])
           N.registry.register({
-            name: J.DISCONNECT,
+            name: Y.DISCONNECT,
             preconditionFn: (e, t) => (
               (t = t.focusedNode),
               (t =
                 !e.isDragging() &&
                 !e.isReadOnly() &&
-                t instanceof Rf &&
+                t instanceof Lf &&
                 !t.isShadow()) || e.getAudioManager().playErrorBeep(),
               t
             ),
             callback: (t, n) => (
               nu.setIsActive(!0),
               (t = e.t().getFocusedNode()),
-              t instanceof Rf &&
+              t instanceof Lf &&
                 ((n = !(n instanceof KeyboardEvent && n.shiftKey)),
                 e.B(!0),
                 t.unplug(n),
@@ -4828,7 +4828,7 @@ Use ` +
               return _e(n) ? n : null
             },
             n = {
-              name: J.PREVIOUS_STACK,
+              name: Y.PREVIOUS_STACK,
               preconditionFn: (e) => !e.isDragging() && !!t(e) && !Ou && !$u,
               callback: (n) => {
                 nu.setIsActive(!0)
@@ -4842,7 +4842,7 @@ Use ` +
               displayText: () => e.C.SHORTCUTS_PREVIOUS_STACK,
             }
           ;(N.registry.register({
-            name: J.NEXT_STACK,
+            name: Y.NEXT_STACK,
             preconditionFn: (e) => !e.isDragging() && !!t(e) && !Ou && !$u,
             callback: (n) => {
               nu.setIsActive(!0)
@@ -4876,13 +4876,13 @@ Use ` +
               for (let n = 1; n <= r.length; n++) {
                 var i = e + t * n
                 if (i < 0 || i >= r.length) break
-                if (((i = r[i]), i instanceof mf && i.isLabel())) return i
+                if (((i = r[i]), i instanceof pf && i.isLabel())) return i
               }
               return null
             },
             i = N.registry.createSerializedKey(W.H, [W.SHIFT])
           ;((i = {
-            name: J.PREVIOUS_HEADING,
+            name: Y.PREVIOUS_HEADING,
             preconditionFn: (e) => !e.isDragging() && !Ou && !$u && !!t(),
             callback: () => {
               var n = t()
@@ -4894,7 +4894,7 @@ Use ` +
             displayText: () => e.C.SHORTCUTS_PREVIOUS_HEADING,
           }),
             N.registry.register({
-              name: J.NEXT_HEADING,
+              name: Y.NEXT_HEADING,
               preconditionFn: (e) => !e.isDragging() && !Ou && !$u && !!t(),
               callback: () => {
                 var n = t()
@@ -4909,7 +4909,7 @@ Use ` +
         }),
         (oa = function () {
           N.registry.register({
-            name: J.PERFORM_ACTION,
+            name: Y.PERFORM_ACTION,
             preconditionFn: (t) =>
               !t.isDragging() && !Ou && !$u && !e.t().ephemeralFocusTaken(),
             callback: (t, n) => {
@@ -4930,14 +4930,14 @@ Use ` +
         }),
         (sa = function () {
           N.registry.register({
-            name: J.DUPLICATE,
+            name: Y.DUPLICATE,
             preconditionFn: (e, t) => (
               ({ focusedNode: t } = t),
               (t =
                 !e.isDragging() &&
                 !e.isReadOnly() &&
                 !e.isFlyout &&
-                (t instanceof Rf ? t.isDuplicatable() : !0)) ||
+                (t instanceof Lf ? t.isDuplicatable() : !0)) ||
                 e.getAudioManager().playErrorBeep(),
               t
             ),
@@ -4953,7 +4953,7 @@ Use ` +
         }),
         (ca = function () {
           N.registry.register({
-            name: J.CLEANUP,
+            name: Y.CLEANUP,
             preconditionFn: (e) =>
               !e.isDragging() && !e.isReadOnly() && !e.isFlyout,
             callback: (e) => (nu.setIsActive(!0), e.cleanUp(), !0),
@@ -4965,7 +4965,7 @@ Use ` +
         (la = function () {
           var t = N.registry.createSerializedKey(W.J, [W.CTRL_CMD])
           N.registry.register({
-            name: J.SHOW_TOOLTIP,
+            name: Y.SHOW_TOOLTIP,
             preconditionFn: (e) => !e.isDragging(),
             callback: (t) => {
               var n = e.t().getFocusedNode()
@@ -4980,7 +4980,7 @@ Use ` +
           var t = N.registry.createSerializedKey(W.A, [W.ALT, W.SHIFT]),
             n = !1
           N.registry.register({
-            name: J.TOGGLE_SCREENREADER,
+            name: Y.TOGGLE_SCREENREADER,
             preconditionFn: () => !0,
             callback: (t, r) => {
               ;((n = !n),
@@ -4997,7 +4997,7 @@ Use ` +
                   message: (n
                     ? e.C.SCREENREADER_MODE_ENABLED
                     : e.C.SCREENREADER_MODE_DISABLED
-                  ).replace(`%1`, _n(J.TOGGLE_SCREENREADER)),
+                  ).replace(`%1`, _n(Y.TOGGLE_SCREENREADER)),
                   duration: 7,
                   id: `screenreaderHint`,
                 }),
@@ -5012,8 +5012,8 @@ Use ` +
         }),
         (da = function () {
           N.registry.register({
-            name: J.JUMP_BLOCK_START,
-            preconditionFn: Sf,
+            name: Y.JUMP_BLOCK_START,
+            preconditionFn: xf,
             callback(t, n, r, i) {
               if (!i.focusedNode) return !1
               t = t.getNavigator().getSourceBlockFromNode(i.focusedNode)
@@ -5032,8 +5032,8 @@ Use ` +
         }),
         (fa = function () {
           N.registry.register({
-            name: J.JUMP_BLOCK_END,
-            preconditionFn: Sf,
+            name: Y.JUMP_BLOCK_END,
+            preconditionFn: xf,
             callback(t, n, r, i) {
               if (!i.focusedNode) return !1
               t = t.getNavigator().getSourceBlockFromNode(i.focusedNode)
@@ -5045,7 +5045,7 @@ Use ` +
                   (t = t.getParent()),
                 !t ||
                 ((a = t.inputList), !a.length) ||
-                ((a = a[a.length - 1].connection), !(a && a instanceof Yd))
+                ((a = a[a.length - 1].connection), !(a && a instanceof Jd))
                   ? !1
                   : (e.t().focusNode(a), !0)
               )
@@ -5056,8 +5056,8 @@ Use ` +
         }),
         (pa = function () {
           N.registry.register({
-            name: J.JUMP_TOP_STACK,
-            preconditionFn: Sf,
+            name: Y.JUMP_TOP_STACK,
+            preconditionFn: xf,
             callback(t, n, r, i) {
               return !i.focusedNode ||
                 ((t = t.getNavigator().getSourceBlockFromNode(i.focusedNode)),
@@ -5071,8 +5071,8 @@ Use ` +
         }),
         (ma = function () {
           N.registry.register({
-            name: J.JUMP_BOTTOM_STACK,
-            preconditionFn: Sf,
+            name: Y.JUMP_BOTTOM_STACK,
+            preconditionFn: xf,
             callback(t, n, r, i) {
               if (
                 !i.focusedNode ||
@@ -5100,11 +5100,11 @@ Use ` +
         (ha = function () {
           var t = N.registry.createSerializedKey(W.HOME, [W.CTRL_CMD])
           N.registry.register({
-            name: J.JUMP_FIRST_BLOCK,
+            name: Y.JUMP_FIRST_BLOCK,
             preconditionFn: (t) =>
               !t.isDragging() && !e.t().ephemeralFocusTaken(),
             callback(t) {
-              var n = wf(t)
+              var n = Cf(t)
               return n
                 ? n.length
                   ? (e.t().focusNode(n[0]), !0)
@@ -5119,11 +5119,11 @@ Use ` +
         (ga = function () {
           var t = N.registry.createSerializedKey(W.END, [W.CTRL_CMD])
           N.registry.register({
-            name: J.JUMP_LAST_BLOCK,
+            name: Y.JUMP_LAST_BLOCK,
             preconditionFn: (t) =>
               !t.isDragging() && !e.t().ephemeralFocusTaken(),
             callback(t) {
-              var n = wf(t)
+              var n = Cf(t)
               return n
                 ? n.length
                   ? (e.t().focusNode(n[n.length - 1]), !0)
@@ -5189,7 +5189,7 @@ Use ` +
           )
         }),
         (ba = function (t, n) {
-          var r = Cf(t)
+          var r = Sf(t)
           if (((t = r ? va(r) : ya(t)), !t)) return !1
           r = t.items
           var i = e.t().getFocusedNode()
@@ -5225,8 +5225,8 @@ Use ` +
         }),
         (xa = function () {
           N.registry.register({
-            name: J.JUMP_PREVIOUS_PAGE,
-            preconditionFn: Tf,
+            name: Y.JUMP_PREVIOUS_PAGE,
+            preconditionFn: wf,
             callback(e, t) {
               return ba(e, !1) ? (t.preventDefault(), !0) : !1
             },
@@ -5237,8 +5237,8 @@ Use ` +
         }),
         (Sa = function () {
           N.registry.register({
-            name: J.JUMP_NEXT_PAGE,
-            preconditionFn: Tf,
+            name: Y.JUMP_NEXT_PAGE,
+            preconditionFn: wf,
             callback(e, t) {
               return ba(e, !0) ? (t.preventDefault(), !0) : !1
             },
@@ -5250,34 +5250,34 @@ Use ` +
         (Ca = function () {
           var t = [
             {
-              name: J.SCROLL_LEFT,
-              preconditionFn: kf,
-              callback: (e, t) => jf(e, t, Ef.LEFT),
-              keyCodes: [_f],
+              name: Y.SCROLL_LEFT,
+              preconditionFn: Of,
+              callback: (e, t) => Af(e, t, Tf.LEFT),
+              keyCodes: [gf],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_SCROLL_LEFT,
             },
             {
-              name: J.SCROLL_RIGHT,
-              preconditionFn: kf,
-              callback: (e, t) => jf(e, t, Ef.RIGHT),
-              keyCodes: [vf],
+              name: Y.SCROLL_RIGHT,
+              preconditionFn: Of,
+              callback: (e, t) => Af(e, t, Tf.RIGHT),
+              keyCodes: [_f],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_SCROLL_RIGHT,
             },
             {
-              name: J.SCROLL_UP,
-              preconditionFn: kf,
-              callback: (e, t) => jf(e, t, Ef.UP),
-              keyCodes: [yf],
+              name: Y.SCROLL_UP,
+              preconditionFn: Of,
+              callback: (e, t) => Af(e, t, Tf.UP),
+              keyCodes: [vf],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_SCROLL_UP,
             },
             {
-              name: J.SCROLL_DOWN,
-              preconditionFn: kf,
-              callback: (e, t) => jf(e, t, Ef.DOWN),
-              keyCodes: [bf],
+              name: Y.SCROLL_DOWN,
+              preconditionFn: Of,
+              callback: (e, t) => Af(e, t, Tf.DOWN),
+              keyCodes: [yf],
               allowCollision: !0,
               displayText: () => e.C.SHORTCUTS_SCROLL_DOWN,
             },
@@ -5656,7 +5656,7 @@ Use ` +
             ),
             r = _(M.DEFS, {}, n),
             i = String(Math.random()).substring(2)
-          return ((t.gridPattern = pp.createDom(i, t.gridOptions, r, e)), n)
+          return ((t.gridPattern = fp.createDom(i, t.gridOptions, r, e)), n)
         }),
         (eo = function (e, t, n) {
           ;((n.parentWorkspace = null), (n = new em(n)))
@@ -5710,7 +5710,7 @@ Use ` +
           ;(t.hasTrashcan && e.trashcan.init(),
             t.zoomOptions && t.zoomOptions.controls && e.zoomControls_.init(),
             t.moveOptions && t.moveOptions.scrollbars
-              ? ((e.scrollbar = new cp(
+              ? ((e.scrollbar = new sp(
                   e,
                   t.moveOptions.scrollbars === !0 ||
                     !!t.moveOptions.scrollbars.horizontal,
@@ -5959,7 +5959,7 @@ Use ` +
         (mo = function () {
           U.registry.register({
             displayText(t) {
-              return t.block.hasIcon(gp.TYPE)
+              return t.block.hasIcon(hp.TYPE)
                 ? e.C.REMOVE_COMMENT
                 : e.C.ADD_COMMENT
             },
@@ -5973,7 +5973,7 @@ Use ` +
                   e.workspace.options.comments &&
                   !e.isCollapsed() &&
                   e.isEditable()) &&
-                  !(t = e.hasIcon(gp.TYPE)) &&
+                  !(t = e.hasIcon(hp.TYPE)) &&
                   ((e =
                     e && e.isSimpleReporter()
                       ? e.getFields().next().value?.isFullBlockField()
@@ -5983,7 +5983,7 @@ Use ` +
               )
             },
             callback(e) {
-              ;(e = e.block) && e.hasIcon(gp.TYPE)
+              ;(e = e.block) && e.hasIcon(hp.TYPE)
                 ? e.setCommentText(null)
                 : e.setCommentText(``)
             },
@@ -6948,22 +6948,22 @@ Use ` +
           touchcancel: [`pointercancel`],
         },
         Oo = 0,
-        O = { TOUCH_ENABLED: To, TOUCH_MAP: Do }
-      ;((O.checkTouchIdentifier = a),
-        (O.clearTouchIdentifier = function () {
+        ko = { TOUCH_ENABLED: To, TOUCH_MAP: Do }
+      ;((ko.checkTouchIdentifier = a),
+        (ko.clearTouchIdentifier = function () {
           Eo = null
         }),
-        (O.getTouchIdentifierFromEvent = i),
-        (O.longStart = t),
-        (O.longStop = n),
-        (O.shouldHandleEvent = r))
-      var ko, Ao, jo, Mo, No, Po, Fo, Io, Lo, Ro
+        (ko.getTouchIdentifierFromEvent = i),
+        (ko.longStart = t),
+        (ko.longStop = n),
+        (ko.shouldHandleEvent = r))
+      var O, Ao, jo, Mo, No, Po, Fo, Io, Lo, Ro
       ;(function (e) {
         function t(e) {
           return n.includes(e.toUpperCase())
         }
-        ko = e
-        var n = ko.toUpperCase()
+        O = e
+        var n = O.toUpperCase()
         ;((Ao = t(`JavaFX`)),
           (jo = t(`WebKit`)),
           (Mo = t(`Gecko`) && !jo),
@@ -6992,7 +6992,7 @@ Use ` +
           JavaFx: zo,
           MAC: Wo,
           MOBILE: Go,
-          raw: ko,
+          raw: O,
         },
         Jo = {}
       ;((Jo.bind = s),
@@ -14230,7 +14230,7 @@ children`),
         (kd[(kd.DOWN = 2)] = `DOWN`),
         (kd[(kd.LEFT = 3)] = `LEFT`),
         (kd[(kd.RIGHT = 4)] = `RIGHT`))
-      var Ad = class {
+      var K = class {
         constructor() {
           ;((this.totalDelta = new L(0, 0)),
             (this.stepDistance = 20),
@@ -14423,8 +14423,8 @@ children`),
             ))
         }
       }
-      Ad.mover = new Ad()
-      var jd = class {
+      K.mover = new K()
+      var Ad = class {
           constructor(e, t, n, r) {
             ;((this.name = e),
               (this.startHats = !1),
@@ -14462,12 +14462,12 @@ children`),
           }
           static defineTheme(e, t) {
             e = e.toLowerCase()
-            var n = new jd(e),
+            var n = new Ad(e),
               r = t.base
             return (
               r &&
                 (typeof r == `string` && (r = Ie(I.THEME, r, void 0) ?? void 0),
-                r instanceof jd && (ve(n, r), (n.name = e))),
+                r instanceof Ad && (ve(n, r), (n.name = e))),
               ve(n.blockStyles, t.blockStyles),
               ve(n.categoryStyles, t.categoryStyles),
               ve(n.componentStyles, t.componentStyles),
@@ -14477,7 +14477,7 @@ children`),
             )
           }
         },
-        Md = new jd(
+        jd = new Ad(
           `classic`,
           {
             colour_blocks: { colourPrimary: `20` },
@@ -14503,7 +14503,7 @@ children`),
             variable_dynamic_category: { colour: `310` },
           },
         ),
-        Nd = class {
+        Md = class {
           constructor(e) {
             ;((this.gridPattern = null),
               (this.getMetrics = this.setMetrics = void 0))
@@ -14558,7 +14558,7 @@ children`),
               (this.modalInputs = g),
               (this.pathToMedia = m),
               (this.hasCategories = n),
-              (this.moveOptions = Nd.parseMoveOptions(e, n)),
+              (this.moveOptions = Md.parseMoveOptions(e, n)),
               (this.hasScrollbars = !!this.moveOptions.scrollbars),
               (this.hasTrashcan = r),
               (this.maxTrashcanContents = l),
@@ -14566,10 +14566,10 @@ children`),
               (this.hasCss = p),
               (this.horizontalLayout = d),
               (this.languageTree = t),
-              (this.gridOptions = Nd.parseGridOptions(e)),
-              (this.zoomOptions = Nd.parseZoomOptions(e)),
+              (this.gridOptions = Md.parseGridOptions(e)),
+              (this.zoomOptions = Md.parseZoomOptions(e)),
               (this.toolboxPosition = f),
-              (this.theme = Nd.parseThemeOptions(e)),
+              (this.theme = Md.parseThemeOptions(e)),
               (this.renderer = te),
               (this.rendererOverrides = e.rendererOverrides ?? null),
               (this.parentWorkspace = e.parentWorkspace ?? null),
@@ -14630,16 +14630,16 @@ children`),
           }
           static parseThemeOptions(e) {
             return (
-              (e = e.theme || Md),
+              (e = e.theme || jd),
               typeof e == `string`
                 ? Ie(I.THEME, e, void 0)
-                : e instanceof jd
+                : e instanceof Ad
                   ? e
-                  : jd.defineTheme(e.name || `builtin` + Ve(), e)
+                  : Ad.defineTheme(e.name || `builtin` + Ve(), e)
             )
           }
         },
-        Pd = class {
+        Nd = class {
           constructor(e, t) {
             ;((this.bubble = e), (this.workspace = t), (this.startLoc = null))
           }
@@ -14671,8 +14671,8 @@ children`),
             this.startLoc && this.bubble.moveDuringDrag(this.startLoc)
           }
         },
-        Fd,
-        K = class {
+        Pd,
+        q = class {
           constructor(e, t, n, r, i) {
             ;((this.workspace = e),
               (this.anchor = t),
@@ -14682,7 +14682,7 @@ children`),
               (this.colour = `#ffffff`),
               (this.disposed = !1),
               (this.relativeLeft = this.relativeTop = 0),
-              (this.dragStrategy = new Pd(this, this.workspace)),
+              (this.dragStrategy = new Nd(this, this.workspace)),
               (this.ariaLabelProvider = null),
               (this.id = Ve()),
               (this.svgRoot = _(
@@ -14698,8 +14698,8 @@ children`),
                   class: `blocklyDraggable`,
                   x: 0,
                   y: 0,
-                  rx: Fd.BORDER_WIDTH,
-                  ry: Fd.BORDER_WIDTH,
+                  rx: Pd.BORDER_WIDTH,
+                  ry: Pd.BORDER_WIDTH,
                 },
                 e,
               )),
@@ -14730,8 +14730,8 @@ children`),
             return this.size
           }
           setSize(e, t = !1) {
-            ;((e.width = Math.max(e.width, Fd.MIN_SIZE)),
-              (e.height = Math.max(e.height, Fd.MIN_SIZE)),
+            ;((e.width = Math.max(e.width, Pd.MIN_SIZE)),
+              (e.height = Math.max(e.height, Pd.MIN_SIZE)),
               (this.size = e),
               this.background.setAttribute(`width`, `${e.width}`),
               this.background.setAttribute(`height`, `${e.height}`),
@@ -14884,20 +14884,20 @@ children`),
               s > Math.PI * 2 && (s -= Math.PI * 2)
               var c = Math.sin(s)
               let l = Math.cos(s),
-                u = (this.size.width + this.size.height) / Fd.TAIL_THICKNESS
+                u = (this.size.width + this.size.height) / Pd.TAIL_THICKNESS
               ;((u = Math.min(u, this.size.width, this.size.height) / 4),
-                (s = 1 - Fd.ANCHOR_RADIUS / a),
+                (s = 1 - Pd.ANCHOR_RADIUS / a),
                 (r = t + s * r),
                 (i = n + s * i),
                 (s = t + u * l))
               let d = n + u * c
               ;((t -= u * l),
                 (n -= u * c),
-                (c = Ln(this.workspace.RTL ? -Fd.TAIL_ANGLE : Fd.TAIL_ANGLE)),
+                (c = Ln(this.workspace.RTL ? -Pd.TAIL_ANGLE : Pd.TAIL_ANGLE)),
                 (c = o + c),
                 c > Math.PI * 2 && (c -= Math.PI * 2),
-                (o = (Math.sin(c) * a) / Fd.TAIL_BEND),
-                (a = (Math.cos(c) * a) / Fd.TAIL_BEND),
+                (o = (Math.sin(c) * a) / Pd.TAIL_BEND),
+                (a = (Math.cos(c) * a) / Pd.TAIL_BEND),
                 e.push(`M` + s + `,` + d),
                 e.push(
                   `C` +
@@ -15036,15 +15036,15 @@ children`),
             return null
           }
         }
-      ;((Fd = K),
-        (K.BORDER_WIDTH = 6),
-        (K.DOUBLE_BORDER = Fd.BORDER_WIDTH * 2),
-        (K.MIN_SIZE = Fd.DOUBLE_BORDER),
-        (K.TAIL_THICKNESS = 1),
-        (K.TAIL_ANGLE = 20),
-        (K.TAIL_BEND = 4),
-        (K.ANCHOR_RADIUS = 8))
-      var Id = class extends K {
+      ;((Pd = q),
+        (q.BORDER_WIDTH = 6),
+        (q.DOUBLE_BORDER = Pd.BORDER_WIDTH * 2),
+        (q.MIN_SIZE = Pd.DOUBLE_BORDER),
+        (q.TAIL_THICKNESS = 1),
+        (q.TAIL_ANGLE = 20),
+        (q.TAIL_BEND = 4),
+        (q.ANCHOR_RADIUS = 8))
+      var Fd = class extends q {
         constructor(e, t, n, r, i) {
           ;(super(t, n, r, void 0, i),
             (this.workspace = t),
@@ -15052,15 +15052,15 @@ children`),
             (this.ownerRect = r),
             (this.owner = i),
             (this.autoLayout = !0),
-            (t = new Nd(e)),
+            (t = new Md(e)),
             this.validateWorkspaceOptions(t),
             (this.svgDialog = _(
               M.SVG,
-              { x: K.BORDER_WIDTH, y: K.BORDER_WIDTH },
+              { x: q.BORDER_WIDTH, y: q.BORDER_WIDTH },
               this.contentContainer,
             )),
             (e.parentWorkspace = this.workspace),
-            (this.miniWorkspace = this.newWorkspaceSvg(new Nd(e))),
+            (this.miniWorkspace = this.newWorkspaceSvg(new Md(e))),
             (this.miniWorkspace.internalIsMutator = !0),
             (e = this.miniWorkspace.createDom(`blocklyMutatorBackground`)),
             this.svgDialog.appendChild(e),
@@ -15121,7 +15121,7 @@ children`),
           ;(this.bumpBlocksIntoBounds(), this.updateBubbleSize())
         }
         bumpBlocksIntoBounds() {
-          if (!this.miniWorkspace.isDragging() || Ad.mover.isMoving())
+          if (!this.miniWorkspace.isDragging() || K.mover.isMoving())
             for (let e of this.miniWorkspace.getTopBlocks(!1)) {
               let t = e.getRelativeToSurfaceXY()
               if ((t.y < 20 && e.moveBy(0, 20 - t.y), e.RTL)) {
@@ -15132,12 +15132,12 @@ children`),
             }
         }
         updateBubbleSize() {
-          if (!this.miniWorkspace.isDragging() || Ad.mover.isMoving()) {
-            this.autoLayout &&= !Ad.mover.isMoving()
+          if (!this.miniWorkspace.isDragging() || K.mover.isMoving()) {
+            this.autoLayout &&= !K.mover.isMoving()
             var e = this.getSize(),
               t = this.calculateWorkspaceSize()
-            ;(Math.abs(e.width - t.width) < Id.MINIMUM_VIEW_CHANGE &&
-              Math.abs(e.height - t.height) < Id.MINIMUM_VIEW_CHANGE) ||
+            ;(Math.abs(e.width - t.width) < Fd.MINIMUM_VIEW_CHANGE &&
+              Math.abs(e.height - t.height) < Fd.MINIMUM_VIEW_CHANGE) ||
               (this.svgDialog.setAttribute(`width`, `${t.width}px`),
               this.svgDialog.setAttribute(`height`, `${t.height}px`),
               this.miniWorkspace.setCachedParentSvgSize(t.width, t.height),
@@ -15146,7 +15146,7 @@ children`),
                   .getCanvas()
                   .setAttribute(`transform`, `translate(${t.width}, 0)`),
               this.setSize(
-                new z(t.width + K.DOUBLE_BORDER, t.height + K.DOUBLE_BORDER),
+                new z(t.width + q.DOUBLE_BORDER, t.height + q.DOUBLE_BORDER),
                 this.autoLayout,
               ),
               this.miniWorkspace.resize(),
@@ -15155,8 +15155,8 @@ children`),
         }
         calculateWorkspaceSize() {
           var e = this.miniWorkspace.getCanvas().getBBox(),
-            t = e.width + Id.MARGIN
-          e = e.height + Id.MARGIN
+            t = e.width + Fd.MARGIN
+          e = e.height + Fd.MARGIN
           var n = this.miniWorkspace.getFlyout()
           if (n) {
             let r = n.getWorkspace().getMetricsManager().getScrollMetrics()
@@ -15185,8 +15185,8 @@ children`),
           e.t().focusTree(this.getWorkspace())
         }
       }
-      ;((Id.MINIMUM_VIEW_CHANGE = 10), (Id.MARGIN = K.DOUBLE_BORDER * 3))
-      var Ld = class {
+      ;((Fd.MINIMUM_VIEW_CHANGE = 10), (Fd.MARGIN = q.DOUBLE_BORDER * 3))
+      var Id = class {
         constructor(e) {
           ;((this.sourceBlock = e),
             (this.offsetInBlock = new L(0, 0)),
@@ -15317,7 +15317,7 @@ children`),
           return null
         }
       }
-      ;((e.sh = class extends Ld {
+      ;((e.sh = class extends Id {
         constructor(e, t) {
           ;(super(t),
             (this.flyoutBlockTypes = e),
@@ -15405,7 +15405,7 @@ children`),
           return (0, D.asyncExecutePromiseGeneratorFunction)(function* () {
             if (n.bubbleIsVisible() !== t) {
               if ((yield kt(), t)) {
-                ;((n.miniWorkspaceBubble = new Id(
+                ;((n.miniWorkspaceBubble = new Fd(
                   n.getMiniWorkspaceConfig(),
                   n.sourceBlock.workspace,
                   n.getAnchorLocation(),
@@ -15551,8 +15551,8 @@ children`),
       }),
         (e.sh.TYPE = Zc.MUTATOR),
         (e.sh.WEIGHT = 1))
-      var Rd = Object.create(null),
-        zd = { allExtensions: Rd }
+      var Ld = Object.create(null),
+        Rd = { allExtensions: Ld }
       e.oh(`parent_tooltip_when_inline`, function () {
         var e = this.tooltip
         this.setTooltip(
@@ -15562,15 +15562,15 @@ children`),
           }.bind(this),
         )
       })
-      var Bd = { TEST_ONLY: zd }
-      ;((Bd.apply = ui),
-        (Bd.buildTooltipForDropdown = e.yh),
-        (Bd.buildTooltipWithFieldText = e.Ah),
-        (Bd.isRegistered = li),
-        (Bd.register = e.oh),
-        (Bd.registerMixin = e.ph),
-        (Bd.registerMutator = e.th),
-        (Bd.runAfterPageLoad = function (e) {
+      var zd = { TEST_ONLY: Rd }
+      ;((zd.apply = ui),
+        (zd.buildTooltipForDropdown = e.yh),
+        (zd.buildTooltipWithFieldText = e.Ah),
+        (zd.isRegistered = li),
+        (zd.register = e.oh),
+        (zd.registerMixin = e.ph),
+        (zd.registerMutator = e.th),
+        (zd.runAfterPageLoad = function (e) {
           if (typeof document != `object`)
             throw Error(`runAfterPageLoad() requires browser document.`)
           if (document.readyState === `complete`) e()
@@ -15580,47 +15580,47 @@ children`),
             }, 10)
           }
         }),
-        (Bd.unregister = function (e) {
+        (zd.unregister = function (e) {
           li(e)
-            ? delete Rd[e]
+            ? delete Ld[e]
             : console.warn(
                 `No extension mapping for name "` + e + `" found to unregister`,
               )
         }))
+      var Bd = {}
+      ;((Bd.arc = bi),
+        (Bd.curve = hi),
+        (Bd.line = yi),
+        (Bd.lineOnAxis = w),
+        (Bd.lineTo = vi),
+        (Bd.moveBy = _i),
+        (Bd.moveTo = gi),
+        (Bd.point = C))
       var Vd = {}
-      ;((Vd.arc = bi),
-        (Vd.curve = hi),
-        (Vd.line = yi),
-        (Vd.lineOnAxis = w),
-        (Vd.lineTo = vi),
-        (Vd.moveBy = _i),
-        (Vd.moveTo = gi),
-        (Vd.point = C))
-      var Hd = {}
-      ;((Hd.Coordinate = L),
-        (Hd.KeyCodes = W),
-        (Hd.Rect = R),
-        (Hd.Size = z),
-        (Hd.Svg = M),
-        (Hd.aria = ys),
-        (Hd.array = Yo),
-        (Hd.browserEvents = Jo),
-        (Hd.colour = Yu),
-        (Hd.deprecation = js),
-        (Hd.dom = Ts),
-        (Hd.extensions = Bd),
-        (Hd.idGenerator = Ws),
-        (Hd.math = yu),
-        (Hd.object = ks),
-        (Hd.parsing = Xu),
-        (Hd.string = Pu),
-        (Hd.style = Ys),
-        (Hd.svgMath = Qs),
-        (Hd.svgPaths = Vd),
-        (Hd.toolbox = lc),
-        (Hd.userAgent = qo),
-        (Hd.xml = oc))
-      var Ud = class extends K {
+      ;((Vd.Coordinate = L),
+        (Vd.KeyCodes = W),
+        (Vd.Rect = R),
+        (Vd.Size = z),
+        (Vd.Svg = M),
+        (Vd.aria = ys),
+        (Vd.array = Yo),
+        (Vd.browserEvents = Jo),
+        (Vd.colour = Yu),
+        (Vd.deprecation = js),
+        (Vd.dom = Ts),
+        (Vd.extensions = zd),
+        (Vd.idGenerator = Ws),
+        (Vd.math = yu),
+        (Vd.object = ks),
+        (Vd.parsing = Xu),
+        (Vd.string = Pu),
+        (Vd.style = Ys),
+        (Vd.svgMath = Qs),
+        (Vd.svgPaths = Bd),
+        (Vd.toolbox = lc),
+        (Vd.userAgent = qo),
+        (Vd.xml = oc))
+      var Hd = class extends q {
         constructor(t, n, r, i) {
           ;(super(t, n, r, void 0, i),
             (this.workspace = t),
@@ -15632,10 +15632,10 @@ children`),
             (this.sizeChangeListeners = []),
             (this.locationChangeListeners = []),
             (this.DEFAULT_SIZE = new z(
-              160 + K.DOUBLE_BORDER,
-              80 + K.DOUBLE_BORDER,
+              160 + q.DOUBLE_BORDER,
+              80 + q.DOUBLE_BORDER,
             )),
-            (this.MIN_SIZE = new z(45 + K.DOUBLE_BORDER, 20 + K.DOUBLE_BORDER)),
+            (this.MIN_SIZE = new z(45 + q.DOUBLE_BORDER, 20 + q.DOUBLE_BORDER)),
             (this.editable = !0),
             (this.textChangeListener = () => {
               this.recomputeAriaContext()
@@ -15687,14 +15687,14 @@ children`),
         setSize(e, t = !1) {
           ;((e.width = Math.max(e.width, this.MIN_SIZE.width)),
             (e.height = Math.max(e.height, this.MIN_SIZE.height)))
-          var n = e.width - K.DOUBLE_BORDER,
-            r = e.height - K.DOUBLE_BORDER
+          var n = e.width - q.DOUBLE_BORDER,
+            r = e.height - q.DOUBLE_BORDER
           ;(this.editor.updateSize(new z(n, r), new z(0, 0)),
-            this.editor.getDom().setAttribute(`x`, `${K.DOUBLE_BORDER / 2}`),
-            this.editor.getDom().setAttribute(`y`, `${K.DOUBLE_BORDER / 2}`),
+            this.editor.getDom().setAttribute(`x`, `${q.DOUBLE_BORDER / 2}`),
+            this.editor.getDom().setAttribute(`y`, `${q.DOUBLE_BORDER / 2}`),
             this.resizeGroup.setAttribute(`y`, `${r}`),
             this.workspace.RTL
-              ? this.resizeGroup.setAttribute(`x`, `${-K.DOUBLE_BORDER}`)
+              ? this.resizeGroup.setAttribute(`x`, `${-q.DOUBLE_BORDER}`)
               : this.resizeGroup.setAttribute(`x`, `${n}`),
             super.setSize(e, t),
             this.onSizeChange())
@@ -15781,7 +15781,7 @@ children`),
   height: 100%;
 }
 `)
-      var Wd = class {
+      var Ud = class {
           constructor(e) {
             ;((this.connectionChecker = e),
               (this.connections = []),
@@ -15888,15 +15888,15 @@ children`),
           static init(e) {
             var t = []
             return (
-              (t[V.INPUT_VALUE] = new Wd(e)),
-              (t[V.OUTPUT_VALUE] = new Wd(e)),
-              (t[V.NEXT_STATEMENT] = new Wd(e)),
-              (t[V.PREVIOUS_STATEMENT] = new Wd(e)),
+              (t[V.INPUT_VALUE] = new Ud(e)),
+              (t[V.OUTPUT_VALUE] = new Ud(e)),
+              (t[V.NEXT_STATEMENT] = new Ud(e)),
+              (t[V.PREVIOUS_STATEMENT] = new Ud(e)),
               t
             )
           }
         },
-        q = class {
+        J = class {
           constructor(e, t) {
             if (
               ((this.type = t),
@@ -15943,7 +15943,7 @@ children`),
                   this.type === t
                     ? i.outputConnection
                     : i.previousConnection) &&
-                ((r = q.getConnectionForOrphanedConnection(r, e))
+                ((r = J.getConnectionForOrphanedConnection(r, e))
                   ? e.connect(r)
                   : e.onFailedConnect(this)))
           }
@@ -16198,16 +16198,16 @@ children`),
             )
           }
         }
-      ;((q.CAN_CONNECT = 0),
-        (q.REASON_SELF_CONNECTION = 1),
-        (q.REASON_WRONG_TYPE = 2),
-        (q.REASON_TARGET_NULL = 3),
-        (q.REASON_CHECKS_FAILED = 4),
-        (q.REASON_DIFFERENT_WORKSPACES = 5),
-        (q.REASON_SHADOW_PARENT = 6),
-        (q.REASON_DRAG_CHECKS_FAILED = 7),
-        (q.REASON_PREVIOUS_AND_OUTPUT = 8))
-      var Gd = class extends Error {
+      ;((J.CAN_CONNECT = 0),
+        (J.REASON_SELF_CONNECTION = 1),
+        (J.REASON_WRONG_TYPE = 2),
+        (J.REASON_TARGET_NULL = 3),
+        (J.REASON_CHECKS_FAILED = 4),
+        (J.REASON_DIFFERENT_WORKSPACES = 5),
+        (J.REASON_SHADOW_PARENT = 6),
+        (J.REASON_DRAG_CHECKS_FAILED = 7),
+        (J.REASON_PREVIOUS_AND_OUTPUT = 8))
+      var Wd = class extends Error {
           constructor(e) {
             ;(super(
               `Tried to append an icon of type ${e.getType()} when an icon of that type already exists on the block. Use getIcon to access the existing icon.`,
@@ -16215,30 +16215,30 @@ children`),
               (this.icon = e))
           }
         },
-        Kd = {}
-      Kd.DuplicateIconType = Gd
-      var qd = (e.Xn ||= {})
-      ;((qd[(qd.LEFT = -1)] = `LEFT`),
-        (qd[(qd.CENTRE = 0)] = `CENTRE`),
-        (qd[(qd.RIGHT = 1)] = `RIGHT`))
-      var Jd = []
-      ;((Jd[V.INPUT_VALUE] = V.OUTPUT_VALUE),
-        (Jd[V.OUTPUT_VALUE] = V.INPUT_VALUE),
-        (Jd[V.NEXT_STATEMENT] = V.PREVIOUS_STATEMENT),
-        (Jd[V.PREVIOUS_STATEMENT] = V.NEXT_STATEMENT))
-      var Yd = class extends q {
+        Gd = {}
+      Gd.DuplicateIconType = Wd
+      var Kd = (e.Xn ||= {})
+      ;((Kd[(Kd.LEFT = -1)] = `LEFT`),
+        (Kd[(Kd.CENTRE = 0)] = `CENTRE`),
+        (Kd[(Kd.RIGHT = 1)] = `RIGHT`))
+      var qd = []
+      ;((qd[V.INPUT_VALUE] = V.OUTPUT_VALUE),
+        (qd[V.OUTPUT_VALUE] = V.INPUT_VALUE),
+        (qd[V.NEXT_STATEMENT] = V.PREVIOUS_STATEMENT),
+        (qd[V.PREVIOUS_STATEMENT] = V.NEXT_STATEMENT))
+      var Jd = class extends J {
           constructor(e, t) {
             ;(super(e, t),
               (this.highlighted = !1),
               (this.targetConnection = null),
               (this.db = e.workspace.connectionDBList[t]),
-              (this.dbOpposite = e.workspace.connectionDBList[Jd[t]]),
+              (this.dbOpposite = e.workspace.connectionDBList[qd[t]]),
               (this.offsetInBlock = new L(0, 0)),
-              (this.trackedState = Yd.TrackedState.WILL_TRACK))
+              (this.trackedState = Jd.TrackedState.WILL_TRACK))
           }
           dispose() {
             ;(super.dispose(),
-              this.trackedState === Yd.TrackedState.TRACKED &&
+              this.trackedState === Jd.TrackedState.TRACKED &&
                 this.db.removeConnection(this, this.y))
             var e, t
             ;(t = (e = this.sourceBlock_.pathObject)
@@ -16277,11 +16277,11 @@ children`),
             var n = this.x !== e || this.y !== t,
               r = !1
             return (
-              this.trackedState === Yd.TrackedState.WILL_TRACK
+              this.trackedState === Jd.TrackedState.WILL_TRACK
                 ? (this.db.addConnection(this, t),
-                  (this.trackedState = Yd.TrackedState.TRACKED),
+                  (this.trackedState = Jd.TrackedState.TRACKED),
                   (r = !0))
-                : this.trackedState === Yd.TrackedState.TRACKED &&
+                : this.trackedState === Jd.TrackedState.TRACKED &&
                   n &&
                   (this.db.reorderConnection(this, t), (r = !0)),
               (this.x = e),
@@ -16367,15 +16367,15 @@ children`),
             return this.highlighted
           }
           setTracking(e) {
-            ;(e && this.trackedState === Yd.TrackedState.TRACKED) ||
-              (!e && this.trackedState === Yd.TrackedState.UNTRACKED) ||
+            ;(e && this.trackedState === Jd.TrackedState.TRACKED) ||
+              (!e && this.trackedState === Jd.TrackedState.UNTRACKED) ||
               this.sourceBlock_.isInFlyout ||
               (e
                 ? (this.db.addConnection(this, this.y),
-                  (this.trackedState = Yd.TrackedState.TRACKED))
-                : (this.trackedState === Yd.TrackedState.TRACKED &&
+                  (this.trackedState = Jd.TrackedState.TRACKED))
+                : (this.trackedState === Jd.TrackedState.TRACKED &&
                     this.db.removeConnection(this, this.y),
-                  (this.trackedState = Yd.TrackedState.UNTRACKED)))
+                  (this.trackedState = Jd.TrackedState.UNTRACKED)))
           }
           stopTrackingAll() {
             if ((this.setTracking(!1), this.targetConnection)) {
@@ -16524,12 +16524,12 @@ children`),
             return this.insertionMarker
           }
         },
-        Xd = (Yd ||= {}),
-        Zd = (Xd.TrackedState ||= {})
-      ;((Zd[(Zd.WILL_TRACK = -1)] = `WILL_TRACK`),
-        (Zd[(Zd.UNTRACKED = 0)] = `UNTRACKED`),
-        (Zd[(Zd.TRACKED = 1)] = `TRACKED`))
-      var Qd = class {
+        Yd = (Jd ||= {}),
+        Xd = (Yd.TrackedState ||= {})
+      ;((Xd[(Xd.WILL_TRACK = -1)] = `WILL_TRACK`),
+        (Xd[(Xd.UNTRACKED = 0)] = `UNTRACKED`),
+        (Xd[(Xd.TRACKED = 1)] = `TRACKED`))
+      var Zd = class {
           constructor(t, n) {
             ;((this.name = t),
               (this.sourceBlock = n),
@@ -16584,7 +16584,7 @@ children`),
             if (this.visible === e) return t
             this.visible = e
             for (let t = 0, n; (n = this.fieldRow[t]); t++) n.setVisible(e)
-            if (this.connection && this.connection instanceof Yd) {
+            if (this.connection && this.connection instanceof Jd) {
               e
                 ? (t = this.connection.startTrackingAll())
                 : this.connection.stopTrackingAll()
@@ -16673,17 +16673,17 @@ children`),
               .indexOf(this)
           }
         },
-        $d = class extends Qd {
+        Qd = class extends Zd {
           constructor(t, n) {
             ;(super(t, n), (this.name = t), (this.type = e.je.DUMMY))
           }
         },
-        ef = class extends Qd {
+        $d = class extends Zd {
           constructor(t, n) {
             ;(super(t, n), (this.name = t), (this.type = e.je.END_ROW))
           }
         },
-        tf = class extends Qd {
+        ef = class extends Zd {
           constructor(t, n) {
             if (!t) throw Error(`Statement inputs must have a non-empty name`)
             ;(super(t, n),
@@ -16692,7 +16692,7 @@ children`),
               (this.connection = this.makeConnection(V.NEXT_STATEMENT)))
           }
         }
-      e.go = class extends Qd {
+      e.go = class extends Zd {
         constructor(t, n) {
           if (!t) throw Error(`Value inputs must have a non-empty name`)
           ;(super(t, n),
@@ -16701,7 +16701,7 @@ children`),
             (this.connection = this.makeConnection(V.INPUT_VALUE)))
         }
       }
-      var nf = class {
+      var tf = class {
         constructor(e, t, n) {
           if (
             ((this.data = null),
@@ -16746,7 +16746,7 @@ children`),
           }
           ;(e.addTopBlock(this),
             e.addTypedBlock(this),
-            new.target === nf && this.doInit_())
+            new.target === tf && this.doInit_())
         }
         doInit_() {
           var t = e.gd
@@ -17170,18 +17170,18 @@ children`),
           if (this.inputsInline !== void 0) return this.inputsInline
           for (var t = 1; t < this.inputList.length; t++)
             if (
-              this.inputList[t - 1] instanceof $d &&
-              this.inputList[t] instanceof $d
+              this.inputList[t - 1] instanceof Qd &&
+              this.inputList[t] instanceof Qd
             )
               return !1
           for (t = 1; t < this.inputList.length; t++)
             if (
               this.inputList[t - 1] instanceof e.go &&
-              this.inputList[t] instanceof $d
+              this.inputList[t] instanceof Qd
             )
               return !0
           for (t = 0; t < this.inputList.length; t++)
-            if (this.inputList[t] instanceof ef) return !0
+            if (this.inputList[t] instanceof $d) return !0
           return !1
         }
         setOutputShape(e) {
@@ -17296,13 +17296,13 @@ children`),
           return this.appendInput(new e.go(t, this))
         }
         appendStatementInput(e) {
-          return (this.statementInputCount++, this.appendInput(new tf(e, this)))
+          return (this.statementInputCount++, this.appendInput(new ef(e, this)))
         }
         appendDummyInput(e = ``) {
-          return this.appendInput(new $d(e, this))
+          return this.appendInput(new Qd(e, this))
         }
         appendEndRowInput(e = ``) {
-          return this.appendInput(new ef(e, this))
+          return this.appendInput(new $d(e, this))
         }
         appendInput(e) {
           return (this.inputList.push(e), e)
@@ -17564,7 +17564,7 @@ children`),
           for (let t = 0, n; (n = this.inputList[t]); t++)
             if (n.name === e)
               return (
-                n instanceof tf && this.statementInputCount--,
+                n instanceof ef && this.statementInputCount--,
                 n.dispose(),
                 this.inputList.splice(t, 1),
                 !0
@@ -17623,7 +17623,7 @@ children`),
         setWarningText() {}
         setMutator() {}
         addIcon(e) {
-          if (this.hasIcon(e.getType())) throw new Gd(e)
+          if (this.hasIcon(e.getType())) throw new Wd(e)
           return (
             this.icons.push(e),
             this.icons.sort((e, t) => e.getWeight() - t.getWeight()),
@@ -17659,7 +17659,7 @@ children`),
           ;(n && r.setReason(n), this.xy.translate(e, t), r.recordNew(), x(r))
         }
         makeConnection_(e) {
-          return new q(this, e)
+          return new J(this, e)
         }
         allInputsFilled(e) {
           if ((e === void 0 && (e = !0), !e && this.isShadow())) return !1
@@ -17675,16 +17675,16 @@ children`),
           return (this.id && (e += ` (id="` + this.id + `")`), e)
         }
       }
-      ;((nf.COLLAPSED_INPUT_NAME = `_TEMP_COLLAPSED_INPUT`),
-        (nf.COLLAPSED_FIELD_NAME = `_TEMP_COLLAPSED_FIELD`))
-      var rf = null,
-        af = null,
-        of = {}
-      ;((of.connectionUiEffect = Ti),
-        (of.disconnectUiEffect = Ei),
-        (of.disconnectUiStop = Oi),
-        (of.disposeUiEffect = Ci))
-      var sf = class {
+      ;((tf.COLLAPSED_INPUT_NAME = `_TEMP_COLLAPSED_INPUT`),
+        (tf.COLLAPSED_FIELD_NAME = `_TEMP_COLLAPSED_FIELD`))
+      var nf = null,
+        rf = null,
+        af = {}
+      ;((af.connectionUiEffect = Ti),
+        (af.disconnectUiEffect = Ei),
+        (af.disconnectUiStop = Oi),
+        (af.disposeUiEffect = Ci))
+      var of = class {
         paste(t, n, r) {
           if (!n.isCapacityAvailable(t.typeCounts)) return null
           ;(r && ((t.blockState.x = r.x), (t.blockState.y = r.y)),
@@ -17707,46 +17707,46 @@ children`),
           )
         }
       }
-      ;((sf.TYPE = `block`), wt(sf.TYPE, new sf()))
-      var cf = {}
-      ;((cf.bumpIntoBounds = Mi),
-        (cf.bumpIntoBoundsHandler = Ni),
-        (cf.bumpTopObjectsIntoBounds = Pi))
-      var lf = null,
-        uf = null,
-        df = void 0,
-        ff = {}
-      ;((ff.BlockPaster = sf),
-        (ff.copy = Fi),
-        (ff.getLastCopiedData = function () {
-          return lf
+      ;((of.TYPE = `block`), wt(of.TYPE, new of()))
+      var sf = {}
+      ;((sf.bumpIntoBounds = Mi),
+        (sf.bumpIntoBoundsHandler = Ni),
+        (sf.bumpTopObjectsIntoBounds = Pi))
+      var cf = null,
+        lf = null,
+        uf = void 0,
+        df = {}
+      ;((df.BlockPaster = of),
+        (df.copy = Fi),
+        (df.getLastCopiedData = function () {
+          return cf
         }),
-        (ff.getLastCopiedLocation = function () {
-          return df
-        }),
-        (ff.getLastCopiedWorkspace = function () {
+        (df.getLastCopiedLocation = function () {
           return uf
         }),
-        (ff.paste = Ii),
-        (ff.registry = Ec),
-        (ff.setLastCopiedData = function (e) {
-          lf = e
+        (df.getLastCopiedWorkspace = function () {
+          return lf
         }),
-        (ff.setLastCopiedLocation = function (e) {
-          df = e
+        (df.paste = Ii),
+        (df.registry = Ec),
+        (df.setLastCopiedData = function (e) {
+          cf = e
         }),
-        (ff.setLastCopiedWorkspace = function (e) {
+        (df.setLastCopiedLocation = function (e) {
           uf = e
+        }),
+        (df.setLastCopiedWorkspace = function (e) {
+          lf = e
         }))
-      var pf = {}
-      ;((pf.CollapseCommentBarButton = _d),
-        (pf.CommentBarButton = gd),
-        (pf.CommentEditor = vd),
-        (pf.CommentView = bd),
-        (pf.DeleteCommentBarButton = yd),
-        (pf.RenderedWorkspaceComment = Sd),
-        (pf.WorkspaceComment = xd))
-      var mf = class {
+      var ff = {}
+      ;((ff.CollapseCommentBarButton = _d),
+        (ff.CommentBarButton = gd),
+        (ff.CommentEditor = vd),
+        (ff.CommentView = bd),
+        (ff.DeleteCommentBarButton = yd),
+        (ff.RenderedWorkspaceComment = Sd),
+        (ff.WorkspaceComment = xd))
+      var pf = class {
         constructor(t, n, r, i) {
           if (
             ((this.workspace = t),
@@ -17775,8 +17775,8 @@ children`),
               M.RECT,
               {
                 class: `blocklyFlyoutButtonShadow`,
-                rx: mf.BORDER_RADIUS,
-                ry: mf.BORDER_RADIUS,
+                rx: pf.BORDER_RADIUS,
+                ry: pf.BORDER_RADIUS,
                 x: 1,
                 y: 1,
               },
@@ -17790,8 +17790,8 @@ children`),
               class: this.isFlyoutLabel
                 ? `blocklyFlyoutLabelBackground`
                 : `blocklyFlyoutButtonBackground`,
-              rx: mf.BORDER_RADIUS,
-              ry: mf.BORDER_RADIUS,
+              rx: pf.BORDER_RADIUS,
+              ry: pf.BORDER_RADIUS,
             },
             this.svgGroup,
           )),
@@ -17829,8 +17829,8 @@ children`),
             (this.height = this.height || r.height),
             !this.isFlyoutLabel)
           ) {
-            ;((this.width += 2 * mf.TEXT_MARGIN_X),
-              (this.height += 2 * mf.TEXT_MARGIN_Y))
+            ;((this.width += 2 * pf.TEXT_MARGIN_X),
+              (this.height += 2 * pf.TEXT_MARGIN_Y))
             let e
             ;(e = a) == null || e.setAttribute(`width`, String(this.width))
             let t
@@ -17963,7 +17963,7 @@ children`),
             var t = this.targetWorkspace
             let n = e.C.KEYBOARD_NAV_FLYOUT_LABEL_HINT.replace(
               `%1`,
-              _n(J.NEXT_HEADING),
+              _n(Y.NEXT_HEADING),
             )
             zc.show(t, { message: n, id: `flyoutLabelHint` })
           } else
@@ -17971,9 +17971,9 @@ children`),
               t(this)
         }
       }
-      ;((mf.TEXT_MARGIN_X = 5),
-        (mf.TEXT_MARGIN_Y = 2),
-        (mf.BORDER_RADIUS = 4),
+      ;((pf.TEXT_MARGIN_X = 5),
+        (pf.TEXT_MARGIN_Y = 2),
+        (pf.BORDER_RADIUS = 4),
         m(`
 .blocklyFlyoutButton {
   fill: #888;
@@ -18002,141 +18002,141 @@ children`),
   opacity: 0;
 }
 `))
-      var hf,
-        gf = (hf ||= {})
-      ;((gf[(gf.COMMIT = 1)] = `COMMIT`),
-        (gf[(gf.DELETE = 2)] = `DELETE`),
-        (gf[(gf.REVERT = 3)] = `REVERT`))
-      var J,
-        Y = (J ||= {})
-      ;((Y.ESCAPE = `escape`),
-        (Y.DELETE = `delete`),
-        (Y.COPY = `copy`),
-        (Y.CUT = `cut`),
-        (Y.PASTE = `paste`),
-        (Y.UNDO = `undo`),
-        (Y.REDO = `redo`),
-        (Y.MENU = `menu`),
-        (Y.FOCUS_WORKSPACE = `focus_workspace`),
-        (Y.FOCUS_TOOLBOX = `focus_toolbox`),
-        (Y.START_MOVE = `start_move`),
-        (Y.START_MOVE_STACK = `start_move_stack`),
-        (Y.FINISH_MOVE = `finish_move`),
-        (Y.ABORT_MOVE = `abort_move`),
-        (Y.MOVE_UP = `move_up`),
-        (Y.MOVE_DOWN = `move_down`),
-        (Y.MOVE_LEFT = `move_left`),
-        (Y.MOVE_RIGHT = `move_right`),
-        (Y.NAVIGATE_RIGHT = `right`),
-        (Y.NAVIGATE_LEFT = `left`),
-        (Y.NAVIGATE_UP = `up`),
-        (Y.NAVIGATE_DOWN = `down`),
-        (Y.DISCONNECT = `disconnect`),
-        (Y.NEXT_STACK = `next_stack`),
-        (Y.PREVIOUS_STACK = `previous_stack`),
-        (Y.INFORMATION = `information`),
-        (Y.EXTENDED_INFORMATION = `extended_information`),
-        (Y.PERFORM_ACTION = `perform_action`),
-        (Y.DUPLICATE = `duplicate`),
-        (Y.CLEANUP = `cleanup`),
-        (Y.SHOW_TOOLTIP = `show_tooltip`),
-        (Y.NEXT_HEADING = `next_heading`),
-        (Y.PREVIOUS_HEADING = `previous_heading`),
-        (Y.TOGGLE_SCREENREADER = `toggle_screenreader`),
-        (Y.JUMP_TOP_STACK = `jump_to_top_of_stack`),
-        (Y.JUMP_BOTTOM_STACK = `jump_to_bottom_of_stack`),
-        (Y.JUMP_BLOCK_START = `jump_to_block_start`),
-        (Y.JUMP_BLOCK_END = `jump_to_block_end`),
-        (Y.JUMP_FIRST_BLOCK = `jump_to_first_block`),
-        (Y.JUMP_LAST_BLOCK = `jump_to_last_block`),
-        (Y.JUMP_PREVIOUS_PAGE = `jump_to_previous_page`),
-        (Y.JUMP_NEXT_PAGE = `jump_to_next_page`),
-        (Y.SCROLL_LEFT = `scroll_left`),
-        (Y.SCROLL_RIGHT = `scroll_right`),
-        (Y.SCROLL_UP = `scroll_up`),
-        (Y.SCROLL_DOWN = `scroll_down`))
-      var _f = N.registry.createSerializedKey(W.LEFT, [W.CTRL_CMD]),
-        vf = N.registry.createSerializedKey(W.RIGHT, [W.CTRL_CMD]),
-        yf = N.registry.createSerializedKey(W.UP, [W.CTRL_CMD]),
-        bf = N.registry.createSerializedKey(W.DOWN, [W.CTRL_CMD]),
-        xf = (e) => {
+      var mf,
+        hf = (mf ||= {})
+      ;((hf[(hf.COMMIT = 1)] = `COMMIT`),
+        (hf[(hf.DELETE = 2)] = `DELETE`),
+        (hf[(hf.REVERT = 3)] = `REVERT`))
+      var Y,
+        X = (Y ||= {})
+      ;((X.ESCAPE = `escape`),
+        (X.DELETE = `delete`),
+        (X.COPY = `copy`),
+        (X.CUT = `cut`),
+        (X.PASTE = `paste`),
+        (X.UNDO = `undo`),
+        (X.REDO = `redo`),
+        (X.MENU = `menu`),
+        (X.FOCUS_WORKSPACE = `focus_workspace`),
+        (X.FOCUS_TOOLBOX = `focus_toolbox`),
+        (X.START_MOVE = `start_move`),
+        (X.START_MOVE_STACK = `start_move_stack`),
+        (X.FINISH_MOVE = `finish_move`),
+        (X.ABORT_MOVE = `abort_move`),
+        (X.MOVE_UP = `move_up`),
+        (X.MOVE_DOWN = `move_down`),
+        (X.MOVE_LEFT = `move_left`),
+        (X.MOVE_RIGHT = `move_right`),
+        (X.NAVIGATE_RIGHT = `right`),
+        (X.NAVIGATE_LEFT = `left`),
+        (X.NAVIGATE_UP = `up`),
+        (X.NAVIGATE_DOWN = `down`),
+        (X.DISCONNECT = `disconnect`),
+        (X.NEXT_STACK = `next_stack`),
+        (X.PREVIOUS_STACK = `previous_stack`),
+        (X.INFORMATION = `information`),
+        (X.EXTENDED_INFORMATION = `extended_information`),
+        (X.PERFORM_ACTION = `perform_action`),
+        (X.DUPLICATE = `duplicate`),
+        (X.CLEANUP = `cleanup`),
+        (X.SHOW_TOOLTIP = `show_tooltip`),
+        (X.NEXT_HEADING = `next_heading`),
+        (X.PREVIOUS_HEADING = `previous_heading`),
+        (X.TOGGLE_SCREENREADER = `toggle_screenreader`),
+        (X.JUMP_TOP_STACK = `jump_to_top_of_stack`),
+        (X.JUMP_BOTTOM_STACK = `jump_to_bottom_of_stack`),
+        (X.JUMP_BLOCK_START = `jump_to_block_start`),
+        (X.JUMP_BLOCK_END = `jump_to_block_end`),
+        (X.JUMP_FIRST_BLOCK = `jump_to_first_block`),
+        (X.JUMP_LAST_BLOCK = `jump_to_last_block`),
+        (X.JUMP_PREVIOUS_PAGE = `jump_to_previous_page`),
+        (X.JUMP_NEXT_PAGE = `jump_to_next_page`),
+        (X.SCROLL_LEFT = `scroll_left`),
+        (X.SCROLL_RIGHT = `scroll_right`),
+        (X.SCROLL_UP = `scroll_up`),
+        (X.SCROLL_DOWN = `scroll_down`))
+      var gf = N.registry.createSerializedKey(W.LEFT, [W.CTRL_CMD]),
+        _f = N.registry.createSerializedKey(W.RIGHT, [W.CTRL_CMD]),
+        vf = N.registry.createSerializedKey(W.UP, [W.CTRL_CMD]),
+        yf = N.registry.createSerializedKey(W.DOWN, [W.CTRL_CMD]),
+        bf = (e) => {
           if (e.isFlyout) {
             let t = e.targetWorkspace
-            if (t) return xf(t)
+            if (t) return bf(t)
           }
           return e.getRootWorkspace() ?? e
         },
-        Sf = (t, n) =>
+        xf = (t, n) =>
           !t.isFlyout &&
           !!n.focusedNode &&
           !t.isDragging() &&
           !e.t().ephemeralFocusTaken() &&
           !!t.getNavigator().getSourceBlockFromNode(n.focusedNode),
-        Cf = (t) =>
+        Sf = (t) =>
           (t = t.getToolbox()) && e.t().getFocusedTree() === t ? t : null,
-        wf = (t) => {
+        Cf = (t) => {
           var n =
-            Cf(t) ?? (t.isFlyout && e.t().getFocusedTree() === t ? t : null)
+            Sf(t) ?? (t.isFlyout && e.t().getFocusedTree() === t ? t : null)
           return n
             ? n.getNavigator().getNavigableItems(n.getRootFocusableNode())
             : null
         },
-        Tf = (t) => {
+        wf = (t) => {
           var n
           return (
             (n = !t.isDragging() && !e.t().ephemeralFocusTaken()) &&
-              ((n = !!Cf(t)) ||
+              ((n = !!Sf(t)) ||
                 (n = t.isFlyout && e.t().getFocusedTree() === t)),
             n
           )
         },
-        Ef,
-        Df = (Ef ||= {})
-      ;((Df[(Df.LEFT = 0)] = `LEFT`),
-        (Df[(Df.RIGHT = 1)] = `RIGHT`),
-        (Df[(Df.UP = 2)] = `UP`),
-        (Df[(Df.DOWN = 3)] = `DOWN`))
-      var Of = {
-          [Ef.LEFT]: `ANNOUNCE_SCROLLED_LEFT`,
-          [Ef.RIGHT]: `ANNOUNCE_SCROLLED_RIGHT`,
-          [Ef.UP]: `ANNOUNCE_SCROLLED_UP`,
-          [Ef.DOWN]: `ANNOUNCE_SCROLLED_DOWN`,
+        Tf,
+        Ef = (Tf ||= {})
+      ;((Ef[(Ef.LEFT = 0)] = `LEFT`),
+        (Ef[(Ef.RIGHT = 1)] = `RIGHT`),
+        (Ef[(Ef.UP = 2)] = `UP`),
+        (Ef[(Ef.DOWN = 3)] = `DOWN`))
+      var Df = {
+          [Tf.LEFT]: `ANNOUNCE_SCROLLED_LEFT`,
+          [Tf.RIGHT]: `ANNOUNCE_SCROLLED_RIGHT`,
+          [Tf.UP]: `ANNOUNCE_SCROLLED_UP`,
+          [Tf.DOWN]: `ANNOUNCE_SCROLLED_DOWN`,
         },
-        kf = (e) => {
+        Of = (e) => {
           var t
           return (
             !e.isDragging() &&
             e.isMovable() &&
             !((t = e.targetWorkspace) != null && t.isMutator) &&
-            !Ad.mover.isMoving() &&
+            !K.mover.isMoving() &&
             !Ou &&
             !$u
           )
         },
-        Af = (t) => {
+        kf = (t) => {
           ;(t.getAudioManager().playErrorBeep(),
             ae(e.C.ANNOUNCE_CANT_SCROLL_FURTHER))
         },
-        jf = (t, n, r) => {
+        Af = (t, n, r) => {
           if (
             (n.preventDefault(),
-            r === Ef.LEFT || r === Ef.RIGHT
+            r === Tf.LEFT || r === Tf.RIGHT
               ? !t.isMovableHorizontally()
               : !t.isMovableVertically())
           )
-            return (Af(t), !0)
+            return (kf(t), !0)
           var i = (n = 0)
           switch (r) {
-            case Ef.LEFT:
+            case Tf.LEFT:
               n = 50
               break
-            case Ef.RIGHT:
+            case Tf.RIGHT:
               n = -50
               break
-            case Ef.UP:
+            case Tf.UP:
               i = 50
               break
-            case Ef.DOWN:
+            case Tf.DOWN:
               i = -50
           }
           var a = t.scrollX,
@@ -18144,55 +18144,55 @@ children`),
           return (
             t.scroll(a + n, o + i),
             t.scrollX === a && t.scrollY === o
-              ? (Af(t), !0)
-              : (ae(e.C[Of[r]]), !0)
+              ? (kf(t), !0)
+              : (ae(e.C[Df[r]]), !0)
           )
         }
       ;(wa(), Ta(), Ea())
-      var X = {}
-      ;((X.names = J),
-        (X.registerArrowNavigation = Qi),
-        (X.registerCleanup = ca),
-        (X.registerCopy = Gi),
-        (X.registerCut = Ki),
-        (X.registerDefaultShortcuts = wa),
-        (X.registerDelete = Ui),
-        (X.registerDisconnectBlock = ra),
-        (X.registerDuplicate = sa),
-        (X.registerEscape = Hi),
-        (X.registerFocusToolbox = ea),
-        (X.registerFocusWorkspace = $i),
-        (X.registerHeadingNavigation = aa),
-        (X.registerJumpBlockEnd = fa),
-        (X.registerJumpBlockStart = da),
-        (X.registerJumpBottomStack = ma),
-        (X.registerJumpFirstBlock = ha),
-        (X.registerJumpLastBlock = ga),
-        (X.registerJumpNextPage = Sa),
-        (X.registerJumpPreviousPage = xa),
-        (X.registerJumpTopStack = pa),
-        (X.registerKeyboardNavigationShortcuts = Ta),
-        (X.registerMovementShortcuts = Xi),
-        (X.registerNavigationShortcuts = function () {
+      var Z = {}
+      ;((Z.names = Y),
+        (Z.registerArrowNavigation = Qi),
+        (Z.registerCleanup = ca),
+        (Z.registerCopy = Gi),
+        (Z.registerCut = Ki),
+        (Z.registerDefaultShortcuts = wa),
+        (Z.registerDelete = Ui),
+        (Z.registerDisconnectBlock = ra),
+        (Z.registerDuplicate = sa),
+        (Z.registerEscape = Hi),
+        (Z.registerFocusToolbox = ea),
+        (Z.registerFocusWorkspace = $i),
+        (Z.registerHeadingNavigation = aa),
+        (Z.registerJumpBlockEnd = fa),
+        (Z.registerJumpBlockStart = da),
+        (Z.registerJumpBottomStack = ma),
+        (Z.registerJumpFirstBlock = ha),
+        (Z.registerJumpLastBlock = ga),
+        (Z.registerJumpNextPage = Sa),
+        (Z.registerJumpPreviousPage = xa),
+        (Z.registerJumpTopStack = pa),
+        (Z.registerKeyboardNavigationShortcuts = Ta),
+        (Z.registerMovementShortcuts = Xi),
+        (Z.registerNavigationShortcuts = function () {
           ;(da(), fa(), pa(), ma(), ha(), ga(), xa(), Sa(), Ca())
         }),
-        (X.registerPaste = qi),
-        (X.registerPerformAction = oa),
-        (X.registerReadExtendedInformation = na),
-        (X.registerReadInformation = ta),
-        (X.registerRedo = Yi),
-        (X.registerScreenReaderShortcuts = Ea),
-        (X.registerShowContextMenu = Zi),
-        (X.registerShowTooltip = la),
-        (X.registerStackNavigation = ia),
-        (X.registerToggleScreenreaderMode = ua),
-        (X.registerUndo = Ji),
-        (X.registerWorkspaceScrollShortcuts = Ca))
-      var Mf,
-        Nf = (Mf ||= {})
-      ;((Nf[(Nf.CONSTRAINED = 1)] = `CONSTRAINED`),
-        (Nf[(Nf.UNCONSTRAINED = 2)] = `UNCONSTRAINED`))
-      var Pf = class {
+        (Z.registerPaste = qi),
+        (Z.registerPerformAction = oa),
+        (Z.registerReadExtendedInformation = na),
+        (Z.registerReadInformation = ta),
+        (Z.registerRedo = Yi),
+        (Z.registerScreenReaderShortcuts = Ea),
+        (Z.registerShowContextMenu = Zi),
+        (Z.registerShowTooltip = la),
+        (Z.registerStackNavigation = ia),
+        (Z.registerToggleScreenreaderMode = ua),
+        (Z.registerUndo = Ji),
+        (Z.registerWorkspaceScrollShortcuts = Ca))
+      var jf,
+        Mf = (jf ||= {})
+      ;((Mf[(Mf.CONSTRAINED = 1)] = `CONSTRAINED`),
+        (Mf[(Mf.UNCONSTRAINED = 2)] = `UNCONSTRAINED`))
+      var Nf = class {
           constructor(e) {
             ;((this.block = e),
               (this.connectionPreviewer =
@@ -18203,7 +18203,7 @@ children`),
                   null),
               (this.dragging = !1),
               (this.allConnectionPairs = []),
-              (this.moveMode = Mf.UNCONSTRAINED),
+              (this.moveMode = jf.UNCONSTRAINED),
               (this.originalEventGroup = ``),
               (this.lastAnnouncedNeighbour = this.lastAnnouncedLocal = void 0),
               (this.lastBlockDisabledReasons = new Map()),
@@ -18229,7 +18229,7 @@ children`),
               ((t = ct(t.workspace, t.getRelativeToSurfaceXY())),
               (t = st(n.workspace, t)),
               n.moveDuringDrag(t),
-              this.moveMode === Mf.CONSTRAINED)
+              this.moveMode === jf.CONSTRAINED)
             ) {
               t = n.workspace
               var r = t.getMetricsManager().getViewMetrics(!0),
@@ -18484,7 +18484,7 @@ children`),
           drag(e, t) {
             if (
               (this.updateMoveMode(t),
-              this.moveMode === Mf.UNCONSTRAINED &&
+              this.moveMode === jf.UNCONSTRAINED &&
                 this.block.moveDuringDrag(e),
               (t = !!this.connectionCandidate),
               this.updateConnectionPreview(
@@ -18493,10 +18493,10 @@ children`),
               ),
               this.connectionCandidate)
             )
-              this.moveMode === Mf.CONSTRAINED &&
+              this.moveMode === jf.CONSTRAINED &&
                 this.block.moveDuringDrag(this.determineConnectionOffset())
             else if (
-              this.moveMode === Mf.CONSTRAINED &&
+              this.moveMode === jf.CONSTRAINED &&
               (this.allConnectionPairs.length || Da(this.workspace, !0), !t)
             ) {
               this.workspace.getAudioManager().playErrorBeep()
@@ -18547,7 +18547,7 @@ children`),
               }
               return o
             }
-            if (this.moveMode === Mf.CONSTRAINED) {
+            if (this.moveMode === jf.CONSTRAINED) {
               if (
                 ((s = r?.neighbour.getSourceBlock() ?? null),
                 (c = s?.getRootBlock() ?? s),
@@ -18590,13 +18590,13 @@ children`),
             ;(i = this.connectionPreviewer) == null || i.hidePreview()
           }
           orphanCanConnectAtEnd(e, t, n) {
-            return !!q.getConnectionForOrphanedConnection(
+            return !!J.getConnectionForOrphanedConnection(
               e,
               n === V.OUTPUT_VALUE ? t.outputConnection : t.previousConnection,
             )
           }
           currCandidateIsBetter(t, n, r) {
-            if (this.moveMode === Mf.CONSTRAINED) return !1
+            if (this.moveMode === jf.CONSTRAINED) return !1
             var { local: i, neighbour: a } = t
             t = new L(i.x, i.y)
             var o = new L(a.x, a.y)
@@ -18606,7 +18606,7 @@ children`),
             )
           }
           getConnectionCandidate(e) {
-            return this.moveMode === Mf.CONSTRAINED
+            return this.moveMode === jf.CONSTRAINED
               ? this.findTraversalCandidate(e)
               : this.getClosestCandidate(this.block, e)
           }
@@ -18621,7 +18621,7 @@ children`),
             return r
           }
           getSearchRadius() {
-            return this.moveMode === Mf.CONSTRAINED
+            return this.moveMode === jf.CONSTRAINED
               ? 1 / 0
               : this.connectionCandidate
                 ? e.Og.connectingSnapRadius
@@ -18641,7 +18641,7 @@ children`),
             return (n.reverse(), [...e, ...n])
           }
           endDrag(t, n) {
-            ;(n === hf.DELETE && Ci(this.block),
+            ;(n === mf.DELETE && Ci(this.block),
               (this.originalEventGroup = e.gd),
               this.fireDragEndEvent(),
               this.fireMoveEvent(),
@@ -18650,7 +18650,7 @@ children`),
             var r
             if (
               ((r = this.connectionPreviewer) == null || r.hidePreview(),
-              !this.block.isDeadOrDying() && this.dragging && n !== hf.DELETE)
+              !this.block.isDeadOrDying() && this.dragging && n !== mf.DELETE)
             ) {
               let e
               ;((e = this.workspace.getLayerManager()) == null ||
@@ -18663,10 +18663,10 @@ children`),
                 this.block.setDragging(!1),
                 this.redisableAllDraggedBlocks(this.block))
             }
-            ;(this.connectionCandidate && n !== hf.DELETE
+            ;(this.connectionCandidate && n !== mf.DELETE
               ? (this.applyConnections(this.connectionCandidate),
                 this.disposeStep())
-              : (n !== hf.DELETE &&
+              : (n !== mf.DELETE &&
                   this.workspace.getAudioManager().play(`drop`),
                 this.block.queueRender().then(() => this.disposeStep())),
               (this.allConnectionPairs = []),
@@ -18877,8 +18877,8 @@ children`),
           updateMoveMode(e) {
             this.moveMode =
               e instanceof KeyboardEvent && !e.ctrlKey && !e.metaKey
-                ? Mf.CONSTRAINED
-                : Mf.UNCONSTRAINED
+                ? jf.CONSTRAINED
+                : jf.UNCONSTRAINED
           }
           enableAllDraggedBlocks(t) {
             var n = e.Qc
@@ -18904,7 +18904,7 @@ children`),
               (e.Qc = n))
           }
         },
-        Ff = class extends Zu {
+        Pf = class extends Zu {
           isLabelField() {
             return !0
           }
@@ -18945,8 +18945,8 @@ children`),
             return new this(Or(e.text), void 0, e)
           }
         }
-      ;(si(`field_label`, Ff), (Ff.prototype.DEFAULT_VALUE = ``))
-      var If = class extends K {
+      ;(si(`field_label`, Pf), (Pf.prototype.DEFAULT_VALUE = ``))
+      var Ff = class extends q {
           constructor(e, t, n, r, i) {
             ;(super(t, n, r, void 0, i),
               (this.text = e),
@@ -18981,7 +18981,7 @@ children`),
               M.G,
               {
                 class: `blocklyText blocklyBubbleText blocklyNoPointerEvents`,
-                transform: `translate(0,${K.BORDER_WIDTH})`,
+                transform: `translate(0,${q.BORDER_WIDTH})`,
                 style: `direction: ${this.workspace.RTL ? `rtl` : `ltr`}`,
               },
               e,
@@ -18993,7 +18993,7 @@ children`),
               .split(`
 `)
               .map((t) => {
-                var r = _(M.TEXT, { y: `${n}em`, x: K.BORDER_WIDTH }, e)
+                var r = _(M.TEXT, { y: `${n}em`, x: q.BORDER_WIDTH }, e)
                 return (
                   (t = document.createTextNode(t)),
                   r.appendChild(t),
@@ -19005,20 +19005,20 @@ children`),
           rightAlignTextFragments(e, t) {
             for (let n of t)
               (n.setAttribute(`text-anchor`, `start`),
-                n.setAttribute(`x`, `${e + K.BORDER_WIDTH}`))
+                n.setAttribute(`x`, `${e + q.BORDER_WIDTH}`))
           }
           updateBubbleSize() {
             var e = this.paragraph.getBBox()
             this.setSize(
               new z(
-                e.width + K.BORDER_WIDTH * 2,
-                e.height + K.BORDER_WIDTH * 2,
+                e.width + q.BORDER_WIDTH * 2,
+                e.height + q.BORDER_WIDTH * 2,
               ),
               !0,
             )
           }
         },
-        Lf = class extends Ld {
+        If = class extends Id {
           constructor(e) {
             ;(super(e),
               (this.sourceBlock = e),
@@ -19026,7 +19026,7 @@ children`),
               (this.textBubble = null))
           }
           getType() {
-            return Lf.TYPE
+            return If.TYPE
           }
           initView(e) {
             this.svgRoot ||
@@ -19066,7 +19066,7 @@ children`),
             ;(e = this.textBubble) == null || e.dispose()
           }
           getWeight() {
-            return Lf.WEIGHT
+            return If.WEIGHT
           }
           getSize() {
             return new z(17, 17)
@@ -19113,7 +19113,7 @@ children`),
             return (0, D.asyncExecutePromiseGeneratorFunction)(function* () {
               if (n.bubbleIsVisible() !== t) {
                 if ((yield kt(), t))
-                  ((n.textBubble = new If(
+                  ((n.textBubble = new Ff(
                     n.getText(),
                     n.sourceBlock.workspace,
                     n.getAnchorLocation(),
@@ -19150,8 +19150,8 @@ children`),
               : e.C.ICON_LABEL_WARNING_CLOSED
           }
         }
-      ;((Lf.TYPE = Zc.WARNING), (Lf.WEIGHT = 2))
-      var Rf = class extends nf {
+      ;((If.TYPE = Zc.WARNING), (If.WEIGHT = 2))
+      var Lf = class extends tf {
         constructor(e, t, n) {
           if (
             (super(e, t, n),
@@ -19167,7 +19167,7 @@ children`),
             (this.translation = ``),
             (this.dragging = !1),
             (this.relativeCoords = new L(0, 0)),
-            (this.dragStrategy = new Pf(this)),
+            (this.dragStrategy = new Nf(this)),
             !e.rendered)
           )
             throw TypeError(
@@ -19309,7 +19309,7 @@ children`),
           e = e ? new Set(e.getDescendants(!1)) : null
           var t = this.getDescendants(!1)
           for (let n of t)
-            if (n !== this && (e == null || !e.has(n)) && n.getIcon(Lf.TYPE))
+            if (n !== this && (e == null || !e.has(n)) && n.getIcon(If.TYPE))
               return !0
           return !1
         }
@@ -19323,7 +19323,7 @@ children`),
               this.childHasWarning() &&
                 this.setWarningText(
                   e.C.COLLAPSED_WARNINGS_WARNING,
-                  Rf.COLLAPSED_WARNING_ID,
+                  Lf.COLLAPSED_WARNING_ID,
                 ),
               (t = this.toString(30)),
               (n = this.getField(`_TEMP_COLLAPSED_FIELD`))
@@ -19331,12 +19331,12 @@ children`),
                 : ((
                     this.getInput(`_TEMP_COLLAPSED_INPUT`) ||
                     this.appendDummyInput(`_TEMP_COLLAPSED_INPUT`)
-                  ).appendField(new Ff(t), `_TEMP_COLLAPSED_FIELD`),
+                  ).appendField(new Pf(t), `_TEMP_COLLAPSED_FIELD`),
                   this.recomputeAriaContext()))
             : (this.updateDisabled(),
               this.removeInput(`_TEMP_COLLAPSED_INPUT`),
               y(this.svgGroup, `blocklyCollapsed`),
-              this.setWarningText(null, Rf.COLLAPSED_WARNING_ID))
+              this.setWarningText(null, Lf.COLLAPSED_WARNING_ID))
         }
         onMouseDown(e) {
           if (!this.workspace.isReadOnly()) {
@@ -19517,7 +19517,7 @@ children`),
           return this.isInsertionMarker_
             ? null
             : {
-                paster: sf.TYPE,
+                paster: of.TYPE,
                 blockState: un(this, {
                   addCoordinates: !0,
                   addNextBlocks: e,
@@ -19567,7 +19567,7 @@ children`),
               }, 100),
             )
           else if (
-            (this.isInFlyout && (t = null), (r = this.getIcon(Lf.TYPE)), t)
+            (this.isInFlyout && (t = null), (r = this.getIcon(If.TYPE)), t)
           ) {
             let i = this.getSurroundParent(),
               a = null
@@ -19575,16 +19575,16 @@ children`),
             ;(a &&
               a.setWarningText(
                 e.C.COLLAPSED_WARNINGS_WARNING,
-                Rf.COLLAPSED_WARNING_ID,
+                Lf.COLLAPSED_WARNING_ID,
               ),
               r
                 ? r.addMessage(t, n)
-                : this.addIcon(new Lf(this).addMessage(t, n)))
+                : this.addIcon(new If(this).addMessage(t, n)))
           } else
             r &&
               (n
-                ? (r.addMessage(``, n), r.getText() || this.removeIcon(Lf.TYPE))
-                : this.removeIcon(Lf.TYPE))
+                ? (r.addMessage(``, n), r.getText() || this.removeIcon(If.TYPE))
+                : this.removeIcon(If.TYPE))
         }
         setMutator(t) {
           ;(this.removeIcon(e.sh.TYPE), t && this.addIcon(t))
@@ -19750,7 +19750,7 @@ children`),
           return super.getMatchingConnection(e, t)
         }
         makeConnection_(e) {
-          return new Yd(this, e)
+          return new Jd(this, e)
         }
         getNextBlock() {
           return super.getNextBlock()
@@ -19904,7 +19904,7 @@ children`),
           return !0
         }
         performAction(t) {
-          if (this.workspace.isFlyout) Ad.mover.startMove(this, t)
+          if (this.workspace.isFlyout) K.mover.startMove(this, t)
           else {
             if (this.isSimpleReporter()) {
               for (var n of this.inputList)
@@ -19916,7 +19916,7 @@ children`),
             }
             this.workspace.getNavigator().getInNode(this)
               ? ((t = this.workspace),
-                (n = _n(t.RTL ? J.NAVIGATE_LEFT : J.NAVIGATE_RIGHT)),
+                (n = _n(t.RTL ? Y.NAVIGATE_LEFT : Y.NAVIGATE_RIGHT)),
                 (n = e.C.KEYBOARD_NAV_BLOCK_NAVIGATION_HINT.replace(`%1`, n)),
                 zc.show(t, { message: n, id: `blockNavigationHint` }))
               : ((t = this.workspace),
@@ -19964,8 +19964,8 @@ children`),
             : e.C.BLOCK_LABEL_STACK_BLOCKS.replace(`%1`, t.toString())
         }
       }
-      ;((Rf.INLINE = -1), (Rf.COLLAPSED_WARNING_ID = `TEMP_COLLAPSED_WARNING_`))
-      var zf = class {
+      ;((Lf.INLINE = -1), (Lf.COLLAPSED_WARNING_ID = `TEMP_COLLAPSED_WARNING_`))
+      var Rf = class {
           constructor() {}
           onDragEnter() {}
           onDragOver() {}
@@ -19978,15 +19978,15 @@ children`),
             return !1
           }
         },
-        Bf = class extends zf {
+        zf = class extends Rf {
           constructor() {
             ;(super(), (this.wouldDelete_ = !1))
           }
           wouldDelete(e) {
             return (
-              Ad.mover.isMoving()
+              K.mover.isMoving()
                 ? this.updateWouldDelete_(!1)
-                : e instanceof Rf
+                : e instanceof Lf
                   ? ((e = !e.getParent() && e.isDeletable()),
                     this.updateWouldDelete_(e))
                   : this.updateWouldDelete_(Bi(e) && e.isDeletable()),
@@ -19997,7 +19997,7 @@ children`),
             this.wouldDelete_ = e
           }
         },
-        Vf = class {
+        Bf = class {
           constructor(e, t) {
             ;((this.element = e), (this.type = t))
           }
@@ -20008,7 +20008,7 @@ children`),
             return this.type
           }
         },
-        Hf = class {
+        Vf = class {
           constructor(e) {
             this.workspace_ = e
           }
@@ -20173,8 +20173,8 @@ children`),
             }
           }
         }
-      b(I.METRICS_MANAGER, `default`, Hf)
-      var Uf = class extends Hf {
+      b(I.METRICS_MANAGER, `default`, Vf)
+      var Hf = class extends Vf {
           constructor(e, t) {
             ;(super(e), (this.flyout_ = t))
           }
@@ -20212,7 +20212,7 @@ children`),
             )
           }
         },
-        Wf = class {
+        Uf = class {
           constructor(e, t) {
             ;((this.gap = e), (this.axis = t), (this.y = this.x = 0))
           }
@@ -20242,7 +20242,7 @@ children`),
             return !1
           }
         },
-        Gf = class {
+        Wf = class {
           getFirstChild() {
             return null
           }
@@ -20262,10 +20262,10 @@ children`),
             return e.canBeFocused()
           }
           isApplicable(e) {
-            return e instanceof mf
+            return e instanceof pf
           }
         },
-        Kf = class {
+        Gf = class {
           getFirstChild() {
             return null
           }
@@ -20285,10 +20285,10 @@ children`),
             return !1
           }
           isApplicable(e) {
-            return e instanceof Wf
+            return e instanceof Uf
           }
         },
-        qf = class {
+        Kf = class {
           getFirstChild(e) {
             return ka(e)[0]
           }
@@ -20327,10 +20327,10 @@ children`),
             return e.canBeFocused()
           }
           isApplicable(e) {
-            return e instanceof Rf
+            return e instanceof Lf
           }
         },
-        Jf = class {
+        qf = class {
           getFirstChild() {
             return null
           }
@@ -20350,10 +20350,10 @@ children`),
             return e.canBeFocused()
           }
           isApplicable(e) {
-            return e instanceof K
+            return e instanceof q
           }
         },
-        Yf = class {
+        Jf = class {
           getFirstChild() {
             return null
           }
@@ -20382,7 +20382,7 @@ children`),
             return e instanceof gd
           }
         },
-        Xf = class {
+        Yf = class {
           getFirstChild() {
             return null
           }
@@ -20405,7 +20405,7 @@ children`),
             return e instanceof vd
           }
         },
-        Zf = class {
+        Xf = class {
           getFirstChild() {
             return null
           }
@@ -20464,10 +20464,10 @@ children`),
               : !1
           }
           isApplicable(e) {
-            return e instanceof Yd
+            return e instanceof Jd
           }
         },
-        Qf = class {
+        Zf = class {
           getFirstChild() {
             return null
           }
@@ -20501,7 +20501,7 @@ children`),
             return e instanceof Zu
           }
         },
-        $f = class {
+        Qf = class {
           getFirstChild() {
             return null
           }
@@ -20521,10 +20521,10 @@ children`),
             return e.canBeFocused()
           }
           isApplicable(e) {
-            return e instanceof Ld
+            return e instanceof Id
           }
         },
-        ep = class {
+        $f = class {
           getFirstChild(e) {
             return e.view.getCommentBarButtons()[0]
           }
@@ -20547,7 +20547,7 @@ children`),
             return e instanceof Sd
           }
         },
-        tp = class {
+        ep = class {
           getFirstChild(e) {
             return ((e = e.getTopBlocks(!0)), e.length ? e[0] : null)
           }
@@ -20570,24 +20570,24 @@ children`),
             return e instanceof em
           }
         },
-        np,
-        rp = (np ||= {})
-      ;((rp[(rp.NEXT = 0)] = `NEXT`),
-        (rp[(rp.PREVIOUS = 1)] = `PREVIOUS`),
-        (rp[(rp.IN = 2)] = `IN`),
-        (rp[(rp.OUT = 3)] = `OUT`))
-      var ip = class {
+        tp,
+        np = (tp ||= {})
+      ;((np[(np.NEXT = 0)] = `NEXT`),
+        (np[(np.PREVIOUS = 1)] = `PREVIOUS`),
+        (np[(np.IN = 2)] = `IN`),
+        (np[(np.OUT = 3)] = `OUT`))
+      var rp = class {
           constructor() {
             ;((this.rules = [
-              new qf(),
-              new Qf(),
+              new Kf(),
               new Zf(),
-              new tp(),
-              new $f(),
-              new ep(),
-              new Yf(),
-              new Jf(),
               new Xf(),
+              new ep(),
+              new Qf(),
+              new $f(),
+              new Jf(),
+              new qf(),
+              new Yf(),
             ]),
               (this.navigationLoops = !0))
           }
@@ -20623,7 +20623,7 @@ children`),
           }
           getPreviousNode(t = e.t().getFocusedNode()) {
             if (!t) return null
-            var n = this.getPreviousNodeImpl(t, t, np.PREVIOUS)
+            var n = this.getPreviousNodeImpl(t, t, tp.PREVIOUS)
             if (!n || n === t.getFocusableTree()) {
               if (((n = this.navigateStacks(t, -1)), !n)) return null
               n = this.getLastNodeInStack(n, t)
@@ -20631,14 +20631,14 @@ children`),
             return this.getLeftmostSibling(n)
           }
           getOutNode(t = e.t().getFocusedNode()) {
-            return this.getPreviousNodeImpl(t, t, np.OUT)
+            return this.getPreviousNodeImpl(t, t, tp.OUT)
           }
           getNextNode(t = e.t().getFocusedNode()) {
-            var n = this.getNextNodeImpl(t, t, np.NEXT)
+            var n = this.getNextNodeImpl(t, t, tp.NEXT)
             return t && n === null ? this.navigateStacks(t, 1) : n
           }
           getInNode(t = e.t().getFocusedNode()) {
-            return this.getNextNodeImpl(t, t, np.IN)
+            return this.getNextNodeImpl(t, t, tp.IN)
           }
           getPreviousNodeImpl(e, t, n, r = new Set()) {
             if (!t || !e || r.has(t)) return null
@@ -20694,21 +20694,21 @@ children`),
           }
           transitionAllowed(e, t, n) {
             switch (n) {
-              case np.IN:
-              case np.OUT:
+              case tp.IN:
+              case tp.OUT:
                 return this.getRowId(e) === this.getRowId(t)
-              case np.NEXT:
-              case np.PREVIOUS:
+              case tp.NEXT:
+              case tp.PREVIOUS:
                 return this.getRowId(e) !== this.getRowId(t)
             }
           }
           getLeftmostSibling(e) {
             if (!e) return null
-            for (var t; (t = this.getPreviousNodeImpl(e, e, np.OUT));) e = t
+            for (var t; (t = this.getPreviousNodeImpl(e, e, tp.OUT));) e = t
             return e
           }
           getLastNodeInStack(e, t) {
-            for (var n; (n = this.getNextNodeImpl(e, e, np.NEXT)) && n !== t;)
+            for (var n; (n = this.getNextNodeImpl(e, e, tp.NEXT)) && n !== t;)
               e = n
             return e
           }
@@ -20736,16 +20736,16 @@ children`),
             return this.get(e)?.isNavigable(e)
           }
           getSourceBlockFromNode(e) {
-            return e instanceof Rf
+            return e instanceof Lf
               ? e
-              : e instanceof Zu || e instanceof Yd || e instanceof Ld
+              : e instanceof Zu || e instanceof Jd || e instanceof Id
                 ? e.getSourceBlock()
                 : e instanceof vd
-                  ? ((e = e.getParent()), e instanceof Rf ? e : null)
+                  ? ((e = e.getParent()), e instanceof Lf ? e : null)
                   : null
           }
         },
-        ap = class {
+        ip = class {
           getFirstChild(e) {
             return ja(e) ? e.getChildToolboxItems()[0] : null
           }
@@ -20775,9 +20775,9 @@ children`),
             return bn(e)
           }
         },
-        op = class extends ip {
+        ap = class extends rp {
           constructor(e) {
-            ;(super(), (this.toolbox = e), (this.rules = [new ap()]))
+            ;(super(), (this.toolbox = e), (this.rules = [new ip()]))
           }
           getInNode(t = e.t().getFocusedNode(), n = !1) {
             var r = Ma(this.toolbox.getWorkspace())
@@ -20833,9 +20833,9 @@ children`),
             return this.toolbox.getToolboxItems()
           }
         },
-        sp = class extends ip {
+        op = class extends rp {
           constructor(e) {
-            ;(super(), (this.flyout = e), this.rules.push(new Gf(), new Kf()))
+            ;(super(), (this.flyout = e), this.rules.push(new Wf(), new Gf()))
           }
           getOutNode(e, t = !1) {
             if (!t && this.flyout.targetWorkspace)
@@ -20901,7 +20901,7 @@ children`),
             )
           }
         },
-        cp = class {
+        sp = class {
           constructor(e, t, n, r, i) {
             ;((this.workspace = e),
               (this.oldHostMetrics =
@@ -21034,10 +21034,10 @@ children`),
               this.vScroll && this.vScroll.resizeViewVertical(e))
           }
         },
-        lp = class {
+        cp = class {
           load(e, t) {
             return (
-              (e = new Wf(0, t.horizontalLayout ? `x` : `y`)), new Vf(e, `sep`)
+              (e = new Uf(0, t.horizontalLayout ? `x` : `y`)), new Bf(e, `sep`)
             )
           }
           gapForItem(e, t) {
@@ -21048,8 +21048,8 @@ children`),
             return `sep`
           }
         }
-      b(I.FLYOUT_INFLATER, `sep`, lp)
-      var up = class extends Bf {
+      b(I.FLYOUT_INFLATER, `sep`, cp)
+      var lp = class extends zf {
           constructor(e) {
             ;(super(),
               (this.horizontalLayout = !1),
@@ -21067,10 +21067,10 @@ children`),
               (this.inflaters = new Map()),
               (e.setMetrics = this.setMetrics_.bind(this)),
               (this.workspace_ = new em(e)),
-              this.workspace_.setMetricsManager(new Uf(this.workspace_, this)),
+              this.workspace_.setMetricsManager(new Hf(this.workspace_, this)),
               (this.workspace_.internalIsFlyout = !0),
               this.workspace_.setVisible(this.visible),
-              this.workspace_.setNavigator(new sp(this)),
+              this.workspace_.setNavigator(new op(this)),
               (this.id = He()),
               (this.RTL = !!e.RTL),
               (this.toolboxPosition_ = e.toolboxPosition),
@@ -21119,7 +21119,7 @@ children`),
             ;((this.targetWorkspace = e),
               (this.workspace_.targetWorkspace = e),
               this.workspace_.setInitialAriaContext(),
-              (this.workspace_.scrollbar = new cp(
+              (this.workspace_.scrollbar = new sp(
                 this.workspace_,
                 this.horizontalLayout,
                 !this.horizontalLayout,
@@ -21309,8 +21309,8 @@ children`),
                   (t.push(e.load(r, this)),
                   (e = e.gapForItem(r, n)) &&
                     t.push(
-                      new Vf(
-                        new Wf(e, this.horizontalLayout ? `x` : `y`),
+                      new Bf(
+                        new Uf(e, this.horizontalLayout ? `x` : `y`),
                         `sep`,
                       ),
                     )))
@@ -21369,7 +21369,7 @@ children`),
               : null
           }
         },
-        dp = class {
+        up = class {
           constructor(e) {
             ;((this.workspace = e),
               (this.horizontalScrollEnabled =
@@ -21395,7 +21395,7 @@ children`),
             else throw TypeError(`Invalid state.`)
           }
         },
-        fp = class {
+        dp = class {
           constructor(e, t) {
             ;((this.creatorWorkspace = t),
               (this.mouseDownXY = new L(0, 0)),
@@ -21452,7 +21452,7 @@ children`),
               ? this.flyout.isScrollable()
               : this.startWorkspace_ && this.startWorkspace_.isDraggable()) &&
               ((this.dragging = !0),
-              (this.workspaceDragger = new dp(this.startWorkspace_)),
+              (this.workspaceDragger = new up(this.startWorkspace_)),
               this.workspaceDragger.startDrag())
           }
           updateIsDragging(e) {
@@ -21869,7 +21869,7 @@ children`),
             return !1
           }
         },
-        pp = class {
+        fp = class {
           constructor(e, t) {
             ;((this.pattern = e),
               (this.scale = 1),
@@ -21957,7 +21957,7 @@ children`),
             )
           }
         },
-        mp = class {
+        pp = class {
           constructor(e) {
             ;((this.workspace = e),
               (this.layers = new Map()),
@@ -22048,12 +22048,12 @@ children`),
             return this.dragLayer
           }
         },
-        hp = {}
-      ;((hp.register = Na),
-        (hp.unregister = function (e) {
+        mp = {}
+      ;((mp.register = Na),
+        (mp.unregister = function (e) {
           Fe(I.ICON, e)
         }))
-      var gp = class extends Ld {
+      var hp = class extends Id {
         constructor(e) {
           ;(super(e),
             (this.sourceBlock = e),
@@ -22063,7 +22063,7 @@ children`),
             (this.bubbleVisiblity = !1))
         }
         getType() {
-          return gp.TYPE
+          return hp.TYPE
         }
         initView(e) {
           this.svgRoot ||
@@ -22100,7 +22100,7 @@ children`),
           ;(e = this.textInputBubble) == null || e.dispose()
         }
         getWeight() {
-          return gp.WEIGHT
+          return hp.WEIGHT
         }
         getSize() {
           return new z(17, 17)
@@ -22265,7 +22265,7 @@ children`),
           ;(e = this.textInputBubble) == null || e.setEditable(!1)
         }
         createBubble() {
-          ;((this.textInputBubble = new Ud(
+          ;((this.textInputBubble = new Hd(
             this.sourceBlock.workspace,
             this.getAnchorLocation(),
             this.getBubbleOwnerRect(),
@@ -22306,16 +22306,16 @@ children`),
             : e.C.ICON_LABEL_COMMENT_CLOSED
         }
       }
-      ;((gp.TYPE = Zc.COMMENT), (gp.WEIGHT = 3), Na(gp.TYPE, gp))
-      var _p = {}
-      ;((_p.CommentIcon = gp),
-        (_p.Icon = Ld),
-        (_p.IconType = Zc),
-        (_p.MutatorIcon = e.sh),
-        (_p.WarningIcon = Lf),
-        (_p.exceptions = Kd),
-        (_p.registry = hp))
-      var vp, yp
+      ;((hp.TYPE = Zc.COMMENT), (hp.WEIGHT = 3), Na(hp.TYPE, hp))
+      var gp = {}
+      ;((gp.CommentIcon = hp),
+        (gp.Icon = Id),
+        (gp.IconType = Zc),
+        (gp.MutatorIcon = e.sh),
+        (gp.WarningIcon = If),
+        (gp.exceptions = Gd),
+        (gp.registry = mp))
+      var _p, vp
       ;((e.Cj = class {
         constructor(e, t) {
           ;((this.db = new Map()),
@@ -22399,14 +22399,14 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           return e.toLowerCase() === t.toLowerCase()
         }
       }),
-        (vp = e.Cj ||= {}),
-        (yp = vp.NameType || (vp.NameType = {})),
-        (yp.DEVELOPER_VARIABLE = `DEVELOPER_VARIABLE`),
-        (yp.VARIABLE = `VARIABLE`),
-        (yp.PROCEDURE = `PROCEDURE`),
+        (_p = e.Cj ||= {}),
+        (vp = _p.NameType || (_p.NameType = {})),
+        (vp.DEVELOPER_VARIABLE = `DEVELOPER_VARIABLE`),
+        (vp.VARIABLE = `VARIABLE`),
+        (vp.PROCEDURE = `PROCEDURE`),
         (e.P = e.Cj.NameType),
         (e.Cj.DEVELOPER_VARIABLE_TYPE = e.P.DEVELOPER_VARIABLE))
-      var bp = class extends Map {
+      var yp = class extends Map {
           constructor() {
             super()
           }
@@ -22431,19 +22431,19 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             return [...this.values()]
           }
         },
-        xp = { CATEGORY_NAME: `PROCEDURE`, DEFAULT_ARG: `x` }
-      ;((xp.ObservableProcedureMap = bp),
-        (xp.allProcedures = Ia),
-        (xp.findLegalName = e.Bj),
-        (xp.flyoutCategory = za),
-        (xp.getCallers = Ua),
-        (xp.getDefinition = e.Lj),
-        (xp.isNameUsed = Ra),
-        (xp.isProcedureBlock = Pa),
-        (xp.mutateCallers = e.Kj),
-        (xp.mutatorOpenListener = Va),
-        (xp.rename = e.Ej))
-      var Z = new (class {
+        bp = { CATEGORY_NAME: `PROCEDURE`, DEFAULT_ARG: `x` }
+      ;((bp.ObservableProcedureMap = yp),
+        (bp.allProcedures = Ia),
+        (bp.findLegalName = e.Bj),
+        (bp.flyoutCategory = za),
+        (bp.getCallers = Ua),
+        (bp.getDefinition = e.Lj),
+        (bp.isNameUsed = Ra),
+        (bp.isProcedureBlock = Pa),
+        (bp.mutateCallers = e.Kj),
+        (bp.mutatorOpenListener = Va),
+        (bp.rename = e.Ej))
+      var Q = new (class {
           constructor() {
             ;((this.NONE = 0),
               (this.FIELD = 1),
@@ -22569,15 +22569,15 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             return (e.type & this.INPUT_ROW) >= 1
           }
         })(),
-        Sp = class {
+        xp = class {
           constructor(e) {
             ;((this.centerline = this.xPos = this.height = this.width = 0),
               (this.constants_ = e),
-              (this.type = Z.NONE),
+              (this.type = Q.NONE),
               (this.notchOffset = this.constants_.NOTCH_OFFSET_LEFT))
           }
         },
-        Cp = class {
+        Sp = class {
           constructor(e) {
             ;((this.elements = []),
               (this.xPos =
@@ -22596,13 +22596,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   !1),
               (this.align = null),
               (this.constants_ = e),
-              (this.type = Z.ROW),
+              (this.type = Q.ROW),
               (this.notchOffset = this.constants_.NOTCH_OFFSET_LEFT))
           }
           getLastInput() {
             for (let e = this.elements.length - 1; e >= 0; e--) {
               let t = this.elements[e]
-              if (Z.isInput(t)) return t
+              if (Q.isInput(t)) return t
             }
             return null
           }
@@ -22618,25 +22618,25 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           getFirstSpacer() {
             for (let e = 0; e < this.elements.length; e++) {
               let t = this.elements[e]
-              if (Z.isInRowSpacer(t)) return t
+              if (Q.isInRowSpacer(t)) return t
             }
             return null
           }
           getLastSpacer() {
             for (let e = this.elements.length - 1; e >= 0; e--) {
               let t = this.elements[e]
-              if (Z.isInRowSpacer(t)) return t
+              if (Q.isInRowSpacer(t)) return t
             }
             return null
           }
         },
-        wp = class extends Cp {
+        Cp = class extends Sp {
           constructor(e) {
             ;(super(e),
               (this.hasNextConnection = !1),
               (this.connection = null),
               (this.baseline = this.descenderHeight = 0),
-              (this.type |= Z.BOTTOM_ROW))
+              (this.type |= Q.BOTTOM_ROW))
           }
           hasLeftSquareCorner(e) {
             return !!e.outputConnection || !!e.getNextBlock()
@@ -22651,8 +22651,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             for (let r = 0; r < this.elements.length; r++) {
               let i = this.elements[r]
               ;((t += i.width),
-                Z.isSpacer(i) ||
-                  (Z.isNextConnection(i)
+                Q.isSpacer(i) ||
+                  (Q.isNextConnection(i)
                     ? (n = Math.max(n, i.height))
                     : (e = Math.max(e, i.height))))
             }
@@ -22668,23 +22668,23 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             return !1
           }
         },
-        Tp = class extends Sp {
+        wp = class extends xp {
           constructor(e, t) {
             ;(super(e),
               (this.connectionModel = t),
-              (this.type |= Z.CONNECTION),
+              (this.type |= Q.CONNECTION),
               (this.shape = this.constants_.shapeFor(t)),
               (this.isDynamicShape =
                 `isDynamic` in this.shape && this.shape.isDynamic),
               (this.highlighted = t.isHighlighted()))
           }
         },
-        Ep = class extends Tp {
+        Tp = class extends wp {
           constructor(e, t) {
             ;(super(e, t.connection),
               (this.input = t),
               (this.connectionOffsetY = this.connectionOffsetX = 0),
-              (this.type |= Z.INPUT),
+              (this.type |= Q.INPUT),
               (this.align = t.align),
               (this.connectedBlock =
                 t.connection && t.connection.targetBlock()
@@ -22702,11 +22702,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 (this.connectedBlockHeight += e.height)))
           }
         },
-        Dp = class extends Ep {
+        Ep = class extends Tp {
           constructor(e, t) {
             ;(super(e, t),
               (this.height = 0),
-              (this.type |= Z.EXTERNAL_VALUE_INPUT),
+              (this.type |= Q.EXTERNAL_VALUE_INPUT),
               this.connectedBlockHeight
                 ? ((e = this.connectionModel.getInsertionMarker()) &&
                     (this.connectedBlockHeight = e.getHeightWidth().height),
@@ -22723,51 +22723,51 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (this.connectionWidth = this.shape.width))
           }
         },
-        Op = class extends Sp {
+        Dp = class extends xp {
           constructor(e, t, n) {
             ;(super(e),
               (this.field = t),
               (this.parentInput = n),
               (this.isEditable = t.EDITABLE),
               (this.flipRtl = t.getFlipRtl()),
-              (this.type |= Z.FIELD),
+              (this.type |= Q.FIELD),
               (e = this.field.getSize()),
               (this.height = e.height),
               (this.width = e.width))
           }
         },
-        kp = class extends Sp {
+        Op = class extends xp {
           constructor(e) {
             ;(super(e),
-              (this.type |= Z.HAT),
+              (this.type |= Q.HAT),
               (this.height = this.constants_.START_HAT.height),
               (this.width = this.constants_.START_HAT.width),
               (this.ascenderHeight = this.height))
           }
         },
-        Ap = class extends Sp {
+        kp = class extends xp {
           constructor(e, t) {
             ;(super(e),
               (this.icon = t),
               (this.flipRtl = !1),
-              (this.type |= Z.ICON),
+              (this.type |= Q.ICON),
               (e = t.getSize()),
               (this.height = e.height),
               (this.width = e.width))
           }
         },
-        jp = class extends Sp {
+        Ap = class extends xp {
           constructor(e, t) {
             ;(super(e),
-              (this.type |= Z.SPACER | Z.IN_ROW_SPACER),
+              (this.type |= Q.SPACER | Q.IN_ROW_SPACER),
               (this.width = t),
               (this.height = this.constants_.SPACER_DEFAULT_HEIGHT))
           }
         },
-        Mp = class extends Ep {
+        jp = class extends Tp {
           constructor(e, t) {
             ;(super(e, t),
-              (this.type |= Z.INLINE_INPUT),
+              (this.type |= Q.INLINE_INPUT),
               this.connectedBlockWidth || this.connectedBlockHeight
                 ? ((this.width = this.connectedBlockWidth),
                   (this.height = this.connectedBlockHeight))
@@ -22792,11 +22792,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   : 0))
           }
         },
-        Np = class extends Cp {
+        Mp = class extends Sp {
           constructor(e) {
             ;(super(e),
               (this.connectedBlockWidths = 0),
-              (this.type |= Z.INPUT_ROW))
+              (this.type |= Q.INPUT_ROW))
           }
           measure() {
             ;((this.width = this.minWidth), (this.height = this.minHeight))
@@ -22804,13 +22804,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             for (let t = 0; t < this.elements.length; t++) {
               let n = this.elements[t]
               ;((this.width += n.width),
-                Z.isInput(n) &&
-                  (Z.isStatementInput(n)
+                Q.isInput(n) &&
+                  (Q.isStatementInput(n)
                     ? (e += n.connectedBlockWidth)
-                    : Z.isExternalInput(n) &&
+                    : Q.isExternalInput(n) &&
                       n.connectedBlockWidth !== 0 &&
                       (e += n.connectedBlockWidth - n.connectionWidth)),
-                Z.isSpacer(n) ||
+                Q.isSpacer(n) ||
                   (this.height = Math.max(this.height, n.height)))
             }
             ;((this.connectedBlockWidths = e),
@@ -22820,80 +22820,80 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             return !this.hasExternalInput && !this.hasStatement
           }
         },
-        Pp = class extends Sp {
+        Np = class extends xp {
           constructor(e) {
             ;(super(e),
-              (this.type |= Z.JAGGED_EDGE),
+              (this.type |= Q.JAGGED_EDGE),
               (this.height = this.constants_.JAGGED_TEETH.height),
               (this.width = this.constants_.JAGGED_TEETH.width))
           }
         },
-        Fp = class extends Tp {
+        Pp = class extends wp {
           constructor(e, t) {
             ;(super(e, t),
-              (this.type |= Z.NEXT_CONNECTION),
+              (this.type |= Q.NEXT_CONNECTION),
               (this.height = this.shape.height),
               (this.width = this.shape.width),
               (e = t.getInsertionMarker()) &&
                 (this.height += e.getHeightWidth().height))
           }
         },
-        Ip = class extends Tp {
+        Fp = class extends wp {
           constructor(e, t) {
             ;(super(e, t),
               (this.connectionOffsetX = 0),
-              (this.type |= Z.OUTPUT_CONNECTION),
+              (this.type |= Q.OUTPUT_CONNECTION),
               (this.height = this.isDynamicShape ? 0 : this.shape.height),
               (this.startX = this.width =
                 this.isDynamicShape ? 0 : this.shape.width),
               (this.connectionOffsetY = this.constants_.TAB_OFFSET_FROM_TOP))
           }
         },
-        Lp = class extends Tp {
+        Ip = class extends wp {
           constructor(e, t) {
             ;(super(e, t),
-              (this.type |= Z.PREVIOUS_CONNECTION),
+              (this.type |= Q.PREVIOUS_CONNECTION),
               (this.height = this.shape.height),
               (this.width = this.shape.width))
           }
         },
-        Rp = class extends Sp {
+        Lp = class extends xp {
           constructor(e, t) {
             ;(super(e),
               (this.type =
                 (t && t !== `left`
-                  ? Z.RIGHT_ROUND_CORNER
-                  : Z.LEFT_ROUND_CORNER) | Z.CORNER),
+                  ? Q.RIGHT_ROUND_CORNER
+                  : Q.LEFT_ROUND_CORNER) | Q.CORNER),
               (this.width = this.constants_.CORNER_RADIUS),
               (this.height = this.constants_.CORNER_RADIUS / 2))
           }
         },
-        zp = class extends Cp {
+        Rp = class extends Sp {
           constructor(e, t, n) {
             ;(super(e),
               (this.height = t),
               (this.width = n),
               (this.precedesStatement = this.followsStatement = !1),
               (this.widthWithConnectedBlocks = 0),
-              (this.type |= Z.SPACER | Z.BETWEEN_ROW_SPACER),
-              (this.elements = [new jp(this.constants_, n)]))
+              (this.type |= Q.SPACER | Q.BETWEEN_ROW_SPACER),
+              (this.elements = [new Ap(this.constants_, n)]))
           }
           measure() {}
         },
-        Bp = class extends Sp {
+        zp = class extends xp {
           constructor(e, t) {
             ;(super(e),
               (this.type =
                 (t && t !== `left`
-                  ? Z.RIGHT_SQUARE_CORNER
-                  : Z.LEFT_SQUARE_CORNER) | Z.CORNER),
+                  ? Q.RIGHT_SQUARE_CORNER
+                  : Q.LEFT_SQUARE_CORNER) | Q.CORNER),
               (this.width = this.height = this.constants_.NO_PADDING))
           }
         },
-        Vp = class extends Ep {
+        Bp = class extends Tp {
           constructor(e, t) {
             ;(super(e, t),
-              (this.type |= Z.STATEMENT_INPUT),
+              (this.type |= Q.STATEMENT_INPUT),
               (this.height = this.connectedBlockHeight
                 ? this.connectedBlockHeight +
                   this.constants_.STATEMENT_BOTTOM_SPACER
@@ -22903,13 +22903,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 this.shape.width))
           }
         },
-        Hp = class extends Cp {
+        Vp = class extends Sp {
           constructor(e) {
             ;(super(e),
               (this.ascenderHeight = this.capline = 0),
               (this.hasPreviousConnection = !1),
               (this.connection = null),
-              (this.type |= Z.TOP_ROW))
+              (this.type |= Q.TOP_ROW))
           }
           hasLeftSquareCorner(e) {
             var t =
@@ -22931,8 +22931,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             for (let r = 0; r < this.elements.length; r++) {
               let i = this.elements[r]
               ;((t += i.width),
-                Z.isSpacer(i) ||
-                  (Z.isHat(i)
+                Q.isSpacer(i) ||
+                  (Q.isHat(i)
                     ? (n = Math.max(n, i.ascenderHeight))
                     : (e = Math.max(e, i.height))))
             }
@@ -22948,8 +22948,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             return !1
           }
         },
-        Up = new Map(),
-        Wp = class {
+        Hp = new Map(),
+        Up = class {
           constructor() {
             ;((this.NO_PADDING = 0),
               (this.SMALL_PADDING = 3),
@@ -23362,7 +23362,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           injectCSS_(e, t) {
             if (typeof window < `u`) {
               var n
-              ;((n = Up.get(t)) == null || !n.has(e)) &&
+              ;((n = Hp.get(t)) == null || !n.has(e)) &&
                 ((n = document.createElement(`style`)),
                 (n.className = `blockly-renderer-style`),
                 (n.textContent = this.getCSS_(t).join(`
@@ -23371,9 +23371,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   ? e
                   : document.head
                 ).prepend(n),
-                (n = Up.get(t) ?? new WeakSet()),
+                (n = Hp.get(t) ?? new WeakSet()),
                 n.add(e),
-                Up.set(t, n))
+                Hp.set(t, n))
             }
           }
           getCSS_(e) {
@@ -23433,7 +23433,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             ]
           }
         },
-        Gp = class {
+        Wp = class {
           constructor(e, t) {
             ;((this.inlinePath_ = this.outlinePath_ = ``),
               (this.block_ = e),
@@ -23479,16 +23479,16 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             ;(this.positionPreviousConnection_(),
               (this.outlinePath_ += _i(e.xPos, this.info_.startY)))
             for (let e = 0, n; (n = t[e]); e++)
-              Z.isLeftRoundedCorner(n)
+              Q.isLeftRoundedCorner(n)
                 ? (this.outlinePath_ += this.constants_.OUTSIDE_CORNERS.topLeft)
-                : Z.isRightRoundedCorner(n)
+                : Q.isRightRoundedCorner(n)
                   ? (this.outlinePath_ +=
                       this.constants_.OUTSIDE_CORNERS.topRight)
-                  : Z.isPreviousConnection(n)
+                  : Q.isPreviousConnection(n)
                     ? (this.outlinePath_ += n.shape.pathLeft)
-                    : Z.isHat(n)
+                    : Q.isHat(n)
                       ? (this.outlinePath_ += this.constants_.START_HAT.path)
-                      : Z.isSpacer(n) && (this.outlinePath_ += w(`h`, n.width))
+                      : Q.isSpacer(n) && (this.outlinePath_ += w(`h`, n.width))
             this.outlinePath_ += w(`v`, e.height - e.ascenderHeight)
           }
           drawJaggedEdge_(e) {
@@ -23538,16 +23538,16 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             var n = 0,
               r = ``
             for (let i = t.length - 1, a; (a = t[i]); i--)
-              Z.isNextConnection(a)
+              Q.isNextConnection(a)
                 ? (r += a.shape.pathRight)
-                : Z.isLeftSquareCorner(a)
+                : Q.isLeftSquareCorner(a)
                   ? (r += w(`H`, e.xPos))
-                  : Z.isLeftRoundedCorner(a)
+                  : Q.isLeftRoundedCorner(a)
                     ? (r += this.constants_.OUTSIDE_CORNERS.bottomLeft)
-                    : Z.isRightRoundedCorner(a)
+                    : Q.isRightRoundedCorner(a)
                       ? ((r += this.constants_.OUTSIDE_CORNERS.bottomRight),
                         (n = this.constants_.OUTSIDE_CORNERS.rightHeight))
-                      : Z.isSpacer(a) && (r += w(`h`, a.width * -1))
+                      : Q.isSpacer(a) && (r += w(`h`, a.width * -1))
             ;((this.outlinePath_ += w(`V`, e.baseline - n)),
               (this.outlinePath_ += r))
           }
@@ -23565,9 +23565,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           drawInternals_() {
             for (let e = 0, t; (t = this.info_.rows[e]); e++)
               for (let e = 0, n; (n = t.elements[e]); e++)
-                Z.isInlineInput(n)
+                Q.isInlineInput(n)
                   ? this.drawInlineInput_(n)
-                  : (Z.isIcon(n) || Z.isField(n)) && this.layoutField_(n)
+                  : (Q.isIcon(n) || Q.isField(n)) && this.layoutField_(n)
           }
           layoutField_(e) {
             var t = e.centerline - e.height / 2,
@@ -23576,7 +23576,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             ;(this.info_.RTL &&
               ((n = -(n + e.width)),
               e.flipRtl && ((n += e.width), (r = `scale(-1 1)`))),
-              Z.isIcon(e)
+              Q.isIcon(e)
                 ? ((r = e.icon),
                   r.setOffsetInBlock(new L(n, t)),
                   this.info_.isInsertionMarker && r.hideForInsertionMarker())
@@ -23665,7 +23665,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           updateConnectionHighlights() {
             for (let e of this.info_.rows)
               for (let t of e.elements) {
-                if (!(t instanceof Tp)) continue
+                if (!(t instanceof wp)) continue
                 let e = this.drawConnectionHighlightPath(t)
                 e &&
                   (t.connectionModel.setAriaRole(e),
@@ -23717,7 +23717,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             )
           }
         },
-        Kp = class {
+        Gp = class {
           constructor(e, t) {
             ;((this.statementEdge =
               this.width =
@@ -23731,14 +23731,14 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (this.block_ = t),
               (this.constants_ = this.renderer_.getConstants()),
               (this.outputConnection = t.outputConnection
-                ? new Ip(this.constants_, t.outputConnection)
+                ? new Fp(this.constants_, t.outputConnection)
                 : null),
               (this.isInline = t.getInputsInline() && !t.isCollapsed()),
               (this.isCollapsed = t.isCollapsed()),
               (this.isInsertionMarker = t.isInsertionMarker()),
               (this.RTL = t.RTL),
-              (this.topRow = new Hp(this.constants_)),
-              (this.bottomRow = new wp(this.constants_)))
+              (this.topRow = new Vp(this.constants_)),
+              (this.bottomRow = new Cp(this.constants_)))
           }
           getRenderer() {
             return this.renderer_
@@ -23753,11 +23753,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           createRows_() {
             ;(this.populateTopRow_(), this.rows.push(this.topRow))
-            var e = new Np(this.constants_)
+            var e = new Mp(this.constants_)
             this.inputRows.push(e)
             var t = this.block_.getIcons()
             for (let n = 0, r; (r = t[n]); n++) {
-              let t = new Ap(this.constants_, r)
+              let t = new kp(this.constants_, r)
               ;(this.isCollapsed && !r.isShownWhenCollapsed()) ||
                 e.elements.push(t)
             }
@@ -23766,15 +23766,15 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               if (r.isVisible()) {
                 this.shouldStartNewRow_(r, t) &&
                   (this.rows.push(e),
-                  (e = new Np(this.constants_)),
+                  (e = new Mp(this.constants_)),
                   this.inputRows.push(e))
                 for (let t = 0, n; (n = r.fieldRow[t]); t++)
-                  e.elements.push(new Op(this.constants_, n, r))
+                  e.elements.push(new Dp(this.constants_, n, r))
                 ;(this.addInput_(r, e), (t = r))
               }
             ;(this.isCollapsed &&
               ((e.hasJaggedEdge = !0),
-              e.elements.push(new Pp(this.constants_))),
+              e.elements.push(new Np(this.constants_))),
               (e.elements.length || e.hasDummyInput) && this.rows.push(e),
               this.populateBottomRow_(),
               this.rows.push(this.bottomRow))
@@ -23787,24 +23787,24 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   : this.constants_.ADD_START_HATS) &&
                 !this.outputConnection &&
                 !e,
-              n = this.topRow.hasLeftSquareCorner(this.block_) ? Bp : Rp
+              n = this.topRow.hasLeftSquareCorner(this.block_) ? zp : Lp
             ;(this.topRow.elements.push(new n(this.constants_)),
               t
-                ? ((e = new kp(this.constants_)), this.topRow.elements.push(e))
+                ? ((e = new Op(this.constants_)), this.topRow.elements.push(e))
                 : e &&
                   ((this.topRow.hasPreviousConnection = !0),
-                  (this.topRow.connection = new Lp(
+                  (this.topRow.connection = new Ip(
                     this.constants_,
                     this.block_.previousConnection,
                   )),
                   this.topRow.elements.push(this.topRow.connection)),
               this.block_.inputList.length &&
-              this.block_.inputList[0] instanceof tf &&
+              this.block_.inputList[0] instanceof ef &&
               !this.block_.isCollapsed()
                 ? (this.topRow.minHeight =
                     this.constants_.TOP_ROW_PRECEDES_STATEMENT_MIN_HEIGHT)
                 : (this.topRow.minHeight = this.constants_.TOP_ROW_MIN_HEIGHT),
-              (n = this.topRow.hasRightSquareCorner(this.block_) ? Bp : Rp),
+              (n = this.topRow.hasRightSquareCorner(this.block_) ? zp : Lp),
               this.topRow.elements.push(new n(this.constants_, `right`)))
           }
           populateBottomRow_() {
@@ -23813,35 +23813,35 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 this.block_.inputList.length &&
                 this.block_.inputList[
                   this.block_.inputList.length - 1
-                ] instanceof tf
+                ] instanceof ef
                   ? this.constants_.BOTTOM_ROW_AFTER_STATEMENT_MIN_HEIGHT
                   : this.constants_.BOTTOM_ROW_MIN_HEIGHT),
               this.bottomRow.hasLeftSquareCorner(this.block_)
-                ? this.bottomRow.elements.push(new Bp(this.constants_))
-                : this.bottomRow.elements.push(new Rp(this.constants_)),
+                ? this.bottomRow.elements.push(new zp(this.constants_))
+                : this.bottomRow.elements.push(new Lp(this.constants_)),
               this.bottomRow.hasNextConnection &&
-                ((this.bottomRow.connection = new Fp(
+                ((this.bottomRow.connection = new Pp(
                   this.constants_,
                   this.block_.nextConnection,
                 )),
                 this.bottomRow.elements.push(this.bottomRow.connection)),
               this.bottomRow.hasRightSquareCorner(this.block_)
-                ? this.bottomRow.elements.push(new Bp(this.constants_, `right`))
+                ? this.bottomRow.elements.push(new zp(this.constants_, `right`))
                 : this.bottomRow.elements.push(
-                    new Rp(this.constants_, `right`),
+                    new Lp(this.constants_, `right`),
                   ))
           }
           addInput_(t, n) {
             ;(this.isInline && t instanceof e.go
-              ? (n.elements.push(new Mp(this.constants_, t)),
+              ? (n.elements.push(new jp(this.constants_, t)),
                 (n.hasInlineInput = !0))
-              : t instanceof tf
-                ? (n.elements.push(new Vp(this.constants_, t)),
+              : t instanceof ef
+                ? (n.elements.push(new Bp(this.constants_, t)),
                   (n.hasStatement = !0))
                 : t instanceof e.go
-                  ? (n.elements.push(new Dp(this.constants_, t)),
+                  ? (n.elements.push(new Ep(this.constants_, t)),
                     (n.hasExternalInput = !0))
-                  : (t instanceof $d || t instanceof ef) &&
+                  : (t instanceof Qd || t instanceof $d) &&
                     ((n.minHeight = Math.max(
                       n.minHeight,
                       t.getSourceBlock() && t.getSourceBlock().isShadow()
@@ -23853,9 +23853,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           shouldStartNewRow_(t, n) {
             return n
-              ? n instanceof ef || t instanceof tf || n instanceof tf
+              ? n instanceof $d || t instanceof ef || n instanceof ef
                 ? !0
-                : t instanceof e.go || t instanceof $d || n instanceof e.go
+                : t instanceof e.go || t instanceof Qd || n instanceof e.go
                   ? !this.isInline
                   : !1
               : !1
@@ -23867,19 +23867,19 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 ((t.elements = []),
                 t.startsWithElemSpacer() &&
                   t.elements.push(
-                    new jp(this.constants_, this.getInRowSpacing_(null, e[0])),
+                    new Ap(this.constants_, this.getInRowSpacing_(null, e[0])),
                   ),
                 e.length)
               ) {
                 for (let n = 0; n < e.length - 1; n++) {
                   t.elements.push(e[n])
                   let r = this.getInRowSpacing_(e[n], e[n + 1])
-                  t.elements.push(new jp(this.constants_, r))
+                  t.elements.push(new Ap(this.constants_, r))
                 }
                 ;(t.elements.push(e[e.length - 1]),
                   t.endsWithElemSpacer() &&
                     t.elements.push(
-                      new jp(
+                      new Ap(
                         this.constants_,
                         this.getInRowSpacing_(e[e.length - 1], null),
                       ),
@@ -23888,24 +23888,24 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             }
           }
           getInRowSpacing_(e, t) {
-            if (!e && t && Z.isStatementInput(t))
+            if (!e && t && Q.isStatementInput(t))
               return this.constants_.STATEMENT_INPUT_PADDING_LEFT
-            if (e && Z.isInput(e) && !t) {
-              if (Z.isExternalInput(e)) return this.constants_.NO_PADDING
-              if (Z.isInlineInput(e)) return this.constants_.LARGE_PADDING
-              if (Z.isStatementInput(e)) return this.constants_.NO_PADDING
+            if (e && Q.isInput(e) && !t) {
+              if (Q.isExternalInput(e)) return this.constants_.NO_PADDING
+              if (Q.isInlineInput(e)) return this.constants_.LARGE_PADDING
+              if (Q.isStatementInput(e)) return this.constants_.NO_PADDING
             }
             return e &&
-              Z.isLeftSquareCorner(e) &&
+              Q.isLeftSquareCorner(e) &&
               t &&
-              (Z.isPreviousConnection(t) || Z.isNextConnection(t))
+              (Q.isPreviousConnection(t) || Q.isNextConnection(t))
               ? t.notchOffset
               : e &&
-                  Z.isLeftRoundedCorner(e) &&
+                  Q.isLeftRoundedCorner(e) &&
                   t &&
-                  (Z.isPreviousConnection(t) || Z.isNextConnection(t))
+                  (Q.isPreviousConnection(t) || Q.isNextConnection(t))
                 ? t.notchOffset - this.constants_.CORNER_RADIUS
-                : e && Z.isField(e) && e.width === 0
+                : e && Q.isField(e) && e.width === 0
                   ? this.constants_.NO_PADDING
                   : this.constants_.MEDIUM_PADDING
           }
@@ -23936,7 +23936,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 var e = n.width
                 ;((e = this.getDesiredRowWidth_(n) - e),
                   e > 0 && this.addAlignmentPadding_(n, e),
-                  Z.isTopOrBottomRow(n) &&
+                  Q.isTopOrBottomRow(n) &&
                     (n.widthWithConnectedBlocks = n.width))
               }
           }
@@ -23989,7 +23989,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             var n = this.getSpacerRowHeight_(e, t),
               r = this.getSpacerRowWidth_(e, t)
             return (
-              (n = new zp(this.constants_, n, r)),
+              (n = new Rp(this.constants_, n, r)),
               e.hasStatement && (n.followsStatement = !0),
               t.hasStatement && (n.precedesStatement = !0),
               n
@@ -24002,13 +24002,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             return this.constants_.MEDIUM_PADDING
           }
           getElemCenterline_(e, t) {
-            return Z.isSpacer(t)
+            return Q.isSpacer(t)
               ? e.yPos + t.height / 2
-              : Z.isBottomRow(e)
+              : Q.isBottomRow(e)
                 ? ((e = e.yPos + e.height - e.descenderHeight),
-                  Z.isNextConnection(t) ? e + t.height / 2 : e - t.height / 2)
-                : Z.isTopRow(e)
-                  ? Z.isHat(t)
+                  Q.isNextConnection(t) ? e + t.height / 2 : e - t.height / 2)
+                : Q.isTopRow(e)
+                  ? Q.isHat(t)
                     ? e.capline - t.height / 2
                     : e.capline + t.height / 2
                   : e.yPos + e.height / 2
@@ -24016,7 +24016,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           recordElemPositions_(e) {
             var t = e.xPos
             for (let n = 0, r; (r = e.elements[n]); n++)
-              (Z.isSpacer(r) && (r.height = e.height),
+              (Q.isSpacer(r) && (r.height = e.height),
                 (r.xPos = t),
                 (r.centerline = this.getElemCenterline_(e, r)),
                 (t += r.width))
@@ -24044,11 +24044,11 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               return this.outputConnection
             for (let t of this.rows)
               for (let n of t.elements)
-                if (n instanceof Tp && n.connectionModel === e) return n
+                if (n instanceof wp && n.connectionModel === e) return n
             return null
           }
         },
-        qp = class {
+        Kp = class {
           constructor(e, t, n) {
             ;((this.connectionHighlights = new WeakMap()),
               (this.highlightOffsets = new WeakMap()),
@@ -24135,7 +24135,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             t && (ce(t), this.connectionHighlights.delete(e))
           }
         },
-        Jp = class {
+        qp = class {
           constructor(e) {
             ;((this.overrides = null), (this.name = e))
           }
@@ -24169,16 +24169,16 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             this.constants_ && this.constants_.dispose()
           }
           makeConstants_() {
-            return new Wp()
+            return new Up()
           }
           makeRenderInfo_(e) {
-            return new Kp(this, e)
+            return new Gp(this, e)
           }
           makeDrawer_(e, t) {
-            return new Gp(e, t)
+            return new Wp(e, t)
           }
           makePathObject(e, t) {
-            return new qp(e, t, this.constants_)
+            return new Kp(e, t, this.constants_)
           }
           getConstants() {
             return this.constants_
@@ -24187,7 +24187,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             return !e.getSourceBlock().isDragging()
           }
           orphanCanConnectAtEnd(e, t, n) {
-            return !!q.getConnectionForOrphanedConnection(
+            return !!J.getConnectionForOrphanedConnection(
               e,
               n === V.OUTPUT_VALUE ? t.outputConnection : t.previousConnection,
             )
@@ -24197,37 +24197,37 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             ;(t.measure(), this.makeDrawer_(e, t).draw())
           }
         },
-        Q = {}
-      ;((Q.BottomRow = wp),
-        (Q.Connection = Tp),
-        (Q.ConstantProvider = Wp),
-        (Q.Drawer = Gp),
-        (Q.ExternalValueInput = Dp),
-        (Q.Field = Op),
-        (Q.Hat = kp),
-        (Q.Icon = Ap),
-        (Q.InRowSpacer = jp),
-        (Q.InlineInput = Mp),
-        (Q.InputConnection = Ep),
-        (Q.InputRow = Np),
-        (Q.JaggedEdge = Pp),
-        (Q.Measurable = Sp),
-        (Q.NextConnection = Fp),
-        (Q.OutputConnection = Ip),
-        (Q.PathObject = qp),
-        (Q.PreviousConnection = Lp),
-        (Q.RenderInfo = Kp),
-        (Q.Renderer = Jp),
-        (Q.RoundCorner = Rp),
-        (Q.Row = Cp),
-        (Q.SpacerRow = zp),
-        (Q.SquareCorner = Bp),
-        (Q.StatementInput = Vp),
-        (Q.TopRow = Hp),
-        (Q.Types = Z),
-        (Q.init = Ga),
-        (Q.register = Wa),
-        (Q.unregister = function (e) {
+        Jp = {}
+      ;((Jp.BottomRow = Cp),
+        (Jp.Connection = wp),
+        (Jp.ConstantProvider = Up),
+        (Jp.Drawer = Wp),
+        (Jp.ExternalValueInput = Ep),
+        (Jp.Field = Dp),
+        (Jp.Hat = Op),
+        (Jp.Icon = kp),
+        (Jp.InRowSpacer = Ap),
+        (Jp.InlineInput = jp),
+        (Jp.InputConnection = Tp),
+        (Jp.InputRow = Mp),
+        (Jp.JaggedEdge = Np),
+        (Jp.Measurable = xp),
+        (Jp.NextConnection = Pp),
+        (Jp.OutputConnection = Fp),
+        (Jp.PathObject = Kp),
+        (Jp.PreviousConnection = Ip),
+        (Jp.RenderInfo = Gp),
+        (Jp.Renderer = qp),
+        (Jp.RoundCorner = Lp),
+        (Jp.Row = Sp),
+        (Jp.SpacerRow = Rp),
+        (Jp.SquareCorner = zp),
+        (Jp.StatementInput = Bp),
+        (Jp.TopRow = Vp),
+        (Jp.Types = Q),
+        (Jp.init = Ga),
+        (Jp.register = Wa),
+        (Jp.unregister = function (e) {
           Fe(I.RENDERER, e)
         }))
       var Yp = class {
@@ -24335,12 +24335,12 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             (this.redoStack_ = []),
             (this.blockDB = new Map()),
             (this.typedBlocksDB = new Map()),
-            (this.procedureMap = new bp()),
+            (this.procedureMap = new yp()),
             (this.readOnly = !1),
             (this.potentialVariableMap = null),
             (this.id = He()),
             Se(this),
-            (this.options = e || new Nd({})),
+            (this.options = e || new Md({})),
             (this.RTL = !!this.options.RTL),
             (this.horizontalLayout = !!this.options.horizontalLayout),
             (this.toolboxPosition = this.options.toolboxPosition),
@@ -24778,7 +24778,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 this.zoomControls_ =
                 this.layerManager =
                   null),
-              (this.navigator = new ip()),
+              (this.navigator = new rp()),
               (this.metricsManager = new (Be(I.METRICS_MANAGER, e, !0))(this)),
               (this.getMetrics =
                 e.getMetrics ||
@@ -24786,23 +24786,23 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (this.setMetrics =
                 e.setMetrics || em.setTopLevelWorkspaceMetrics),
               (this.componentManager = new Zo()),
-              (this.connectionDBList = Wd.init(this.connectionChecker)),
+              (this.connectionDBList = Ud.init(this.connectionChecker)),
               (this.audioManager = new Qp(e.parentWorkspace ?? this)),
               (this.grid = this.options.gridPattern
-                ? new pp(this.options.gridPattern, e.gridOptions)
+                ? new fp(this.options.gridPattern, e.gridOptions)
                 : null),
               au && qt && this.registerToolboxCategoryCallback(`VARIABLE`, qt),
               Xp &&
                 Ya &&
                 this.registerToolboxCategoryCallback(`VARIABLE_DYNAMIC`, Ya),
-              xp &&
+              bp &&
                 za &&
                 (this.registerToolboxCategoryCallback(`PROCEDURE`, za),
                 this.addChangeListener(Va)),
               this.addChangeListener(this.variableChangeCallback.bind(this)),
               (this.themeManager_ = this.options.parentWorkspace
                 ? this.options.parentWorkspace.getThemeManager()
-                : new Yp(this, this.options.theme || Md)),
+                : new Yp(this, this.options.theme || jd)),
               this.themeManager_.subscribeWorkspace(this),
               (this.renderer = Ga(
                 this.options.renderer || `geras`,
@@ -24833,7 +24833,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             return this.themeManager_.getTheme()
           }
           setTheme(e) {
-            ;((e ||= Md), this.themeManager_.setTheme(e))
+            ;((e ||= jd), this.themeManager_.setTheme(e))
           }
           refreshTheme() {
             if (this.svgGroup_) {
@@ -25003,7 +25003,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 ((t.id = `${this.id}_focusTarget`),
                 (this.workspaceFocusTargetElement = t),
                 (this.workspaceFocusTarget = new $p(this, t))),
-              (this.layerManager = new mp(this)),
+              (this.layerManager = new pp(this)),
               (this.svgBlockCanvas_ = this.layerManager.getBlockLayer()),
               (this.svgBubbleCanvas_ = this.layerManager.getBubbleLayer()),
               this.setInitialAriaContext(),
@@ -25088,7 +25088,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             this.svgGroup_.appendChild(e)
           }
           copyOptionsForFlyout() {
-            return new Nd({
+            return new Md({
               parentWorkspace: this,
               rtl: this.RTL,
               oneBasedIndex: this.options.oneBasedIndex,
@@ -25321,7 +25321,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           isDragging() {
             return (
-              Ad.mover.isMoving() ||
+              K.mover.isMoving() ||
               (this.currentGesture_ !== null &&
                 this.currentGesture_.isDragging())
             )
@@ -25354,7 +25354,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             )
           }
           onMouseWheel(e) {
-            if (fp.inProgress()) (e.preventDefault(), e.stopPropagation())
+            if (dp.inProgress()) (e.preventDefault(), e.stopPropagation())
             else {
               var t =
                   this.options.zoomOptions && this.options.zoomOptions.wheel,
@@ -25598,7 +25598,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             var e = (e) => {
                 if (e.isFlyout) {
                   let t = e.targetWorkspace?.getFlyout()
-                  if (t instanceof up) return t.getFlyoutScale()
+                  if (t instanceof lp) return t.getFlyoutScale()
                 }
                 return e.getScale()
               },
@@ -25705,7 +25705,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             this.toolboxCategoryCallbacks.delete(e)
           }
           getGesture(e) {
-            if (Ad.mover.isMoving())
+            if (K.mover.isMoving())
               return (e?.preventDefault(), e?.stopPropagation(), null)
             var t = e?.type === `pointerdown`,
               n
@@ -25717,7 +25717,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 this.currentGesture_.cancel()),
               !this.currentGesture_ &&
                 t &&
-                (this.currentGesture_ = new fp(e, this)),
+                (this.currentGesture_ = new dp(e, this)),
               this.currentGesture_
             )
           }
@@ -25771,7 +25771,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 : this.removeClass(`blocklyReadOnly`))
           }
           scrollBoundsIntoView(e, t = 10) {
-            if (!fp.inProgress()) {
+            if (!dp.inProgress()) {
               var n = this.getScale(),
                 r = this.getMetricsManager().getViewMetrics(!0)
               if (
@@ -25821,7 +25821,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             em.everFocused ||
               this.options.parentWorkspace ||
               (ae(
-                e.C.SCREENREADER_HINT.replace(`%1`, _n(J.TOGGLE_SCREENREADER)),
+                e.C.SCREENREADER_HINT.replace(`%1`, _n(Y.TOGGLE_SCREENREADER)),
               ),
               (em.everFocused = !0))
           }
@@ -25941,7 +25941,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 )
                   return o
                 if (
-                  o instanceof Ud &&
+                  o instanceof Hd &&
                   o.getEditor().getFocusableElement().id === e
                 )
                   return o.getEditor()
@@ -26165,7 +26165,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
       }
       b(I.VARIABLE_MAP, `default`, nm)
-      var rm = class extends Bf {
+      var rm = class extends zf {
         constructor(e) {
           ;(super(),
             (this.workspace = e),
@@ -26380,13 +26380,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           )
         }
         onDragOver() {
-          Ad.mover.isMoving() || this.setLidOpen(this.wouldDelete_)
+          K.mover.isMoving() || this.setLidOpen(this.wouldDelete_)
         }
         onDragExit() {
-          Ad.mover.isMoving() || this.setLidOpen(!1)
+          K.mover.isMoving() || this.setLidOpen(!1)
         }
         onDrop() {
-          Ad.mover.isMoving() || setTimeout(this.setLidOpen.bind(this, !1), 100)
+          K.mover.isMoving() || setTimeout(this.setLidOpen.bind(this, !1), 100)
         }
         setLidOpen(e) {
           if (this.isLidOpen !== e) {
@@ -26634,16 +26634,16 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       var lm = class {
         load(e, t) {
           return (
-            (e = new mf(t.getWorkspace(), t.targetWorkspace, e, !0)),
+            (e = new pf(t.getWorkspace(), t.targetWorkspace, e, !0)),
             e.show(),
-            new Vf(e, `label`)
+            new Bf(e, `label`)
           )
         }
         gapForItem(e, t) {
           return t
         }
         disposeItem(e) {
-          ;((e = e.getElement()), e instanceof mf && e.dispose())
+          ;((e = e.getElement()), e instanceof pf && e.dispose())
         }
         getType() {
           return `label`
@@ -26724,7 +26724,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               e.nextConnection.tightenEfficiently()
           }
         },
-        dm = class extends Wp {
+        dm = class extends Up {
           constructor() {
             ;(super(),
               (this.FIELD_TEXT_BASELINE_CENTER = !1),
@@ -26773,15 +26773,15 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           drawTopCorner(e) {
             this.steps_ += _i(e.xPos, this.info_.startY)
             for (let t = 0, n; (n = e.elements[t]); t++)
-              Z.isLeftSquareCorner(n)
+              Q.isLeftSquareCorner(n)
                 ? (this.steps_ += this.highlightConstants_.START_POINT)
-                : Z.isLeftRoundedCorner(n)
+                : Q.isLeftRoundedCorner(n)
                   ? (this.steps_ += this.outsideCornerPaths_.topLeft(this.RTL_))
-                  : Z.isPreviousConnection(n)
+                  : Q.isPreviousConnection(n)
                     ? (this.steps_ += this.notchPaths_.pathLeft)
-                    : Z.isHat(n)
+                    : Q.isHat(n)
                       ? (this.steps_ += this.startPaths_.path(this.RTL_))
-                      : Z.isSpacer(n) &&
+                      : Q.isSpacer(n) &&
                         n.width !== 0 &&
                         (this.steps_ += w(
                           `H`,
@@ -26833,7 +26833,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           drawRightSideRow(e) {
             var t = e.xPos + e.width - this.highlightOffset
-            ;(e instanceof zp &&
+            ;(e instanceof Rp &&
               e.followsStatement &&
               (this.steps_ += w(`H`, t)),
               this.RTL_ &&
@@ -26849,12 +26849,12 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               this.steps_ += w(`V`, e.baseline - this.highlightOffset)
             else {
               let t = this.info_.bottomRow.elements[0]
-              Z.isLeftSquareCorner(t)
+              Q.isLeftSquareCorner(t)
                 ? (this.steps_ += gi(
                     e.xPos + this.highlightOffset,
                     e.baseline - this.highlightOffset,
                   ))
-                : Z.isLeftRoundedCorner(t) &&
+                : Q.isLeftRoundedCorner(t) &&
                   ((this.steps_ += gi(e.xPos, e.baseline)),
                   (this.steps_ += this.outsideCornerPaths_.bottomLeft()))
             }
@@ -26873,7 +26873,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (this.steps_ += this.puzzleTabPaths_.pathUp(this.RTL_))),
               this.RTL_ ||
                 ((e = this.info_.topRow),
-                Z.isLeftRoundedCorner(e.elements[0])
+                Q.isLeftRoundedCorner(e.elements[0])
                   ? (this.steps_ += w(`V`, this.outsideCornerPaths_.height))
                   : (this.steps_ += w(`V`, e.capline + this.highlightOffset))))
           }
@@ -26900,7 +26900,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   this.puzzleTabPaths_.pathDown(this.RTL_))
           }
         },
-        pm = class extends Gp {
+        pm = class extends Wp {
           constructor(e, t) {
             ;(super(e, t), (this.highlighter_ = new fm(t)))
           }
@@ -27100,7 +27100,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             }
           }
         },
-        hm = class extends Mp {
+        hm = class extends jp {
           constructor(e, t) {
             ;(super(e, t),
               (this.constants_ = e),
@@ -27109,7 +27109,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 (this.height += this.constants_.DARK_PATH_OFFSET)))
           }
         },
-        gm = class extends Vp {
+        gm = class extends Bp {
           constructor(e, t) {
             ;(super(e, t),
               (this.constants_ = e),
@@ -27117,7 +27117,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 (this.height += this.constants_.DARK_PATH_OFFSET))
           }
         },
-        _m = class extends Kp {
+        _m = class extends Gp {
           constructor(e, t) {
             ;(super(e, t), (this.renderer_ = e))
           }
@@ -27129,7 +27129,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (this.block_.inputList.length &&
                 this.block_.inputList[
                   this.block_.inputList.length - 1
-                ] instanceof tf) ||
+                ] instanceof ef) ||
                 (this.bottomRow.minHeight =
                   this.constants_.MEDIUM_PADDING -
                   this.constants_.DARK_PATH_OFFSET))
@@ -27138,13 +27138,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             ;(this.isInline && t instanceof e.go
               ? (n.elements.push(new hm(this.constants_, t)),
                 (n.hasInlineInput = !0))
-              : t instanceof tf
+              : t instanceof ef
                 ? (n.elements.push(new gm(this.constants_, t)),
                   (n.hasStatement = !0))
                 : t instanceof e.go
-                  ? (n.elements.push(new Dp(this.constants_, t)),
+                  ? (n.elements.push(new Ep(this.constants_, t)),
                     (n.hasExternalInput = !0))
-                  : (t instanceof $d || t instanceof ef) &&
+                  : (t instanceof Qd || t instanceof $d) &&
                     ((n.minHeight = Math.max(
                       n.minHeight,
                       this.constants_.DUMMY_INPUT_MIN_HEIGHT,
@@ -27162,104 +27162,104 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 ((r.elements = []),
                 r.startsWithElemSpacer() &&
                   r.elements.push(
-                    new jp(this.constants_, this.getInRowSpacing_(null, t[0])),
+                    new Ap(this.constants_, this.getInRowSpacing_(null, t[0])),
                   ),
                 t.length)
               ) {
                 for (let e = 0; e < t.length - 1; e++) {
                   r.elements.push(t[e])
                   let n = this.getInRowSpacing_(t[e], t[e + 1])
-                  r.elements.push(new jp(this.constants_, n))
+                  r.elements.push(new Ap(this.constants_, n))
                 }
                 ;(r.elements.push(t[t.length - 1]),
                   r.endsWithElemSpacer() &&
                     ((t = this.getInRowSpacing_(t[t.length - 1], null)),
                     e && r.hasDummyInput && (t += this.constants_.TAB_WIDTH),
-                    r.elements.push(new jp(this.constants_, t))))
+                    r.elements.push(new Ap(this.constants_, t))))
               }
             }
           }
           getInRowSpacing_(e, t) {
             if (!e)
-              return t && Z.isField(t) && t.isEditable
+              return t && Q.isField(t) && t.isEditable
                 ? this.constants_.MEDIUM_PADDING
-                : t && Z.isInlineInput(t)
+                : t && Q.isInlineInput(t)
                   ? this.constants_.MEDIUM_LARGE_PADDING
-                  : t && Z.isStatementInput(t)
+                  : t && Q.isStatementInput(t)
                     ? this.constants_.STATEMENT_INPUT_PADDING_LEFT
                     : this.constants_.LARGE_PADDING
-            if (!Z.isInput(e) && (!t || Z.isStatementInput(t)))
-              return Z.isField(e) && e.isEditable
+            if (!Q.isInput(e) && (!t || Q.isStatementInput(t)))
+              return Q.isField(e) && e.isEditable
                 ? e.width === 0
                   ? this.constants_.NO_PADDING
                   : this.constants_.MEDIUM_PADDING
-                : Z.isIcon(e)
+                : Q.isIcon(e)
                   ? this.constants_.LARGE_PADDING * 2 + 1
-                  : Z.isHat(e)
+                  : Q.isHat(e)
                     ? this.constants_.NO_PADDING
-                    : Z.isPreviousOrNextConnection(e)
+                    : Q.isPreviousOrNextConnection(e)
                       ? this.constants_.LARGE_PADDING
-                      : Z.isLeftRoundedCorner(e)
+                      : Q.isLeftRoundedCorner(e)
                         ? this.constants_.MIN_BLOCK_WIDTH
-                        : Z.isJaggedEdge(e)
+                        : Q.isJaggedEdge(e)
                           ? this.constants_.NO_PADDING
                           : this.constants_.LARGE_PADDING
-            if (Z.isInput(e) && !t) {
-              if (Z.isExternalInput(e)) return this.constants_.NO_PADDING
-              if (Z.isInlineInput(e)) return this.constants_.LARGE_PADDING
-              if (Z.isStatementInput(e)) return this.constants_.NO_PADDING
+            if (Q.isInput(e) && !t) {
+              if (Q.isExternalInput(e)) return this.constants_.NO_PADDING
+              if (Q.isInlineInput(e)) return this.constants_.LARGE_PADDING
+              if (Q.isStatementInput(e)) return this.constants_.NO_PADDING
             }
-            if (!Z.isInput(e) && t && Z.isInput(t)) {
-              if (Z.isField(e) && e.isEditable) {
-                if (Z.isInlineInput(t) || Z.isExternalInput(t))
+            if (!Q.isInput(e) && t && Q.isInput(t)) {
+              if (Q.isField(e) && e.isEditable) {
+                if (Q.isInlineInput(t) || Q.isExternalInput(t))
                   return this.constants_.SMALL_PADDING
               } else {
-                if (Z.isInlineInput(t) || Z.isExternalInput(t))
+                if (Q.isInlineInput(t) || Q.isExternalInput(t))
                   return this.constants_.MEDIUM_LARGE_PADDING
-                if (Z.isStatementInput(t)) return this.constants_.LARGE_PADDING
+                if (Q.isStatementInput(t)) return this.constants_.LARGE_PADDING
               }
               return this.constants_.LARGE_PADDING - 1
             }
-            if (Z.isIcon(e) && t && !Z.isInput(t))
+            if (Q.isIcon(e) && t && !Q.isInput(t))
               return this.constants_.LARGE_PADDING
-            if (Z.isInlineInput(e) && t && Z.isField(t))
+            if (Q.isInlineInput(e) && t && Q.isField(t))
               return t.isEditable
                 ? this.constants_.MEDIUM_PADDING
                 : this.constants_.LARGE_PADDING
-            if (Z.isLeftSquareCorner(e) && t) {
-              if (Z.isHat(t)) return this.constants_.NO_PADDING
-              if (Z.isPreviousConnection(t)) return t.notchOffset
-              if (Z.isNextConnection(t))
+            if (Q.isLeftSquareCorner(e) && t) {
+              if (Q.isHat(t)) return this.constants_.NO_PADDING
+              if (Q.isPreviousConnection(t)) return t.notchOffset
+              if (Q.isNextConnection(t))
                 return (
                   t.notchOffset +
                   ((this.RTL ? 1 : -1) * this.constants_.DARK_PATH_OFFSET) / 2
                 )
             }
-            if (Z.isLeftRoundedCorner(e) && t) {
-              if (Z.isPreviousConnection(t))
+            if (Q.isLeftRoundedCorner(e) && t) {
+              if (Q.isPreviousConnection(t))
                 return t.notchOffset - this.constants_.CORNER_RADIUS
-              if (Z.isNextConnection(t))
+              if (Q.isNextConnection(t))
                 return (
                   t.notchOffset -
                   this.constants_.CORNER_RADIUS +
                   ((this.RTL ? 1 : -1) * this.constants_.DARK_PATH_OFFSET) / 2
                 )
             }
-            return Z.isField(e) &&
+            return Q.isField(e) &&
               t &&
-              Z.isField(t) &&
+              Q.isField(t) &&
               e.isEditable === t.isEditable
               ? e.width === 0
                 ? this.constants_.NO_PADDING
                 : this.constants_.LARGE_PADDING
-              : t && Z.isJaggedEdge(t)
+              : t && Q.isJaggedEdge(t)
                 ? this.constants_.LARGE_PADDING
                 : this.constants_.MEDIUM_PADDING
           }
           getSpacerRowHeight_(e, t) {
-            return Z.isTopRow(e) && Z.isBottomRow(t)
+            return Q.isTopRow(e) && Q.isBottomRow(t)
               ? this.constants_.EMPTY_BLOCK_SPACER_HEIGHT
-              : Z.isTopRow(e) || Z.isBottomRow(t)
+              : Q.isTopRow(e) || Q.isBottomRow(t)
                 ? this.constants_.NO_PADDING
                 : e.hasExternalInput && t.hasExternalInput
                   ? this.constants_.LARGE_PADDING
@@ -27272,25 +27272,25 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                       : this.constants_.MEDIUM_PADDING
           }
           getElemCenterline_(e, t) {
-            if (Z.isSpacer(t)) return e.yPos + t.height / 2
-            if (Z.isBottomRow(e))
+            if (Q.isSpacer(t)) return e.yPos + t.height / 2
+            if (Q.isBottomRow(e))
               return (
                 (e = e.yPos + e.height - e.descenderHeight),
-                Z.isNextConnection(t) ? e + t.height / 2 : e - t.height / 2
+                Q.isNextConnection(t) ? e + t.height / 2 : e - t.height / 2
               )
-            if (Z.isTopRow(e))
-              return Z.isHat(t)
+            if (Q.isTopRow(e))
+              return Q.isHat(t)
                 ? e.capline - t.height / 2
                 : e.capline + t.height / 2
             var n = e.yPos
             return (
-              Z.isField(t) || Z.isIcon(t)
+              Q.isField(t) || Q.isIcon(t)
                 ? ((n += t.height / 2),
                   (e.hasInlineInput || e.hasStatement) &&
                     t.height + this.constants_.TALL_INPUT_FIELD_OFFSET_Y <=
                       e.height &&
                     (n += this.constants_.TALL_INPUT_FIELD_OFFSET_Y))
-                : (n = Z.isInlineInput(t)
+                : (n = Q.isInlineInput(t)
                     ? n + t.height / 2
                     : n + e.height / 2),
               n
@@ -27303,7 +27303,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 n = null
               for (let r = this.rows.length - 1, i; (i = this.rows[r]); r--)
                 (t.set(i, e),
-                  Z.isInputRow(i) &&
+                  Q.isInputRow(i) &&
                     (i.hasStatement && this.alignStatementRow_(i),
                     n && n.hasStatement && i.width < n.width
                       ? t.set(i, n.width)
@@ -27313,7 +27313,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               for (let r = 0, i; (i = this.rows[r]); r++)
                 i.hasStatement
                   ? (e = this.getDesiredRowWidth_(i))
-                  : Z.isSpacer(i)
+                  : Q.isSpacer(i)
                     ? (i.width = Math.max(e, t.get(i)))
                     : ((n = i.width),
                       (e = Math.max(e, t.get(i)) - n),
@@ -27360,7 +27360,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (this.startY = this.topRow.capline))
           }
         },
-        vm = class extends qp {
+        vm = class extends Kp {
           constructor(e, t, n) {
             ;(super(e, t, n),
               (this.constants = n),
@@ -27425,7 +27425,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               e && this.svgPath.setAttribute(`stroke`, `none`))
           }
         },
-        ym = class extends Jp {
+        ym = class extends qp {
           constructor(e) {
             ;(super(e), (this.highlightConstants = null))
           }
@@ -27461,7 +27461,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
         }
       Wa(`geras`, ym)
-      var bm = class extends Kp {
+      var bm = class extends Gp {
           constructor(e, t) {
             super(e, t)
           }
@@ -27481,92 +27481,92 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 ((r.elements = []),
                 r.startsWithElemSpacer() &&
                   r.elements.push(
-                    new jp(this.constants_, this.getInRowSpacing_(null, n[0])),
+                    new Ap(this.constants_, this.getInRowSpacing_(null, n[0])),
                   ),
                 n.length)
               ) {
                 for (let e = 0; e < n.length - 1; e++) {
                   r.elements.push(n[e])
                   let t = this.getInRowSpacing_(n[e], n[e + 1])
-                  r.elements.push(new jp(this.constants_, t))
+                  r.elements.push(new Ap(this.constants_, t))
                 }
                 ;(r.elements.push(n[n.length - 1]),
                   r.endsWithElemSpacer() &&
                     ((n = this.getInRowSpacing_(n[n.length - 1], null)),
                     e && r.hasDummyInput && (n += this.constants_.TAB_WIDTH),
-                    r.elements.push(new jp(this.constants_, n))))
+                    r.elements.push(new Ap(this.constants_, n))))
               }
             }
           }
           getInRowSpacing_(e, t) {
             if (!e)
-              return t && Z.isField(t) && t.isEditable
+              return t && Q.isField(t) && t.isEditable
                 ? this.constants_.MEDIUM_PADDING
-                : t && Z.isInlineInput(t)
+                : t && Q.isInlineInput(t)
                   ? this.constants_.MEDIUM_LARGE_PADDING
-                  : t && Z.isStatementInput(t)
+                  : t && Q.isStatementInput(t)
                     ? this.constants_.STATEMENT_INPUT_PADDING_LEFT
                     : this.constants_.LARGE_PADDING
-            if (!Z.isInput(e) && !t)
-              return Z.isField(e) && e.isEditable
+            if (!Q.isInput(e) && !t)
+              return Q.isField(e) && e.isEditable
                 ? e.width === 0
                   ? this.constants_.NO_PADDING
                   : this.constants_.MEDIUM_PADDING
-                : Z.isIcon(e)
+                : Q.isIcon(e)
                   ? this.constants_.LARGE_PADDING * 2 + 1
-                  : Z.isHat(e)
+                  : Q.isHat(e)
                     ? this.constants_.NO_PADDING
-                    : Z.isPreviousOrNextConnection(e)
+                    : Q.isPreviousOrNextConnection(e)
                       ? this.constants_.LARGE_PADDING
-                      : Z.isLeftRoundedCorner(e)
+                      : Q.isLeftRoundedCorner(e)
                         ? this.constants_.MIN_BLOCK_WIDTH
-                        : Z.isJaggedEdge(e)
+                        : Q.isJaggedEdge(e)
                           ? this.constants_.NO_PADDING
                           : this.constants_.LARGE_PADDING
-            if (Z.isInput(e) && !t) {
-              if (Z.isExternalInput(e)) return this.constants_.NO_PADDING
-              if (Z.isInlineInput(e)) return this.constants_.LARGE_PADDING
-              if (Z.isStatementInput(e)) return this.constants_.NO_PADDING
+            if (Q.isInput(e) && !t) {
+              if (Q.isExternalInput(e)) return this.constants_.NO_PADDING
+              if (Q.isInlineInput(e)) return this.constants_.LARGE_PADDING
+              if (Q.isStatementInput(e)) return this.constants_.NO_PADDING
             }
-            if (!Z.isInput(e) && t && Z.isInput(t)) {
-              if (Z.isField(e) && e.isEditable) {
-                if (Z.isInlineInput(t) || Z.isExternalInput(t))
+            if (!Q.isInput(e) && t && Q.isInput(t)) {
+              if (Q.isField(e) && e.isEditable) {
+                if (Q.isInlineInput(t) || Q.isExternalInput(t))
                   return this.constants_.SMALL_PADDING
               } else {
-                if (Z.isInlineInput(t) || Z.isExternalInput(t))
+                if (Q.isInlineInput(t) || Q.isExternalInput(t))
                   return this.constants_.MEDIUM_LARGE_PADDING
-                if (Z.isStatementInput(t)) return this.constants_.LARGE_PADDING
+                if (Q.isStatementInput(t)) return this.constants_.LARGE_PADDING
               }
               return this.constants_.LARGE_PADDING - 1
             }
-            if (Z.isIcon(e) && t && !Z.isInput(t))
+            if (Q.isIcon(e) && t && !Q.isInput(t))
               return this.constants_.LARGE_PADDING
-            if (Z.isInlineInput(e) && t && Z.isField(t))
+            if (Q.isInlineInput(e) && t && Q.isField(t))
               return t.isEditable
                 ? this.constants_.MEDIUM_PADDING
                 : this.constants_.LARGE_PADDING
-            if (Z.isLeftSquareCorner(e) && t) {
-              if (Z.isHat(t)) return this.constants_.NO_PADDING
-              if (Z.isPreviousConnection(t) || Z.isNextConnection(t))
+            if (Q.isLeftSquareCorner(e) && t) {
+              if (Q.isHat(t)) return this.constants_.NO_PADDING
+              if (Q.isPreviousConnection(t) || Q.isNextConnection(t))
                 return t.notchOffset
             }
-            return Z.isLeftRoundedCorner(e) && t
+            return Q.isLeftRoundedCorner(e) && t
               ? t.notchOffset - this.constants_.CORNER_RADIUS
-              : Z.isField(e) &&
+              : Q.isField(e) &&
                   t &&
-                  Z.isField(t) &&
+                  Q.isField(t) &&
                   e.isEditable === t.isEditable
                 ? e.width === 0
                   ? this.constants_.NO_PADDING
                   : this.constants_.LARGE_PADDING
-                : t && Z.isJaggedEdge(t)
+                : t && Q.isJaggedEdge(t)
                   ? this.constants_.LARGE_PADDING
                   : this.constants_.MEDIUM_PADDING
           }
           getSpacerRowHeight_(e, t) {
-            return Z.isTopRow(e) && Z.isBottomRow(t)
+            return Q.isTopRow(e) && Q.isBottomRow(t)
               ? this.constants_.EMPTY_BLOCK_SPACER_HEIGHT
-              : Z.isTopRow(e) || Z.isBottomRow(t)
+              : Q.isTopRow(e) || Q.isBottomRow(t)
                 ? this.constants_.NO_PADDING
                 : e.hasExternalInput && t.hasExternalInput
                   ? this.constants_.LARGE_PADDING
@@ -27579,19 +27579,19 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                       : this.constants_.MEDIUM_PADDING
           }
           getElemCenterline_(e, t) {
-            if (Z.isSpacer(t)) return e.yPos + t.height / 2
-            if (Z.isBottomRow(e))
+            if (Q.isSpacer(t)) return e.yPos + t.height / 2
+            if (Q.isBottomRow(e))
               return (
                 (e = e.yPos + e.height - e.descenderHeight),
-                Z.isNextConnection(t) ? e + t.height / 2 : e - t.height / 2
+                Q.isNextConnection(t) ? e + t.height / 2 : e - t.height / 2
               )
-            if (Z.isTopRow(e))
-              return Z.isHat(t)
+            if (Q.isTopRow(e))
+              return Q.isHat(t)
                 ? e.capline - t.height / 2
                 : e.capline + t.height / 2
             var n = e.yPos
             return (n =
-              Z.isField(t) && e.hasStatement
+              Q.isField(t) && e.hasStatement
                 ? n + (this.constants_.TALL_INPUT_FIELD_OFFSET_Y + t.height / 2)
                 : n + e.height / 2)
           }
@@ -27621,7 +27621,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (this.startY = this.topRow.capline))
           }
         },
-        xm = class extends Jp {
+        xm = class extends qp {
           constructor(e) {
             super(e)
           }
@@ -27630,7 +27630,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
         }
       Wa(`thrasos`, xm)
-      var Sm = class extends Wp {
+      var Sm = class extends Up {
           constructor(e) {
             ;(super(),
               (this.GRID_UNIT = 4),
@@ -28094,7 +28094,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             ]
           }
         },
-        Cm = class extends Gp {
+        Cm = class extends Wp {
           constructor(e, t) {
             super(e, t)
           }
@@ -28135,7 +28135,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           drawRightSideRow_(e) {
             if (!(e.height <= 0)) {
-              if (Z.isSpacer(e)) {
+              if (Q.isSpacer(e)) {
                 let r = e.precedesStatement
                 var t = e.followsStatement
                 if (r || t) {
@@ -28688,20 +28688,20 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             let r = (n = this.workspace_)?.getNavigator(),
               i = (e) =>
                 (e instanceof Tm ||
-                  (e instanceof Rf && e.isSimpleReporter())) &&
+                  (e instanceof Lf && e.isSimpleReporter())) &&
                 e !== this.getSourceBlock()
             n = this
             do n = t.shiftKey ? r?.getOutNode(n) : r?.getInNode(n)
             while (n && !i(n))
             ;((n =
-              n instanceof Rf && n.isSimpleReporter()
+              n instanceof Lf && n.isSimpleReporter()
                 ? n.getFields().next().value
                 : n),
               n instanceof Tm &&
                 (Pr(this),
                 $n(),
                 (t = n.getSourceBlock()),
-                n.isFullBlockField() && t && t instanceof Rf
+                n.isFullBlockField() && t && t instanceof Lf
                   ? e.t().focusNode(t)
                   : e.t().focusNode(n),
                 n.showEditor()))
@@ -28755,7 +28755,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         repositionForWindowResize() {
           var e = this.getSourceBlock(),
             t = this.workspace_
-          if (!(e instanceof Rf)) return !1
+          if (!(e instanceof Lf)) return !1
           if ((this.resizeEditor_(), (e = this.getClickTarget_()), !e || !t))
             return !0
           e = R.from(e.getBoundingClientRect())
@@ -28834,7 +28834,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
     display: inline;
   }
 `))
-      var Em = class extends wp {
+      var Em = class extends Cp {
           constructor(e) {
             super(e)
           }
@@ -28852,7 +28852,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             )
           }
         },
-        Dm = class extends Vp {
+        Dm = class extends Bp {
           constructor(e, t) {
             if (
               (super(e, t),
@@ -28866,14 +28866,14 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             }
           }
         },
-        Om = class extends Sp {
+        Om = class extends xp {
           constructor(e) {
             ;(super(e),
               (this.width = this.height = 0),
-              (this.type |= Z.getType(`RIGHT_CONNECTION`)))
+              (this.type |= Q.getType(`RIGHT_CONNECTION`)))
           }
         },
-        km = class extends Hp {
+        km = class extends Vp {
           constructor(e) {
             super(e)
           }
@@ -28895,7 +28895,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             )
           }
         },
-        Am = class extends Kp {
+        Am = class extends Gp {
           constructor(e, t) {
             ;(super(e, t),
               (this.isInline = !0),
@@ -28924,9 +28924,9 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           shouldStartNewRow_(t, n) {
             return n
-              ? n instanceof ef || t instanceof tf || n instanceof tf
+              ? n instanceof $d || t instanceof ef || n instanceof ef
                 ? !0
-                : t instanceof e.go || t instanceof $d || t instanceof ef
+                : t instanceof e.go || t instanceof Qd || t instanceof $d
                   ? !this.isInline || this.isMultiRow
                   : !1
               : !1
@@ -28944,24 +28944,24 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               !this.outputConnection.isDynamicShape ||
               this.hasStatementInput ||
               this.bottomRow.hasNextConnection
-              ? !e && t && Z.isStatementInput(t)
+              ? !e && t && Q.isStatementInput(t)
                 ? this.constants_.STATEMENT_INPUT_PADDING_LEFT
                 : e &&
-                    Z.isLeftRoundedCorner(e) &&
+                    Q.isLeftRoundedCorner(e) &&
                     t &&
-                    (Z.isPreviousConnection(t) || Z.isNextConnection(t))
+                    (Q.isPreviousConnection(t) || Q.isNextConnection(t))
                   ? t.notchOffset - this.constants_.CORNER_RADIUS
-                  : (e && Z.isLeftSquareCorner(e) && t && Z.isHat(t)) ||
-                      (e && Z.isField(e) && e.width === 0)
+                  : (e && Q.isLeftSquareCorner(e) && t && Q.isHat(t)) ||
+                      (e && Q.isField(e) && e.width === 0)
                     ? this.constants_.NO_PADDING
                     : this.constants_.MEDIUM_PADDING
               : this.constants_.NO_PADDING
           }
           getSpacerRowHeight_(e, t) {
-            if (Z.isTopRow(e) && Z.isBottomRow(t))
+            if (Q.isTopRow(e) && Q.isBottomRow(t))
               return this.constants_.EMPTY_BLOCK_SPACER_HEIGHT
-            var n = Z.isInputRow(e) && e.hasStatement,
-              r = Z.isInputRow(t) && t.hasStatement
+            var n = Q.isInputRow(e) && e.hasStatement,
+              r = Q.isInputRow(t) && t.hasStatement
             return r || n
               ? ((e = Math.max(
                   this.constants_.NOTCH_HEIGHT,
@@ -28970,7 +28970,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 r && n
                   ? Math.max(e, this.constants_.DUMMY_INPUT_MIN_HEIGHT)
                   : e)
-              : Z.isTopRow(e)
+              : Q.isTopRow(e)
                 ? e.hasPreviousConnection ||
                   (this.outputConnection && !this.hasStatementInput)
                   ? this.constants_.NO_PADDING
@@ -28978,7 +28978,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                       this.constants_.NOTCH_HEIGHT -
                         this.constants_.CORNER_RADIUS,
                     )
-                : Z.isBottomRow(t)
+                : Q.isBottomRow(t)
                   ? this.outputConnection
                     ? !t.hasNextConnection && this.hasStatementInput
                       ? Math.abs(
@@ -28997,15 +28997,15 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           getSpacerRowWidth_(e, t) {
             var n = this.width - this.startX
-            return (Z.isInputRow(e) && e.hasStatement) ||
-              (Z.isInputRow(t) && t.hasStatement)
+            return (Q.isInputRow(e) && e.hasStatement) ||
+              (Q.isInputRow(t) && t.hasStatement)
               ? Math.max(n, this.constants_.STATEMENT_INPUT_SPACER_MIN_WIDTH)
               : n
           }
           getElemCenterline_(e, t) {
-            if (e.hasStatement && !Z.isSpacer(t) && !Z.isStatementInput(t))
+            if (e.hasStatement && !Q.isSpacer(t) && !Q.isStatementInput(t))
               return e.yPos + this.constants_.EMPTY_STATEMENT_INPUT_HEIGHT / 2
-            if (Z.isInlineInput(t)) {
+            if (Q.isInlineInput(t)) {
               let n = t.connectedBlock
               if (n && n.outputConnection && n.nextConnection)
                 return e.yPos + n.height / 2
@@ -29014,13 +29014,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           }
           addInput_(t, n) {
             if (
-              (t instanceof $d || t instanceof ef) &&
+              (t instanceof Qd || t instanceof $d) &&
               n.hasDummyInput &&
               n.align === e.Xn.LEFT &&
               t.align === e.Xn.RIGHT
             )
               this.rightAlignedDummyInputs.set(n, t)
-            else if (t instanceof tf) {
+            else if (t instanceof ef) {
               ;(n.elements.push(new Dm(this.constants_, t)),
                 (n.hasStatement = !0),
                 n.align === null && (n.align = t.align))
@@ -29034,8 +29034,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               for (let t = 0; t < e.elements.length; t++) {
                 let r = e.elements[t]
                 if (
-                  (Z.isSpacer(r) && (n = r),
-                  Z.isField(r) &&
+                  (Q.isSpacer(r) && (n = r),
+                  Q.isField(r) &&
                     r.parentInput === this.rightAlignedDummyInputs.get(e))
                 )
                   break
@@ -29064,23 +29064,23 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   i + 2 >= this.rows.length - 1
                     ? !!this.bottomRow.hasNextConnection
                     : !!r.precedesStatement),
-                Z.isInputRow(a) && a.hasStatement)
+                Q.isInputRow(a) && a.hasStatement)
               )
                 (a.measure(),
                   (t = a.width - (a.getLastInput()?.width ?? 0) + e))
               else if (
                 n &&
                 (i === 2 || r) &&
-                Z.isInputRow(a) &&
+                Q.isInputRow(a) &&
                 !a.hasStatement
               ) {
                 ;((r = a.xPos), (n = null))
                 for (let e = 0; e < a.elements.length; e++) {
                   let i = a.elements[e]
-                  ;(Z.isSpacer(i) && (n = i),
-                    !(n && (Z.isField(i) || Z.isInput(i)) && r < t) ||
-                      (Z.isField(i) &&
-                        (i.field instanceof Ff || i.field instanceof wm)) ||
+                  ;(Q.isSpacer(i) && (n = i),
+                    !(n && (Q.isField(i) || Q.isInput(i)) && r < t) ||
+                      (Q.isField(i) &&
+                        (i.field instanceof Pf || i.field instanceof wm)) ||
                       (n.width += t - r),
                     (r += i.width))
                 }
@@ -29130,7 +29130,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             ) {
               for (var e = 0, t = 0; t < this.rows.length; t++) {
                 var n = this.rows[t]
-                if (!Z.isInputRow(n)) continue
+                if (!Q.isInputRow(n)) continue
                 e = n.elements[n.elements.length - 2]
                 let r = this.getNegativeSpacing_(n.elements[1]),
                   i = this.getNegativeSpacing_(e)
@@ -29140,8 +29140,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   this.outputConnection.width * 2
                 ;(this.width - e < a &&
                   ((e = this.width - a), (r = e / 2), (i = e / 2)),
-                  n.elements.unshift(new jp(this.constants_, -r)),
-                  n.elements.push(new jp(this.constants_, -i)))
+                  n.elements.unshift(new Ap(this.constants_, -r)),
+                  n.elements.push(new Ap(this.constants_, -i)))
               }
               if (e)
                 for (
@@ -29153,7 +29153,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   t++
                 )
                   ((n = this.rows[t]),
-                    Z.isTopOrBottomRow(n) && (n.elements[1].width -= e),
+                    Q.isTopOrBottomRow(n) && (n.elements[1].width -= e),
                     (n.width -= e),
                     (n.widthWithConnectedBlocks -= e))
             }
@@ -29175,7 +29175,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 default:
                   return 0
               }
-            if (Z.isInlineInput(e)) {
+            if (Q.isInlineInput(e)) {
               var i = e.connectedBlock
               return (
                 (e = i ? i.pathObject.outputShapeType : e.shape.type),
@@ -29188,7 +29188,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   : t - this.constants_.SHAPE_IN_SHAPE_PADDING[n][e]
               )
             }
-            if (Z.isField(e)) {
+            if (Q.isField(e)) {
               if (n === r.SHAPES.ROUND && e.field instanceof Tm)
                 return t - 2.75 * r.GRID_UNIT
               let a = (i = this.constants_.SHAPE_IN_SHAPE_PADDING[n][0])
@@ -29199,7 +29199,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 t - a
               )
             }
-            return Z.isIcon(e) ? this.constants_.SMALL_PADDING : 0
+            return Q.isIcon(e) ? this.constants_.SMALL_PADDING : 0
           }
           finalizeVerticalAlignment_() {
             if (!this.outputConnection)
@@ -29219,8 +29219,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                   if (
                     ((n =
                       a.elements.length === 3 &&
-                      n instanceof Op &&
-                      (n.field instanceof Ff || n.field instanceof wm)),
+                      n instanceof Dp &&
+                      (n.field instanceof Pf || n.field instanceof wm)),
                     !e && n)
                   )
                     ((i.height -= this.constants_.SMALL_PADDING),
@@ -29231,7 +29231,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                     for (e = !1, t = 0; t < a.elements.length; t++)
                       if (
                         ((n = a.elements[t]),
-                        Z.isInlineInput(n) &&
+                        Q.isInlineInput(n) &&
                           n.connectedBlock &&
                           !n.connectedBlock.isShadow() &&
                           n.connectedBlock.getHeightWidth().height >= 40)
@@ -29255,7 +29255,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 (this.widthWithChildren += this.rightSide.width))
           }
         },
-        jm = class extends qp {
+        jm = class extends Kp {
           constructor(e, t, n) {
             ;(super(e, t, n),
               (this.svgPathSelected = null),
@@ -29342,7 +29342,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               this.outlines.delete(e))
           }
         },
-        Mm = class extends Jp {
+        Mm = class extends qp {
           constructor(e) {
             super(e)
           }
@@ -29517,10 +29517,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         b(I.CONNECTION_PREVIEWER, `default`, Nm))
       var Pm = {}
       ;((Pm.Align = e.Xn),
-        (Pm.DummyInput = $d),
-        (Pm.EndRowInput = ef),
-        (Pm.Input = Qd),
-        (Pm.StatementInput = tf),
+        (Pm.DummyInput = Qd),
+        (Pm.EndRowInput = $d),
+        (Pm.Input = Zd),
+        (Pm.StatementInput = ef),
         (Pm.ValueInput = e.go),
         (Pm.inputTypes = e.je))
       var Fm = !1
@@ -29762,7 +29762,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           return e
         }
       }
-      var Im = class extends up {
+      var Im = class extends lp {
         constructor(e) {
           super(e)
         }
@@ -29921,7 +29921,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       }
       ;((Im.registryName = `verticalFlyout`),
         b(I.FLYOUTS_VERTICAL_TOOLBOX, `default`, Im))
-      var Lm = class extends up {
+      var Lm = class extends lp {
         constructor(e) {
           ;(super(e), (this.horizontalLayout = !0))
         }
@@ -30460,7 +30460,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
       }
       ;(si(`field_number`, zm), (zm.prototype.DEFAULT_VALUE = 0))
-      var Bm = class extends Ff {
+      var Bm = class extends Pf {
         constructor(e, t, n) {
           ;(super(String(e ?? ``), t, n),
             (this.EDITABLE = !1),
@@ -30570,7 +30570,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           ;((this.draggable = e),
             (this.dragTarget = null),
             (this.revertShouldDelete = !1),
-            e instanceof Rf &&
+            e instanceof Lf &&
               e.workspace.isFlyout &&
               (this.revertShouldDelete = !0),
             (this.startLoc = e.getRelativeToSurfaceXY()))
@@ -30635,19 +30635,19 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
                 Bi(this.draggable) &&
                 this.wouldDeleteDraggable(r, this.draggable)) &&
               Bi(this.draggable)
-                ? (this.draggable.endDrag(t, hf.DELETE),
+                ? (this.draggable.endDrag(t, mf.DELETE),
                   e.B(n),
                   this.draggable.dispose())
-                : this.draggable.endDrag(t, i ? hf.REVERT : hf.COMMIT),
+                : this.draggable.endDrag(t, i ? mf.REVERT : mf.COMMIT),
               e.B(!1),
               !r && ge(this.draggable) && e.t().focusNode(this.draggable))
           } else
-            (this.draggable.endDrag(t, hf.COMMIT),
+            (this.draggable.endDrag(t, mf.COMMIT),
               ge(this.draggable) && e.t().focusNode(this.draggable))
         }
         onDragRevert(t) {
           this.revertShouldDelete && Bi(this.draggable)
-            ? (this.draggable.endDrag(t, hf.DELETE), this.draggable.dispose())
+            ? (this.draggable.endDrag(t, mf.DELETE), this.draggable.dispose())
             : (this.draggable.revertDrag(),
               ge(this.draggable) && e.t().focusNode(this.draggable))
         }
@@ -30672,8 +30672,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       }
       b(I.BLOCK_DRAGGER, `default`, Hm)
       var Um = {}
-      ;((Um.BlockDragStrategy = Pf),
-        (Um.BubbleDragStrategy = Pd),
+      ;((Um.BlockDragStrategy = Nf),
+        (Um.BubbleDragStrategy = Nd),
         (Um.CommentDragStrategy = md),
         (Um.Dragger = Hm))
       var Wm = {}
@@ -30710,45 +30710,45 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         (Gm.registerUndo = io))
       var Km = class {
         canConnect(e, t, n, r) {
-          return this.canConnectWithReason(e, t, n, r) === q.CAN_CONNECT
+          return this.canConnectWithReason(e, t, n, r) === J.CAN_CONNECT
         }
         canConnectWithReason(e, t, n, r) {
           var i = this.doSafetyChecks(e, t)
-          return i === q.CAN_CONNECT
+          return i === J.CAN_CONNECT
             ? this.doTypeChecks(e, t)
               ? n && !this.doDragChecks(e, t, r || 0)
-                ? q.REASON_DRAG_CHECKS_FAILED
-                : q.CAN_CONNECT
-              : q.REASON_CHECKS_FAILED
+                ? J.REASON_DRAG_CHECKS_FAILED
+                : J.CAN_CONNECT
+              : J.REASON_CHECKS_FAILED
             : i
         }
         getErrorMessage(e, t, n) {
           switch (e) {
-            case q.REASON_SELF_CONNECTION:
+            case J.REASON_SELF_CONNECTION:
               return `Attempted to connect a block to itself.`
-            case q.REASON_DIFFERENT_WORKSPACES:
+            case J.REASON_DIFFERENT_WORKSPACES:
               return `Blocks not on same workspace.`
-            case q.REASON_WRONG_TYPE:
+            case J.REASON_WRONG_TYPE:
               return `Attempt to connect incompatible types.`
-            case q.REASON_TARGET_NULL:
+            case J.REASON_TARGET_NULL:
               return `Target connection is null.`
-            case q.REASON_CHECKS_FAILED:
+            case J.REASON_CHECKS_FAILED:
               return (
                 `Connection checks failed. ` +
                 (t + ` expected ` + t.getCheck() + `, found ` + n.getCheck())
               )
-            case q.REASON_SHADOW_PARENT:
+            case J.REASON_SHADOW_PARENT:
               return `Connecting non-shadow to shadow block.`
-            case q.REASON_DRAG_CHECKS_FAILED:
+            case J.REASON_DRAG_CHECKS_FAILED:
               return `Drag checks failed.`
-            case q.REASON_PREVIOUS_AND_OUTPUT:
+            case J.REASON_PREVIOUS_AND_OUTPUT:
               return `Block would have an output and a previous connection.`
             default:
               return `Unknown connection failure: this should never happen!`
           }
         }
         doSafetyChecks(e, t) {
-          if (!e || !t) return q.REASON_TARGET_NULL
+          if (!e || !t) return J.REASON_TARGET_NULL
           if (e.isSuperior())
             var n = e.getSourceBlock(),
               r = t.getSourceBlock(),
@@ -30759,21 +30759,21 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
               (i = e),
               (e = t))
           return n === r
-            ? q.REASON_SELF_CONNECTION
-            : i.type === Jd[e.type]
+            ? J.REASON_SELF_CONNECTION
+            : i.type === qd[e.type]
               ? n.workspace === r.workspace
                 ? n.isShadow() && !r.isShadow()
-                  ? q.REASON_SHADOW_PARENT
+                  ? J.REASON_SHADOW_PARENT
                   : (i.type === V.OUTPUT_VALUE &&
                         r.previousConnection &&
                         r.previousConnection.isConnected()) ||
                       (i.type === V.PREVIOUS_STATEMENT &&
                         r.outputConnection &&
                         r.outputConnection.isConnected())
-                    ? q.REASON_PREVIOUS_AND_OUTPUT
-                    : q.CAN_CONNECT
-                : q.REASON_DIFFERENT_WORKSPACES
-              : q.REASON_WRONG_TYPE
+                    ? J.REASON_PREVIOUS_AND_OUTPUT
+                    : J.CAN_CONNECT
+                : J.REASON_DIFFERENT_WORKSPACES
+              : J.REASON_WRONG_TYPE
         }
         doTypeChecks(e, t) {
           if (((e = e.getCheck()), (t = t.getCheck()), !e || !t)) return !0
@@ -30830,16 +30830,16 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       var qm = class {
         load(e, t) {
           return (
-            (e = new mf(t.getWorkspace(), t.targetWorkspace, e, !1)),
+            (e = new pf(t.getWorkspace(), t.targetWorkspace, e, !1)),
             e.show(),
-            new Vf(e, `button`)
+            new Bf(e, `button`)
           )
         }
         gapForItem(e, t) {
           return t
         }
         disposeItem(e) {
-          ;((e = e.getElement()), e instanceof mf && e.dispose())
+          ;((e = e.getElement()), e instanceof pf && e.dispose())
         }
         getType() {
           return `button`
@@ -30847,10 +30847,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       }
       b(I.FLYOUT_INFLATER, `button`, qm)
       var Jm = {}
-      ;((Jm.Bubble = K),
-        (Jm.MiniWorkspaceBubble = Id),
-        (Jm.TextBubble = If),
-        (Jm.TextInputBubble = Ud))
+      ;((Jm.Bubble = q),
+        (Jm.MiniWorkspaceBubble = Fd),
+        (Jm.TextBubble = Ff),
+        (Jm.TextInputBubble = Hd))
       var Ym = class {
         constructor() {
           ;((this.permanentlyDisabledBlocks = new Set()),
@@ -30882,7 +30882,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             (r = [...r, ...i]),
             r.length && g(n, j.OWNS, r),
             this.addBlockListeners(e),
-            new Vf(e, `block`)
+            new Bf(e, `block`)
           )
         }
         createBlock(t, n) {
@@ -30915,7 +30915,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }
         disposeItem(e) {
           ;((e = e.getElement()),
-            e instanceof Rf &&
+            e instanceof Lf &&
               (this.removeListeners(e.id),
               this.permanentlyDisabledBlocks.delete(e),
               e.dispose(!1, !1)))
@@ -31004,8 +31004,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       var Zm = {}
       ;((Zm.RenderInfo = bm), (Zm.Renderer = xm))
       var Qm = {
-          Classic: Md,
-          Zelos: new jd(
+          Classic: jd,
+          Zelos: new Ad(
             `zelos`,
             {
               colour_blocks: {
@@ -31665,7 +31665,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       }
       ;((nh.registrationName = `collapsibleCategory`),
         b(I.TOOLBOX_ITEM, nh.registrationName, nh))
-      var rh = class extends Bf {
+      var rh = class extends zf {
         constructor(e) {
           ;(super(),
             (this.id = `toolbox`),
@@ -31677,7 +31677,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
             (this.previouslySelectedItem_ = this.selectedItem_ = null),
             (this.boundEvents_ = []),
             (this.mouseDown = !1),
-            (this.navigator = new op(this)),
+            (this.navigator = new ap(this)),
             (this.workspace_ = e),
             (this.toolboxDef_ = e.options.languageTree || { contents: [] }),
             (this.horizontalLayout = e.options.horizontalLayout),
@@ -31864,13 +31864,13 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           )
         }
         onDragEnter() {
-          Ad.mover.isMoving() || this.updateCursorDeleteStyle_(!0)
+          K.mover.isMoving() || this.updateCursorDeleteStyle_(!0)
         }
         onDragExit() {
-          Ad.mover.isMoving() || this.updateCursorDeleteStyle_(!1)
+          K.mover.isMoving() || this.updateCursorDeleteStyle_(!1)
         }
         onDrop() {
-          Ad.mover.isMoving() || this.updateCursorDeleteStyle_(!1)
+          K.mover.isMoving() || this.updateCursorDeleteStyle_(!1)
         }
         updateWouldDelete_(e) {
           e !== this.wouldDelete_ &&
@@ -32143,10 +32143,10 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         uh = B.LEFT,
         dh = B.RIGHT
       ;((Zp.prototype.newBlock = function (e, t) {
-        return new nf(this, e, t)
+        return new tf(this, e, t)
       }),
         (em.prototype.newBlock = function (e, t) {
-          return new Rf(this, e, t)
+          return new Lf(this, e, t)
         }),
         (Zp.prototype.newComment = function (e) {
           return new xd(this, e)
@@ -32157,7 +32157,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         (em.newTrashcan = function (e) {
           return new rm(e)
         }),
-        (Id.prototype.newWorkspaceSvg = function (e) {
+        (Fd.prototype.newWorkspaceSvg = function (e) {
           return new em(e)
         }),
         (e.Cj.prototype.populateProcedures = function (t) {
@@ -32167,107 +32167,107 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         }))
       var $ = {}
       return (
-        ($.Block = nf),
+        ($.Block = tf),
         ($.BlockFlyoutInflater = Ym),
-        ($.BlockNavigationPolicy = qf),
-        ($.BlockSvg = Rf),
+        ($.BlockNavigationPolicy = Kf),
+        ($.BlockSvg = Lf),
         ($.Blocks = os),
-        ($.BubbleNavigationPolicy = Jf),
+        ($.BubbleNavigationPolicy = qf),
         ($.ButtonFlyoutInflater = qm),
         ($.COLLAPSED_FIELD_NAME = `_TEMP_COLLAPSED_FIELD`),
         ($.COLLAPSED_INPUT_NAME = `_TEMP_COLLAPSED_INPUT`),
         ($.COLLAPSE_CHARS = 30),
         ($.CodeGenerator = e.zq),
         ($.CollapsibleToolboxCategory = nh),
-        ($.CommentBarButtonNavigationPolicy = Yf),
-        ($.CommentEditorNavigationPolicy = Xf),
+        ($.CommentBarButtonNavigationPolicy = Jf),
+        ($.CommentEditorNavigationPolicy = Yf),
         ($.ComponentManager = Zo),
-        ($.Connection = q),
+        ($.Connection = J),
         ($.ConnectionChecker = Km),
-        ($.ConnectionDB = Wd),
-        ($.ConnectionNavigationPolicy = Zf),
+        ($.ConnectionDB = Ud),
+        ($.ConnectionNavigationPolicy = Xf),
         ($.ConnectionType = V),
         ($.ContextMenu = ud),
         ($.ContextMenuItems = Gm),
         ($.ContextMenuRegistry = U),
         ($.Css = rs),
         ($.DELETE_VARIABLE_ID = `DELETE_VARIABLE_ID`),
-        ($.DeleteArea = Bf),
+        ($.DeleteArea = zf),
         ($.Direction = Od),
-        ($.DragDisposition = hf),
-        ($.DragTarget = zf),
+        ($.DragDisposition = mf),
+        ($.DragTarget = Rf),
         ($.DropDownDiv = Nu),
         ($.Events = H),
-        ($.Extensions = Bd),
+        ($.Extensions = zd),
         ($.Field = Zu),
         ($.FieldCheckbox = Vm),
         ($.FieldDropdown = Ed),
         ($.FieldImage = wm),
-        ($.FieldLabel = Ff),
+        ($.FieldLabel = Pf),
         ($.FieldLabelSerializable = Bm),
-        ($.FieldNavigationPolicy = Qf),
+        ($.FieldNavigationPolicy = Zf),
         ($.FieldNumber = zm),
         ($.FieldTextInput = e.Dq),
         ($.FieldVariable = Rm),
-        ($.Flyout = up),
-        ($.FlyoutButton = mf),
-        ($.FlyoutButtonNavigationPolicy = Gf),
-        ($.FlyoutItem = Vf),
-        ($.FlyoutMetricsManager = Uf),
-        ($.FlyoutNavigator = sp),
-        ($.FlyoutSeparator = Wf),
-        ($.FlyoutSeparatorNavigationPolicy = Kf),
+        ($.Flyout = lp),
+        ($.FlyoutButton = pf),
+        ($.FlyoutButtonNavigationPolicy = Wf),
+        ($.FlyoutItem = Bf),
+        ($.FlyoutMetricsManager = Hf),
+        ($.FlyoutNavigator = op),
+        ($.FlyoutSeparator = Uf),
+        ($.FlyoutSeparatorNavigationPolicy = Gf),
         ($.FocusManager = Os),
         ($.FocusableTreeTraverser = Es),
         ($.Generator = e.zq),
-        ($.Gesture = fp),
-        ($.Grid = pp),
+        ($.Gesture = dp),
+        ($.Grid = fp),
         ($.HorizontalFlyout = Lm),
         ($.INPUT_VALUE = ih),
-        ($.IconNavigationPolicy = $f),
-        ($.Input = Qd),
+        ($.IconNavigationPolicy = Qf),
+        ($.Input = Zd),
         ($.InsertionMarkerPreviewer = Nm),
-        ($.KeyboardMover = Ad),
+        ($.KeyboardMover = K),
         ($.KeyboardNavigationController = tu),
         ($.LabelFlyoutInflater = lm),
         ($.Menu = kc),
         ($.MenuItem = Oc),
-        ($.MetricsManager = Hf),
+        ($.MetricsManager = Vf),
         ($.MoveIndicator = Dd),
         ($.Msg = e.C),
         ($.NEXT_STATEMENT = oh),
         ($.Names = e.Cj),
-        ($.NavigationDirection = np),
-        ($.Navigator = ip),
-        ($.OPPOSITE_TYPE = Jd),
+        ($.NavigationDirection = tp),
+        ($.Navigator = rp),
+        ($.OPPOSITE_TYPE = qd),
         ($.OUTPUT_VALUE = ah),
-        ($.Options = Nd),
+        ($.Options = Md),
         ($.PREVIOUS_STATEMENT = sh),
         ($.PROCEDURE_CATEGORY_NAME = `PROCEDURE`),
-        ($.Procedures = xp),
+        ($.Procedures = bp),
         ($.RENAME_VARIABLE_ID = `RENAME_VARIABLE_ID`),
-        ($.RenderedConnection = Yd),
+        ($.RenderedConnection = Jd),
         ($.Scrollbar = $s),
-        ($.ScrollbarPair = cp),
-        ($.SeparatorFlyoutInflater = lp),
-        ($.ShortcutItems = X),
+        ($.ScrollbarPair = sp),
+        ($.SeparatorFlyoutInflater = cp),
+        ($.ShortcutItems = Z),
         ($.ShortcutRegistry = N),
         ($.TOOLBOX_AT_BOTTOM = lh),
         ($.TOOLBOX_AT_LEFT = uh),
         ($.TOOLBOX_AT_RIGHT = dh),
         ($.TOOLBOX_AT_TOP = ch),
-        ($.Theme = jd),
+        ($.Theme = Ad),
         ($.ThemeManager = Yp),
         ($.Themes = Qm),
         ($.Toast = zc),
         ($.Toolbox = rh),
         ($.ToolboxCategory = eh),
         ($.ToolboxItem = $m),
-        ($.ToolboxItemNavigationPolicy = ap),
-        ($.ToolboxNavigator = op),
+        ($.ToolboxItemNavigationPolicy = ip),
+        ($.ToolboxNavigator = ap),
         ($.ToolboxSeparator = th),
         ($.Tooltip = Gu),
-        ($.Touch = O),
+        ($.Touch = ko),
         ($.Trashcan = rm),
         ($.UnattachedFieldError = Qu),
         ($.VARIABLE_CATEGORY_NAME = `VARIABLE`),
@@ -32281,19 +32281,19 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         ($.WidgetDiv = od),
         ($.Workspace = Zp),
         ($.WorkspaceAudio = Qp),
-        ($.WorkspaceCommentNavigationPolicy = ep),
-        ($.WorkspaceDragger = dp),
-        ($.WorkspaceNavigationPolicy = tp),
+        ($.WorkspaceCommentNavigationPolicy = $f),
+        ($.WorkspaceDragger = up),
+        ($.WorkspaceNavigationPolicy = ep),
         ($.WorkspaceSvg = em),
         ($.Xml = Cd),
         ($.ZoomControls = Sc),
-        ($.blockAnimations = of),
-        ($.blockRendering = Q),
+        ($.blockAnimations = af),
+        ($.blockRendering = Jp),
         ($.browserEvents = Jo),
         ($.bubbles = Jm),
-        ($.bumpObjects = cf),
-        ($.clipboard = ff),
-        ($.comments = pf),
+        ($.bumpObjects = sf),
+        ($.clipboard = df),
+        ($.comments = ff),
         ($.common = Ls),
         ($.config = e.Og),
         ($.constants = {
@@ -32313,7 +32313,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         ($.hideChaff = function (e) {
           Ns.hideChaff(e)
         }),
-        ($.icons = _p),
+        ($.icons = gp),
         ($.inject = function (e, t) {
           var n = null
           n =
@@ -32323,7 +32323,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
           var r
           if (!document.contains(n) && document !== (r = n)?.ownerDocument)
             throw Error(`Error: container is not in current document`)
-          ;((e = new Nd(t || {})),
+          ;((e = new Md(t || {})),
             (r = document.createElement(`div`)),
             v(r, `injectionDiv`),
             t != null && t.rtl && v(r, `blocklyRTL`),
@@ -32362,7 +32362,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         ($.keyboardNavigationController = nu),
         ($.layers = { BLOCK: 50, BUBBLE: 100 }),
         ($.navigateBlock = Aa),
-        ($.procedures = xp),
+        ($.procedures = bp),
         ($.registry = Vs),
         ($.renderManagement = Rc),
         ($.serialization = cm),
@@ -32371,7 +32371,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         ($.svgResize = Ae),
         ($.thrasos = Zm),
         ($.uiPosition = gc),
-        ($.utils = Hd),
+        ($.utils = Vd),
         ($.zelos = Wm),
         (e.__chunk_blockly = $),
         (e.__chunk_blockly.__namespace__ = e),
@@ -37234,7 +37234,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
     stmts
     addr = new po()
     blocks = []
-    context = new yo()
+    _context = new yo()
     parentTag = null
     constructor(e) {
       this.stmts = e
@@ -37242,11 +37242,17 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
     hasNext() {
       return !(this.addr.line.y + 1 >= this.stmts.length)
     }
+    switchContext(e) {
+      this._context = e
+    }
     get address() {
       return this.addr
     }
     set address(e) {
       this.addr = e
+    }
+    get context() {
+      return this._context
     }
     get currentStmt() {
       let e = this.stmts[this.addr.line.y]
@@ -37347,7 +37353,15 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
         (this.envr.blocks.push(e), (this.envr.address = e.address.shift(1)))
     }
   },
-  Co = class {
+  Co = class extends yo {
+    constructor(e, t) {
+      ;(super(e), t !== null && super.assign(t.name, t.value))
+    }
+    assign(e, t) {
+      this.parent?.assign(e, t)
+    }
+  },
+  D = class {
     condition
     constructor(e) {
       this.condition = e
@@ -37362,7 +37376,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       e.pushBlock(t)
     }
   },
-  D = class {
+  wo = class {
     execute(e) {
       let t = new vo(
         go.Conditional,
@@ -37373,7 +37387,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       e.pushBlock(t)
     }
   },
-  wo = class {
+  To = class {
     execute(e) {
       let t = new vo(
         go.Conditional,
@@ -37384,7 +37398,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       e.pushBlock(t)
     }
   },
-  To = class {
+  Eo = class {
     execute(e) {
       for (;;) {
         let t = e.envr.blocks.at(-1)
@@ -37401,7 +37415,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       }
     }
   },
-  Eo = class {
+  Do = class {
     execute(e) {
       for (;;) {
         let t = e.envr.blocks.at(-1)
@@ -37418,7 +37432,7 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       }
     }
   },
-  Do = class {
+  Oo = class {
     times
     constructor(e) {
       this.times = e
@@ -37439,9 +37453,8 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
       e.pushBlock(r)
     }
   },
-  Oo,
-  O,
   ko,
+  O,
   Ao,
   jo,
   Mo,
@@ -37454,18 +37467,19 @@ Blockly.YourGeneratorName.nameDB_.setVariableMap(workspace.getVariableMap());`),
   zo,
   Bo,
   Vo,
-  Ho = {},
-  Uo = [],
-  Wo = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
-  Go = Array.isArray
-function Ko(e, t) {
+  Ho,
+  Uo = {},
+  Wo = [],
+  Go = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,
+  Ko = Array.isArray
+function qo(e, t) {
   for (var n in t) e[n] = t[n]
   return e
 }
-function qo(e) {
+function Jo(e) {
   e && e.parentNode && e.parentNode.removeChild(e)
 }
-function Jo(e, t, n) {
+function Yo(e, t, n) {
   var r,
     i,
     a,
@@ -37473,13 +37487,13 @@ function Jo(e, t, n) {
   for (a in t) a == `key` ? (r = t[a]) : a == `ref` ? (i = t[a]) : (o[a] = t[a])
   if (
     (arguments.length > 2 &&
-      (o.children = arguments.length > 3 ? Oo.call(arguments, 2) : n),
+      (o.children = arguments.length > 3 ? ko.call(arguments, 2) : n),
     typeof e == `function` && e.defaultProps != null)
   )
     for (a in e.defaultProps) o[a] === void 0 && (o[a] = e.defaultProps[a])
-  return Yo(e, o, r, i, null)
+  return Xo(e, o, r, i, null)
 }
-function Yo(e, t, n, r, i) {
+function Xo(e, t, n, r, i) {
   var a = {
     type: e,
     props: t,
@@ -37491,34 +37505,34 @@ function Yo(e, t, n, r, i) {
     __e: null,
     __c: null,
     constructor: void 0,
-    __v: i ?? ++ko,
+    __v: i ?? ++Ao,
     __i: -1,
     __u: 0,
   }
   return (i == null && O.vnode != null && O.vnode(a), a)
 }
-function Xo(e) {
+function Zo(e) {
   return e.children
 }
-function Zo(e, t) {
+function Qo(e, t) {
   ;((this.props = e), (this.context = t))
 }
-function Qo(e, t) {
-  if (t == null) return e.__ ? Qo(e.__, e.__i + 1) : null
+function $o(e, t) {
+  if (t == null) return e.__ ? $o(e.__, e.__i + 1) : null
   for (var n; t < e.__k.length; t++)
     if ((n = e.__k[t]) != null && n.__e != null) return n.__e
-  return typeof e.type == `function` ? Qo(e) : null
+  return typeof e.type == `function` ? $o(e) : null
 }
-function $o(e) {
+function es(e) {
   if (e.__P && e.__d) {
     var t = e.__v,
       n = t.__e,
       r = [],
       i = [],
-      a = Ko({}, t)
+      a = qo({}, t)
     ;((a.__v = t.__v + 1),
       O.vnode && O.vnode(a),
-      ls(
+      us(
         e.__P,
         a,
         t,
@@ -37526,68 +37540,68 @@ function $o(e) {
         e.__P.namespaceURI,
         32 & t.__u ? [n] : null,
         r,
-        n ?? Qo(t),
+        n ?? $o(t),
         !!(32 & t.__u),
         i,
       ),
       (a.__v = t.__v),
       (a.__.__k[a.__i] = a),
-      A(r, a, i),
+      ds(r, a, i),
       (t.__e = t.__ = null),
-      a.__e != n && es(a))
+      a.__e != n && ts(a))
   }
 }
-function es(e) {
+function ts(e) {
   if ((e = e.__) != null && e.__c != null)
     return (
       (e.__e = e.__c.base = null),
       e.__k.some(function (t) {
         if (t != null && t.__e != null) return (e.__e = e.__c.base = t.__e)
       }),
-      es(e)
+      ts(e)
     )
 }
-function ts(e) {
-  ;((!e.__d && (e.__d = !0) && jo.push(e) && !ns.__r++) ||
-    Mo != O.debounceRendering) &&
-    ((Mo = O.debounceRendering) || No)(ns)
+function ns(e) {
+  ;((!e.__d && (e.__d = !0) && Mo.push(e) && !rs.__r++) ||
+    No != O.debounceRendering) &&
+    ((No = O.debounceRendering) || Po)(rs)
 }
-function ns() {
+function rs() {
   try {
-    for (var e, t = 1; jo.length;)
-      (jo.length > t && jo.sort(Po), (e = jo.shift()), (t = jo.length), $o(e))
+    for (var e, t = 1; Mo.length;)
+      (Mo.length > t && Mo.sort(Fo), (e = Mo.shift()), (t = Mo.length), es(e))
   } finally {
-    jo.length = ns.__r = 0
+    Mo.length = rs.__r = 0
   }
 }
-function rs(e, t, n, r, i, a, o, s, c, l, u) {
+function k(e, t, n, r, i, a, o, s, c, l, u) {
   var d,
     f,
     p,
     m,
     ee,
     te,
-    h = (r && r.__k) || Uo,
+    h = (r && r.__k) || Wo,
     g = t.length
-  for (c = k(n, t, h, c, g), d = 0; d < g; d++)
+  for (c = is(n, t, h, c, g), d = 0; d < g; d++)
     (p = n.__k[d]) != null &&
-      ((f = (p.__i != -1 && h[p.__i]) || Ho),
+      ((f = (p.__i != -1 && h[p.__i]) || Uo),
       (p.__i = d),
-      (te = ls(e, p, f, i, a, o, s, c, l, u)),
+      (te = us(e, p, f, i, a, o, s, c, l, u)),
       (m = p.__e),
       p.ref &&
         f.ref != p.ref &&
-        (f.ref && j(f.ref, null, p), u.push(p.ref, p.__c || m, p)),
+        (f.ref && ps(f.ref, null, p), u.push(p.ref, p.__c || m, p)),
       ee == null && m != null && (ee = m),
       4 & p.__u
-        ? ((c = is(p, c, e)), f.__e && (f.__e = null))
+        ? ((c = as(p, c, e)), f.__e && (f.__e = null))
         : typeof p.type == `function` && te !== void 0
           ? (c = te)
           : m && (c = m.nextSibling),
       (p.__u &= -7))
   return ((n.__e = ee), c)
 }
-function k(e, t, n, r, i) {
+function is(e, t, n, r, i) {
   var a,
     o,
     s,
@@ -37602,18 +37616,18 @@ function k(e, t, n, r, i) {
         typeof o == `number` ||
         typeof o == `bigint` ||
         o.constructor == String
-          ? (o = e.__k[a] = Yo(null, o, null, null, null))
-          : Go(o)
-            ? (o = e.__k[a] = Yo(Xo, { children: o }, null, null, null))
+          ? (o = e.__k[a] = Xo(null, o, null, null, null))
+          : Ko(o)
+            ? (o = e.__k[a] = Xo(Zo, { children: o }, null, null, null))
             : o.constructor === void 0 && o.__b > 0
               ? (o = e.__k[a] =
-                  Yo(o.type, o.props, o.key, o.ref ? o.ref : null, o.__v))
+                  Xo(o.type, o.props, o.key, o.ref ? o.ref : null, o.__v))
               : (e.__k[a] = o),
         (c = a + f),
         (o.__ = e),
         (o.__b = e.__b + 1),
         (s = null),
-        (l = o.__i = as(o, n, c, d)) != -1 && (d--, (s = n[l]) && (s.__u |= 2)),
+        (l = o.__i = os(o, n, c, d)) != -1 && (d--, (s = n[l]) && (s.__u |= 2)),
         s == null || s.__v == null
           ? (l == -1 && (i > u ? f-- : i < u && f++),
             typeof o.type != `function` && (o.__u |= 4))
@@ -37628,24 +37642,24 @@ function k(e, t, n, r, i) {
     for (a = 0; a < u; a++)
       (s = n[a]) != null &&
         !(2 & s.__u) &&
-        (s.__e == r && (r = Qo(s)), ps(s, s))
+        (s.__e == r && (r = $o(s)), ms(s, s))
   return r
 }
-function is(e, t, n) {
+function as(e, t, n) {
   var r, i
   if (typeof e.type == `function`) {
     for (r = e.__k, i = 0; r && i < r.length; i++)
-      r[i] && ((r[i].__ = e), (t = is(r[i], t, n)))
+      r[i] && ((r[i].__ = e), (t = as(r[i], t, n)))
     return t
   }
   e.__e != t &&
-    (t && e.type && !t.parentNode && (t = Qo(e)),
+    (t && e.type && !t.parentNode && (t = $o(e)),
     (t = n.insertBefore(e.__e, t || null)))
   do t &&= t.nextSibling
   while (t != null && t.nodeType == 8)
   return t
 }
-function as(e, t, n, r) {
+function os(e, t, n, r) {
   var i,
     a,
     o,
@@ -37666,23 +37680,23 @@ function as(e, t, n, r) {
   }
   return -1
 }
-function os(e, t, n) {
+function ss(e, t, n) {
   t[0] == `-`
     ? e.setProperty(t, n ?? ``)
     : (e[t] =
-        n == null ? `` : typeof n != `number` || Wo.test(t) ? n : n + `px`)
+        n == null ? `` : typeof n != `number` || Go.test(t) ? n : n + `px`)
 }
-function ss(e, t, n, r, i) {
+function cs(e, t, n, r, i) {
   var a, o
   n: if (t == `style`) {
     if (typeof n == `string`) e.style.cssText = n
     else {
       if ((typeof r == `string` && (e.style.cssText = r = ``), r))
-        for (t in r) (n && t in n) || os(e.style, t, ``)
-      if (n) for (t in n) (r && n[t] == r[t]) || os(e.style, t, n[t])
+        for (t in r) (n && t in n) || ss(e.style, t, ``)
+      if (n) for (t in n) (r && n[t] == r[t]) || ss(e.style, t, n[t])
     }
   } else if (t[0] == `o` && t[1] == `n`)
-    ((a = t != (t = t.replace(Ro, `$1`))),
+    ((a = t != (t = t.replace(zo, `$1`))),
       (o = t.toLowerCase()),
       (t =
         o in e || t == `onFocusOut` || t == `onFocusIn`
@@ -37692,9 +37706,9 @@ function ss(e, t, n, r, i) {
       (e.l[t + a] = n),
       n
         ? r
-          ? (n[Lo] = r[Lo])
-          : ((n[Lo] = zo), e.addEventListener(t, a ? Vo : Bo, a))
-        : e.removeEventListener(t, a ? Vo : Bo, a))
+          ? (n[Ro] = r[Ro])
+          : ((n[Ro] = Bo), e.addEventListener(t, a ? Ho : Vo, a))
+        : e.removeEventListener(t, a ? Ho : Vo, a))
   else {
     if (i == `http://www.w3.org/2000/svg`)
       t = t.replace(/xlink(H|:h)/, `h`).replace(/sName$/, `s`)
@@ -37722,17 +37736,17 @@ function ss(e, t, n, r, i) {
         : e.setAttribute(t, t == `popover` && n == 1 ? `` : n))
   }
 }
-function cs(e) {
+function ls(e) {
   return function (t) {
     if (this.l) {
       var n = this.l[t.type + e]
-      if (t[Io] == null) t[Io] = zo++
-      else if (t[Io] < n[Lo]) return
+      if (t[Lo] == null) t[Lo] = Bo++
+      else if (t[Lo] < n[Ro]) return
       return n(O.event ? O.event(t) : t)
     }
   }
 }
-function ls(e, t, n, r, i, a, o, s, c, l) {
+function us(e, t, n, r, i, a, o, s, c, l) {
   var u,
     d,
     f,
@@ -37765,9 +37779,9 @@ function ls(e, t, n, r, i, a, o, s, c, l) {
           ? (h = (f = t.__c = n.__c).__ = f.__E)
           : (ne
               ? (t.__c = f = new y(g, ie))
-              : ((t.__c = f = new Zo(g, ie)),
+              : ((t.__c = f = new Qo(g, ie)),
                 (f.constructor = y),
-                (f.render = ms)),
+                (f.render = hs)),
             re && re.sub(f),
             f.state || (f.state = {}),
             (f.__n = r),
@@ -37777,8 +37791,8 @@ function ls(e, t, n, r, i, a, o, s, c, l) {
         ne && f.__s == null && (f.__s = f.state),
         ne &&
           y.getDerivedStateFromProps != null &&
-          (f.__s == f.state && (f.__s = Ko({}, f.__s)),
-          Ko(f.__s, y.getDerivedStateFromProps(g, f.__s))),
+          (f.__s == f.state && (f.__s = qo({}, f.__s)),
+          qo(f.__s, y.getDerivedStateFromProps(g, f.__s))),
         (m = f.props),
         (ee = f.state),
         (f.__v = t),
@@ -37807,10 +37821,10 @@ function ls(e, t, n, r, i, a, o, s, c, l) {
             t.__k.some(function (e) {
               e && (e.__ = t)
             }),
-            Uo.push.apply(f.__h, f._sb),
+            Wo.push.apply(f.__h, f._sb),
             (f._sb = []),
             f.__h.length && o.push(f),
-            (s = Qo(n)))
+            (s = $o(n)))
           break n
         }
         ;(f.componentWillUpdate != null && f.componentWillUpdate(g, f.__s, ie),
@@ -37833,7 +37847,7 @@ function ls(e, t, n, r, i, a, o, s, c, l) {
           (f.__d = !1),
           ae && ae(t),
           (u = f.render(f.props, f.state, f.context)),
-          Uo.push.apply(f.__h, f._sb),
+          Wo.push.apply(f.__h, f._sb),
           (f._sb = []))
       else
         do
@@ -37843,16 +37857,16 @@ function ls(e, t, n, r, i, a, o, s, c, l) {
             (f.state = f.__s))
         while (f.__d && ++_ < 25)
       ;((f.state = f.__s),
-        f.getChildContext != null && (r = Ko(Ko({}, r), f.getChildContext())),
+        f.getChildContext != null && (r = qo(qo({}, r), f.getChildContext())),
         ne &&
           !p &&
           f.getSnapshotBeforeUpdate != null &&
           (te = f.getSnapshotBeforeUpdate(m, ee)),
         (v =
-          u != null && u.type === Xo && u.key == null
-            ? ds(u.props.children)
+          u != null && u.type === Zo && u.key == null
+            ? fs(u.props.children)
             : u),
-        (s = rs(e, Go(v) ? v : [v], t, n, r, i, a, o, s, c, l)),
+        (s = k(e, Ko(v) ? v : [v], t, n, r, i, a, o, s, c, l)),
         (f.base = t.__e),
         (t.__u &= -161),
         f.__h.length && o.push(f),
@@ -37863,21 +37877,21 @@ function ls(e, t, n, r, i, a, o, s, c, l) {
           for (t.__u |= c ? 160 : 128; s && s.nodeType == 8 && s.nextSibling;)
             s = s.nextSibling
           ;(a != null && (a[a.indexOf(s)] = null), (t.__e = s))
-        } else if (a != null) for (oe = a.length; oe--;) qo(a[oe])
+        } else if (a != null) for (oe = a.length; oe--;) Jo(a[oe])
       } else t.__e = n.__e
-      ;((t.__k ??= n.__k || []), e.then || us(t), O.__e(e, t, n))
+      ;((t.__k ??= n.__k || []), e.then || A(t), O.__e(e, t, n))
     }
   } else
     a == null && t.__v == n.__v
       ? ((t.__k = n.__k), (t.__e = n.__e))
-      : (s = t.__e = fs(n.__e, t, n, r, i, a, o, c, l))
+      : (s = t.__e = j(n.__e, t, n, r, i, a, o, c, l))
   return ((u = O.diffed) && u(t), 128 & t.__u ? void 0 : s)
 }
-function us(e) {
-  e && (e.__c && (e.__c.__e = !0), e.__k && e.__k.some(us))
+function A(e) {
+  e && (e.__c && (e.__c.__e = !0), e.__k && e.__k.some(A))
 }
-function A(e, t, n) {
-  for (var r = 0; r < n.length; r++) j(n[r], n[++r], n[++r])
+function ds(e, t, n) {
+  for (var r = 0; r < n.length; r++) ps(n[r], n[++r], n[++r])
   ;(O.__c && O.__c(t, e),
     e.some(function (t) {
       try {
@@ -37891,16 +37905,16 @@ function A(e, t, n) {
       }
     }))
 }
-function ds(e) {
+function fs(e) {
   return typeof e != `object` || !e || e.__b > 0
     ? e
-    : Go(e)
-      ? e.map(ds)
+    : Ko(e)
+      ? e.map(fs)
       : e.constructor === void 0
-        ? Ko({}, e)
+        ? qo({}, e)
         : null
 }
-function fs(e, t, n, r, i, a, o, s, c) {
+function j(e, t, n, r, i, a, o, s, c) {
   var l,
     u,
     d,
@@ -37908,7 +37922,7 @@ function fs(e, t, n, r, i, a, o, s, c) {
     p,
     m,
     ee,
-    te = n.props || Ho,
+    te = n.props || Uo,
     h = t.props,
     g = t.type
   if (
@@ -37941,7 +37955,7 @@ function fs(e, t, n, r, i, a, o, s, c) {
       ((a =
         g == `textarea` && h.defaultValue != null
           ? null
-          : a && Oo.call(e.childNodes)),
+          : a && ko.call(e.childNodes)),
       !s && a != null)
     )
       for (te = {}, l = 0; l < e.attributes.length; l++)
@@ -37954,7 +37968,7 @@ function fs(e, t, n, r, i, a, o, s, c) {
             l in h ||
             (l == `value` && `defaultValue` in h) ||
             (l == `checked` && `defaultChecked` in h) ||
-            ss(e, l, null, p, i))
+            cs(e, l, null, p, i))
     for (l in h)
       ((p = h[l]),
         l == `children`
@@ -37967,7 +37981,7 @@ function fs(e, t, n, r, i, a, o, s, c) {
                 ? (ee = p)
                 : (s && typeof p != `function`) ||
                   te[l] === p ||
-                  ss(e, l, p, te[l], i))
+                  cs(e, l, p, te[l], i))
     if (u)
       (s ||
         (d && (u.__html == d.__html || u.__html == e.innerHTML)) ||
@@ -37975,22 +37989,22 @@ function fs(e, t, n, r, i, a, o, s, c) {
         (t.__k = []))
     else if (
       (d && (e.innerHTML = ``),
-      rs(
+      k(
         t.type == `template` ? e.content : e,
-        Go(f) ? f : [f],
+        Ko(f) ? f : [f],
         t,
         n,
         r,
         g == `foreignObject` ? `http://www.w3.org/1999/xhtml` : i,
         a,
         o,
-        a ? a[0] : n.__k && Qo(n, 0),
+        a ? a[0] : n.__k && $o(n, 0),
         s,
         c,
       ),
       a != null)
     )
-      for (l = a.length; l--;) qo(a[l])
+      for (l = a.length; l--;) Jo(a[l])
     ;(s && g != `textarea`) ||
       ((l = `value`),
       g == `progress` && m == null
@@ -37999,13 +38013,13 @@ function fs(e, t, n, r, i, a, o, s, c) {
           (m !== e[l] ||
             (g == `progress` && !m) ||
             (g == `option` && m != te[l])) &&
-          ss(e, l, m, te[l], i),
+          cs(e, l, m, te[l], i),
       (l = `checked`),
-      ee != null && ee != e[l] && ss(e, l, ee, te[l], i))
+      ee != null && ee != e[l] && cs(e, l, ee, te[l], i))
   }
   return e
 }
-function j(e, t, n) {
+function ps(e, t, n) {
   try {
     if (typeof e == `function`) {
       var r = typeof e.__u == `function`
@@ -38015,11 +38029,11 @@ function j(e, t, n) {
     O.__e(e, n)
   }
 }
-function ps(e, t, n) {
+function ms(e, t, n) {
   var r, i
   if (
     (O.unmount && O.unmount(e),
-    (r = e.ref) && ((r.current && r.current != e.__e) || j(r, null, t)),
+    (r = e.ref) && ((r.current && r.current != e.__e) || ps(r, null, t)),
     (r = e.__c) != null)
   ) {
     if (r.componentWillUnmount)
@@ -38032,35 +38046,35 @@ function ps(e, t, n) {
   }
   if ((r = e.__k))
     for (i = 0; i < r.length; i++)
-      r[i] && ps(r[i], t, n || typeof e.type != `function`)
-  ;(n || qo(e.__e), (e.__c = e.__ = e.__e = void 0))
-}
-function ms(e, t, n) {
-  return this.constructor(e, n)
+      r[i] && ms(r[i], t, n || typeof e.type != `function`)
+  ;(n || Jo(e.__e), (e.__c = e.__ = e.__e = void 0))
 }
 function hs(e, t, n) {
+  return this.constructor(e, n)
+}
+function gs(e, t, n) {
   var r, i, a, o
   ;(t == document && (t = document.documentElement),
     O.__ && O.__(e, t),
     (i = (r = typeof n == `function`) ? null : (n && n.__k) || t.__k),
     (a = []),
     (o = []),
-    ls(
+    us(
       t,
-      (e = ((!r && n) || t).__k = Jo(Xo, null, [e])),
-      i || Ho,
-      Ho,
+      (e = ((!r && n) || t).__k = Yo(Zo, null, [e])),
+      i || Uo,
+      Uo,
       t.namespaceURI,
-      !r && n ? [n] : i ? null : t.firstChild ? Oo.call(t.childNodes) : null,
+      !r && n ? [n] : i ? null : t.firstChild ? ko.call(t.childNodes) : null,
       a,
       !r && n ? n : i ? i.__e : t.firstChild,
       r,
       o,
     ),
-    A(a, e, o),
+    ds(a, e, o),
     (e.props.children = null))
 }
-;((Oo = Uo.slice),
+;((ko = Wo.slice),
   (O = {
     __e: function (e, t, n, r) {
       for (var i, a, o; (t = t.__);)
@@ -38081,40 +38095,40 @@ function hs(e, t, n) {
       throw e
     },
   }),
-  (ko = 0),
-  (Ao = function (e) {
+  (Ao = 0),
+  (jo = function (e) {
     return e != null && e.constructor === void 0
   }),
-  (Zo.prototype.setState = function (e, t) {
+  (Qo.prototype.setState = function (e, t) {
     var n =
       this.__s != null && this.__s != this.state
         ? this.__s
-        : (this.__s = Ko({}, this.state))
-    ;(typeof e == `function` && (e = e(Ko({}, n), this.props)),
-      e && Ko(n, e),
-      e != null && this.__v && (t && this._sb.push(t), ts(this)))
+        : (this.__s = qo({}, this.state))
+    ;(typeof e == `function` && (e = e(qo({}, n), this.props)),
+      e && qo(n, e),
+      e != null && this.__v && (t && this._sb.push(t), ns(this)))
   }),
-  (Zo.prototype.forceUpdate = function (e) {
-    this.__v && ((this.__e = !0), e && this.__h.push(e), ts(this))
+  (Qo.prototype.forceUpdate = function (e) {
+    this.__v && ((this.__e = !0), e && this.__h.push(e), ns(this))
   }),
-  (Zo.prototype.render = Xo),
-  (jo = []),
-  (No =
+  (Qo.prototype.render = Zo),
+  (Mo = []),
+  (Po =
     typeof Promise == `function`
       ? Promise.prototype.then.bind(Promise.resolve())
       : setTimeout),
-  (Po = function (e, t) {
+  (Fo = function (e, t) {
     return e.__v.__b - t.__v.__b
   }),
-  (ns.__r = 0),
-  (Fo = Math.random().toString(8)),
-  (Io = `__d` + Fo),
-  (Lo = `__a` + Fo),
-  (Ro = /(PointerCapture)$|Capture$/i),
-  (zo = 0),
-  (Bo = cs(!1)),
-  (Vo = cs(!0)))
-var gs = class {
+  (rs.__r = 0),
+  (Io = Math.random().toString(8)),
+  (Lo = `__d` + Io),
+  (Ro = `__a` + Io),
+  (zo = /(PointerCapture)$|Capture$/i),
+  (Bo = 0),
+  (Vo = ls(!1)),
+  (Ho = ls(!0)))
+var _s = class {
     _styles = new Map()
     setStyle(e, t) {
       this._styles.set(e, t)
@@ -38125,7 +38139,7 @@ var gs = class {
       return e
     }
   },
-  _s = class {
+  vs = class {
     attributes = new Map()
     setAttribute(e, t) {
       this.attributes.set(e, t)
@@ -38134,7 +38148,7 @@ var gs = class {
       return Object.fromEntries(this.attributes)
     }
   },
-  vs = class {
+  ys = class {
     handlers = new Map()
     addHandler(e, t) {
       this.handlers.set(`on` + e, t)
@@ -38143,15 +38157,15 @@ var gs = class {
       return Object.fromEntries(this.handlers)
     }
   },
-  ys = class {
+  M = class {
     tag
     address
     willEnter
     didExit
-    attributes = new _s()
+    attributes = new vs()
     children = []
-    styles = new gs()
-    eventHandlers = new vs()
+    styles = new _s()
+    eventHandlers = new ys()
     type = go.Tag
     constructor(e, t, n, r) {
       ;((this.tag = e),
@@ -38160,9 +38174,9 @@ var gs = class {
         (this.didExit = r))
     }
   }
-function M(e, t) {
+function bs(e, t) {
   let n = t.envr.currentTag,
-    r = new ys(
+    r = new M(
       e,
       t.envr.address,
       () => ((t.envr.currentTag = r), !0),
@@ -38170,9 +38184,9 @@ function M(e, t) {
     )
   t.pushBlock(r)
 }
-var bs = class {
+var xs = class {
     execute(e) {
-      let t = new ys(
+      let t = new M(
         `div`,
         e.envr.address,
         () => ((e.envr.currentTag = t), !0),
@@ -38181,26 +38195,26 @@ var bs = class {
       e.pushBlock(t)
     }
   },
-  xs = class {
+  Ss = class {
     keyword
     constructor(e) {
       this.keyword = e
     }
     execute(e) {
-      M(this.keyword, e)
+      bs(this.keyword, e)
     }
   },
-  Ss = class extends xs {
+  Cs = class extends Ss {
     constructor() {
       super(T.Div)
     }
   },
-  Cs = class extends xs {
+  ws = class extends Ss {
     constructor() {
       super(T.P)
     }
   },
-  ws = class {
+  Ts = class {
     content
     constructor(e) {
       this.content = e
@@ -38211,7 +38225,7 @@ var bs = class {
       )
     }
   },
-  Ts = class {
+  Es = class {
     content
     constructor(e) {
       this.content = e
@@ -38222,12 +38236,12 @@ var bs = class {
       )
     }
   },
-  Es = class {
+  Ds = class {
     execute(e) {
       e.envr.currentTag?.children.splice(0, e.envr.currentTag.children.length)
     }
   },
-  Ds = class {
+  Os = class {
     name
     value
     constructor(e, t) {
@@ -38237,7 +38251,6 @@ var bs = class {
       e.envr.currentTag.styles.setStyle(this.name, () => e.evaluate(this.value))
     }
   },
-  Os = `eValue`,
   ks = class {
     eventName
     eventValue
@@ -38249,25 +38262,34 @@ var bs = class {
       if (t === null)
         throw Error(`The 'on' action must be used inside a tag block.`)
       let n = e.evaluate(this.eventValue),
-        r = e.envr.address
+        r = e.envr.context,
+        i = e.envr.address
       t.eventHandlers.addHandler(this.eventName, () => {
-        let i = new vo(
+        let a = new vo(
           go.Handler,
-          r,
+          i,
           () => !0,
-          () => (e.dispatcher?.requestUpdate(), _o.EndHandler),
+          () => (
+            e.envr.switchContext(r),
+            e.dispatcher?.requestUpdate(),
+            _o.EndHandler
+          ),
         )
-        e.pushBlock(i)
-        let a = e.envr.currentTag
-        for (
-          e.envr.currentTag = t, e.envr.context.assign(Os, n);
-          e.hasNext();
-        ) {
+        e.pushBlock(a)
+        let o = e.envr.currentTag
+        e.envr.currentTag = t
+        let s = new Co(
+          r,
+          this.eventValue instanceof so
+            ? { name: this.eventValue.name, value: n }
+            : null,
+        )
+        for (e.envr.switchContext(s); e.hasNext();) {
           let t = e.next(),
             n = e.parse(t)
           n && n.execute(e)
         }
-        e.envr.currentTag = a
+        e.envr.currentTag = o
       })
     }
   },
@@ -38542,10 +38564,10 @@ var Ms = { ADD: `+`, MINUS: `-`, MULTIPLY: `*`, DIVIDE: `/`, POWER: `**` }
   fn.defineBlocksWithJsonArray([
     {
       type: `on`,
-      message0: `on %1 with %2 as eValue: %3`,
+      message0: `on %1 with %2 : %3`,
       args0: [
         { type: `field_input`, name: `EVENT`, text: `click` },
-        { type: `input_value`, name: `VALUE` },
+        { type: `input_value`, name: `VALUE`, check: [`variable_get`] },
         { type: `input_statement`, name: `HANDLER` },
       ],
       previousStatement: null,
@@ -39094,7 +39116,7 @@ function Dc(e) {
           return e === 0 ? 0 : !0 === e ? `` : e || ``
         }),
         a = hc(function () {
-          return !Array.isArray(i.value) && !Ao(i.value)
+          return !Array.isArray(i.value) && !jo(i.value)
         }),
         o = bc(function () {
           if (((this.N = Mc), a.value)) {
@@ -39150,7 +39172,7 @@ function Dc(e) {
     e(t)
   }),
   Tc(`__r`, function (e, t) {
-    if ((e(t), t.type !== Xo)) {
+    if ((e(t), t.type !== Zo)) {
       Ec()
       var n,
         r = t.__c
@@ -39250,6 +39272,7 @@ function Oc(e, t, n, r) {
   } else {
     var l = t.__c
     if (l) {
+      l.__$f |= 8
       var u = l.__$u
       u && ((l.__$u = void 0), u.d())
     }
@@ -39259,7 +39282,7 @@ function Oc(e, t, n, r) {
   Tc(`__h`, function (e, t, n, r) {
     ;(r < 3 && (t.__$f |= 2), e(t, n, r))
   }),
-  (Zo.prototype.shouldComponentUpdate = function (e, t) {
+  (Qo.prototype.shouldComponentUpdate = function (e, t) {
     if (this.__R) return !0
     var n = this.__$u,
       r = n && n.s !== void 0
@@ -39330,21 +39353,21 @@ var Nc = uc(
         [T.Comment]: (e) => new ao(e[xo.FirstArg].toString()),
         [T.Assign]: (e, t) =>
           new fo(t.readRef(e[xo.FirstArg]), t.readExpr(e[xo.FirstArg + 1])),
-        [T.Ifs]: () => new D(),
-        [T.If]: (e, t) => new Co(t.readExpr(e[xo.FirstArg])),
-        [T.ElseIf]: (e, t) => new Co(t.readExpr(e[xo.FirstArg])),
-        [T.Else]: () => new wo(),
-        [T.Repeat]: (e, t) => new Do(t.readExpr(e[xo.FirstArg])),
-        [T.Break]: () => new To(),
-        [T.Continue]: () => new Eo(),
-        [T.Html]: () => new bs(),
-        [T.Div]: () => new Ss(),
-        [T.P]: () => new Cs(),
-        [T.StaticText]: (e, t) => new ws(t.readExpr(e[xo.FirstArg])),
-        [T.DynamicText]: (e, t) => new Ts(t.readExpr(e[xo.FirstArg])),
-        [T.Clear]: () => new Es(),
+        [T.Ifs]: () => new wo(),
+        [T.If]: (e, t) => new D(t.readExpr(e[xo.FirstArg])),
+        [T.ElseIf]: (e, t) => new D(t.readExpr(e[xo.FirstArg])),
+        [T.Else]: () => new To(),
+        [T.Repeat]: (e, t) => new Oo(t.readExpr(e[xo.FirstArg])),
+        [T.Break]: () => new Eo(),
+        [T.Continue]: () => new Do(),
+        [T.Html]: () => new xs(),
+        [T.Div]: () => new Cs(),
+        [T.P]: () => new ws(),
+        [T.StaticText]: (e, t) => new Ts(t.readExpr(e[xo.FirstArg])),
+        [T.DynamicText]: (e, t) => new Es(t.readExpr(e[xo.FirstArg])),
+        [T.Clear]: () => new Ds(),
         [T.Style]: (e, t) =>
-          new Ds(e[xo.FirstArg].toString(), t.readExpr(e[xo.FirstArg + 1])),
+          new Os(e[xo.FirstArg].toString(), t.readExpr(e[xo.FirstArg + 1])),
         [T.On]: (e, t) =>
           new ks(e[xo.FirstArg].toString(), t.readExpr(e[xo.FirstArg + 1])),
         [T.End]: () => new N(),
@@ -39551,7 +39574,7 @@ function Kc({ interpreter: e }) {
   return (
     e.subscribeToUiChanges().value,
     e.renderer.isCompleted
-      ? Gc(Xo, { children: e.resultDom })
+      ? Gc(Zo, { children: e.resultDom })
       : Gc(`div`, { children: `Running...` })
   )
 }
@@ -39581,7 +39604,7 @@ var Jc = uc(0),
       Jc.value = (Jc.value + 1) % 1e3
     }
     h(e) {
-      return Jo(
+      return Yo(
         e.tag,
         { ...e.attributes.all, style: e.styles.all, ...e.eventHandlers.all },
         ...e.children.map((e) => this.createVNode(e)),
@@ -39591,13 +39614,13 @@ var Jc = uc(0),
 export {
   o as _,
   Nc as a,
-  hs as c,
+  gs as c,
   ro as d,
   Kt as f,
   f as g,
   Kn as h,
   Pc as i,
-  Xo as l,
+  Zo as l,
   Gn as m,
   qc as n,
   bc as o,

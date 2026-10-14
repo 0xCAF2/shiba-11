@@ -11,7 +11,7 @@ import { Scope } from "./scope"
 export class Environment {
   private addr = new Address()
   public readonly blocks: Block[] = []
-  public readonly context = new Scope()
+  private _context = new Scope()
   private parentTag: TagBlock | null = null
 
   constructor(public readonly stmts: Statement[]) {}
@@ -23,12 +23,20 @@ export class Environment {
     return true
   }
 
+  switchContext(scope: Scope) {
+    this._context = scope
+  }
+
   get address(): Address {
     return this.addr
   }
 
   set address(addr: Address) {
     this.addr = addr
+  }
+
+  get context(): Scope {
+    return this._context
   }
 
   get currentStmt(): Statement {

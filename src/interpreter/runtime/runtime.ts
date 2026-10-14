@@ -42,7 +42,7 @@ export class Runtime {
     ) {
       return expr.evaluate(this)
     } else {
-      throw new Error(`Unsupported expression: ${expr}`)
+      throw new Error(`Unsupported expression: ${expr as any}`)
     }
   }
 

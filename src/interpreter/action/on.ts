@@ -1,8 +1,13 @@
 import type { Expression } from "../expression"
-import { Block, BlockExitReason, BlockType, type Runtime } from "../runtime"
+import { Variable } from "../expression"
+import {
+  Block,
+  BlockExitReason,
+  BlockType,
+  HandlerScope,
+  type Runtime,
+} from "../runtime"
 import type { Action } from "./action"
-
-const eventValueName = "eValue"
 
 export class On implements Action {
   constructor(
@@ -18,6 +23,7 @@ export class On implements Action {
     // eventValue is evaluated here to capture the value at
     // the time of handler definition, not at the time of event firing.
     const evaluatedEventValue = r.evaluate(this.eventValue)
+    const parentScope = r.envr.context
 
     const addr = r.envr.address
     tagBlock.eventHandlers.addHandler(this.eventName, () => {
@@ -26,6 +32,7 @@ export class On implements Action {
         addr,
         () => true,
         () => {
+          r.envr.switchContext(parentScope)
           r.dispatcher?.requestUpdate()
           return BlockExitReason.EndHandler
         },
@@ -33,7 +40,16 @@ export class On implements Action {
       r.pushBlock(block)
       const previousTag = r.envr.currentTag
       r.envr.currentTag = tagBlock
-      r.envr.context.assign(eventValueName, evaluatedEventValue)
+      const handlerScope = new HandlerScope(
+        parentScope,
+        this.eventValue instanceof Variable
+          ? {
+              name: this.eventValue.name,
+              value: evaluatedEventValue,
+            }
+          : null,
+      )
+      r.envr.switchContext(handlerScope)
       while (r.hasNext()) {
         const stmt = r.next()
         const action = r.parse(stmt)
