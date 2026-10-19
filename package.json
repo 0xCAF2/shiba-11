@@ -9,16 +9,16 @@
     "prepare": "vp config"
   },
   "dependencies": {
-    "@blockly/theme-dark": "^13.3.0",
+    "@blockly/theme-dark": "^13.4.0",
     "@preact/signals": "^2.11.3",
-    "blockly": "^13.3.0",
-    "preact": "^10.29.8"
+    "blockly": "^13.4.0",
+    "preact": "^11.0.1"
   },
   "devDependencies": {
     "@types/bun": "^1.4.3",
     "typescript": "^7.0.2",
-    "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0",
-    "vite-plus": "1.0.0"
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.3.0",
+    "vite-plus": "1.3.0"
   },
   "overrides": {
     "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0"
