@@ -22,7 +22,7 @@ const workspace = Blockly.inject("blockly-div", {
 })
 
 const loader = new Loader(workspace, "ja")
-const codeKeys = new Set<string>(["ja", "memorize", "conditional"])
+const codeKeys = new Set<string>(["ja", "memorize", "conditional", "loop"])
 
 if (codeKeys.has(loader.key)) {
   const response = await fetch(`./blocks/${loader.key}.json`)
