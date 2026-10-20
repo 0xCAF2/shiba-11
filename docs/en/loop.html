@@ -27,5 +27,45 @@
         Repeat while sequentially retrieving elements from a list or array
       </li>
     </ul>
+    <h2>Examples of Loops</h2>
+    <p>Here are some examples of how loops can be used in programming.</p>
+    <pre><code>
+      string = "CDEFGABC"
+      target_char = "A"
+      found_pos = -1
+      i = 0
+      length = len(string)
+      repeat length times:
+          if string[i] == target_char:
+              found_pos = i
+              break
+          i = i + 1
+      print(found_pos)
+    </code></pre>
+    <p>
+      In this example, the loop iterates through each character in the string to
+      find the position of the target character. If the character is found, the
+      loop breaks and the position is printed. If the character is not found,
+      the position remains -1.
+    </p>
+    <h3>Try it out:</h3>
+    <p>
+      You can experiment with loops using the
+      <a href="/en/editor/?k=loop">editor</a>.
+    </p>
+    <ul>
+      <li>
+        Initially, the program searches for "A". Try changing it to search for
+        "C". NOTE: The position is zero-based, meaning the first character is at
+        position 0.
+      </li>
+      <li>
+        Try searching for other characters and see what happens when the
+        character is not in the list.
+      </li>
+      <li>
+        Feel free to change the contents of the variable <code>string</code>.
+      </li>
+    </ul>
   </body>
 </html>

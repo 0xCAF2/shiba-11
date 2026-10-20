@@ -13,7 +13,7 @@ import {
   s as d,
   t as f,
   u as p,
-} from "./preact-Bpo2CpaP.js"
+} from "./preact-CDdrZAUP.js"
 var m = l(`blockly-div`, {
     theme: n,
     toolbox: p,
@@ -23,7 +23,7 @@ var m = l(`blockly-div`, {
     sounds: !1,
   }),
   h = new i(m, `en`)
-if (new Set([`en`, `memorize`, `conditional`]).has(h.key)) {
+if (new Set([`en`, `memorize`, `conditional`, `loop`]).has(h.key)) {
   let e = await (await fetch(`./blocks/${h.key}.json`)).json()
   h.loadWorkspace(e)
 }

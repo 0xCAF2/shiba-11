@@ -17,7 +17,7 @@ import {
   t as u,
   v as d,
   y as f,
-} from "./preact-Bpo2CpaP.js"
+} from "./preact-CDdrZAUP.js"
 var {
     blocks: ae,
     lists: oe,
@@ -179,7 +179,7 @@ var {
       },
     ],
   },
-  m = e((e, t) => {
+  m = e((e, t, n) => {
     ;(function (n, r) {
       if (typeof define == `function` && define.amd) define([], r)
       else if (typeof e == `object`) t.exports = r()
@@ -187,7 +187,7 @@ var {
         var i = r()
         for (var a in i) n.Blockly.Msg[a] = i[a]
       }
-    })(e, function () {
+    })(n, function () {
       var e = e || { Msg: Object.create(null) }
       return (
         (e.Msg.ADD_COMMENT = `コメントを追加`),
@@ -821,6 +821,11 @@ var {
         (e.Msg.TEXT_TRIM_OPERATOR_RIGHT = `右端のスペースを取り除く`),
         (e.Msg.TEXT_TRIM_TOOLTIP = `スペースを 1 つまたは両方の端から削除したのち、テキストのコピーを返します。`),
         (e.Msg.TODAY = `本日分`),
+        (e.Msg.TOOLBOX_SEARCH_NO_RESULTS = `No matching blocks found`),
+        (e.Msg.TOOLBOX_SEARCH_PLACEHOLDER = `Search for blocks`),
+        (e.Msg.TOOLBOX_SEARCH_PROMPT = `Type to search for blocks`),
+        (e.Msg.TOOLBOX_SEARCH_RESULT_COUNT = `%1 matching blocks`),
+        (e.Msg.TOOLBOX_SEARCH_RESULT_COUNT_ONE = `1 matching block`),
         (e.Msg.UNDO = `取り消す`),
         (e.Msg.UNKNOWN = `不明`),
         (e.Msg.UNNAMED_KEY = `名前なし`),
@@ -1550,6 +1555,11 @@ var {
     TEXT_TRIM_OPERATOR_RIGHT: () => pa,
     TEXT_TRIM_TOOLTIP: () => ua,
     TODAY: () => D,
+    TOOLBOX_SEARCH_NO_RESULTS: () => Mf,
+    TOOLBOX_SEARCH_PLACEHOLDER: () => Af,
+    TOOLBOX_SEARCH_PROMPT: () => jf,
+    TOOLBOX_SEARCH_RESULT_COUNT: () => Pf,
+    TOOLBOX_SEARCH_RESULT_COUNT_ONE: () => Nf,
     UNDO: () => K,
     UNKNOWN: () => cc,
     UNNAMED_KEY: () => E,
@@ -2287,6 +2297,11 @@ var {
     WORKSPACE_SEARCH_CLOSE: Df,
     WORKSPACE_SEARCH_NO_MATCHES: Of,
     WORKSPACE_SEARCH_MATCH: kf,
+    TOOLBOX_SEARCH_PLACEHOLDER: Af,
+    TOOLBOX_SEARCH_PROMPT: jf,
+    TOOLBOX_SEARCH_NO_RESULTS: Mf,
+    TOOLBOX_SEARCH_RESULT_COUNT_ONE: Nf,
+    TOOLBOX_SEARCH_RESULT_COUNT: Pf,
   } = f(m(), 1).default
 o(h)
 var Z = ie(`blockly-div`, {
@@ -2298,7 +2313,7 @@ var Z = ie(`blockly-div`, {
     sounds: !1,
   }),
   Q = new s(Z, `ja`)
-if (new Set([`ja`, `memorize`, `conditional`]).has(Q.key)) {
+if (new Set([`ja`, `memorize`, `conditional`, `loop`]).has(Q.key)) {
   let e = await (await fetch(`./blocks/${Q.key}.json`)).json()
   Q.loadWorkspace(e)
 }
@@ -2315,9 +2330,9 @@ if (new Set([`ja`, `memorize`, `conditional`]).has(Q.key)) {
       Q.saveWorkspace())
   }))
 var $ = new u()
-function Af() {
+function Ff() {
   return (
     $.requestRerun(), c(ee, { children: c(ne, { code: t.value, renderer: $ }) })
   )
 }
-n(c(Af, {}), document.getElementById(`root`))
+n(c(Ff, {}), document.getElementById(`root`))
