@@ -13,7 +13,7 @@ import {
   s as d,
   t as f,
   u as p,
-} from "./preact-CDdrZAUP.js"
+} from "./preact-C4uzl3YI.js"
 var m = l(`blockly-div`, {
     theme: n,
     toolbox: p,
