@@ -10,23 +10,23 @@
   },
   "dependencies": {
     "@blockly/theme-dark": "^13.4.0",
-    "@preact/signals": "^2.11.3",
+    "@preact/signals": "^2.11.4",
     "blockly": "^13.4.0",
-    "preact": "^11.0.2"
+    "preact": "^11.2.0"
   },
   "devDependencies": {
     "@types/bun": "^1.4.4",
     "typescript": "^7.0.2",
-    "vite": "npm:@voidzero-dev/vite-plus-core@1.4.0",
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.5.0",
     "vite-plus": "1.4.0"
   },
   "overrides": {
-    "vite": "npm:@voidzero-dev/vite-plus-core@1.4.0"
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.5.0"
   },
   "devEngines": {
     "packageManager": {
       "name": "bun",
-      "version": "1.4.2",
+      "version": "1.4.4",
       "onFail": "download"
     }
   }
